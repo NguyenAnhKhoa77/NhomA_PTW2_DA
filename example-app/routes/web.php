@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LoadingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('/')->group(function () {
-   
+    Route::get('/', [LoadingController::class, 'home'])->name('home');
+});
+Route::prefix('admin')->group(function () {
+    Route::get('/', function ($id) {
+
+    });
 });
