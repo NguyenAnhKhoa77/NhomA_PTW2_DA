@@ -1,4 +1,4 @@
 @extends("fontend.black")
 @section("title","Home")
-kfdhkfhs
+Hello
 @section("content")
