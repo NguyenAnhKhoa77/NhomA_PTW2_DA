@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoadingController;
+use App\Http\Controllers\Admin\AdminPage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,5 @@ Route::prefix('/')->group(function () {
     Route::get('/', [LoadingController::class, 'home'])->name('home');
 });
 Route::prefix('admin')->group(function () {
-    Route::get('/', function ($id) {
-
-    });
+    Route::get('/',[AdminPage::class, 'dashboard']);
 });
