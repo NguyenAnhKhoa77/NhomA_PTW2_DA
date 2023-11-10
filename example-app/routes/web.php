@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoadingController;
 use App\Http\Controllers\Admin\AdminPage;
+use App\Http\Controllers\Admin\ControllerProductManager;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +20,8 @@ Route::prefix('/')->group(function () {
     Route::get('/', [LoadingController::class, 'home'])->name('home');
 });
 Route::prefix('admin')->group(function () {
-    Route::get('/',[AdminPage::class, 'dashboard']);
+    Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
+    Route::get('Create', [ControllerProductManager::class, 'create'])->name('create');
+    Route::get('Detail', [ControllerProductManager::class, 'detail'])->name('detail');
+    Route::get('Edit', [ControllerProductManager::class, 'edit'])->name('edit');
 });
