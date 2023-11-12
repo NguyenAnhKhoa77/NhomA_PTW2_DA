@@ -18,13 +18,12 @@ use App\Http\Controllers\Admin\ControllerProductManager;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
-    Route::get('login', [ControllerView::class, 'home'])->name('login');
-    Route::get('register', [ControllerView::class, 'home'])->name('register');
-    Route::get('detail', [ControllerView::class, 'home'])->name('detail');
-    Route::get('checkout', [ControllerView::class, 'home'])->name('checkout');
-    Route::get('cart', [ControllerView::class, 'home'])->name('cart');
-    Route::get('grid', [ControllerView::class, 'home'])->name('grid');
-    Route::get('account', [ControllerView::class, 'home'])->name('account');
+    Route::get('login', [ControllerView::class, 'login'])->name('login');
+    Route::get('product', [ControllerView::class, 'product'])->name('product');
+    Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
+    Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
+    Route::get('grid', [ControllerView::class, 'grid'])->name('grid');
+    Route::get('account', [ControllerView::class, 'account'])->name('account');
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');

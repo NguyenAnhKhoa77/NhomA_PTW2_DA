@@ -10,4 +10,28 @@ class ControllerView extends Controller
     {
         return view('fontend.index');
     }
+    public function login()
+    {
+        return view('fontend.login');
+    }
+    public function grid()
+    {
+        return view('fontend.grid');
+    }
+    public function product()
+    {
+        return view('fontend.product');
+    }
+    public function account()
+    {
+        return view('fontend.account');
+    }
+    public function checkout()
+    {
+        return view('fontend.checkout');
+    }
+    public function cart()
+    {
+        return view('fontend.cart');
+    }
 }

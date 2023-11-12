@@ -21,7 +21,7 @@
                         <ul class="top-menu">
                             <li>
                                 <ul>
-                                    <li><a href="">Đăng nhập / Đăng ký</a></li>
+                                    <li><a href="{{ route('login', []) }}">Đăng nhập / Đăng ký</a></li>
                                 </ul>
                             </li>
                         </ul><!-- End .top-menu -->
@@ -51,7 +51,7 @@
                     </div>
                     <div class="header-right">
                         <div class="account">
-                            <a href="dashboard.html" title="My account">
+                            <a href="{{ route('account', []) }}" title="My account">
                                 <div class="icon">
                                     <i class="icon-user"></i>
                                 </div>
@@ -70,8 +70,8 @@
                         </div><!-- End .compare-dropdown -->
 
                         <div class="dropdown cart-dropdown">
-                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false" data-display="static">
+                            <a href="{{ route('cart', []) }}" class="dropdown-toggle" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <div class="icon">
                                     <i class="icon-shopping-cart"></i>
                                     <span class="cart-count">2</span>
@@ -131,8 +131,8 @@
                                 </div><!-- End .dropdown-cart-total -->
 
                                 <div class="dropdown-cart-action">
-                                    <a href="cart.html" class="btn btn-primary">Xem giỏ hàng</a>
-                                    <a href="checkout.html" class="btn btn-outline-primary-2">
+                                    <a href="{{ route('cart', []) }}" class="btn btn-primary">Xem giỏ hàng</a>
+                                    <a href="{{ route('checkout', ['id' => 1]) }}" class="btn btn-outline-primary-2">
                                         <span>Thanh toán</span>
                                         <i class="icon-long-arrow-right"></i>
                                     </a>
@@ -148,10 +148,10 @@
                         <nav class="main-nav">
                             <ul class="menu">
                                 <li class="active">
-                                    <a href="index.html">Home</a>
+                                    <a href="{{ route('home', []) }}">Home</a>
                                 </li>
                                 <li>
-                                    <a href="category.html">Đồ thể thao nam</a>
+                                    <a href="{{ route('grid', []) }}">Đồ thể thao nam</a>
                                     <div class="megamenu megamenu-md">
                                         <div class="menu-col">
                                             <div class="row">
@@ -169,7 +169,7 @@
                                     </div><!-- End .megamenu megamenu-md -->
                                 </li>
                                 <li>
-                                    <a href="category.html">Đồ thể thao nữ</a>
+                                    <a href="{{ route('grid', ['id' => 1]) }}">Đồ thể thao nữ</a>
                                     <div class="megamenu megamenu-md">
                                         <div class="menu-col">
                                             <div class="row">
@@ -187,7 +187,7 @@
                                     </div><!-- End .megamenu megamenu-md -->
                                 </li>
                                 <li>
-                                    <a href="category.html">Phụ kiện thể thao</a>
+                                    <a href="{{ route('grid', []) }}">Phụ kiện thể thao</a>
                                     <div class="megamenu megamenu-md">
                                         <div class="menu-col">
                                             <div class="row">
@@ -363,13 +363,13 @@
     <script src="{{ url('fontend/js/bootstrap.bundle.min.js', []) }}"></script>
     <script src="{{ url('fontend/js/jquery.min.js', []) }}"></script>
 
-    <script src="fontend/js/jquery.hoverIntent.min.js"></script>
-    <script src="fontend/js/jquery.waypoints.min.js"></script>
-    <script src="fontend/js/superfish.min.js"></script>
-    <script src="fontend/js/owl.carousel.min.js"></script>
-    <script src="fontend/js/jquery.plugin.min.js"></script>
-    <script src="fontend/js/jquery.magnific-popup.min.js"></script>
-    <script src="fontend/js/jquery.countdown.min.js"></script>
+    <script src="{{ url('fontend/js/jquery.hoverIntent.min.js', []) }}"></script>
+    <script src="{{ url('fontend/js/jquery.waypoints.min.js', []) }}"></script>
+    <script src="{{ url('fontend/js/superfish.min.js', []) }}"></script>
+    <script src="{{ url('fontend/js/owl.carousel.min.js', []) }}"></script>
+    <script src="{{ url('fontend/js/jquery.plugin.min.js', []) }}"></script>
+    <script src="{{ url('fontend/js/jquery.magnific-popup.min.js', []) }}"></script>
+    <script src="{{ url('fontend/js/jquery.countdown.min.js', []) }}"></script>
     <!-- Main JS File -->
     <script src="{{ url('fontend/js/main.js', []) }}"></script>
 </body>
