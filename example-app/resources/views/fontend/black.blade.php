@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Shop - {title}</title>
+    <title>Shop - @yield('title')</title>
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="fontend/css/bootstrap.min.css">
     <!-- Main CSS File -->
@@ -32,8 +32,7 @@
                 <div class="container">
                     <div class="header-left">
                         <a href="index.html" class="logo">
-                            LOGO
-                            {{-- <img src="" width="105" height="25"> --}}
+                            Nhóm A
                         </a>
                     </div><!-- End .header-left -->
                     <div class="header-center">
@@ -250,34 +249,32 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-2">
                             <div class="widget widget-about">
-                                <img src="fontend/images/demos/demo-2/logo.png" class="footer-logo" alt="Footer Logo"
-                                    width="105" height="25">
+                                <a href="index.html" class="logo-footer">
+                                    Nhóm A
+                                </a>
                             </div><!-- End .widget about-widget -->
                         </div><!-- End .col-sm-12 col-lg-3 -->
 
                         <div class="col-sm-4 col-lg-2">
                             <div class="widget">
-                                <h4 class="widget-title">Information</h4><!-- End .widget-title -->
+                                <h4 class="widget-title">Thông tin liên hệ</h4><!-- End .widget-title -->
 
                                 <ul class="widget-list">
-                                    <li><a href="about.html">About Molla</a></li>
-                                    <li><a href="#">How to shop on Molla</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="contact.html">Contact us</a></li>
-                                    <li><a href="login.html">Log in</a></li>
+                                    <li><a href="">0912345678</a></li>
+                                    <li><a href="">53 Võ Văn Ngân, Linh Chiểu, Thủ Đức</a></li>
+
                                 </ul><!-- End .widget-list -->
                             </div><!-- End .widget -->
                         </div><!-- End .col-sm-4 col-lg-3 -->
                         <div class="col-sm-4 col-lg-2">
                             <div class="widget">
-                                <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+                                <h4 class="widget-title">Tài khoản</h4><!-- End .widget-title -->
 
                                 <ul class="widget-list">
-                                    <li><a href="#">Sign In</a></li>
-                                    <li><a href="cart.html">View Cart</a></li>
+                                    <li><a href="#">Đăng nhập</a></li>
+                                    <li><a href="cart.html">Giỏ hàng</a></li>
                                     <li><a href="#">My Wishlist</a></li>
-                                    <li><a href="#">Track My Order</a></li>
-                                    <li><a href="#">Help</a></li>
+                                    <li><a href="#">Kiểm tra đơn hàng</a></li>
                                 </ul><!-- End .widget-list -->
                             </div><!-- End .widget -->
                         </div><!-- End .col-sm-64 col-lg-3 -->
