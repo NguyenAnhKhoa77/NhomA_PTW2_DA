@@ -18,11 +18,11 @@ use App\Http\Controllers\Admin\ControllerProductManager;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [LoadingController::class, 'home'])->name('home');
+    Route::get('users/{id}',);
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('Create', [ControllerProductManager::class, 'create']);
     Route::get('Detail', [ControllerProductManager::class, 'detail'])->name('detail');
     Route::get('Edit', [ControllerProductManager::class, 'edit'])->name('edit');
-
 });
