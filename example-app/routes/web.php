@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoadingController;
+use App\Http\Controllers\ControllerView;
 use App\Http\Controllers\Admin\AdminPage;
 use App\Http\Controllers\Admin\ControllerProductManager;
 
@@ -17,8 +17,7 @@ use App\Http\Controllers\Admin\ControllerProductManager;
 */
 
 Route::prefix('/')->group(function () {
-    Route::get('/', [LoadingController::class, 'home'])->name('home');
-    Route::get('users/{id}',);
+    Route::get('/', [ControllerView::class, 'home'])->name('home');
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');

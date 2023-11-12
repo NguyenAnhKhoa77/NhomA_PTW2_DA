@@ -1,4 +1,5 @@
 @extends('fontend.black')
+@section('title', 'Home')
 @section('content')
     <main class="main">
         <div class="intro-slider-container">

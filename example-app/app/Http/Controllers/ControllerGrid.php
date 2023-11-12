@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ControllerUserView extends Controller
+class ControllerGrid extends Controller
 {
     //
 }

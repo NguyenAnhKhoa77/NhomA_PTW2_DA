@@ -2863,24 +2863,6 @@ p {
 .footer-dark .footer-bottom .container:before {
     background-color: #525455;
 }
-.footer-dark.footer-2 .widget-about-info a:not(:hover) {
-    color: #fff;
-}
-.footer-dark.footer-2 .widget-about-title {
-    color: #c96;
-}
-.footer-dark.footer-2 .footer-bottom {
-    color: #999999;
-}
-.footer-2 .footer-middle {
-    padding-top: 4.5rem;
-    padding-bottom: 0.4rem;
-}
-.footer-2 .footer-bottom .container {
-    padding-top: 2.2rem;
-    padding-bottom: 2.2rem;
-    flex-direction: column-reverse;
-}
 .col-md-6 .widget-about p,
 .col-lg-6 .widget-about p {
     max-width: none;
@@ -2979,10 +2961,6 @@ p {
     box-shadow: 0 1px 0 #b5b5b5;
 }
 @media screen and (min-width: 992px) {
-    .footer-2 .footer-bottom .container,
-    .footer-2 .footer-bottom .container-fluid {
-        flex-direction: row;
-    }
     .footer-menu {
         margin-bottom: 0;
         margin-left: 0.6rem;
@@ -14260,4 +14238,20 @@ button:focus {
 .icon-yarn:before {
     content: "\f7e3";
 }
-/*# sourceMappingURL=style.css.map */
+
+.brands-border {
+    display: flex;
+    height: 100px;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+}
+.brands-border::after {
+    position: absolute;
+    content: "";
+    top: -0.1rem;
+    left: 0;
+    right: 0;
+    height: 0.1rem;
+    background-color: #ebebeb;
+}

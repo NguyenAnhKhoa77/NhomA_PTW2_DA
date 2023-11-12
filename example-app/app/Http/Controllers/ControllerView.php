@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class LoadingController extends Controller
+class ControllerView extends Controller
 {
-    public function home() {
+    public function Home()
+    {
         return view('fontend.index');
     }
 }
