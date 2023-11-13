@@ -7,9 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Shop - @yield('title')</title>
     <!-- Plugins CSS File -->
+
     <link rel="stylesheet" href="fontend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontend/css/owl.carousel.css">
+    <link rel="stylesheet" href="fontend/css/magnific-popup.css">
+    <link rel="stylesheet" href="fontend/css/jquery.countdown.css">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="fontend/css/style.css">
+    <link rel="stylesheet" href="fontend/css/skin-demo-2.css">
+    <link rel="stylesheet" href="fontend/css/demo-2.css">
 </head>
 
 <body>
@@ -360,18 +366,19 @@
     </div><!-- End .page-wrapper -->
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
     <!-- Plugins JS File -->
-    <script src="{{ url('fontend/js/bootstrap.bundle.min.js', []) }}"></script>
-    <script src="{{ url('fontend/js/jquery.min.js', []) }}"></script>
-
-    <script src="{{ url('fontend/js/jquery.hoverIntent.min.js', []) }}"></script>
-    <script src="{{ url('fontend/js/jquery.waypoints.min.js', []) }}"></script>
-    <script src="{{ url('fontend/js/superfish.min.js', []) }}"></script>
-    <script src="{{ url('fontend/js/owl.carousel.min.js', []) }}"></script>
-    <script src="{{ url('fontend/js/jquery.plugin.min.js', []) }}"></script>
-    <script src="{{ url('fontend/js/jquery.magnific-popup.min.js', []) }}"></script>
-    <script src="{{ url('fontend/js/jquery.countdown.min.js', []) }}"></script>
+    <!-- Plugins JS File -->
+    <script src="fontend/js/jquery.min.js"></script>
+    <script src="fontend/js/bootstrap.bundle.min.js"></script>
+    <script src="fontend/js/jquery.hoverIntent.min.js"></script>
+    <script src="fontend/js/jquery.waypoints.min.js"></script>
+    <script src="fontend/js/superfish.min.js"></script>
+    <script src="fontend/js/owl.carousel.min.js"></script>
+    <script src="fontend/js/jquery.plugin.min.js"></script>
+    <script src="fontend/js/jquery.magnific-popup.min.js"></script>
+    <script src="fontend/js/jquery.countdown.min.js"></script>
     <!-- Main JS File -->
-    <script src="{{ url('fontend/js/main.js', []) }}"></script>
+    <script src="fontend/js/main.js"></script>
+    <script src="fontend/js/demo-2.js"></script>
 </body>
 
 </html>
