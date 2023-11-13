@@ -24,6 +24,7 @@ Route::prefix('/')->group(function () {
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
     Route::get('grid', [ControllerView::class, 'grid'])->name('grid');
     Route::get('account', [ControllerView::class, 'account'])->name('account');
+    Route::get('wishlist', [ControllerView::class, 'wishlist'])->name('wishlist');
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');

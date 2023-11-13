@@ -37,7 +37,7 @@
             <div class="header-middle">
                 <div class="container">
                     <div class="header-left">
-                        <a href="index.html" class="logo">
+                        <a href="index" class="logo">
                             Nhóm A
                         </a>
                     </div><!-- End .header-left -->
@@ -66,7 +66,7 @@
                         </div><!-- End .compare-dropdown -->
 
                         <div class="wishlist">
-                            <a href="wishlist.html" title="Wishlist">
+                            <a href="wishlist" title="Wishlist">
                                 <div class="icon">
                                     <i class="icon-heart-o"></i>
                                     <span class="wishlist-count badge">3</span>
@@ -90,7 +90,7 @@
                                     <div class="product">
                                         <div class="product-cart-details">
                                             <h4 class="product-title">
-                                                <a href="product.html">ÁO BA LỖ CHẠY BỘ LEEVY PHẢN QUANG MS87</a>
+                                                <a href="product">ÁO BA LỖ CHẠY BỘ LEEVY PHẢN QUANG MS87</a>
                                             </h4>
 
                                             <span class="cart-product-info">
@@ -100,7 +100,7 @@
                                         </div><!-- End .product-cart-details -->
 
                                         <figure class="product-image-container">
-                                            <a href="product.html" class="product-image">
+                                            <a href="product" class="product-image">
                                                 <img src="fontend/images/products/ao-ba-lo.jpg" alt="product">
                                             </a>
                                         </figure>
@@ -111,7 +111,7 @@
                                     <div class="product">
                                         <div class="product-cart-details">
                                             <h4 class="product-title">
-                                                <a href="product.html">QUẦN CHẠY BỘ NAM ARSUXEO MS04 - 2 LỚP (BOXER) -
+                                                <a href="product">QUẦN CHẠY BỘ NAM ARSUXEO MS04 - 2 LỚP (BOXER) -
                                                     THIẾT KẾ 4 TÚI ĐA NĂNG</a>
                                             </h4>
 
@@ -122,7 +122,7 @@
                                         </div><!-- End .product-cart-details -->
 
                                         <figure class="product-image-container">
-                                            <a href="product.html" class="product-image">
+                                            <a href="product" class="product-image">
                                                 <img src="fontend/images/products/quan-chay-bo.jpg" alt="product">
                                             </a>
                                         </figure>
@@ -309,7 +309,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-2">
                             <div class="widget widget-about">
-                                <a href="index.html" class="logo-footer">
+                                <a href="index" class="logo-footer">
                                     Nhóm A
                                 </a>
                             </div><!-- End .widget about-widget -->
@@ -332,7 +332,7 @@
 
                                 <ul class="widget-list">
                                     <li><a href="#">Đăng nhập</a></li>
-                                    <li><a href="cart.html">Giỏ hàng</a></li>
+                                    <li><a href="cart">Giỏ hàng</a></li>
                                     <li><a href="#">My Wishlist</a></li>
                                     <li><a href="#">Kiểm tra đơn hàng</a></li>
                                 </ul><!-- End .widget-list -->

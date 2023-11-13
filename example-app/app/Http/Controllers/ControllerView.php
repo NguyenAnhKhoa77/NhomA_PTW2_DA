@@ -34,4 +34,9 @@ class ControllerView extends Controller
     {
         return view('fontend.cart');
     }
+
+    public function wishlist()
+    {
+        return view('fontend.wishlist');
+    }
 }
