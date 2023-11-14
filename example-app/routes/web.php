@@ -27,6 +27,8 @@ Route::prefix('/')->group(function () {
     Route::get('wishlist', [ControllerView::class, 'wishlist'])->name('wishlist');
 });
 Route::prefix('admin')->group(function () {
+});
+Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('Create', [ControllerProductManager::class, 'create'])->name('create');
     Route::get('Detail', [ControllerProductManager::class, 'detail'])->name('detail');
