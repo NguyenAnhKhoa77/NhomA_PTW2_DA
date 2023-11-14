@@ -30,9 +30,12 @@ Route::prefix('user')->group(function () {
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
+
+    Route::get('/dashboard', [AdminPage::class, 'dashboard']);
     Route::prefix('product')->group(function () {
-        Route::get('/', [ControllerProductManager::class, 'create']);
-        Route::get('/', [ControllerProductManager::class, 'create']);
-        Route::get('/', [ControllerProductManager::class, 'create']);
+        Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
+        Route::get('create', [ControllerProductManager::class, 'create'])->name('product.crate');
+        Route::get('delete', [ControllerProductManager::class, 'delete']);
+        Route::get('detail', [ControllerProductManager::class, 'view']);
     });
 });

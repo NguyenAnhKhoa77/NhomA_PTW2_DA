@@ -7,17 +7,23 @@ use Illuminate\Http\Request;
 
 class ControllerProductManager extends Controller
 {
-
+    public function table()
+    {
+        return view('backend.product.table');
+    }
     public function create()
     {
-        return view('backend.create');
+        return view('backend.product.edit');
     }
-    public function detail()
+    public function view()
     {
-        return view('backend.project-detail');
+        return view('backend.product.view');
     }
     public function edit()
     {
-        return view('backend.project-edit');
+        return view('backend.product.edit');
+    }
+    public function delete()
+    {
     }
 }

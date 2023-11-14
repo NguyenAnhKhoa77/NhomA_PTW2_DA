@@ -1,5 +1,5 @@
 @extends('backend.header')
-@selected('title', 'Detail')
+@section('title', 'Product - Table')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
