@@ -28,7 +28,7 @@ Route::prefix('/')->group(function () {
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
-    Route::get('Create', [ControllerProductManager::class, 'create']);
+    Route::get('Create', [ControllerProductManager::class, 'create'])->name('create');
     Route::get('Detail', [ControllerProductManager::class, 'detail'])->name('detail');
     Route::get('Edit', [ControllerProductManager::class, 'edit'])->name('edit');
 });
