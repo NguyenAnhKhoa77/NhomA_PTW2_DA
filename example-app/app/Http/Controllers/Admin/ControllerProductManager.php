@@ -10,7 +10,7 @@ class ControllerProductManager extends Controller
 
     public function create()
     {
-        return view('backend.project-add');
+        return view('backend.create');
     }
     public function detail()
     {

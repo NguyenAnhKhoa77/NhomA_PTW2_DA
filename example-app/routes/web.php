@@ -26,11 +26,13 @@ Route::prefix('/')->group(function () {
     Route::get('account', [ControllerView::class, 'account'])->name('account');
     Route::get('wishlist', [ControllerView::class, 'wishlist'])->name('wishlist');
 });
-Route::prefix('admin')->group(function () {
+Route::prefix('user')->group(function () {
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
-    Route::get('Create', [ControllerProductManager::class, 'create'])->name('create');
-    Route::get('Detail', [ControllerProductManager::class, 'detail'])->name('detail');
-    Route::get('Edit', [ControllerProductManager::class, 'edit'])->name('edit');
+    Route::prefix('product')->group(function () {
+        Route::get('/', [ControllerProductManager::class, 'create']);
+        Route::get('/', [ControllerProductManager::class, 'create']);
+        Route::get('/', [ControllerProductManager::class, 'create']);
+    });
 });
