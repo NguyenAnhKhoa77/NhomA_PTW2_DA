@@ -90,7 +90,7 @@
                         <figure class="product-media">
                             <span class="product-label label-top">Top</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-1.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/ao-bong-da-1.webp', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -106,7 +106,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Brown cable knit cardigan</a></h3>
+                            <h3 class="product-title"><a href="product">Áo bóng đá Barcelona sân khách 2023 - 2024 màu xám</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 <span class="new-price">$50.00</span>
@@ -119,7 +119,7 @@
                     <div class="product product-5 text-center">
                         <figure class="product-media">
                             <a href="product">
-                                <img src="assets/images/products/elements/product-2.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao01.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -136,7 +136,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Hooded parka jacket</a></h3>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nam Proning MC9103 màu xanh bích phối</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 $120.00
@@ -157,7 +157,7 @@
                         <figure class="product-media">
                             <span class="product-label label-sale">Sale</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-3.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao02.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -173,7 +173,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Grey cable knit longline maxi cardigan</a>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nam Proning MC9103 màu vàng phối xanh</a>
                             </h3><!-- End .product-title -->
                             <div class="product-price">
                                 $110.00
@@ -202,7 +202,7 @@
                         <figure class="product-media">
                             <span class="product-label label-out">Out Of Stock</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-4.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao03.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -218,7 +218,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Orange snake print scarf</a></h3>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nam Proning MC9103 màu xanh navy phối</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 <div class="out-price">$120.00</div><!-- End .out-price -->
@@ -231,7 +231,7 @@
                         <figure class="product-media">
                             <span class="product-label label-new">New</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-5.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao04.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -247,7 +247,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Beige knitted elastic runner shoes</a></h3>
+                            <h3 class="product-title"><a href="product">Áo đá bóng Chelsea sân nhà 2023 - 2024 màu xanh</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 $84.00
@@ -273,7 +273,7 @@
                     <div class="product product-5 text-center">
                         <figure class="product-media">
                             <a href="product">
-                                <img src="assets/images/products/elements/product-6.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao05.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -289,7 +289,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Grey check skinny suit jacket</a></h3>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nữ Proning AC3699 màu hồng</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 $180.00
@@ -319,7 +319,7 @@
                         <figure class="product-media">
                             <span class="product-label label-top">Top</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-1.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao06.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -335,7 +335,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Brown cable knit cardigan</a></h3>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nữ Proning AC3699 màu vàng</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 <span class="new-price">$50.00</span>
@@ -348,7 +348,7 @@
                     <div class="product product-5 text-center">
                         <figure class="product-media">
                             <a href="product">
-                                <img src="assets/images/products/elements/product-2.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao07.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -364,7 +364,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Hooded parka jacket</a></h3>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nữ Proning AC3699 màu xanh copan</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 $120.00
@@ -385,7 +385,7 @@
                         <figure class="product-media">
                             <span class="product-label label-sale">Sale</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-3.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao08.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -401,7 +401,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Grey cable knit longline maxi cardigan</a>
+                            <h3 class="product-title"><a href="product">Áo đá bóng trẻ em Al Nassr sân khách 2023-2024</a>
                             </h3><!-- End .product-title -->
                             <div class="product-price">
                                 $110.00
@@ -430,7 +430,7 @@
                         <figure class="product-media">
                             <span class="product-label label-out">Out Of Stock</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-4.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao09.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -446,7 +446,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Orange snake print scarf</a></h3>
+                            <h3 class="product-title"><a href="product">Áo đá bóng trẻ em Manchester United sân khách 2023-2024</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 <div class="out-price">$120.00</div><!-- End .out-price -->
@@ -459,7 +459,7 @@
                         <figure class="product-media">
                             <span class="product-label label-new">New</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-5.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao10.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -476,7 +476,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Beige knitted elastic runner shoes</a></h3>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nam Proning MC9097 màu đỏ</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 $84.00
@@ -502,7 +502,7 @@
                     <div class="product product-5 text-center">
                         <figure class="product-media">
                             <a href="product">
-                                <img src="assets/images/products/elements/product-6.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao11.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -518,7 +518,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Grey check skinny suit jacket</a></h3>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nam Proning 9097 màu xanh bích</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 $180.00
@@ -548,7 +548,7 @@
                         <figure class="product-media">
                             <span class="product-label label-top">Top</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-1.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao12.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -564,7 +564,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Brown cable knit cardigan</a></h3>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nam Proning 9097 màu xanh navy</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 <span class="new-price">$50.00</span>
@@ -577,7 +577,7 @@
                     <div class="product product-5 text-center">
                         <figure class="product-media">
                             <a href="product">
-                                <img src="assets/images/products/elements/product-2.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao13.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -593,7 +593,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Hooded parka jacket</a></h3>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nam Kamito Sky màu trắng</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 $120.00
@@ -614,7 +614,7 @@
                         <figure class="product-media">
                             <span class="product-label label-sale">Sale</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-3.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao14.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -630,7 +630,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Grey cable knit longline maxi cardigan</a>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nam Kamito Sky màu đỏ</a>
                             </h3><!-- End .product-title -->
                             <div class="product-price">
                                 $110.00
@@ -659,7 +659,7 @@
                         <figure class="product-media">
                             <span class="product-label label-out">Out Of Stock</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-4.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao15.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -675,7 +675,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Orange snake print scarf</a></h3>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nữ Kamito Sky màu trắng</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 <div class="out-price">$120.00</div><!-- End .out-price -->
@@ -688,7 +688,7 @@
                         <figure class="product-media">
                             <span class="product-label label-new">New</span>
                             <a href="product">
-                                <img src="assets/images/products/elements/product-5.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao16.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -705,7 +705,7 @@
                         </figure><!-- End .product-media -->
 
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Beige knitted elastic runner shoes</a></h3>
+                            <h3 class="product-title"><a href="product">Áo cầu lông nữ Kamito Sky màu đỏ</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 $84.00
@@ -732,7 +732,7 @@
                     <div class="product product-5 text-center">
                         <figure class="product-media">
                             <a href="product">
-                                <img src="assets/images/products/elements/product-6.jpg" alt="Product image"
+                                <img src="{{ url('fontend/images/products/quanaothethao17.jpg', []) }}" alt="Product image"
                                     class="product-image">
                             </a>
                             <div class="product-action-vertical">
@@ -748,7 +748,7 @@
                             </div><!-- End .product-action -->
                         </figure><!-- End .product-media -->
                         <div class="product-body">
-                            <h3 class="product-title"><a href="product">Grey check skinny suit jacket</a></h3>
+                            <h3 class="product-title"><a href="product">Áo đá bóng AC Milan sân khách 2023 - 2024 màu trắng</a></h3>
                             <!-- End .product-title -->
                             <div class="product-price">
                                 $180.00
