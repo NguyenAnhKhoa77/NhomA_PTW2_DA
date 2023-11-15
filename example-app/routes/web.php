@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerView;
 use App\Http\Controllers\Admin\AdminPage;
 use App\Http\Controllers\Admin\ControllerProductManager;
+use App\Http\Controllers\ControllerUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +19,26 @@ use App\Http\Controllers\Admin\ControllerProductManager;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
+    Route::get('product', [ControllerView::class, 'product'])->name('product');
+    Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
+    Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
+    Route::get('grid', [ControllerView::class, 'grid'])->name('grid');
+    Route::get('account', [ControllerView::class, 'account'])->name('account');
+    Route::get('wishlist', [ControllerView::class, 'wishlist'])->name('wishlist');
 });
-Route::prefix('admin')->group(function () {
+Route::prefix('login')->group(function () {
+    Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');
+    Route::post('register', [ControllerUser::class, 'Register'])->name('register');
+    Route::post('login', [ControllerUser::class, 'Login'])->name('login');
+});
+Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
-    Route::get('Create', [ControllerProductManager::class, 'create']);
-    Route::get('Detail', [ControllerProductManager::class, 'detail'])->name('detail');
-    Route::get('Edit', [ControllerProductManager::class, 'edit'])->name('edit');
+
+    Route::get('/dashboard', [AdminPage::class, 'dashboard']);
+    Route::prefix('product')->group(function () {
+        Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
+        Route::get('create', [ControllerProductManager::class, 'create'])->name('product.crate');
+        Route::get('delete', [ControllerProductManager::class, 'delete']);
+        Route::get('detail', [ControllerProductManager::class, 'view']);
+    });
 });
