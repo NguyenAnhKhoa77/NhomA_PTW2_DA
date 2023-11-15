@@ -10,14 +10,24 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Ionicons -->backend/img/
+    <link rel="stylesheet" href="{{ url('backend/plugins/fontawesome-free/css/all.min.css', []) }}">
+    <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet"
+        href="{{ url('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css', []) }}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{ url('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css', []) }}">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="{{ url('backend/plugins/jqvmap/jqvmap.min.css', []) }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('backend/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ url('backend/css/adminlte.min.css', []) }}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{ url('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css', []) }}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{ url('backend/plugins/daterangepicker/daterangepicker.css', []) }}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ url('backend/plugins/summernote/summernote-bs4.min.css', []) }}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -28,7 +38,7 @@
         <a href="index3.html" class="brand-link">
             <img src="{{ url('backend/img/AdminLTELogo.png', []) }}" alt="AdminLTE Logo"
                 class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">Admin Manage</span>
         </a>
 
         <!-- Sidebar -->
@@ -40,7 +50,7 @@
                         alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="#" class="d-block">Admin</a>
                 </div>
             </div>
 
@@ -61,71 +71,47 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                    <li class="nav-item menu-open">
-                        <a href="{{ url('home', []) }}" class="nav-link">
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard') }}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Dashboard
+                            <p>Dashboard
                             </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('create') }}" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Create
-                                <span class="right badge badge-danger">New</span>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('edit', []) }}" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Edit
-                                <span class="right badge badge-danger">New</span>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('detail', []) }}" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Detail
-                                <span class="right badge badge-danger">New</span>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('product.table') }}" class="nav-link">
                             <i class="nav-icon fas fa-table"></i>
-                            <p>
-                                Tables
-                                <i class="fas fa-angle-left right"></i>
+                            <p>Sản phẩm
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="pages/tables/simple.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Simple Tables</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/tables/data.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>DataTables</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/tables/jsgrid.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>jsGrid</p>
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>Đơn hàng
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>Người dùng
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>Nhãn hàng
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>Loại hàng hóa
+                            </p>
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -147,12 +133,41 @@
         </div>
     </footer>
 
+
     <!-- jQuery -->
     <script src="{{ url('backend/plugins/jquery/jquery.min.js', []) }}"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ url('backend/plugins/jquery-ui/jquery-ui.min.js', []) }}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ url('backend/plugins/bootstrap/js/bootstrap.bundle.min.js', []) }}"></script>
+    <!-- ChartJS -->
+    <script src="{{ url('backend/plugins/chart.js/Chart.min.js', []) }}"></script>
+    <!-- Sparkline -->
+    <script src="{{ url('backend/plugins/sparklines/sparkline.js', []) }}"></script>
+    <!-- JQVMap -->
+    <script src="{{ url('backend/plugins/jqvmap/jquery.vmap.min.js', []) }}"></script>
+    <script src="{{ url('backend/plugins/jqvmap/maps/jquery.vmap.usa.js', []) }}"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="{{ url('backend/plugins/jquery-knob/jquery.knob.min.js', []) }}"></script>
+    <!-- daterangepicker -->
+    <script src="{{ url('backend/plugins/moment/moment.min.js', []) }}"></script>
+    <script src="{{ url('backend/plugins/daterangepicker/daterangepicker.js', []) }}"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="{{ url('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js', []) }}"></script>
+    <!-- Summernote -->
+    <script src="{{ url('backend/plugins/summernote/summernote-bs4.min.js', []) }}"></script>
+    <!-- overlayScrollbars -->
+    <script src="{{ url('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js', []) }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ url('backend/js/adminlte.js', []) }}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ url('backend/js/demo.js', []) }}"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{{ url('backend/js/pages/dashboard.js', []) }}"></script>
 </body>
 
 </html>

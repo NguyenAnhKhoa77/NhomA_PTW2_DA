@@ -10,10 +10,7 @@ class ControllerView extends Controller
     {
         return view('fontend.index');
     }
-    public function login()
-    {
-        return view('fontend.login');
-    }
+
     public function grid()
     {
         return view('fontend.grid');
