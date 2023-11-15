@@ -27,10 +27,12 @@
                             </li>
                         </ul>
                         <div class="tab-content">
+                            {{-- login form --}}
                             <div class="tab-pane fade" id="signin-2" role="tabpanel" aria-labelledby="signin-tab-2">
-                                <form action="#">
+                                <form action="{{ route('login') }}" method="POST">
+                                    @csrf
                                     <div class="form-group">
-                                        <label for="singin-email-2">Username or email address *</label>
+                                        <label for="singin-email-2">Tài khoản email *</label>
                                         <input type="text" class="form-control" id="singin-email-2" name="singin-email"
                                             required>
                                     </div><!-- End .form-group -->
@@ -73,6 +75,7 @@
                                     </div><!-- End .row -->
                                 </div><!-- End .form-choice -->
                             </div><!-- .End .tab-pane -->
+                            {{-- register form --}}
                             <div class="tab-pane fade show active" id="register-2" role="tabpanel"
                                 aria-labelledby="register-tab-2">
                                 <form action="#">

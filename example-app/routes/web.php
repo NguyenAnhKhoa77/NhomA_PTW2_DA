@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerView;
 use App\Http\Controllers\Admin\AdminPage;
 use App\Http\Controllers\Admin\ControllerProductManager;
+use App\Http\Controllers\ControllerUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,6 @@ use App\Http\Controllers\Admin\ControllerProductManager;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
-    Route::get('login', [ControllerView::class, 'login'])->name('login');
     Route::get('product', [ControllerView::class, 'product'])->name('product');
     Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
@@ -26,7 +26,10 @@ Route::prefix('/')->group(function () {
     Route::get('account', [ControllerView::class, 'account'])->name('account');
     Route::get('wishlist', [ControllerView::class, 'wishlist'])->name('wishlist');
 });
-Route::prefix('user')->group(function () {
+Route::prefix('login')->group(function () {
+    Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');
+    Route::post('register', [ControllerUser::class, 'Register'])->name('register');
+    Route::post('login', [ControllerUser::class, 'Login'])->name('login');
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');

@@ -27,7 +27,7 @@
                         <ul class="top-menu">
                             <li>
                                 <ul>
-                                    <li><a href="{{ route('login', []) }}">Đăng nhập / Đăng ký</a></li>
+                                    <li><a href="{{ route('loginview', []) }}">Đăng nhập / Đăng ký</a></li>
                                 </ul>
                             </li>
                         </ul><!-- End .top-menu -->
