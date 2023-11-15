@@ -31,7 +31,7 @@ Route::prefix('login')->group(function () {
     Route::post('register', [ControllerUser::class, 'Register'])->name('register');
     Route::post('login', [ControllerUser::class, 'Login'])->name('login');
 });
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
 
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
