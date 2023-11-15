@@ -3,6 +3,9 @@ composer install
 composer update
 http://127.0.0.1:8000/
 
+username: admin@gmail.com
+pass: 1
+
 php artisan make:model ModelName --migration: Tạo một model mới cùng với migration để tạo bảng trong database.
 
 php artisan migrate: Thực hiện migration để tạo hoặc cập nhật bảng trong database.

@@ -675,7 +675,7 @@ a:focus {
 }
 .btn-product:hover span,
 .btn-product:focus span {
-    color: var(--primal);
+    color: white-;
     box-shadow: 0 1px 0 0 var(--primal);
 }
 .btn-product-icon {

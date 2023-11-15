@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="fontend/css/style.css">
     <link rel="stylesheet" href="fontend/css/skin-demo-2.css">
     <link rel="stylesheet" href="fontend/css/demo-2.css">
+    <link rel="stylesheet" href="fontend/css/nouislider.css">
 </head>
 
 <body>
@@ -210,11 +211,6 @@
                                 <li class="">
                                     <a href="">Quần áo nhóm</a>
                                 </li>
-
-                                <li class="">
-                                    <a href="">Tin tức</a>
-                                </li>
-
                                 <li class="">
                                     <a href="">Liên hệ</a>
                                 </li>
@@ -376,6 +372,7 @@
     <script src="fontend/js/jquery.plugin.min.js"></script>
     <script src="fontend/js/jquery.magnific-popup.min.js"></script>
     <script src="fontend/js/jquery.countdown.min.js"></script>
+    <script src="fontend/js/jquery.elevateZoom.min.js"></script>
     <!-- Main JS File -->
     <script src="fontend/js/main.js"></script>
     <script src="fontend/js/demo-2.js"></script>
