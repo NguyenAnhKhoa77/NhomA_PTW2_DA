@@ -38,6 +38,7 @@ Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
     Route::prefix('product')->group(function () {
         Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
         Route::get('create', [ControllerProductManager::class, 'create'])->name('product.create');
+        Route::get('create_handle', [ControllerProductManager::class, 'create_handler'])->name('product.create.handle');
         Route::get('delete', [ControllerProductManager::class, 'delete']);
         Route::get('detail', [ControllerProductManager::class, 'view']);
     });

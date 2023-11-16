@@ -19,7 +19,7 @@ class ControllerProductManager extends Controller
     {
         $manus = Manufacturers::all();
         $cates = Categories::all();
-        return view('backend.create', compact('manus', 'cates'));
+        return view('backend.product.create', compact('manus', 'cates'));
     }
     public function create_handler(Request $request)
     {

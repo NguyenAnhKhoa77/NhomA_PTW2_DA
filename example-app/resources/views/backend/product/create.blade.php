@@ -25,13 +25,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Project Add</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Project Add</li>
-                        </ol>
+                        <h1>Thêm sản phẩm</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -39,85 +33,60 @@
 
         <!-- Main content -->
         <section class="content">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">General</h3>
+            <form action="{{ route('product.create.handle') }}" method="GET">
+                <div class="row">
+                    <div class="col">
+                        <div class="card card-primary">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="name">Product Name</label>
+                                    <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+                                </div>
 
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="inputName">Project Name</label>
-                                <input type="text" id="inputName" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputDescription">Project Description</label>
-                                <textarea id="inputDescription" class="form-control" rows="4"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputStatus">Status</label>
-                                <select id="inputStatus" class="form-control custom-select">
-                                    <option selected disabled>Select one</option>
-                                    <option>On Hold</option>
-                                    <option>Canceled</option>
-                                    <option>Success</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputClientCompany">Client Company</label>
-                                <input type="text" id="inputClientCompany" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputProjectLeader">Project Leader</label>
-                                <input type="text" id="inputProjectLeader" class="form-control">
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                </div>
-                <div class="col-md-6">
-                    <div class="card card-secondary">
-                        <div class="card-header">
-                            <h3 class="card-title">Budget</h3>
+                                <div class="form-group">
+                                    <label for="inputStatus">Categories</label>
+                                    <select id="inputStatus" name="cate" class="form-control custom-select">
+                                        <option selected disabled>Select one</option>
+                                        @foreach ($cates as $cate)
+                                            <option value="{{ $cate->id }}">{{ $cate->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputStatus">Manufacter</label>
+                                    <select id="inputStatus" name="manu" class="form-control custom-select">
+                                        <option selected disabled>Select one</option>
+                                        @foreach ($manus as $manu)
+                                            <option value="{{ $manu->id }}">{{ $manu->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Product Description</label>
+                                    <textarea class="form-control" name="description" rows="4" value="{{ old('description') }}"></textarea>
+                                </div>
 
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
+                                <div class="form-group">
+                                    <label>Product Price</label>
+                                    <input type="text" name="price" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Product Image</label>
+                                    <input type="file" name="image" accept="image/png, image/gif, image/jpeg"
+                                        class=" form-control-file">
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a onclick="window.history.back()" class="btn btn-secondary"
+                                    class="btn btn-secondary">Cancel</a>
+                                <input type="submit" value="Create new Project" class="btn btn-success float-right">
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="inputEstimatedBudget">Estimated budget</label>
-                                <input type="number" id="inputEstimatedBudget" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputSpentBudget">Total amount spent</label>
-                                <input type="number" id="inputSpentBudget" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEstimatedDuration">Estimated project duration</label>
-                                <input type="number" id="inputEstimatedDuration" class="form-control">
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
+                        <!-- /.card -->
                     </div>
-                    <!-- /.card -->
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <a href="#" class="btn btn-secondary">Cancel</a>
-                    <input type="submit" value="Create new Project" class="btn btn-success float-right">
-                </div>
-            </div>
+
+            </form>
         </section>
         <!-- /.content -->
     </div>

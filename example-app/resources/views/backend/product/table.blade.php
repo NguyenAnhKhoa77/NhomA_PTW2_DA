@@ -50,7 +50,7 @@
                     <div class="mt-3"></div>
                     <h3 class="card-title">Projects</h3>
                     <div class="card-tools">
-                        <a type="button" class="btn btn-tool" title="Collapse">
+                        <a type="button" href="{{ route('product.create') }}" class="btn btn-tool" title="Collapse">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -69,7 +69,8 @@
                         <tbody>
                             @foreach ($products as $product)
                                 <tr>
-                                    <td> <img style="width: 50px" src="{{ url('images/' . $product->image, []) }}"
+                                    <td> <img style="width: 50px"
+                                            src="{{ url('fontend/images/products/' . $product->image, []) }}"
                                             alt="">
                                         <span class="ml-2">{{ $product->name }}</span>
                                     </td>
@@ -81,11 +82,20 @@
                                     <td>{{ $product->price }} </td>
 
                                     <td class="project-actions text-right">
-                                        <a class="btn btn-info btn-sm" href="">
-                                            <i class="fas fa-pencil-alt"> </i> Edit
+                                        <a class="btn btn-primary btn-sm" href="#">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            View
                                         </a>
-                                        <a class="btn btn-danger btn-sm" href="">
-                                            <i class="fas fa-trash"> </i> Delete
+                                        <a class="btn btn-info btn-sm" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Edit
+                                        </a>
+                                        <a class="btn btn-danger btn-sm" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
                                         </a>
                                     </td>
                                 </tr>

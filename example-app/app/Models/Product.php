@@ -24,10 +24,10 @@ class Product extends Model
 
     public function manufacturer()
     {
-        return $this->belongsTo(Manufacturer::class, 'manufacturer_id');
+        return $this->belongsTo(Manufacturers::class, 'manufacturer_id');
     }
     public function order()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Orders::class);
     }
 }
