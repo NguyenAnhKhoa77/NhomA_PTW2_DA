@@ -41,17 +41,13 @@
                                 <td>{{ $product->price }} </td>
 
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="{{ route('product.view', []) }}">
-                                        <i class="fas fa-folder">
-                                        </i>
-                                        View
-                                    </a>
                                     <a class="btn btn-info btn-sm" href="{{ route('product.edit', [$product]) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="">
+                                    <a class="btn btn-danger btn-sm" href="{{ route('product.delete', [$product]) }}"
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
                                         <i class="fas fa-trash">
                                         </i>
                                         Delete

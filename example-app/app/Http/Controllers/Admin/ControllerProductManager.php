@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use App\Models\Manufacturers;
+use App\Models\Orders;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -93,10 +94,24 @@ class ControllerProductManager extends Controller
         }
         return back();
     }
-    public function delete()
+
+    //xóa  sản phẩm:
+    public function delete($id)
     {
-    }
-    public function view()
-    {
+        if (!$product = Product::find($id)) {
+            return redirect()->back()->with('errors', 'Danh mục không tồn tại');
+        }
+        $oders = Orders::where('product_id', $id)->get();
+        if ($oders->count() == 0) {
+            $product = Product::find($id);
+            $path = "images/" . $product->image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $product->delete();
+            return redirect()->back()->with('success', 'Xóa sản phẩm thành công');
+        } else {
+            return redirect()->back()->with('errors', 'Không thể xóa danh mục vì vẫn còn đơn hàng');
+        }
     }
 }
