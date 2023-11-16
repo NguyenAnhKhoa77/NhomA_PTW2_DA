@@ -31,9 +31,8 @@
                             <div class="product-gallery product-gallery-vertical">
                                 <div class="row">
                                     <figure class="product-main-image">
-                                        <img id="product-zoom" src="fontend/images/products/Ao-achilles-xam-1.jpg"
-                                            data-zoom-image="fontend/images/products/Ao-achilles-xam-1.jpg"
-                                            alt="product image">
+                                        <img id="product-zoom" src="images/products/Ao-achilles-xam-1.jpg"
+                                            data-zoom-image="images/products/Ao-achilles-xam-1.jpg" alt="product image">
                                         <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                             <i class="icon-arrows"></i>
                                         </a>
@@ -41,15 +40,15 @@
 
                                     <div id="product-zoom-gallery" class="product-image-gallery">
                                         <a class="product-gallery-item active" href="#"
-                                            data-image="fontend/images/products/Ao-achilles-xam-1.jpg"
-                                            data-zoom-image="fontend/images/products/Ao-achilles-xam-1.jpg">
-                                            <img src="fontend/images/products/Ao-achilles-xam-1.jpg" alt="product side">
+                                            data-image="images/products/Ao-achilles-xam-1.jpg"
+                                            data-zoom-image="images/products/Ao-achilles-xam-1.jpg">
+                                            <img src="images/products/Ao-achilles-xam-1.jpg" alt="product side">
                                         </a>
 
                                         <a class="product-gallery-item" href="#"
-                                            data-image="fontend/images/products//Ao-achilles-xam-2.jpg"
-                                            data-zoom-image="fontend/images/products/Ao-achilles-xam-2.jpg">
-                                            <img src="fontend/images/products/Ao-achilles-xam-2.jpg" alt="product cross">
+                                            data-image="images/products//Ao-achilles-xam-2.jpg"
+                                            data-zoom-image="images/products/Ao-achilles-xam-2.jpg">
+                                            <img src="images/products/Ao-achilles-xam-2.jpg" alt="product cross">
                                         </a>
                                     </div><!-- End .product-image-gallery -->
                                 </div><!-- End .row -->

@@ -91,7 +91,7 @@
                                         <figure class="product-media">
                                             <span class="product-label label-new">New</span>
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/ao-bong-da-1.webp', []) }}"
+                                                <img src="{{ url('images/products/ao-bong-da-1.webp', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 
@@ -132,7 +132,7 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao01.jpg', []) }}"
+                                                <img src="{{ url('images/products/quanaothethao01.jpg', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 
@@ -175,7 +175,7 @@
                                         <figure class="product-media">
                                             <span class="product-label label-out">Out of Stock</span>
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao02.jpg', []) }}"
+                                                <img src="{{ url('images/products/quanaothethao02.jpg', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 
@@ -216,7 +216,7 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao03.jpg', []) }}"
+                                                <img src="{{ url('images/products/quanaothethao03.jpg', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 
@@ -258,7 +258,7 @@
                                         <figure class="product-media">
                                             <span class="product-label label-new">New</span>
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao04.jpg', []) }}"
+                                                <img src="{{ url('images/products/quanaothethao04.jpg', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 
@@ -299,7 +299,7 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao05.jpg', []) }}"
+                                                <img src="{{ url('images/products/quanaothethao05.jpg', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 
@@ -342,7 +342,7 @@
                                         <figure class="product-media">
                                             <span class="product-label label-top">Top</span>
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao06.jpg', []) }}"
+                                                <img src="{{ url('images/products/quanaothethao06.jpg', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 
@@ -384,7 +384,7 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao07.jpg', []) }}"
+                                                <img src="{{ url('images/products/quanaothethao07.jpg', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 
@@ -425,7 +425,7 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao08.jpg', []) }}"
+                                                <img src="{{ url('images/products/quanaothethao08.jpg', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 
@@ -466,7 +466,7 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao09.jpg', []) }}"
+                                                <img src="{{ url('images/products/quanaothethao09.jpg', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 
@@ -507,7 +507,7 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao10.jpg', []) }}"
+                                                <img src="{{ url('images/products/quanaothethao10.jpg', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 
@@ -548,7 +548,7 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao11.jpg', []) }}"
+                                                <img src="{{ url('images/products/quanaothethao11.jpg', []) }}"
                                                     alt="Product image" class="product-image">
                                             </a>
 

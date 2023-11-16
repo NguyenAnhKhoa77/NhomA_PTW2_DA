@@ -77,7 +77,7 @@
                         </div><!-- End .compare-dropdown -->
 
                         <div class="dropdown cart-dropdown">
-                            <a href="{{ route('cart', []) }}" class="dropdown-toggle" role="button"
+                            <a href="{{ route('cart', []) }}" class="dropdown-toggle" role="button"src="fontend/
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <div class="icon">
                                     <i class="icon-shopping-cart"></i>
@@ -102,7 +102,7 @@
 
                                         <figure class="product-image-container">
                                             <a href="product" class="product-image">
-                                                <img src="fontend/images/products/ao-ba-lo.jpg" alt="product">
+                                                <img src="images/products/ao-ba-lo.jpg" alt="product">
                                             </a>
                                         </figure>
                                         <a href="#" class="btn-remove" title="Remove Product"><i
@@ -124,7 +124,7 @@
 
                                         <figure class="product-image-container">
                                             <a href="product" class="product-image">
-                                                <img src="fontend/images/products/quan-chay-bo.jpg" alt="product">
+                                                <img src="images/products/quan-chay-bo.jpg" alt="product">
                                             </a>
                                         </figure>
                                         <a href="#" class="btn-remove" title="Remove Product"><i
@@ -271,32 +271,32 @@
             <div class="brands-border">
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('fontend/images/category/adidas.png', []) }}">
+                        <img class="" src="{{ url('images/category/adidas.png', []) }}">
                     </a>
                 </div>
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('fontend/images/category/hitec.png', []) }}">
+                        <img class="" src="{{ url('images/category/hitec.png', []) }}">
                     </a>
                 </div>
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('fontend/images/category/nike.png', []) }}">
+                        <img class="" src="{{ url('images/category/nike.png', []) }}">
                     </a>
                 </div>
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('fontend/images/category/newbalance.png', []) }}">
+                        <img class="" src="{{ url('images/category/newbalance.png', []) }}">
                     </a>
                 </div>
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('fontend/images/category/puma.png', []) }}">
+                        <img class="" src="{{ url('images/category/puma.png', []) }}">
                     </a>
                 </div>
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('fontend/images/category/underarmour.png', []) }}">
+                        <img class="" src="{{ url('images/category/underarmour.png', []) }}">
                     </a>
                 </div>
             </div>

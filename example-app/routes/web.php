@@ -39,7 +39,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
         Route::get('create', [ControllerProductManager::class, 'create'])->name('product.create');
         Route::post('create_handle', [ControllerProductManager::class, 'create_handler'])->name('product.create.handle');
-        Route::get('delete', [ControllerProductManager::class, 'delete']);
-        Route::get('detail', [ControllerProductManager::class, 'view']);
+        Route::get('delete', [ControllerProductManager::class, 'delete'])->name('product.delete');
+        Route::get('detail', [ControllerProductManager::class, 'view'])->name('product.view');
+        Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
+        Route::post('edit_handle/{id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
     });
 });
