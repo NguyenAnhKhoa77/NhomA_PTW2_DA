@@ -12,7 +12,10 @@
                 <a href="index3.html" class="nav-link">Home</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
+                <a href="#" class="nav-link">Product</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Create new</a>
             </li>
         </ul>
 
@@ -20,6 +23,28 @@
     <!-- /.navbar -->
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-check"></i> Success!</h5>
+
+                {{ session('success') }}
+            </div>
+        @endif
+        @if (session('errors'))
+            <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-exclamation-triangle"></i> Error!</h5>
+                {{ session('errors') }}
+            </div>
+        @endif
+        @if (session('warning'))
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-ban"></i>Warning!</h5>
+                {{ session('warning') }}
+            </div>
+        @endif
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -33,9 +58,12 @@
 
         <!-- Main content -->
         <section class="content">
-            <form action="{{ route('product.create.handle') }}" method="GET">
-                <div class="row">
-                    <div class="col">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="{{ route('product.create.handle') }}" method="POST" roles="form"
+                        enctype="multipart/form-data">
+                        @csrf
                         <div class="card card-primary">
                             <div class="card-body">
                                 <div class="form-group">
@@ -68,7 +96,7 @@
 
                                 <div class="form-group">
                                     <label>Product Price</label>
-                                    <input type="text" name="price" class="form-control">
+                                    <input type="text" name="price" class="form-control" value="{{ old('price') }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Product Image</label>
@@ -83,10 +111,9 @@
                             </div>
                         </div>
                         <!-- /.card -->
-                    </div>
+                    </form>
                 </div>
-
-            </form>
+            </div>
         </section>
         <!-- /.content -->
     </div>

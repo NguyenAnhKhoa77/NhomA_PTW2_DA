@@ -25,10 +25,11 @@ class ControllerProductManager extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' =>  'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
             'description' => 'required',
             'price' => 'required|numeric|gt:0',
         ]);
+
         $image = $request->file('image');
         $imageName = time() . '.' . $image->getClientOriginalExtension();
 
@@ -41,7 +42,7 @@ class ControllerProductManager extends Controller
             'price' => $request['price'],
         ]);
         if ($product->save()) {
-            $image->move(public_path('images'), $imageName);
+            $image->move(public_path('fontend/images/products'), $imageName);
             return redirect()->route('product.table');
         }
         return back();
