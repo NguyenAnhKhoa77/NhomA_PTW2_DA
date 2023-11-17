@@ -16,4 +16,9 @@ class Account extends Model
         'address',
         'avatar',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

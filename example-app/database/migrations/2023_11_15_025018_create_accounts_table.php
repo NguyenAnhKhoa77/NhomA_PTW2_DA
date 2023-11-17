@@ -11,10 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accounts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('accounts')) {
+            Schema::create('accounts', function (Blueprint $table) {
+                $table->id();
+                $table->string('name')->default('user');
+                $table->string('id_user')->nullable();
+                $table->string('phone')->nullable();
+                $table->string('address')->nullable();
+                $table->string('avatar')->default('user.png');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
