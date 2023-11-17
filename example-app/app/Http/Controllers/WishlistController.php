@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +12,15 @@ class WishlistController extends Controller
 {
     public function index()
     {
-        return view('fontend.wishlist');
+        $userId = session('user_id');
+        $user = User::with('wishlistProducts')->find($userId);
+        $wishlistProducts = null;
+        if ($user) {
+            $wishlistProducts = $user->wishlistProducts;
+        }
+        return view('fontend.wishlist', [
+            'wishlistProducts' => $wishlistProducts,
+        ]);
     }
 
     public function addToWishlist(Request $request)
