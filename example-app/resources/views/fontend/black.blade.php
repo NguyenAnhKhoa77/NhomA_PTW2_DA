@@ -29,12 +29,11 @@
                         <ul class="top-menu">
                             <li>
                                 <ul>
-                                    @guest
-                                        <li><a href="{{ route('loginview', []) }}">Login / Register</a></li>
-                                    @else
-                                        <li><a href="{{ route('loginview', []) }}">Sign out</a></li>
-                                    @endguest
+                                    <li><a href="{{ route('loginview', []) }}">Đăng nhập / Đăng ký</a></li>
+                                    <li><a href="{{ route('dashboard', []) }}">ADMIN</a></li>
+                                    <li><a href="">Logout</a></li>
                                 </ul>
+
                             </li>
                         </ul><!-- End .top-menu -->
                     </div><!-- End .header-right -->
