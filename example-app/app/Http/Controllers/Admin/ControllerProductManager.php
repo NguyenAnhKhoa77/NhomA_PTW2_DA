@@ -30,6 +30,7 @@ class ControllerProductManager extends Controller
             'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
             'description' => 'required',
             'price' => 'required|numeric|gt:0',
+            'inventory' => 'require|numeric|gt:0',
         ]);
 
         $image = $request->file('image');
@@ -42,6 +43,7 @@ class ControllerProductManager extends Controller
             'manufacturer_id' => $request['manu'],
             'description' => $request['description'],
             'price' => $request['price'],
+            'inventory' => $request['inventory'],
         ]);
         if ($product->save()) {
             $image->move(public_path('images/products'), $imageName);
@@ -71,12 +73,14 @@ class ControllerProductManager extends Controller
             'image' =>  'nullable|image|mimes:png,jpg,jpeg|max:2048',
             'description' => 'required',
             'price' => 'required|numeric|gt:0',
+            'inventory' => 'required|numeric|gt:0',
         ]);
         $product->name = $request->input('name');
         $product->categories_id = $request->input('cate');
         $product->manufacturer_id = $request->input('manu');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
+        $product->inventory = $request->input('inventory');
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
