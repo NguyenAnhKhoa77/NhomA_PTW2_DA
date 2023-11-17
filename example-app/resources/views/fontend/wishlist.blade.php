@@ -19,6 +19,7 @@
 
         <div class="page-content">
             <div class="container">
+                @if($wishlistProducts != null)
                 <table class="table table-wishlist table-mobile">
                     <thead>
                         <tr>
@@ -30,21 +31,22 @@
                     </thead>
 
                     <tbody>
+                    @foreach($wishlistProducts as $wishlistProduct)
                         <tr>
                             <td class="product-col">
                                 <div class="product">
                                     <figure class="product-media">
-                                        <a href="#">
-                                            <img src="assets/images/products/table/product-2.jpg" alt="Product image">
+                                        <a href="{{ route('product') }}">
+                                            <img src="{{ asset("images/products/$wishlistProduct->image") }}" alt="Product image">
                                         </a>
                                     </figure>
 
                                     <h3 class="product-title">
-                                        <a href="#">Blue utility pinafore denim dress</a>
+                                        <a href="{{ route('product') }}">{{ $wishlistProduct->name }}</a>
                                     </h3><!-- End .product-title -->
                                 </div><!-- End .product -->
                             </td>
-                            <td class="price-col">$76.00</td>
+                            <td class="price-col">{{ $wishlistProduct->price }}</td>
                             <td class="stock-col"><span class="in-stock">In stock</span></td>
                             <td class="action-col">
                                 <button class="btn btn-block btn-outline-primary-2"><i class="icon-cart-plus"></i>Add to
@@ -52,6 +54,7 @@
                             </td>
                             <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
                         </tr>
+                    @endforeach
                         <tr>
                             <td class="product-col">
                                 <div class="product">
@@ -74,7 +77,10 @@
                             <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
                         </tr>
                     </tbody>
-                </table><!-- End .table table-wishlist -->
+                </table>
+                @else
+                    <p class="text-center">You don't have any product in wishlist!</p>
+                @endif<!-- End .table table-wishlist -->
 {{--                <div class="wishlist-share">--}}
 {{--                    <div class="social-icons social-icons-sm mb-2">--}}
 {{--                        <label class="social-label">Share on:</label>--}}
