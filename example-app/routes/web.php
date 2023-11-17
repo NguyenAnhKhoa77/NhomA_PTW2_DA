@@ -38,7 +38,6 @@ Route::prefix('/')->group(function () {
         Route::delete('/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
     });
 
-    Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
     Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
 });
 Route::prefix('login')->group(function () {
@@ -47,6 +46,7 @@ Route::prefix('login')->group(function () {
     Route::post('login', [ControllerUser::class, 'Login'])->name('login');
     Route::post('sign-out', [ControllerUser::class, 'signOut'])->name('sign-out');
 });
+
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
