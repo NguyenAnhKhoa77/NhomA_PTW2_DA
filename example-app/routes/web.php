@@ -36,6 +36,9 @@ Route::prefix('/')->group(function () {
     });
 
     Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
+    Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
+
+
 });
 Route::prefix('login')->group(function () {
     Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');

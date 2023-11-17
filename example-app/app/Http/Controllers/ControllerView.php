@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Product;
 class ControllerView extends Controller
 {
     public function Home()
@@ -37,4 +37,18 @@ class ControllerView extends Controller
     {
         return view('fontend.404');
     }
+    public function getSearch(Request $req) {
+        $key = $req->key;
+    
+        if (!$key) {
+            // Xử lý khi khóa tìm kiếm trống
+            // Ví dụ: chuyển hướng đến trang mặc định hoặc hiển thị thông báo lỗi
+            return redirect()->route('fontend.black');
+        }
+    
+        $products = Product::where('name', 'like', '%' . $key . '%')->take(6)->get();
+        //done r ă sếp
+        return view('fontend.search', compact('products'));
+    }
+    
 }
