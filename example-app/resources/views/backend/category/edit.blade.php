@@ -1,4 +1,5 @@
 @extends('backend.header')
+@section('title', 'Edit Category')
 @section('content')
     <div class="mt-3"></div>
     <!-- Main content -->
@@ -7,7 +8,7 @@
             <div class="col">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Edit category</h3>
+                        <h3 class="card-title">EDIT CATEGORY</h3>
                     </div>
                     <div class="card-body">
 
@@ -15,24 +16,12 @@
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label>Tên</label>
+                                <label>Category Name</label>
                                 <input type="text" class="form-control   @error('name') is-invalid @enderror"
                                     name="name" value="{{ old('name', $category->name) }}">
-                                @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label>Hình ảnh</label>
-                                <div class="">
-                                    <img id="currentImage" src="{{ url('images/category/' . $category->image, []) }}"
-                                        alt="{{ $category->image }}" style="max-width: 100px;max-height: 100px">
-                                    <input name="image" type="file" id="imageInput"
-                                        accept="image/png, image/gif, image/jpeg">
-                                    @error('image')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                @if ($errors->has('name'))
+                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                @endif
                             </div>
                             <div class="row">
                                 <div class="col-12">

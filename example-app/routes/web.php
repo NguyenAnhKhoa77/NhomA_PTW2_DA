@@ -28,6 +28,7 @@ Route::prefix('/')->group(function () {
     Route::get('grid', [ControllerView::class, 'grid'])->name('grid');
     Route::get('account', [ControllerView::class, 'account'])->name('account');
     Route::get('wishlist', [ControllerView::class, 'wishlist'])->name('wishlist');
+    Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
 });
 Route::prefix('login')->group(function () {
     Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');

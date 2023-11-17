@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
 use App\Models\User;
-=======
->>>>>>> main
 use Illuminate\Http\Request;
 
 class ControllerUsersManager extends Controller
@@ -16,14 +13,10 @@ class ControllerUsersManager extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-
         //Lấy những tài khoản không phải addmin và phân trang
         $users = User::where('is_admin', false)->paginate(10);
         return view('backend.bills.table', compact('users'));
-=======
         //
->>>>>>> main
     }
 
     /**
