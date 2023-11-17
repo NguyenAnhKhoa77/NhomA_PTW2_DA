@@ -8,6 +8,7 @@ class ControllerView extends Controller
 {
     public function Home()
     {
+
         return view('fontend.index');
     }
 

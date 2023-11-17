@@ -32,14 +32,13 @@ class ControllerManufacturersManager extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required|string|max:255',
             'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
         $image = $request->file('image');
         $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images/manufacturer/'), $imageName);
+        $image->move(public_path('images/manufacturers/'), $imageName);
 
         $manu = new Manufacturers([
             'name' => $request['name'],
