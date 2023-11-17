@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ControllerUsersManager extends Controller
 {
@@ -63,7 +65,20 @@ class ControllerUsersManager extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (!$user = User::find($id)) {
+            return redirect()->back()->with('errors', 'Tài khoản không tồn tại');
+        }
+        $user = User::find($id);
+        $accout = Account::find($user->id_account);
+        $path = "images/user/" . $accout->avatar;
+
+        if ($user->delete() and $accout->delete()) {
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            return redirect()->back()->with('success', 'Xóa tài khoản thành công');
+        }
+        return redirect()->back();
     }
     public function changepass()
     {
