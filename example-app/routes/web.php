@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ControllerCategoryManager;
 use App\Http\Controllers\Admin\ControllerManufacturersManager;
 use App\Http\Controllers\Admin\ControllerProductManager;
 use App\Http\Controllers\Admin\ControllerUsersManager;
+use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
 
 /*
@@ -26,10 +27,12 @@ Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
     Route::get('product', [ControllerView::class, 'product'])->name('product');
     Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
+    Route::prefix('grid')->group(function () {
+        Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
+    });
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
-    Route::get('grid', [ControllerView::class, 'grid'])->name('grid');
     Route::get('account', [ControllerView::class, 'account'])->name('account');
-    Route::prefix('wishlist')-> group(function() {
+    Route::prefix('wishlist')->group(function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
         Route::post('/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
         Route::delete('/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
@@ -37,8 +40,6 @@ Route::prefix('/')->group(function () {
 
     Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
     Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
-
-
 });
 Route::prefix('login')->group(function () {
     Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');

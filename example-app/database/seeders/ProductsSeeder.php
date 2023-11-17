@@ -14,8 +14,8 @@ class ProductsSeeder extends Seeder
     public function run(): void
     {
         DB::table('products')->insert([
-            'name' => 'BỘ ARSENAL - QUẦN ÁO THỂ THAO LONG THANH',
-            'image' => '11134207.jpg',
+            'name' => 'Áo bóng đá 🔥 Bộ HOA SEN ADIDAS',
+            'image' => 'd28dcb68357eef558e44be2705677f45.jpg',
             'description' => 'THÔNG TIN SẢN PHẨM:<br>- Chất Liệu: Thun Lạnh thể thao, thấm hút mồ hôi tốt, độ co giãn cực tốt. In ép công nghệ 3D hiện đại,màu sắc luôn tươi mới, Sử dụng mực INTECK Hàn Quốc lành tính với tất cả làn da nhạy cảm nhất',
             'price' => 30000,
             'manufacturer_id' => 1,
@@ -97,6 +97,59 @@ class ProductsSeeder extends Seeder
             'price' => 30000,
             'manufacturer_id' => 5,
             'categories_id' => 6,
+            'sex' => 3,
+            'inventory' => 10,
+        ]);
+
+
+
+        DB::table('products')->insert([
+            'name' => 'Bộ Đồ Tập Thể Thao Nữ ',
+            'image' => '89d864e2f43c43f72850a65221ec3508.jpg',
+            'description' => 'THÔNG TIN SẢN PHẨM:<br>- Chất Liệu: Thun Lạnh thể thao, thấm hút mồ hôi tốt, độ co giãn cực tốt. In ép công nghệ 3D hiện đại,màu sắc luôn tươi mới, Sử dụng mực INTECK Hàn Quốc lành tính với tất cả làn da nhạy cảm nhất',
+            'price' => 220000,
+            'manufacturer_id' => 5,
+            'categories_id' => 6,
+            'sex' => 2,
+            'inventory' => 10,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Bộ quần áo bóng đá, đồ đá banh, bộ đồ thể thao Bulbal Vingar',
+            'image' => 'vn-11134207-7qukw-livd2dfyxafg26.jpg',
+            'description' => 'THÔNG TIN SẢN PHẨM:<br>- Chất Liệu: Thun Lạnh thể thao, thấm hút mồ hôi tốt, độ co giãn cực tốt. In ép công nghệ 3D hiện đại,màu sắc luôn tươi mới, Sử dụng mực INTECK Hàn Quốc lành tính với tất cả làn da nhạy cảm nhất',
+            'price' => 30000,
+            'manufacturer_id' => 5,
+            'categories_id' => 5,
+            'sex' => 3,
+            'inventory' => 10,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Bộ đồ thể thao Gladimax S-Genmax Phối Lưới',
+            'image' => 'de74d4d0c3edbe5e2ab38995daec8c1c.jpg',
+            'description' => 'THÔNG TIN SẢN PHẨM:<br>- Chất Liệu: Thun Lạnh thể thao, thấm hút mồ hôi tốt, độ co giãn cực tốt. In ép công nghệ 3D hiện đại,màu sắc luôn tươi mới, Sử dụng mực INTECK Hàn Quốc lành tính với tất cả làn da nhạy cảm nhất',
+            'price' => 298000,
+            'manufacturer_id' => 3,
+            'categories_id' => 5,
+            'sex' => 2,
+            'inventory' => 10,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Bộ đồ thể thao nam trơn',
+            'image' => 'c69d20ab6ce5684e8873a019843fa6b8.jpg',
+            'description' => 'THÔNG TIN SẢN PHẨM:<br>- Chất Liệu: Thun Lạnh thể thao, thấm hút mồ hôi tốt, độ co giãn cực tốt. In ép công nghệ 3D hiện đại,màu sắc luôn tươi mới, Sử dụng mực INTECK Hàn Quốc lành tính với tất cả làn da nhạy cảm nhất',
+            'price' => 30000,
+            'manufacturer_id' => 5,
+            'categories_id' => 6,
+            'sex' => 1,
+            'inventory' => 10,
+        ]);
+        DB::table('products')->insert([
+            'name' => 'Bộ đá bóng in tên - Bộ quần áo đá bóng Việt Nam trắng thun lạnh cao cấ',
+            'image' => 'sg-11134201-7rbk0-lkp7y9tej1ps85.jpg',
+            'description' => 'THÔNG TIN SẢN PHẨM:<br>- Chất Liệu: Thun Lạnh thể thao, thấm hút mồ hôi tốt, độ co giãn cực tốt. In ép công nghệ 3D hiện đại,màu sắc luôn tươi mới, Sử dụng mực INTECK Hàn Quốc lành tính với tất cả làn da nhạy cảm nhất',
+            'price' => 30000,
+            'manufacturer_id' => 5,
+            'categories_id' => 4,
             'sex' => 3,
             'inventory' => 10,
         ]);
