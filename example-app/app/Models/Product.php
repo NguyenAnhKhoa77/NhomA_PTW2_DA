@@ -31,4 +31,9 @@ class Product extends Model
     {
         return $this->hasMany(Orders::class);
     }
+
+    public function sex()
+    {
+        return $this->belongsTo(sex::class, 'sex');
+    }
 }
