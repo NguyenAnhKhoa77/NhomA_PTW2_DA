@@ -33,8 +33,7 @@ class ControllerUser extends Controller
     {
         $request->validate([
             'email' => 'required|string|email|unique:users',
-            //'password' => 'required|string|confirmed|min:8',
-            'password' => 'required|string|confirmed',
+            'password' => 'required|string|confirmed|min:8',
             'password_confirmation' => 'required|string',
         ]);
 

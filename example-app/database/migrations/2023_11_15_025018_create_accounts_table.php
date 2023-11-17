@@ -15,7 +15,6 @@ return new class extends Migration
             Schema::create('accounts', function (Blueprint $table) {
                 $table->id();
                 $table->string('name')->default('user');
-                $table->string('id_user')->nullable();
                 $table->string('phone')->nullable();
                 $table->string('address')->nullable();
                 $table->string('avatar')->default('user.png');

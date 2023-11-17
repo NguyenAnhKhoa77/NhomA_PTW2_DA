@@ -2,6 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Categories;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\ManufacturersSeeder;
+use Database\Seeders\ProductsSeeder;
+use Database\Seeders\SexsSeeder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
