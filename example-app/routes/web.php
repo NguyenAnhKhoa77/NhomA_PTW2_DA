@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerView;
 use App\Http\Controllers\Admin\AdminPage;
@@ -28,13 +29,19 @@ Route::prefix('/')->group(function () {
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
     Route::get('grid', [ControllerView::class, 'grid'])->name('grid');
     Route::get('account', [ControllerView::class, 'account'])->name('account');
-    Route::get('wishlist', [ControllerView::class, 'wishlist'])->name('wishlist');
+    Route::prefix('wishlist')-> group(function() {
+        Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
+        Route::post('/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+        Route::delete('/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+    });
+
     Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
 });
 Route::prefix('login')->group(function () {
     Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');
     Route::post('register', [ControllerUser::class, 'Register'])->name('register');
     Route::post('login', [ControllerUser::class, 'Login'])->name('login');
+    Route::post('sign-out', [ControllerUser::class, 'signOut'])->name('sign-out');
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
