@@ -65,7 +65,13 @@ class ControllerCategoryManager extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        if (!$cate = Categories::find($id)) {
+            return redirect()->route('category.table')->with('errors', 'Danh mục không tồn tại');
+        }
+        $category = Categories::find($id);
+        $page = 'Manufacter edit';
+        return view('backend.category.edit', compact('category'));
     }
 
     /**
@@ -73,7 +79,32 @@ class ControllerCategoryManager extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        if (!$cate = Categories::find($id)) {
+            return redirect()->route('category.table')->with('errors', 'Danh mục không tồn tại');
+        }
+        $cate = Categories::find($id);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $cate->name = $request->input('name');
+        if ($request->hasFile('image')) {
+            $path = "images/category/" . $cate->image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $cate->image = $imageName;
+            $image->move(public_path('images/category'), $imageName);
+        }
+        if ($cate->save()) {
+
+            return redirect()->route('category.table')->with('success', 'Cập nhật thành công');
+        }
+        return back();
     }
 
     /**
@@ -88,7 +119,7 @@ class ControllerCategoryManager extends Controller
         if ($product->count() == 0) {
 
             $cate = Categories::find($id);
-            $path = "images/" . $cate->image;
+            $path = "images/category/" . $cate->image;
             if (File::exists($path)) {
                 File::delete($path);
             }

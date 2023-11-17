@@ -80,7 +80,7 @@ class ControllerProductManager extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $path = "images/products" . $product->image;
+            $path = "images/products/" . $product->image;
             if (File::exists($path)) {
                 File::delete($path);
             }

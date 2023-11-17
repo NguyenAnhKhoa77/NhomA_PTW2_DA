@@ -1,11 +1,11 @@
 @extends('backend.header')
-@section('title', 'Edit')
 @section('content')
+    <div class="mt-3"></div>
     <!-- Main content -->
     <section class="content">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">{{ $page }}</h3>
+                <h3 class="card-title">Edit product</h3>
             </div>
             <div class="card-body">
                 <form action="{{ route('product.edit.handle', $product->id) }}" id="editForm" method="POST"
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Category</label>
+                        <label>Loại sản phẩm</label>
                         <select name="cate" class="form-control custom-select">
                             @foreach ($cates as $cate)
                                 @if ($cate->id == $product->categories_id)

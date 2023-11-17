@@ -7,17 +7,17 @@
             <div class="col">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Edit category</h3>
+                        <h3 class="card-title">Chỉnh sửa thông tin nhãn hàng</h3>
                     </div>
-                    <div class="card-body">
 
-                        <form action="{{ route('category.update', $category->id) }}" id="editForm" method="POST"
+                    <div class="card-body">
+                        <form action="{{ route('manufacture.update', $manufacturer->id) }}" id="editForm" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Tên</label>
                                 <input type="text" class="form-control   @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name', $category->name) }}">
+                                    name="name" value="{{ old('name', $manufacturer->name) }}">
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -25,8 +25,9 @@
                             <div class="form-group">
                                 <label>Hình ảnh</label>
                                 <div class="">
-                                    <img id="currentImage" src="{{ url('images/category/' . $category->image, []) }}"
-                                        alt="{{ $category->image }}" style="max-width: 100px;max-height: 100px">
+                                    <img id="currentImage"
+                                        src="{{ url('images/manufacturers/' . $manufacturer->image, []) }}"
+                                        alt="{{ $manufacturer->image }}" style="max-width: 100px;max-height: 100px">
                                     <input name="image" type="file" id="imageInput"
                                         accept="image/png, image/gif, image/jpeg">
                                     @error('image')
@@ -42,7 +43,6 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
                     <!-- /.card-body -->
                 </div>

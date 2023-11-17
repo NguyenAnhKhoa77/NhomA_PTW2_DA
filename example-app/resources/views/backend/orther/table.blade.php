@@ -1,6 +1,6 @@
 @extends('backend.header')
-@selected('title', 'Detail')
 @section('content')
+    <div class="mt-3"></div>
     <!-- Main content -->
     <section class="content">
         <!-- Default box -->
@@ -9,11 +9,8 @@
                 <h3 class="card-title">Projects</h3>
 
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                        <i class="fas fa-times"></i>
+                    <button type="button" class="btn btn-tool">
+                        <i class="fas fa-plus"></i>
                     </button>
                 </div>
             </div>
