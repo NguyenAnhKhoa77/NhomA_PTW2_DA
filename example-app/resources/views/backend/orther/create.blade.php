@@ -1,21 +1,14 @@
 @extends('backend.header')
-@section('title', 'Add product')
 @section('content')
-
     <div class="mt-3"></div>
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col">
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">General</h3>
 
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -42,35 +35,6 @@
                         <div class="form-group">
                             <label for="inputProjectLeader">Project Leader</label>
                             <input type="text" id="inputProjectLeader" class="form-control">
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-            </div>
-            <div class="col-md-6">
-                <div class="card card-secondary">
-                    <div class="card-header">
-                        <h3 class="card-title">Budget</h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputEstimatedBudget">Estimated budget</label>
-                            <input type="number" id="inputEstimatedBudget" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputSpentBudget">Total amount spent</label>
-                            <input type="number" id="inputSpentBudget" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEstimatedDuration">Estimated project duration</label>
-                            <input type="number" id="inputEstimatedDuration" class="form-control">
                         </div>
                     </div>
                     <!-- /.card-body -->

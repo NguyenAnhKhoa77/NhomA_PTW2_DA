@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Manufacturers;
 use Illuminate\Http\Request;
 
 class ControllerManufacturersManager extends Controller
@@ -13,6 +14,8 @@ class ControllerManufacturersManager extends Controller
     public function index()
     {
         //
+        $manufacturer = Manufacturers::orderBy('created_at', 'desc')->paginate(10);
+        return view('backend.manufacturer.table', compact('manufacturer'));
     }
 
     /**
@@ -20,7 +23,7 @@ class ControllerManufacturersManager extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.manufacturer.create');
     }
 
     /**
@@ -28,7 +31,23 @@ class ControllerManufacturersManager extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
+        ]);
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images/manufacturer/'), $imageName);
+
+        $manu = new Manufacturers([
+            'name' => $request['name'],
+            'image' => $imageName,
+        ]);
+        if ($manu->save()) {
+            return redirect()->route('manufacture.table')->with('success', 'Thêm hãng thành công');
+        }
+        return back();
     }
 
     /**

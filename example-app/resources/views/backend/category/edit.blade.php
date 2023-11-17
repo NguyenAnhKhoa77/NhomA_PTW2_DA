@@ -1,5 +1,4 @@
 @extends('backend.header')
-@section('title', 'Edit')
 @section('content')
     <div class="mt-3"></div>
     <!-- Main content -->

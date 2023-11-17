@@ -1,5 +1,4 @@
 @extends('backend.header')
-@section('title', 'Detail')
 @section('content')
     <div class="mt-3"></div>
     <!-- Content Header (Page header) -->
@@ -184,5 +183,4 @@
 
     </section>
     <!-- /.content -->
-
 @endsection

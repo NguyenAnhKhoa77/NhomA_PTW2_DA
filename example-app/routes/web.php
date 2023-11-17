@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerView;
 use App\Http\Controllers\Admin\AdminPage;
 use App\Http\Controllers\Admin\ControllerCategoryManager;
+use App\Http\Controllers\Admin\ControllerManufacturersManager;
 use App\Http\Controllers\Admin\ControllerProductManager;
 use App\Http\Controllers\ControllerUser;
 
@@ -51,5 +52,15 @@ Route::prefix('admin')->group(function () {
         Route::post('update/{id}', [ControllerCategoryManager::class, 'update'])->name('category.update');
         Route::get('destroy/{id}', [ControllerCategoryManager::class, 'destroy'])->name('category.destroy');
         Route::get('show', [ControllerCategoryManager::class, 'show'])->name('category.show');
+    });
+
+    Route::prefix('manufacture')->group(function () {
+        Route::get('/', [ControllerManufacturersManager::class, 'index'])->name('manufacture.table');
+        Route::get('create', [ControllerManufacturersManager::class, 'create'])->name('manufacture.create');
+        Route::post('store', [ControllerManufacturersManager::class, 'store'])->name('manufacture.store');
+        Route::get('edit/{id}', [ControllerManufacturersManager::class, 'edit'])->name('manufacture.edit');
+        Route::post('update/{id}', [ControllerManufacturersManager::class, 'update'])->name('manufacture.update');
+        Route::get('destroy/{id}', [ControllerManufacturersManager::class, 'destroy'])->name('manufacture.destroy');
+        Route::get('show', [ControllerManufacturersManager::class, 'show'])->name('manufacture.show');
     });
 });

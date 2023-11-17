@@ -1,5 +1,4 @@
 @extends('backend.header')
-@section('title', 'Product - Table')
 @section('content')
     <!-- Main content -->
     <section class="content">
@@ -8,7 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="mt-3"></div>
-                <h3 class="card-title">Product table</h3>
+                <h3 class="card-title">Danh sách sản phẩm</h3>
                 <div class="card-tools">
                     <a type="button" href="{{ route('product.create') }}" class="btn btn-tool" title="Collapse">
                         <i class="fas fa-plus"></i>
@@ -19,11 +18,11 @@
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
-                            <th style="width: 15%">Name</th>
-                            <th style="width: 10%">Categories</th>
-                            <th style="width: 10%">Manufacturer</th>
-                            <th style="width: 20%">Description</th>
-                            <th style="width: 10%">Price</th>
+                            <th style="width: 15%">Tên</th>
+                            <th style="width: 10%">Loại sản phẩm</th>
+                            <th style="width: 10%">Nhãn hiệu</th>
+                            <th style="width: 20%">Mô tả</th>
+                            <th style="width: 10%">Giá</th>
                         </tr>
                     </thead>
                     <tbody>

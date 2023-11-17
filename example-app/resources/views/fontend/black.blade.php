@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Shop - @yield('title')</title>
+    <link rel="icon" href="{{ url('images/team/logo.png', []) }}">
     <!-- Plugins CSS File -->
 
     <link rel="stylesheet" href="fontend/css/bootstrap.min.css">

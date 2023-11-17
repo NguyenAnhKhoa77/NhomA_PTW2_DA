@@ -1,7 +1,5 @@
 @extends('backend.header')
-@section('title', 'Edit')
 @section('content')
-
     <div class="mt-3"></div>
     <!-- Main content -->
     <section class="content">
@@ -34,7 +32,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Category</label>
+                        <label>Loại sản phẩm</label>
                         <select name="cate" class="form-control custom-select">
                             @foreach ($cates as $cate)
                                 @if ($cate->id == $product->categories_id)
