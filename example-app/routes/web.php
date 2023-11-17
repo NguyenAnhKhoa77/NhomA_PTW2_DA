@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminPage;
 use App\Http\Controllers\Admin\ControllerCategoryManager;
 use App\Http\Controllers\Admin\ControllerManufacturersManager;
 use App\Http\Controllers\Admin\ControllerProductManager;
+use App\Http\Controllers\Admin\ControllerUsersManager;
 use App\Http\Controllers\ControllerUser;
 
 /*
@@ -63,4 +64,25 @@ Route::prefix('admin')->group(function () {
         Route::get('destroy/{id}', [ControllerManufacturersManager::class, 'destroy'])->name('manufacture.destroy');
         Route::get('show', [ControllerManufacturersManager::class, 'show'])->name('manufacture.show');
     });
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', [ControllerUsersManager::class, 'index'])->name('user.table');
+        Route::get('create', [ControllerUsersManager::class, 'create'])->name('user.create');
+        Route::post('store', [ControllerUsersManager::class, 'store'])->name('user.store');
+        Route::get('edit/{id}', [ControllerUsersManager::class, 'edit'])->name('user.edit');
+        Route::post('update/{id}', [ControllerUsersManager::class, 'update'])->name('user.update');
+        Route::get('destroy/{id}', [ControllerUsersManager::class, 'destroy'])->name('user.destroy');
+        Route::get('show', [ControllerUsersManager::class, 'show'])->name('user.show');
+    });
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', [Controller::class, 'index'])->name('user.table');
+        Route::get('create', [Controller::class, 'create'])->name('user.create');
+        Route::post('store', [Controller::class, 'store'])->name('user.store');
+        Route::get('edit/{id}', [Controller::class, 'edit'])->name('user.edit');
+        Route::post('update/{id}', [Controller::class, 'update'])->name('user.update');
+        Route::get('destroy/{id}', [Controller::class, 'destroy'])->name('user.destroy');
+        Route::get('show', [Controller::class, 'show'])->name('user.show');
+    });
+
 });
