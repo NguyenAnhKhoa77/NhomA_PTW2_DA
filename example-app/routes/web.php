@@ -29,10 +29,10 @@ Route::prefix('/')->group(function () {
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
     Route::get('grid', [ControllerView::class, 'grid'])->name('grid');
     Route::get('account', [ControllerView::class, 'account'])->name('account');
-    Route::prefix('wishlist')-> group(function() {
+    Route::prefix('wishlist')->group(function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
-        Route::post('/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
-        Route::delete('/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+        Route::get('/add/{product}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+        Route::delete('/remove/{product}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
     });
 
     Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
