@@ -31,21 +31,23 @@ Route::prefix('/')->group(function () {
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
     });
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
-    Route::get('account', [ControllerView::class, 'account'])->name('account');
-    Route::prefix('wishlist')->group(function () {
-        Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
-        Route::get('/add/{product}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
-        Route::delete('/remove/{product}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
-    });
 
-    Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
-});
-Route::prefix('login')->group(function () {
-    Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');
+    Route::prefix('account')->middleware('auth')->group(function () {
+        Route::get('/', [ControllerView::class, 'account'])->name('account');
+        Route::prefix('wishlist')->group(function () {
+            Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
+            Route::get('/add/{product}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+            Route::delete('/remove/{product}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+        });
+    });
+    Route::get('loginview', [ControllerUser::class, 'LoginView'])->name('loginview');
+    Route::any('login', [ControllerUser::class, 'Login'])->name('login');
     Route::post('register', [ControllerUser::class, 'Register'])->name('register');
-    Route::post('login', [ControllerUser::class, 'Login'])->name('login');
-    Route::post('sign-out', [ControllerUser::class, 'signOut'])->name('sign-out');
+    Route::any('logout', [ControllerUser::class, 'Logout'])->name('logout');
+    Route::get('search', [ControllerView::class, 'getSearch'])->name('search');
 });
+
+
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');

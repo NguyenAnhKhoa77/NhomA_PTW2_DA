@@ -30,9 +30,17 @@
                         <ul class="top-menu">
                             <li>
                                 <ul>
-                                    <li><a href="{{ route('loginview', []) }}">Đăng nhập / Đăng ký</a></li>
-                                    <li><a href="{{ route('dashboard', []) }}">ADMIN</a></li>
-                                    <li><a href="">Logout</a></li>
+                                    @if (Auth::check())
+                                        @if (Auth::user()->is_admin)
+                                            <li><a href="{{ route('dashboard') }}">ADMIN</a></li>
+                                        @endif
+                                        <li>
+                                            <a href="{{ route('logout') }}">Logout</a>
+                                        </li>
+                                    @else
+                                        <li><a href="{{ route('loginview') }}">Đăng nhập / Đăng ký</a></li>
+                                    @endif
+
                                 </ul>
 
                             </li>
@@ -63,34 +71,18 @@
                         </div><!-- End .header-search -->
                     </div>
                     <div class="header-right">
-                        <div class="account">
-                            <a href="{{ route('account', []) }}" title="My account">
-                                <div class="icon">
-                                    <i class="icon-user"></i>
-                                </div>
-                                <p>Tài khoản</p>
-                            </a>
-                        </div><!-- End .compare-dropdown -->
-                        @guest
-                        @else
-                            <div class="wishlist">
-                                <a href="wishlist" title="Wishlist">
+                        @auth
+                            <div class="account">
+                                <a href="{{ route('account') }}" title="My account">
                                     <div class="icon">
-                                        <i class="icon-heart-o"></i>
-                                        <span class="wishlist-count badge">
-                                            @php
-                                                $userId = session('user_id');
-                                                $user = User::with('wishlistProducts')->find($userId);
-                                                $wishlistProducts = $user->wishlistProducts;
-                                                echo count($wishlistProducts);
-                                            @endphp
-                                        </span>
+                                        <i class="icon-user"></i>
                                     </div>
-                                    <p>Wishlist</p>
+                                    <p>Account</p>
                                 </a>
                             </div><!-- End .compare-dropdown -->
+
                             <div class="wishlist">
-                                <a href="wishlist" title="Wishlist">
+                                <a href="{{ route('wishlist') }}" title="Wishlist">
                                     <div class="icon">
                                         <i class="icon-heart-o"></i>
                                         <span class="wishlist-count badge">3</span>
@@ -98,15 +90,16 @@
                                     <p>Wishlist</p>
                                 </a>
                             </div><!-- End .compare-dropdown -->
-                        @endguest
+                        @endauth
+
                         <div class="dropdown cart-dropdown">
-                            <a href="{{ route('cart', []) }}" class="dropdown-toggle" role="button"src="fontend/
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                            <a href="" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <div class="icon">
                                     <i class="icon-shopping-cart"></i>
                                     <span class="cart-count">2</span>
                                 </div>
-                                <p>Giỏ hàng</p>
+                                <p>Cart</p>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right">
@@ -114,18 +107,18 @@
                                     <div class="product">
                                         <div class="product-cart-details">
                                             <h4 class="product-title">
-                                                <a href="product">ÁO BA LỖ CHẠY BỘ LEEVY PHẢN QUANG MS87</a>
+                                                <a href="product.html">Beige knitted elastic runner shoes</a>
                                             </h4>
 
                                             <span class="cart-product-info">
                                                 <span class="cart-product-qty">1</span>
-                                                x 279.000₫
+                                                x $84.00
                                             </span>
                                         </div><!-- End .product-cart-details -->
 
                                         <figure class="product-image-container">
-                                            <a href="product" class="product-image">
-                                                <img src="images/products/ao-ba-lo.jpg" alt="product">
+                                            <a href="product.html" class="product-image">
+                                                <img src="assets/images/products/cart/product-1.jpg" alt="product">
                                             </a>
                                         </figure>
                                         <a href="#" class="btn-remove" title="Remove Product"><i
@@ -135,19 +128,18 @@
                                     <div class="product">
                                         <div class="product-cart-details">
                                             <h4 class="product-title">
-                                                <a href="product">QUẦN CHẠY BỘ NAM ARSUXEO MS04 - 2 LỚP (BOXER) -
-                                                    THIẾT KẾ 4 TÚI ĐA NĂNG</a>
+                                                <a href="product.html">Blue utility pinafore denim dress</a>
                                             </h4>
 
                                             <span class="cart-product-info">
                                                 <span class="cart-product-qty">1</span>
-                                                x 299.000₫
+                                                x $76.00
                                             </span>
                                         </div><!-- End .product-cart-details -->
 
                                         <figure class="product-image-container">
-                                            <a href="product" class="product-image">
-                                                <img src="images/products/quan-chay-bo.jpg" alt="product">
+                                            <a href="product.html" class="product-image">
+                                                <img src="assets/images/products/cart/product-2.jpg" alt="product">
                                             </a>
                                         </figure>
                                         <a href="#" class="btn-remove" title="Remove Product"><i
@@ -156,20 +148,20 @@
                                 </div><!-- End .cart-product -->
 
                                 <div class="dropdown-cart-total">
-                                    <span>Tổng</span>
-                                    <span class="cart-total-price">578.000₫</span>
+                                    <span>Total</span>
+
+                                    <span class="cart-total-price">$160.00</span>
                                 </div><!-- End .dropdown-cart-total -->
 
                                 <div class="dropdown-cart-action">
-                                    <a href="{{ route('cart', []) }}" class="btn btn-primary">Xem giỏ hàng</a>
-                                    <a href="{{ route('checkout', ['id' => 1]) }}" class="btn btn-outline-primary-2">
-                                        <span>Thanh toán</span>
-                                        <i class="icon-long-arrow-right"></i>
-                                    </a>
+                                    <a href="{{ route('cart', []) }}" class="btn btn-primary">View Cart</a>
+                                    <a href="{{ route('checkout', []) }}"
+                                        class="btn btn-outline-primary-2"><span>Checkout</span><i
+                                            class="icon-long-arrow-right"></i></a>
                                 </div><!-- End .dropdown-cart-total -->
                             </div><!-- End .dropdown-menu -->
                         </div><!-- End .cart-dropdown -->
-                    </div><!-- End .header-right -->
+                    </div>
                 </div><!-- End .container -->
             </div><!-- End .header-middle -->
             <div class="sticky-wrapper">
