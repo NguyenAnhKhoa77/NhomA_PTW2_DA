@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerView;
 use App\Http\Controllers\Admin\AdminPage;
+use App\Http\Controllers\Admin\ControllerBillsManager;
 use App\Http\Controllers\Admin\ControllerCategoryManager;
 use App\Http\Controllers\Admin\ControllerManufacturersManager;
 use App\Http\Controllers\Admin\ControllerProductManager;
@@ -73,17 +74,17 @@ Route::prefix('admin')->group(function () {
         Route::get('edit/{id}', [ControllerUsersManager::class, 'edit'])->name('user.edit');
         Route::post('update/{id}', [ControllerUsersManager::class, 'update'])->name('user.update');
         Route::get('destroy/{id}', [ControllerUsersManager::class, 'destroy'])->name('user.destroy');
-        Route::get('show', [ControllerUsersManager::class, 'show'])->name('user.show');
+        Route::get('show/{id}', [ControllerUsersManager::class, 'show'])->name('user.show');
+        Route::get('changepass', [ControllerUsersManager::class, 'changepass'])->name('user.changepass');
     });
 
-    Route::prefix('user')->group(function () {
-        Route::get('/', [Controller::class, 'index'])->name('user.table');
-        Route::get('create', [Controller::class, 'create'])->name('user.create');
-        Route::post('store', [Controller::class, 'store'])->name('user.store');
-        Route::get('edit/{id}', [Controller::class, 'edit'])->name('user.edit');
-        Route::post('update/{id}', [Controller::class, 'update'])->name('user.update');
-        Route::get('destroy/{id}', [Controller::class, 'destroy'])->name('user.destroy');
-        Route::get('show', [Controller::class, 'show'])->name('user.show');
+    Route::prefix('bill')->group(function () {
+        Route::get('/', [ControllerBillsManager::class, 'index'])->name('bill.table');
+        Route::get('create', [ControllerBillsManager::class, 'create'])->name('bill.create');
+        Route::post('store', [ControllerBillsManager::class, 'store'])->name('bill.store');
+        Route::get('edit/{id}', [ControllerBillsManager::class, 'edit'])->name('bill.edit');
+        Route::post('update/{id}', [ControllerBillsManager::class, 'update'])->name('bill.update');
+        Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
+        Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
     });
-
 });

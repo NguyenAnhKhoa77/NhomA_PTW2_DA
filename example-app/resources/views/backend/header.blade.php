@@ -228,14 +228,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('bill.table', []) }}" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Đơn hàng
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('user.table', []) }}" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Người dùng
                                 </p>

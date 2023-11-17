@@ -113,33 +113,36 @@
                                             name="password_confirmation" required>
                                     </div><!-- End .form-group -->
 
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="register-password-2">Tên người dùng
                                             <span style="color: red">*</span>
                                         </label>
                                         <input type="text" class="form-control" id="register-name" name="name"
                                             required>
-                                    </div><!-- End .form-group -->
-                                    <div class="form-group">
+                                    </div> --}}
+                                    <!-- End .form-group -->
+                                    {{-- <div class="form-group">
                                         <label for="register-password-2">Số điện thoại
                                             <span style="color: red">*</span>
                                         </label>
                                         <input type="text" class="form-control" id="register-phone" name="phone"
                                             required>
-                                    </div><!-- End .form-group -->
+                                    </div> --}}
+                                    <!-- End .form-group -->
                                     <div class="form-footer">
                                         <button type="submit" class="btn btn-outline-primary-2">
                                             <span>Đăng ký</span>
                                             <i class="icon-long-arrow-right"></i>
                                         </button>
 
-                                        <div class="custom-control custom-checkbox">
+                                        {{-- <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="register-policy-2"
                                                 required>
                                             <label class="custom-control-label" for="register-policy-2">Tôi đồng ý với <a
                                                     href="">chính sách bảo mật</a> <span
                                                     style="color: red">*</span></label>
-                                        </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .custom-checkbox --> --}}
+
                                     </div><!-- End .form-footer -->
                                 </form>
                             </div><!-- .End .tab-pane -->
