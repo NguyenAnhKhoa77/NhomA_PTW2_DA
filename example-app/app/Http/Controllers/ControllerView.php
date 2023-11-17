@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Contact;
 
 class ControllerView extends Controller
 {
@@ -34,6 +35,19 @@ class ControllerView extends Controller
     public function cart()
     {
         return view('fontend.cart');
+    }
+    public function contact()
+    {
+        return view('fontend.contact');
+    }
+    public function contactForm()
+    {
+        $contact = new Contact();
+        $contact->name = request('name');
+        $contact->email = request('email');
+        $contact->msg = request('msg');
+        $contact->save();
+        return redirect()->back();
     }
 
     public function notFound()

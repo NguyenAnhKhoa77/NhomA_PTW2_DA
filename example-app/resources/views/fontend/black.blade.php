@@ -217,7 +217,7 @@
                                     <a href="">Quần áo nhóm</a>
                                 </li>
                                 <li class="">
-                                    <a href="">Liên hệ</a>
+                                    <a href="{{ route('contact', []) }}">Liên hệ</a>
                                 </li>
                             </ul><!-- End .menu -->
                         </nav><!-- End .main-nav -->
