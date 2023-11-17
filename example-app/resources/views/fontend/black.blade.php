@@ -30,7 +30,10 @@
                             <li>
                                 <ul>
                                     <li><a href="{{ route('loginview', []) }}">Đăng nhập / Đăng ký</a></li>
+                                    <li><a href="{{ route('dashboard', []) }}">ADMIN</a></li>
+                                    <li><a href="">Logout</a></li>
                                 </ul>
+
                             </li>
                         </ul><!-- End .top-menu -->
                     </div><!-- End .header-right -->

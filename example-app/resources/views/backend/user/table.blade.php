@@ -48,7 +48,8 @@
                                         Edit
                                     </a>
 
-                                    <a class="btn btn-danger btn-sm " href="{{ route('user.destroy', $user->id) }}">
+                                    <a class="btn btn-danger btn-sm " href="{{ route('user.destroy', $user->id) }}"
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
                                         <i class="fas fa-trash"> </i>
                                         Delete
                                     </a>

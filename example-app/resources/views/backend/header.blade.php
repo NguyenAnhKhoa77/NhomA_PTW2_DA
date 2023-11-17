@@ -194,6 +194,9 @@
                     <div class="info">
                         <a href="#" class="d-block">Admin</a>
                     </div>
+                    <div class="info">
+                        <a href="{{ route('home', ['id' => 1]) }}" class="d-block">User page</a>
+                    </div>
                 </div>
 
                 <!-- SidebarSearch Form -->

@@ -69,13 +69,16 @@ class ControllerUsersManager extends Controller
             return redirect()->back()->with('errors', 'Tài khoản không tồn tại');
         }
         $user = User::find($id);
-        $accout = Account::find($user->id_account);
-        $path = "images/user/" . $accout->avatar;
 
-        if ($user->delete() and $accout->delete()) {
+        if ($account = Account::find($user->id_account)) {
+            $account = Account::find($user->id_account);
+            $path = "images/user/" . $account->avatar;
             if (File::exists($path)) {
                 File::delete($path);
             }
+            $account->delete();
+        }
+        if ($user->delete()) {
             return redirect()->back()->with('success', 'Xóa tài khoản thành công');
         }
         return redirect()->back();
