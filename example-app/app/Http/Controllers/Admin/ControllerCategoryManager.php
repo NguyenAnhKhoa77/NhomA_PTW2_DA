@@ -36,15 +36,10 @@ class ControllerCategoryManager extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
-        $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images/category'), $imageName);
 
         $cate = new Categories([
             'name' => $request['name'],
-            'image' => $imageName,
         ]);
         if ($cate->save()) {
             return redirect()->route('category.table')->with('success', 'Thêm hãng thành công');
@@ -86,20 +81,9 @@ class ControllerCategoryManager extends Controller
         $cate = Categories::find($id);
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $cate->name = $request->input('name');
-        if ($request->hasFile('image')) {
-            $path = "images/category/" . $cate->image;
-            if (File::exists($path)) {
-                File::delete($path);
-            }
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $cate->image = $imageName;
-            $image->move(public_path('images/category'), $imageName);
-        }
         if ($cate->save()) {
 
             return redirect()->route('category.table')->with('success', 'Cập nhật thành công');
@@ -112,22 +96,17 @@ class ControllerCategoryManager extends Controller
      */
     public function destroy(string $id)
     {
-        if (!$cate = Categories::find($id)) {
-            return redirect()->back()->with('errors', 'Danh mục không tồn tại');
-        }
-        $product = Product::where('categories_id', $id)->get();
-        if ($product->count() == 0) {
-
             $cate = Categories::find($id);
-            $path = "images/category/" . $cate->image;
-            if (File::exists($path)) {
-                File::delete($path);
+            if (!$cate) {
+                return redirect()->route('category.table')->with('error', 'Category does not exist!');
             }
-            $cate->delete();
-            //Quay lại trang trước đó
-            return redirect()->route('category.table')->with('success', 'Xóa danh mục thành công!');
-        } else {
-            return redirect()->back()->with('errors', 'Không thể xóa danh mục vì vẫn còn sản phẩm!');
-        }
+            $product = Product::where('categories_id', $id)->get();
+            if ($product->count() == 0) {
+                $cate->delete();
+                //Quay lại trang trước đó
+                return redirect()->route('category.table')->withSuccess('Category was deleted!');
+            } else {
+                return redirect()->route('category.table')->with('error', 'Cannot delete this category!');
+            }
     }
 }

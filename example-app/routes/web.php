@@ -29,6 +29,7 @@ Route::prefix('/')->group(function () {
     Route::get('grid', [ControllerView::class, 'grid'])->name('grid');
     Route::get('account', [ControllerView::class, 'account'])->name('account');
     Route::get('wishlist', [ControllerView::class, 'wishlist'])->name('wishlist');
+    Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
 });
 Route::prefix('login')->group(function () {
     Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');
@@ -73,7 +74,7 @@ Route::prefix('admin')->group(function () {
         Route::get('edit/{id}', [ControllerUsersManager::class, 'edit'])->name('user.edit');
         Route::post('update/{id}', [ControllerUsersManager::class, 'update'])->name('user.update');
         Route::get('destroy/{id}', [ControllerUsersManager::class, 'destroy'])->name('user.destroy');
-        Route::get('show', [ControllerUsersManager::class, 'show'])->name('user.show');
+        Route::get('show/{id}', [ControllerUsersManager::class, 'show'])->name('user.show');
         Route::get('changepass', [ControllerUsersManager::class, 'changepass'])->name('user.changepass');
     });
 
@@ -84,6 +85,6 @@ Route::prefix('admin')->group(function () {
         Route::get('edit/{id}', [ControllerBillsManager::class, 'edit'])->name('bill.edit');
         Route::post('update/{id}', [ControllerBillsManager::class, 'update'])->name('bill.update');
         Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
-        Route::get('show', [ControllerBillsManager::class, 'show'])->name('bill.show');
+        Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
     });
 });

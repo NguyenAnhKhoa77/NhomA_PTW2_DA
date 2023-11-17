@@ -36,4 +36,8 @@ class ControllerView extends Controller
     {
         return view('fontend.wishlist');
     }
+    public function notFound()
+    {
+        return view('fontend.404');
+    }
 }
