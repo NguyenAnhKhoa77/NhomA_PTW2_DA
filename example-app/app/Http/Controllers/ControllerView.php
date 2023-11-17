@@ -23,7 +23,7 @@ class ControllerView extends Controller
     public function product($id)
     {
         $data = Product::find($id);
-        $allData = Product::all();
+        $allData = Product::where('categories_id' , 'like' , '%' . $data->categories_id . '%')->take(6)->get();
         return view('fontend.product',['product'=>$data],compact('allData'));
     }
     public function account()
