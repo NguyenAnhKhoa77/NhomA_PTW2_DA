@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ControllerUser extends Controller
 {
@@ -51,5 +52,11 @@ class ControllerUser extends Controller
             return redirect("login")->withSuccess('Register success. Please login!');
         }
         return back();
+    }
+    public function signOut() {
+        Session::flush();
+        Auth::logout();
+
+        return redirect('login');
     }
 }

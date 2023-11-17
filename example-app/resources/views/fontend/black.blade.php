@@ -29,7 +29,11 @@
                         <ul class="top-menu">
                             <li>
                                 <ul>
-                                    <li><a href="{{ route('loginview', []) }}">Đăng nhập / Đăng ký</a></li>
+                                    @guest
+                                        <li><a href="{{ route('loginview', []) }}">Login / Register</a></li>
+                                    @else
+                                        <li><a href="{{ route('loginview', []) }}">Sign out</a></li>
+                                    @endguest
                                 </ul>
                             </li>
                         </ul><!-- End .top-menu -->
@@ -39,7 +43,7 @@
             <div class="header-middle">
                 <div class="container">
                     <div class="header-left">
-                        <a href="index" class="logo">
+                        <a href="{{ route('home') }}" class="logo">
                             Nhóm A
                         </a>
                     </div><!-- End .header-left -->
@@ -66,7 +70,8 @@
                                 <p>Tài khoản</p>
                             </a>
                         </div><!-- End .compare-dropdown -->
-
+                        @guest
+                        @else
                         <div class="wishlist">
                             <a href="wishlist" title="Wishlist">
                                 <div class="icon">
@@ -76,7 +81,7 @@
                                 <p>Wishlist</p>
                             </a>
                         </div><!-- End .compare-dropdown -->
-
+                        @endguest
                         <div class="dropdown cart-dropdown">
                             <a href="{{ route('cart', []) }}" class="dropdown-toggle" role="button"src="fontend/
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
