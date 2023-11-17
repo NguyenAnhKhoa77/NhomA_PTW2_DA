@@ -207,7 +207,43 @@
                     </div><!-- End .tab-content -->
                 </div><!-- End .product-details-tab -->
 
-                <h2 class="title text-center mb-4">Sản phẩm liên quan</h2><!-- End .title text-center -->
+                <h2 class="title text-center mb-4">Sản phẩm liên quan</h2>
+                <div class="row">
+                @foreach ($allData as $value)
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                        <div class="product product-5 text-center">
+                            <figure class="product-media">
+                                <a href="product/{{$value['id']}}">
+                                    <img src="{{ url('images/products/' . $value->image, []) }}" alt="Product image"
+                                        class="product-image">
+                                </a>
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to
+                                            wishlist</span></a>
+                                    <a href="#" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick
+                                            view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare"
+                                        title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+                            <div class="product-body">
+                                <h3 class="product-title">
+                                    <a href="product">
+                                        {{ $value->name }}
+                                    </a>
+                                </h3>
+                                <!-- End .product-title -->
+                                <div class="product-price">
+                                    {{ $value->price }} VND
+                                </div><!-- End .product-price -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+                    </div><!-- End .col-sm-6 col-md-4 col-lg-3 col-xl-2 -->
+                @endforeach
+                </div>
             </div><!-- End .container -->
         </div><!-- End .page-content -->
     </main><!-- End .main -->
