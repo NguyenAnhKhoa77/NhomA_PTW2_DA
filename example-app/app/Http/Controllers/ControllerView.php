@@ -11,7 +11,6 @@ class ControllerView extends Controller
     public function Home()
     {
 
-
         $products = Product::with('sex')->take(6)->get();
         return view('fontend.index', compact('products'));
     }
