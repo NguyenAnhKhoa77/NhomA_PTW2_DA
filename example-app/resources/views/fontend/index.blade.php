@@ -94,7 +94,7 @@
                                         class="product-image">
                                 </a>
                                 <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to
+                                    <a href="{{ route('wishlist.add', $product->id) }}" class="btn-product-icon btn-wishlist btn-expandable"><span>Add to
                                             wishlist</span></a>
                                     <a href="#" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick
                                             view</span></a>
