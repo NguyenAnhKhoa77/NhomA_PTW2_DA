@@ -67,7 +67,7 @@ class ControllerUsersManager extends Controller
     public function destroy(string $id)
     {
         if (!$user = User::find($id)) {
-            return redirect()->back()->with('errors', 'Tài khoản không tồn tại');
+            return redirect()->back()->with('errors', 'Account does not exist!');
         }
         $user = User::find($id);
 
@@ -80,7 +80,7 @@ class ControllerUsersManager extends Controller
             $account->delete();
         }
         if ($user->delete()) {
-            return redirect()->back()->with('success', 'Xóa tài khoản thành công');
+            return redirect()->back()->with('success', 'Delete account succeed!');
         }
         return redirect()->back();
     }
