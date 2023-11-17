@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,23 +12,28 @@ class WishlistController extends Controller
 {
     public function index()
     {
-        return view('fontend.wishlist');
+        $userId = session('user_id');
+        $user = User::with('wishlistProducts')->find($userId);
+        $wishlistProducts = $user->wishlistProducts;
+        return view('fontend.wishlist', [
+            'wishlistProducts' => $wishlistProducts,
+        ]);
     }
 
-    public function addToWishlist(Request $request)
+    public function addToWishlist(Request $request, Product $product)
     {
         $wishlist = Wishlist::firstOrCreate([
             'user_id' => Auth::id(),
-            'product_id' => $request->product_id
+            'product_id' => $product->id,
         ]);
 
         return back()->with('success', 'Sản phẩm đã được thêm vào Wishlist!');
     }
 
-    public function removeFromWishlist(Request $request)
+    public function removeFromWishlist(Request $request, Product $product)
     {
         Wishlist::where('user_id', Auth::id())
-            ->where('product_id', $request->product_id)
+            ->where('product_id', $product->id)
             ->delete();
 
         return back()->with('success', 'Sản phẩm đã được xóa khỏi Wishlist!');

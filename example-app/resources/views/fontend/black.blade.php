@@ -1,3 +1,4 @@
+@php use App\Models\User; @endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,6 +73,22 @@
                         </div><!-- End .compare-dropdown -->
                         @guest
                         @else
+                            <div class="wishlist">
+                                <a href="wishlist" title="Wishlist">
+                                    <div class="icon">
+                                        <i class="icon-heart-o"></i>
+                                        <span class="wishlist-count badge">
+                                            @php
+                                                $userId = session('user_id');
+                                                $user = User::with('wishlistProducts')->find($userId);
+                                                $wishlistProducts = $user->wishlistProducts;
+                                                echo count($wishlistProducts);
+                                            @endphp
+                                        </span>
+                                    </div>
+                                    <p>Wishlist</p>
+                                </a>
+                            </div><!-- End .compare-dropdown -->
                             <div class="wishlist">
                                 <a href="wishlist" title="Wishlist">
                                     <div class="icon">

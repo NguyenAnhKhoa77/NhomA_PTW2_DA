@@ -34,8 +34,8 @@ Route::prefix('/')->group(function () {
     Route::get('account', [ControllerView::class, 'account'])->name('account');
     Route::prefix('wishlist')->group(function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
-        Route::post('/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
-        Route::delete('/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+        Route::get('/add/{product}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+        Route::delete('/remove/{product}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
     });
 
     Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
@@ -83,6 +83,7 @@ Route::prefix('admin')->group(function () {
         Route::get('create', [ControllerUsersManager::class, 'create'])->name('user.create');
         Route::post('store', [ControllerUsersManager::class, 'store'])->name('user.store');
         Route::get('edit/{id}', [ControllerUsersManager::class, 'edit'])->name('user.edit');
+        Route::get('/user/{id}/edit', [ControllerUsersManager::class, 'edit'])->name('user.profile');
         Route::post('update/{id}', [ControllerUsersManager::class, 'update'])->name('user.update');
         Route::get('destroy/{id}', [ControllerUsersManager::class, 'destroy'])->name('user.destroy');
         Route::get('show/{id}', [ControllerUsersManager::class, 'show'])->name('user.show');
