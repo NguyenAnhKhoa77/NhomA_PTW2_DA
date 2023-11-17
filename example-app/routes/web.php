@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerView;
 use App\Http\Controllers\Admin\AdminPage;
+use App\Http\Controllers\Admin\ControllerCategoryManager;
 use App\Http\Controllers\Admin\ControllerProductManager;
 use App\Http\Controllers\ControllerUser;
 
@@ -31,14 +32,24 @@ Route::prefix('login')->group(function () {
     Route::post('register', [ControllerUser::class, 'Register'])->name('register');
     Route::post('login', [ControllerUser::class, 'Login'])->name('login');
 });
-Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
-
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
     Route::prefix('product')->group(function () {
         Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
-        Route::get('create', [ControllerProductManager::class, 'create'])->name('product.crate');
-        Route::get('delete', [ControllerProductManager::class, 'delete']);
-        Route::get('detail', [ControllerProductManager::class, 'view']);
+        Route::get('create', [ControllerProductManager::class, 'create'])->name('product.create');
+        Route::post('create_handle', [ControllerProductManager::class, 'create_handler'])->name('product.create.handle');
+        Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
+        Route::post('edit_handle/{id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
+        Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
+    });
+    Route::prefix('category')->group(function () {
+        Route::get('/', [ControllerCategoryManager::class, 'index'])->name('category.table');
+        Route::get('create', [ControllerCategoryManager::class, 'create'])->name('category.create');
+        Route::post('store', [ControllerCategoryManager::class, 'store'])->name('category.store');
+        Route::get('edit/{id}', [ControllerCategoryManager::class, 'edit'])->name('category.edit');
+        Route::post('update/{id}', [ControllerCategoryManager::class, 'update'])->name('category.update');
+        Route::get('destroy/{id}', [ControllerCategoryManager::class, 'destroy'])->name('category.destroy');
+        Route::get('show', [ControllerCategoryManager::class, 'show'])->name('category.show');
     });
 });

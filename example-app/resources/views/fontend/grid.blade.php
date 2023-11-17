@@ -91,8 +91,8 @@
                                         <figure class="product-media">
                                             <span class="product-label label-new">New</span>
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/ao-bong-da-1.webp', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/ao-bong-da-1.webp', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -112,9 +112,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Women</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil
                                                     skirt</a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -127,22 +124,6 @@
                                                 </div><!-- End .ratings -->
                                                 <span class="ratings-text">( 2 Reviews )</span>
                                             </div><!-- End .rating-container -->
-
-                                            <div class="product-nav product-nav-thumbs">
-                                                <a href="#" class="active">
-                                                    <img src="assets/images/products/product-4-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                                <a href="#">
-                                                    <img src="assets/images/products/product-4-2-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-
-                                                <a href="#">
-                                                    <img src="assets/images/products/product-4-3-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                            </div><!-- End .product-nav -->
                                         </div><!-- End .product-body -->
                                     </div><!-- End .product -->
                                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
@@ -151,8 +132,8 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao01.jpg', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/quanaothethao01.jpg', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -172,9 +153,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Dresses</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Dark yellow lace cut out
                                                     swing dress</a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -188,16 +166,6 @@
                                                 <span class="ratings-text">( 0 Reviews )</span>
                                             </div><!-- End .rating-container -->
 
-                                            <div class="product-nav product-nav-thumbs">
-                                                <a href="#" class="active">
-                                                    <img src="assets/images/products/product-5-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                                <a href="#">
-                                                    <img src="assets/images/products/product-5-2-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                            </div><!-- End .product-nav -->
                                         </div><!-- End .product-body -->
                                     </div><!-- End .product -->
                                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
@@ -207,8 +175,8 @@
                                         <figure class="product-media">
                                             <span class="product-label label-out">Out of Stock</span>
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao02.jpg', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/quanaothethao02.jpg', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -228,9 +196,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Jackets</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Khaki utility boiler
                                                     jumpsuit</a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -251,8 +216,8 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao03.jpg', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/quanaothethao03.jpg', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -272,9 +237,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Jeans</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Blue utility pinafore denim
                                                     dress</a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -296,8 +258,8 @@
                                         <figure class="product-media">
                                             <span class="product-label label-new">New</span>
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao04.jpg', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/quanaothethao04.jpg', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -317,9 +279,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Shoes</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Beige knitted elastic runner
                                                     shoes</a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -332,17 +291,6 @@
                                                 </div><!-- End .ratings -->
                                                 <span class="ratings-text">( 0 Reviews )</span>
                                             </div><!-- End .rating-container -->
-
-                                            <div class="product-nav product-nav-thumbs">
-                                                <a href="#" class="active">
-                                                    <img src="assets/images/products/product-8-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                                <a href="#">
-                                                    <img src="assets/images/products/product-8-2-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                            </div><!-- End .product-nav -->
                                         </div><!-- End .product-body -->
                                     </div><!-- End .product -->
                                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
@@ -351,8 +299,8 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao05.jpg', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/quanaothethao05.jpg', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -372,9 +320,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Bags</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Orange saddle lock front
                                                     chain cross body bag</a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -388,20 +333,6 @@
                                                 <span class="ratings-text">( 1 Reviews )</span>
                                             </div><!-- End .rating-container -->
 
-                                            <div class="product-nav product-nav-thumbs">
-                                                <a href="#" class="active">
-                                                    <img src="assets/images/products/product-9-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                                <a href="#">
-                                                    <img src="assets/images/products/product-9-2-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                                <a href="#">
-                                                    <img src="assets/images/products/product-9-3-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                            </div><!-- End .product-nav -->
                                         </div><!-- End .product-body -->
                                     </div><!-- End .product -->
                                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
@@ -411,8 +342,8 @@
                                         <figure class="product-media">
                                             <span class="product-label label-top">Top</span>
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao06.jpg', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/quanaothethao06.jpg', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -432,9 +363,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Shoes</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Light brown studded Wide fit
                                                     wedges</a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -448,21 +376,6 @@
                                                 <span class="ratings-text">( 1 Reviews )</span>
                                             </div><!-- End .rating-container -->
 
-                                            <div class="product-nav product-nav-thumbs">
-                                                <a href="#" class="active">
-                                                    <img src="assets/images/products/product-11-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                                <a href="#">
-                                                    <img src="assets/images/products/product-11-2-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-
-                                                <a href="#">
-                                                    <img src="assets/images/products/product-11-3-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                            </div><!-- End .product-nav -->
                                         </div><!-- End .product-body -->
                                     </div><!-- End .product -->
                                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
@@ -471,8 +384,8 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao07.jpg', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/quanaothethao07.jpg', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -492,9 +405,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Jumpers</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Yellow button front tea
                                                     top</a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -515,8 +425,8 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao08.jpg', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/quanaothethao08.jpg', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -536,9 +446,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Bags</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Black soft RI weekend travel
                                                     bag</a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -559,8 +466,8 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao09.jpg', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/quanaothethao09.jpg', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -580,9 +487,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Bags</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Beige metal hoop tote bag</a>
                                             </h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -595,17 +499,6 @@
                                                 </div><!-- End .ratings -->
                                                 <span class="ratings-text">( 1 Reviews )</span>
                                             </div><!-- End .rating-container -->
-
-                                            <div class="product-nav product-nav-thumbs">
-                                                <a href="#" class="active">
-                                                    <img src="assets/images/products/product-13-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                                <a href="#">
-                                                    <img src="assets/images/products/product-13-2-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                            </div><!-- End .product-nav -->
                                         </div><!-- End .product-body -->
                                     </div><!-- End .product -->
                                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
@@ -614,8 +507,8 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao10.jpg', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/quanaothethao10.jpg', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -635,9 +528,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Dresses</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Brown zebra print dungaree
                                                     dress</a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -650,21 +540,6 @@
                                                 </div><!-- End .ratings -->
                                                 <span class="ratings-text">( 0 Reviews )</span>
                                             </div><!-- End .rating-container -->
-
-                                            <div class="product-nav product-nav-thumbs">
-                                                <a href="#" class="active">
-                                                    <img src="assets/images/products/product-14-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                                <a href="#">
-                                                    <img src="assets/images/products/product-14-2-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                                <a href="#">
-                                                    <img src="assets/images/products/product-14-3-thumb.jpg"
-                                                        alt="product desc">
-                                                </a>
-                                            </div><!-- End .product-nav -->
                                         </div><!-- End .product-body -->
                                     </div><!-- End .product -->
                                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
@@ -673,8 +548,8 @@
                                     <div class="product product-7 text-center">
                                         <figure class="product-media">
                                             <a href="product.html">
-                                                <img src="{{ url('fontend/images/products/quanaothethao11.jpg', []) }}" alt="Product image"
-                                                    class="product-image">
+                                                <img src="{{ url('images/products/quanaothethao11.jpg', []) }}"
+                                                    alt="Product image" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -694,9 +569,6 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Bags</a>
-                                            </div><!-- End .product-cat -->
                                             <h3 class="product-title"><a href="product.html">Beige ring handle circle
                                                     cross body bag</a></h3><!-- End .product-title -->
                                             <div class="product-price">
@@ -881,105 +753,6 @@
                                     </div><!-- End .widget-body -->
                                 </div><!-- End .collapse -->
                             </div><!-- End .widget -->
-
-                            <div class="widget widget-collapsible">
-                                <h3 class="widget-title">
-                                    <a data-toggle="collapse" href="#widget-3" role="button" aria-expanded="true"
-                                        aria-controls="widget-3">
-                                        Colour
-                                    </a>
-                                </h3><!-- End .widget-title -->
-
-                                <div class="collapse show" id="widget-3">
-                                    <div class="widget-body">
-                                        <div class="filter-colors">
-                                            <a href="#" style="background: #b87145;"><span class="sr-only">Color
-                                                    Name</span></a>
-                                            <a href="#" style="background: #f0c04a;"><span class="sr-only">Color
-                                                    Name</span></a>
-                                            <a href="#" style="background: #333333;"><span class="sr-only">Color
-                                                    Name</span></a>
-                                            <a href="#" class="selected" style="background: #cc3333;"><span
-                                                    class="sr-only">Color Name</span></a>
-                                            <a href="#" style="background: #3399cc;"><span class="sr-only">Color
-                                                    Name</span></a>
-                                            <a href="#" style="background: #669933;"><span class="sr-only">Color
-                                                    Name</span></a>
-                                            <a href="#" style="background: #f2719c;"><span class="sr-only">Color
-                                                    Name</span></a>
-                                            <a href="#" style="background: #ebebeb;"><span class="sr-only">Color
-                                                    Name</span></a>
-                                        </div><!-- End .filter-colors -->
-                                    </div><!-- End .widget-body -->
-                                </div><!-- End .collapse -->
-                            </div><!-- End .widget -->
-
-                            <div class="widget widget-collapsible">
-                                <h3 class="widget-title">
-                                    <a data-toggle="collapse" href="#widget-4" role="button" aria-expanded="true"
-                                        aria-controls="widget-4">
-                                        Brand
-                                    </a>
-                                </h3><!-- End .widget-title -->
-
-                                <div class="collapse show" id="widget-4">
-                                    <div class="widget-body">
-                                        <div class="filter-items">
-                                            <div class="filter-item">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="brand-1">
-                                                    <label class="custom-control-label" for="brand-1">Next</label>
-                                                </div><!-- End .custom-checkbox -->
-                                            </div><!-- End .filter-item -->
-
-                                            <div class="filter-item">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="brand-2">
-                                                    <label class="custom-control-label" for="brand-2">River
-                                                        Island</label>
-                                                </div><!-- End .custom-checkbox -->
-                                            </div><!-- End .filter-item -->
-
-                                            <div class="filter-item">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="brand-3">
-                                                    <label class="custom-control-label" for="brand-3">Geox</label>
-                                                </div><!-- End .custom-checkbox -->
-                                            </div><!-- End .filter-item -->
-
-                                            <div class="filter-item">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="brand-4">
-                                                    <label class="custom-control-label" for="brand-4">New Balance</label>
-                                                </div><!-- End .custom-checkbox -->
-                                            </div><!-- End .filter-item -->
-
-                                            <div class="filter-item">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="brand-5">
-                                                    <label class="custom-control-label" for="brand-5">UGG</label>
-                                                </div><!-- End .custom-checkbox -->
-                                            </div><!-- End .filter-item -->
-
-                                            <div class="filter-item">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="brand-6">
-                                                    <label class="custom-control-label" for="brand-6">F&F</label>
-                                                </div><!-- End .custom-checkbox -->
-                                            </div><!-- End .filter-item -->
-
-                                            <div class="filter-item">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="brand-7">
-                                                    <label class="custom-control-label" for="brand-7">Nike</label>
-                                                </div><!-- End .custom-checkbox -->
-                                            </div><!-- End .filter-item -->
-
-                                        </div><!-- End .filter-items -->
-                                    </div><!-- End .widget-body -->
-                                </div><!-- End .collapse -->
-                            </div><!-- End .widget -->
-
                             <div class="widget widget-collapsible">
                                 <h3 class="widget-title">
                                     <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true"
