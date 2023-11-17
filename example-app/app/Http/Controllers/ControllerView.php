@@ -32,10 +32,6 @@ class ControllerView extends Controller
         return view('fontend.cart');
     }
 
-    public function notFound()
-    {
-        return view('fontend.404');
-    }
     public function getSearch(Request $req)
     {
         $key = $req->key;
