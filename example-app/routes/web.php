@@ -33,7 +33,7 @@ Route::prefix('/')->group(function () {
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
     Route::get('grid', [ControllerView::class, 'grid'])->name('grid');
     Route::get('account', [ControllerView::class, 'account'])->name('account');
-    Route::prefix('wishlist')-> group(function() {
+    Route::prefix('wishlist')->group(function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
         Route::post('/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
         Route::delete('/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
@@ -48,6 +48,7 @@ Route::prefix('login')->group(function () {
     Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');
     Route::post('register', [ControllerUser::class, 'Register'])->name('register');
     Route::any('logout', [ControllerUser::class, 'Logout'])->name('logout');
+    Route::any('login', [ControllerUser::class, 'Login'])->name('login');
     Route::get('search', [ControllerView::class, 'getSearch'])->name('search');
 });
 
