@@ -82,6 +82,7 @@ Route::prefix('admin')->group(function () {
         Route::get('create', [ControllerUsersManager::class, 'create'])->name('user.create');
         Route::post('store', [ControllerUsersManager::class, 'store'])->name('user.store');
         Route::get('edit/{id}', [ControllerUsersManager::class, 'edit'])->name('user.edit');
+        Route::get('/user/{id}/edit', [ControllerUsersManager::class, 'edit'])->name('user.profile');
         Route::post('update/{id}', [ControllerUsersManager::class, 'update'])->name('user.update');
         Route::get('destroy/{id}', [ControllerUsersManager::class, 'destroy'])->name('user.destroy');
         Route::get('show/{id}', [ControllerUsersManager::class, 'show'])->name('user.show');

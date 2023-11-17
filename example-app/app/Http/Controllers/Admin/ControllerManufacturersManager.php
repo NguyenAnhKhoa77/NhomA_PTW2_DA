@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Manufacturers;
+use App\Models\Product;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -101,6 +103,7 @@ class ControllerManufacturersManager extends Controller
             return redirect()->route('manufacture.table')->with('success', 'Cập nhật thành công');
         }
         return back();
+        
     }
 
     /**
@@ -108,6 +111,21 @@ class ControllerManufacturersManager extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (!$manufacturer = Manufacturers::find($id)) {
+            return redirect()->back()->with('errors', 'Danh mục không tồn tại');
+        }
+        $product = Product::where('manufacturer_id', $id)->get();
+        if ($product->count() == 0) {
+            $manufacturer = Manufacturers::find($id);
+            $path = "images/manufacturers/" . $manufacturer->image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $manufacturer->delete();
+            //Quay lại trang trước đó
+            return redirect()->back()->with('success', 'Xóa danh mục thành công');
+        } else {
+            return redirect()->back()->with('errors', 'Không thể xóa danh mục vì vẫn còn sản phẩm');
+        }
     }
 }
