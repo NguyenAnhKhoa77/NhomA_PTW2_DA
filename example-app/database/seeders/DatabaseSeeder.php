@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         DB::table('users')->truncate();
+        
+        DB::table('orders')->truncate();
+        DB::table('bills')->truncate();
         DB::table('accounts')->truncate();
         DB::table('products')->truncate();
         DB::table('categories')->truncate();
