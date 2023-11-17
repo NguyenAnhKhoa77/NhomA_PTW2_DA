@@ -24,7 +24,7 @@ use App\Http\Controllers\ControllerUser;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
-    Route::get('product', [ControllerView::class, 'product'])->name('product');
+    Route::get('product/{id}', [ControllerView::class, 'product'])->name('product');
     Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
     Route::get('grid', [ControllerView::class, 'grid'])->name('grid');

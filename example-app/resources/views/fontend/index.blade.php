@@ -89,7 +89,7 @@
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                         <div class="product product-5 text-center">
                             <figure class="product-media">
-                                <a href="product">
+                                <a href="product/{{$product['id']}}">
                                     <img src="{{ url('images/products/' . $product->image, []) }}" alt="Product image"
                                         class="product-image">
                                 </a>

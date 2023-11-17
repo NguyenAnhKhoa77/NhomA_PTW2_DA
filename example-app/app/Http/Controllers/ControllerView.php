@@ -20,9 +20,10 @@ class ControllerView extends Controller
     {
         return view('fontend.grid');
     }
-    public function product()
+    public function product($id)
     {
-        return view('fontend.product');
+        $data = Product::find($id);
+        return view('fontend.product',['product'=>$data]);
     }
     public function account()
     {

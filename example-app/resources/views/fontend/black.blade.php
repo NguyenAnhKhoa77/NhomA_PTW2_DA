@@ -9,15 +9,15 @@
     <link rel="icon" href="{{ url('images/team/logo.png', []) }}">
     <!-- Plugins CSS File -->
 
-    <link rel="stylesheet" href="fontend/css/bootstrap.min.css">
-    <link rel="stylesheet" href="fontend/css/owl.carousel.css">
-    <link rel="stylesheet" href="fontend/css/magnific-popup.css">
-    <link rel="stylesheet" href="fontend/css/jquery.countdown.css">
+    <link rel="stylesheet" href="{{ asset('fontend/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontend/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontend/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('ontend/css/jquery.countdown.css') }}">
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="fontend/css/style.css">
-    <link rel="stylesheet" href="fontend/css/skin-demo-2.css">
-    <link rel="stylesheet" href="fontend/css/demo-2.css">
-    <link rel="stylesheet" href="fontend/css/nouislider.css">
+    <link rel="stylesheet" href="{{ asset('fontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontend/css/skin-demo-2.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontend/css/demo-2.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontend/css/nouislider.css') }}">
 </head>
 
 <body>
