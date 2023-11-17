@@ -49,7 +49,7 @@ Route::prefix('admin')->group(function () {
         Route::post('store', [ControllerCategoryManager::class, 'store'])->name('category.store');
         Route::get('edit/{id}', [ControllerCategoryManager::class, 'edit'])->name('category.edit');
         Route::post('update/{id}', [ControllerCategoryManager::class, 'update'])->name('category.update');
-        Route::post('destroy/{id}', [ControllerCategoryManager::class, 'destroy'])->name('category.destroy');
+        Route::get('destroy/{id}', [ControllerCategoryManager::class, 'destroy'])->name('category.destroy');
         Route::get('show', [ControllerCategoryManager::class, 'show'])->name('category.show');
     });
 });

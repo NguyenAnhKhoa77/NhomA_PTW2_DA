@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ControllerCategoryManager extends Controller
 {
@@ -79,6 +81,22 @@ class ControllerCategoryManager extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (!$cate = Categories::find($id)) {
+            return redirect()->back()->with('errors', 'Danh mục không tồn tại');
+        }
+        $product = Product::where('categories_id', $id)->get();
+        if ($product->count() == 0) {
+
+            $cate = Categories::find($id);
+            $path = "images/" . $cate->image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+            $cate->delete();
+            //Quay lại trang trước đó
+            return redirect()->route('category.table')->with('success', 'Xóa danh mục thành công!');
+        } else {
+            return redirect()->back()->with('errors', 'Không thể xóa danh mục vì vẫn còn sản phẩm!');
+        }
     }
 }
