@@ -276,32 +276,32 @@
             <div class="brands-border">
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('images/category/adidas.png', []) }}">
+                        <img class="" src="{{ url('images/manufacturers/adidas.png', []) }}">
                     </a>
                 </div>
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('images/category/hitec.png', []) }}">
+                        <img class="" src="{{ url('images/manufacturers/hitec.png', []) }}">
                     </a>
                 </div>
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('images/category/nike.png', []) }}">
+                        <img class="" src="{{ url('images/manufacturers/nike.png', []) }}">
                     </a>
                 </div>
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('images/category/newbalance.png', []) }}">
+                        <img class="" src="{{ url('images/manufacturers/newbalance.png', []) }}">
                     </a>
                 </div>
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('images/category/puma.png', []) }}">
+                        <img class="" src="{{ url('images/manufacturers/puma.png', []) }}">
                     </a>
                 </div>
                 <div class="" style="width: 271.857px;">
                     <a href="#" class="brand">
-                        <img class="" src="{{ url('images/category/underarmour.png', []) }}">
+                        <img class="" src="{{ url('images/manufacturers/underarmour.png', []) }}">
                     </a>
                 </div>
             </div>
