@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="mt-3"></div>
-                <h3 class="card-title">Projects</h3>
+                <h3 class="card-title">Product table</h3>
                 <div class="card-tools">
                     <a type="button" href="{{ route('product.create') }}" class="btn btn-tool" title="Collapse">
                         <i class="fas fa-plus"></i>

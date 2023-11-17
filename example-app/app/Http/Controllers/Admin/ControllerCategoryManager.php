@@ -65,7 +65,13 @@ class ControllerCategoryManager extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        if (!$cate = Categories::find($id)) {
+            return redirect()->back()->with('errors', 'Danh mục không tồn tại');
+        }
+        $category = Categories::find($id);
+        $page = 'Manufacter edit';
+        return view('backend.category.edit', compact('category'));
     }
 
     /**
