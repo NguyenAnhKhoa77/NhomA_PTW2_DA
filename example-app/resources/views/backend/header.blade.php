@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin | @yield('title')</title>
-
+    <link rel="icon" href="{{ url('images/team/logo.png', []) }}">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -228,30 +228,30 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('bill.table', []) }}" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Đơn hàng
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('user.table', []) }}" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Người dùng
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('manufacture.table') }}" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Nhãn hàng
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('category.table') }}" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
-                                <p>Loại hàng hóa
+                                <p>Loại sản phẩm
                                 </p>
                             </a>
                         </li>
