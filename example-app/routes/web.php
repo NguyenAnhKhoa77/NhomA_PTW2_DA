@@ -25,23 +25,27 @@ use App\Http\Controllers\ControllerUser;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
-    Route::get('product', [ControllerView::class, 'product'])->name('product');
+    Route::get('product/{id}', [ControllerView::class, 'product'])->name('product');
     Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
     Route::prefix('grid')->group(function () {
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
     });
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
-
-    Route::prefix('account')->middleware('auth')->group(function () {
-        Route::get('/', [ControllerView::class, 'account'])->name('account');
-        Route::prefix('wishlist')->group(function () {
-            Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
-            Route::get('/add/{product}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
-            Route::delete('/remove/{product}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
-        });
+    Route::get('grid', [ControllerView::class, 'grid'])->name('grid');
+    Route::get('account', [ControllerView::class, 'account'])->name('account');
+    Route::prefix('wishlist')-> group(function() {
+        Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
+        Route::post('/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+        Route::delete('/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
     });
-    Route::get('loginview', [ControllerUser::class, 'LoginView'])->name('loginview');
-    Route::any('login', [ControllerUser::class, 'Login'])->name('login');
+
+    Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
+    Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
+    Route::get('contact', [ControllerView::class, 'contact'])->name('contact');
+    Route::post('contact', [ControllerView::class, 'contactForm'])->name('contact');
+});
+Route::prefix('login')->group(function () {
+    Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');
     Route::post('register', [ControllerUser::class, 'Register'])->name('register');
     Route::any('logout', [ControllerUser::class, 'Logout'])->name('logout');
     Route::get('search', [ControllerView::class, 'getSearch'])->name('search');
