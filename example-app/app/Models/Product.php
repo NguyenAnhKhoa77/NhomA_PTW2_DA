@@ -16,6 +16,7 @@ class Product extends Model
         'manufacturer_id',
         'categories_id',
         'sex',
+        'inventory',
 
     ];
     public function categories()
@@ -30,5 +31,10 @@ class Product extends Model
     public function order()
     {
         return $this->hasMany(Orders::class);
+    }
+
+    public function sex()
+    {
+        return $this->belongsTo(sex::class, 'sex');
     }
 }

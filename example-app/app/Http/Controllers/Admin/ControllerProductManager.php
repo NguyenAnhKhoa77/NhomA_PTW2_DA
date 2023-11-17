@@ -99,7 +99,7 @@ class ControllerProductManager extends Controller
     public function delete($id)
     {
         if (!$product = Product::find($id)) {
-            return redirect()->back()->with('errors', 'Danh mục không tồn tại');
+            return redirect()->back()->with('errors', 'Product does not exist!');
         }
         $oders = Orders::where('product_id', $id)->get();
         if ($oders->count() == 0) {
@@ -109,9 +109,9 @@ class ControllerProductManager extends Controller
                 File::delete($path);
             }
             $product->delete();
-            return redirect()->back()->with('success', 'Xóa sản phẩm thành công');
+            return redirect()->back()->with('success', 'Delete product succeed!');
         } else {
-            return redirect()->back()->with('errors', 'Không thể xóa danh mục vì vẫn còn đơn hàng');
+            return redirect()->back()->with('errors', 'Cannot delete product!');
         }
     }
 }
