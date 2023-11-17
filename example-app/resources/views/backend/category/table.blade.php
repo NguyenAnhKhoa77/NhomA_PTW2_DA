@@ -20,7 +20,6 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th style="width: 40%">Logo</th>
                                 <th style="width: 40%">Name</th>
                                 <th style="width: 20%"></th>
                             </tr>
@@ -28,9 +27,6 @@
                         <tbody>
                             @foreach ($categories as $category)
                                 <tr>
-                                    <td> <img style="width: 100px"
-                                            src="{{ url('images/category/' . $category->image, []) }}" alt="">
-                                    </td>
                                     <td>{{ $category->name }} </td>
                                     <td class="project-actions text-right">
                                         <a class="btn btn-info btn-sm" href="{{ route('category.edit', $category->id) }}">
