@@ -23,6 +23,7 @@ return new class extends Migration
                 $table->foreign('manufacturer_id')->references('id')->on('manufacturers')->onDelete('cascade')->onUpdate('cascade');
                 $table->text('description');
                 $table->bigInteger('price');
+                $table->bigInteger('inventory');
                 $table->timestamps();
             });
         }
