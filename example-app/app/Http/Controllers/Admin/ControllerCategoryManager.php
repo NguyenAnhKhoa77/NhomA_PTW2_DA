@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 class ControllerCategoryManager extends Controller
@@ -12,7 +13,9 @@ class ControllerCategoryManager extends Controller
      */
     public function index()
     {
-        //
+
+        $categories = Categories::latest()->paginate(10);
+        return view('backend.category.table', compact('categories'));
     }
 
     /**
@@ -20,7 +23,8 @@ class ControllerCategoryManager extends Controller
      */
     public function create()
     {
-        //
+        $page = "Categories add";
+        return view('backend.category.create');
     }
 
     /**
@@ -28,7 +32,22 @@ class ControllerCategoryManager extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
+        ]);
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images/category'), $imageName);
+
+        $cate = new Categories([
+            'name' => $request['name'],
+            'image' => $imageName,
+        ]);
+        if ($cate->save()) {
+            return redirect()->route('category.table')->with('success', 'Thêm hãng thành công');
+        }
+        return back();
     }
 
     /**

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerView;
 use App\Http\Controllers\Admin\AdminPage;
+use App\Http\Controllers\Admin\ControllerCategoryManager;
 use App\Http\Controllers\Admin\ControllerProductManager;
 use App\Http\Controllers\ControllerUser;
 
@@ -33,7 +34,6 @@ Route::prefix('login')->group(function () {
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
-
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
     Route::prefix('product')->group(function () {
         Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
@@ -42,5 +42,14 @@ Route::prefix('admin')->group(function () {
         Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
         Route::post('edit_handle/{id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
+    });
+    Route::prefix('category')->group(function () {
+        Route::get('/', [ControllerCategoryManager::class, 'index'])->name('category.table');
+        Route::get('create', [ControllerCategoryManager::class, 'create'])->name('category.create');
+        Route::post('store', [ControllerCategoryManager::class, 'store'])->name('category.store');
+        Route::get('edit/{id}', [ControllerCategoryManager::class, 'edit'])->name('category.edit');
+        Route::post('update/{id}', [ControllerCategoryManager::class, 'update'])->name('category.update');
+        Route::post('destroy/{id}', [ControllerCategoryManager::class, 'destroy'])->name('category.destroy');
+        Route::get('show', [ControllerCategoryManager::class, 'show'])->name('category.show');
     });
 });

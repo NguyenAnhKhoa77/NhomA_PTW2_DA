@@ -249,9 +249,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('category.table') }}" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
-                                <p>Loại hàng hóa
+                                <p>Loại sản phẩm
                                 </p>
                             </a>
                         </li>
