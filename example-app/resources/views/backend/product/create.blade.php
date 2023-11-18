@@ -47,6 +47,10 @@
                                 <input type="text" name="price" class="form-control" value="{{ old('price') }}">
                             </div>
                             <div class="form-group">
+                                <label>Product quantity</label>
+                                <input type="text" name="inventory" class="form-control" value="{{ old('inventory') }}">
+                            </div>
+                            <div class="form-group">
                                 <label>Product Image</label>
                                 <input type="file" name="image" accept="image/png, image/gif, image/jpeg"
                                     class=" form-control-file">
