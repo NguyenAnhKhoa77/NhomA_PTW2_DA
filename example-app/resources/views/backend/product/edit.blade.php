@@ -70,6 +70,14 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label>Số lượng trong kho</label>
+                        <input type="text" class="form-control   @error('inventory') is-invalid @enderror"
+                            name="inventory" value="{{ old('inventory', $product->inventory) }}">
+                        @error('price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <a onclick="window.history.back()" class="btn btn-secondary">Cancel</a>

@@ -19,12 +19,6 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        DB::table('users')->truncate();
-        DB::table('accounts')->truncate();
-        DB::table('products')->truncate();
-        DB::table('categories')->truncate();
-        DB::table('sexes')->truncate();
-        DB::table('manufacturers')->truncate();
         $this->call([
             UserSeeder::class,
             SexsSeeder::class,

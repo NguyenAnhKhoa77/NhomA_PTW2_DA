@@ -36,14 +36,14 @@
                                 <td class="product-col">
                                     <div class="product">
                                         <figure class="product-media">
-                                            <a href="{{ route('product') }}">
+                                            <a href="{{ route('product', $wishlistProduct->id) }}">
                                                 <img src="{{ asset("images/products/$wishlistProduct->image") }}"
                                                      alt="Product image">
                                             </a>
                                         </figure>
 
                                         <h3 class="product-title">
-                                            <a href="{{ route('product') }}">{{ $wishlistProduct->name }}</a>
+                                            <a href="{{ route('product', $wishlistProduct->id) }}">{{ $wishlistProduct->name }}</a>
                                         </h3><!-- End .product-title -->
                                     </div><!-- End .product -->
                                 </td>

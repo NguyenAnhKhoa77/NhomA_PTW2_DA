@@ -23,6 +23,7 @@
                             <th style="width: 10%">Nhãn hiệu</th>
                             <th style="width: 20%">Mô tả</th>
                             <th style="width: 10%">Giá</th>
+                            <th style="width: 10%">Tồn kho</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +39,7 @@
                                     {{ Str::limit($product->description, 100) }}</td>
 
                                 <td>{{ $product->price }} </td>
+                                <td>{{ $product->inventory }} </td>
 
                                 <td class="project-actions text-right">
                                     <a class="btn btn-info btn-sm" href="{{ route('product.edit', [$product]) }}">

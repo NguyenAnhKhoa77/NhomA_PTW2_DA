@@ -6,7 +6,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Áo thun thể thao Achilles xám</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$product['name']}}</li>
                 </ol>
 
                 <nav class="product-pager ml-auto" aria-label="Product">
@@ -31,8 +31,8 @@
                             <div class="product-gallery product-gallery-vertical">
                                 <div class="row">
                                     <figure class="product-main-image">
-                                        <img id="product-zoom" src="images/products/Ao-achilles-xam-1.jpg"
-                                            data-zoom-image="images/products/Ao-achilles-xam-1.jpg" alt="product image">
+                                        <img id="product-zoom" src="{{ url('images/products/' . $product->image, []) }}"
+                                            data-zoom-image="{{ url('images/products/' . $product->image, []) }}" alt="product image">
                                         <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                             <i class="icon-arrows"></i>
                                         </a>
@@ -40,15 +40,15 @@
 
                                     <div id="product-zoom-gallery" class="product-image-gallery">
                                         <a class="product-gallery-item active" href="#"
-                                            data-image="images/products/Ao-achilles-xam-1.jpg"
-                                            data-zoom-image="images/products/Ao-achilles-xam-1.jpg">
-                                            <img src="images/products/Ao-achilles-xam-1.jpg" alt="product side">
+                                            data-image="{{ url('images/products/' . $product->image, []) }}"
+                                            data-zoom-image="{{ url('images/products/' . $product->image, []) }}">
+                                            <img src="{{ url('images/products/' . $product->image, []) }}" alt="product side">
                                         </a>
 
                                         <a class="product-gallery-item" href="#"
-                                            data-image="images/products//Ao-achilles-xam-2.jpg"
-                                            data-zoom-image="images/products/Ao-achilles-xam-2.jpg">
-                                            <img src="images/products/Ao-achilles-xam-2.jpg" alt="product cross">
+                                            data-image="{{ url('images/products/' . $product->image, []) }}"
+                                            data-zoom-image="{{ url('images/products/' . $product->image, []) }}">
+                                            <img src="{{ url('images/products/' . $product->image, []) }}" alt="product cross">
                                         </a>
                                     </div><!-- End .product-image-gallery -->
                                 </div><!-- End .row -->
@@ -57,7 +57,7 @@
 
                         <div class="col-md-6">
                             <div class="product-details">
-                                <h1 class="product-title">Áo thun thể thao Achilles xám</h1>
+                                <h1 class="product-title">{{$product['name']}}</h1>
                                 <!-- End .product-title -->
 
                                 <div class="ratings-container">
@@ -68,14 +68,11 @@
                                 </div><!-- End .rating-container -->
 
                                 <div class="product-price">
-                                    149,000₫
+                                {{$product['price']}}
                                 </div><!-- End .product-price -->
 
                                 <div class="product-content">
-                                    <p>Áo thun thể thao Achilles xám là một trong những mẫu áo thể thao “Thần Thoại Hy Lạp”
-                                        của 2020 năm nay. Áo được thiết kế với phong cách thời trang, năng động, cùng với
-                                        chất liệu co giản 4 chiều. Đây sẽ là một trong những mẫu trang phục không thể thiếu
-                                        khi đồng hành cùng bạn đến phòng tập hay bất cứ môn thể thao nào.</p>
+                                    <p>{{$product['description']}}</p>
                                 </div><!-- End .product-content -->
 
                                 <div class="">
@@ -140,24 +137,7 @@
                             aria-labelledby="product-desc-link">
                             <div class="product-desc-content">
                                 <h3>Product Information</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat
-                                    mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper
-                                    suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam
-                                    porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices
-                                    nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique
-                                    cursus. </p>
-                                <ul>
-                                    <li>Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit. </li>
-                                    <li>Vivamus finibus vel mauris ut vehicula.</li>
-                                    <li>Nullam a magna porttitor, dictum risus nec, faucibus sapien.</li>
-                                </ul>
-
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat
-                                    mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper
-                                    suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam
-                                    porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices
-                                    nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique
-                                    cursus. </p>
+                                <p>{{$product['description']}}</p>
                             </div><!-- End .product-desc-content -->
                         </div><!-- .End .tab-pane -->
                         <div class="tab-pane fade" id="product-review-tab" role="tabpanel"
@@ -227,7 +207,43 @@
                     </div><!-- End .tab-content -->
                 </div><!-- End .product-details-tab -->
 
-                <h2 class="title text-center mb-4">Sản phẩm liên quan</h2><!-- End .title text-center -->
+                <h2 class="title text-center mb-4">Sản phẩm liên quan</h2>
+                <div class="row">
+                @foreach ($allData as $value)
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                        <div class="product product-5 text-center">
+                            <figure class="product-media">
+                                <a href="{{$value['id']}}">
+                                    <img src="{{ url('images/products/' . $value->image, []) }}" alt="Product image"
+                                        class="product-image">
+                                </a>
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to
+                                            wishlist</span></a>
+                                    <a href="#" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick
+                                            view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare"
+                                        title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+                            <div class="product-body">
+                                <h3 class="product-title">
+                                    <a href="product">
+                                        {{ $value->name }}
+                                    </a>
+                                </h3>
+                                <!-- End .product-title -->
+                                <div class="product-price">
+                                    {{ $value->price }} VND
+                                </div><!-- End .product-price -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+                    </div><!-- End .col-sm-6 col-md-4 col-lg-3 col-xl-2 -->
+                @endforeach
+                </div>
             </div><!-- End .container -->
         </div><!-- End .page-content -->
     </main><!-- End .main -->

@@ -17,19 +17,18 @@ class ControllerUser extends Controller
     }
     public function Login(Request $request)
     {
-        $credentials =  $request->validate([
+        $credentials  =  $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
         $remember = $request->has('remember');
-
         if (Auth::attempt($credentials, $remember)) {
             $userId = Auth::user()->id;
             session()->put('user_id', $userId);
-            return redirect()->intended('/');
+            return redirect()->route('account');
+        } else {
+            return back()->with('error', 'Email hoặc mật khẩu không đúng.');
         }
-
-        return back();
     }
     public function Register(Request $request)
     {
@@ -42,21 +41,19 @@ class ControllerUser extends Controller
         $account = new Account();
         $account->save();
         $user = new User([
-            'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'id_account' => $account->id,
         ]);
         if ($user->save()) {
-
-            return redirect("login")->withSuccess('Register success. Please login!');
+            return redirect()->route('login')->withSuccess('Register success. Please login!');
         }
+        $account->delete();
         return back();
     }
-    public function signOut() {
-        Session::flush();
+    public function Logout()
+    {
         Auth::logout();
-
-        return redirect('login');
+        return redirect()->route('login');
     }
 }
