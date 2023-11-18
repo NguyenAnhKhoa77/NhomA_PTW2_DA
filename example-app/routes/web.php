@@ -34,8 +34,8 @@ Route::prefix('/')->group(function () {
     Route::get('account', [ControllerView::class, 'account'])->name('account');
     Route::prefix('wishlist')->group(function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
-        Route::post('/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
-        Route::delete('/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+        Route::get('/add/{product}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+        Route::delete('/remove/{product}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
     });
     Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
     Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
