@@ -37,7 +37,6 @@ Route::prefix('/')->group(function () {
         Route::post('/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
         Route::delete('/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
     });
-
     Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
     Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
     Route::get('contact', [ControllerView::class, 'contact'])->name('contact');

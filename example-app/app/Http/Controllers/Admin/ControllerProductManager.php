@@ -26,11 +26,11 @@ class ControllerProductManager extends Controller
     public function create_handler(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:250',
             'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
             'description' => 'required',
             'price' => 'required|numeric|gt:0',
-            'inventory' => 'require|numeric|gt:0',
+            'inventory' => 'required|numeric|gt:0',
         ]);
 
         $image = $request->file('image');
