@@ -31,7 +31,6 @@ Route::prefix('/')->group(function () {
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
     });
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
-    Route::get('grid', [ControllerView::class, 'grid'])->name('grid');
     Route::get('account', [ControllerView::class, 'account'])->name('account');
     Route::prefix('wishlist')->group(function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
