@@ -9,6 +9,7 @@ use App\Models\Orders;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class ControllerProductManager extends Controller
 {
@@ -25,31 +26,42 @@ class ControllerProductManager extends Controller
     }
     public function create_handler(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:250',
-            'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
-            'description' => 'required',
-            'price' => 'required|numeric|gt:0',
-            'inventory' => 'required|numeric|gt:0',
-        ]);
 
-        $image = $request->file('image');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $token = $request->input('token');
 
-        $product = new Product([
-            'name' => $request['name'],
-            'image' => $imageName,
-            'categories_id' => $request['cate'],
-            'manufacturer_id' => $request['manu'],
-            'description' => $request['description'],
-            'price' => $request['price'],
-            'inventory' => $request['inventory'],
-        ]);
-        if ($product->save()) {
-            $image->move(public_path('images/products'), $imageName);
-            return redirect()->route('product.table')->with('success', 'Thêm sản phẩm thành công');
+        if (Session::has('token') && Session::get('token') === $token) {
+        } else {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
+                'description' => 'required',
+                'price' => 'required|numeric|gt:0',
+                'inventory' => 'required|numeric|gt:0',
+            ]);
+
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            $product = new Product([
+                'name' => $request['name'],
+                'image' => $imageName,
+                'categories_id' => $request['cate'],
+                'manufacturer_id' => $request['manu'],
+                'description' => $request['description'],
+                'price' => $request['price'],
+                'inventory' => $request['inventory'],
+            ]);
+            if ($product->save()) {
+                $image->move(public_path('images/products'), $imageName);
+                return redirect()->route('product.table')->with('success', 'Thêm sản phẩm thành công');
+            }
+            $request->session()->put('submitted', true);
+            Session::put('token', $token);
+
+            return back();
+
+            // Có thể thêm thông báo thành công ở đây
         }
-        return back();
     }
     public function edit($id)
     {
