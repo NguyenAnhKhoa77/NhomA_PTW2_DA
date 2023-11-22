@@ -67,12 +67,4 @@ class ControllerView extends Controller
 
         return view('fontend.search', compact('products'));
     }
-<<<<<<< HEAD
 }
-=======
-    public function notFound()
-    {
-        return view('errors.404');
-    }
-}
->>>>>>> origin/main
