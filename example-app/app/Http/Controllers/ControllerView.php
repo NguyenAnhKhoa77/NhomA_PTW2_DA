@@ -11,6 +11,7 @@ class ControllerView extends Controller
     public function Home()
     {
 
+
         $products = Product::with('sex')->take(6)->get();
         return view('fontend.index', compact('products'));
     }
@@ -43,6 +44,7 @@ class ControllerView extends Controller
     }
     public function contactForm()
     {
+        return view('errors.404');
         $contact = new Contact();
         $contact->name = request('name');
         $contact->email = request('email');
@@ -63,5 +65,9 @@ class ControllerView extends Controller
         $products = Product::where('name', 'like', '%' . $key . '%')->take(6)->get();
 
         return view('fontend.search', compact('products'));
+    }
+    public function notFound()
+    {
+        return view('errors.404');
     }
 }
