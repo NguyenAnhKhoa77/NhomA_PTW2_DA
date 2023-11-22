@@ -38,7 +38,7 @@ class ControllerView extends Controller
 
     public function notFound()
     {
-        return view('fontend.404');
+        return view('errors.404');
     }
     public function getSearch(Request $req)
     {
