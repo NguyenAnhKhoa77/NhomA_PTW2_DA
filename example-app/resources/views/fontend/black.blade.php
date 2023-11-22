@@ -13,27 +13,27 @@
     <link rel="icon" href="{{ url('images/team/logo.png', []) }}">
     <!-- Plugins CSS File -->
 
-    <link rel="stylesheet" href="{{ asset('fontend/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontend/css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontend/css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('ontend/css/jquery.countdown.css') }}">
+    <link rel="stylesheet" href="{{ asset("fontend/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("fontend/css/owl.carousel.css") }}">
+    <link rel="stylesheet" href="{{ asset("fontend/css/magnific-popup.css") }}">
+    <link rel="stylesheet" href="{{ asset("fontend/css/jquery.countdown.css") }}">
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="{{ asset('fontend/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontend/css/skin-demo-2.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontend/css/demo-2.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontend/css/nouislider.css') }}">
+    <link rel="stylesheet" href="{{ asset("fontend/css/style.css") }}">
+    <link rel="stylesheet" href="{{ asset("fontend/css/skin-demo-2.css") }}">
+    <link rel="stylesheet" href="{{ asset("fontend/css/demo-2.css") }}">
+    <link rel="stylesheet" href="{{ asset("fontend/css/nouislider.css") }}">
 </head>
 
 <body>
-    <div class="page-wrapper">
-        <header class="header header-intro-clearance">
-            <div class="header-top">
-                <div class="container">
-                    <div class="header-right">
-                        <ul class="top-menu">
-                            <li>
-                                <ul>
-                                    @if (Auth::check())
+<div class="page-wrapper">
+    <header class="header header-intro-clearance">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-right">
+                    <ul class="top-menu">
+                        <li>
+                            <ul>
+                                @if (Auth::check())
                                         @if (Auth::user()->is_admin)
                                             <li><a href="{{ route('dashboard') }}">ADMIN</a></li>
                                         @endif
@@ -71,10 +71,10 @@
                                 </div><!-- End .header-search-wrapper -->
                             </form>
 
-                        </div><!-- End .header-search -->
-                    </div>
-                    <div class="header-right">
-                        @auth
+                    </div><!-- End .header-search -->
+                </div>
+                <div class="header-right">
+                    @auth
                             <div class="account">
                                 <a href="{{ route('account') }}" title="My account">
                                     <div class="icon">
@@ -108,15 +108,15 @@
                                     <span class="cart-count">2</span>
                                 </div>
                                 <p>Cart</p>
-                            </a>
+                        </a>
 
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <div class="dropdown-cart-products">
-                                    <div class="product">
-                                        <div class="product-cart-details">
-                                            <h4 class="product-title">
-                                                <a href="product.html">Beige knitted elastic runner shoes</a>
-                                            </h4>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-cart-products">
+                                <div class="product">
+                                    <div class="product-cart-details">
+                                        <h4 class="product-title">
+                                            <a href="product.html">Beige knitted elastic runner shoes</a>
+                                        </h4>
 
                                             <span class="cart-product-info">
                                                 <span class="cart-product-qty">1</span>
@@ -124,26 +124,26 @@
                                             </span>
                                         </div><!-- End .product-cart-details -->
 
-                                        <figure class="product-image-container">
-                                            <a href="product.html" class="product-image">
-                                                <img src="assets/images/products/cart/product-1.jpg" alt="product">
-                                            </a>
-                                        </figure>
-                                        <a href="#" class="btn-remove" title="Remove Product"><i
-                                                class="icon-close"></i></a>
-                                    </div><!-- End .product -->
+                                    <figure class="product-image-container">
+                                        <a href="product.html" class="product-image">
+                                            <img src="assets/images/products/cart/product-1.jpg" alt="product">
+                                        </a>
+                                    </figure>
+                                    <a href="#" class="btn-remove" title="Remove Product"><i
+                                            class="icon-close"></i></a>
+                                </div><!-- End .product -->
 
-                                    <div class="product">
-                                        <div class="product-cart-details">
-                                            <h4 class="product-title">
-                                                <a href="product.html">Blue utility pinafore denim dress</a>
-                                            </h4>
+                                <div class="product">
+                                    <div class="product-cart-details">
+                                        <h4 class="product-title">
+                                            <a href="product.html">Blue utility pinafore denim dress</a>
+                                        </h4>
 
-                                            <span class="cart-product-info">
+                                        <span class="cart-product-info">
                                                 <span class="cart-product-qty">1</span>
                                                 x $76.00
                                             </span>
-                                        </div><!-- End .product-cart-details -->
+                                    </div><!-- End .product-cart-details -->
 
                                         <figure class="product-image-container">
                                             <a href="product.html" class="product-image">
@@ -366,39 +366,39 @@
                     <p class="footer-copyright">Copyright © 2023 NHÓM A - TDC</p>
                     <!-- End .footer-copyright -->
 
-                    <div class="social-icons social-icons-color">
-                        <span class="social-label">Social Media</span>
-                        <a href="#" class="social-icon social-facebook" title="Facebook"><i
-                                class="icon-facebook-f"></i></a>
-                        <a href="#" class="social-icon social-twitter" title="Twitter"><i
-                                class="icon-twitter"></i></a>
-                        <a href="#" class="social-icon social-instagram" title="Instagram"><i
-                                class="icon-instagram"></i></a>
-                        <a href="#" class="social-icon social-youtube" title="Youtube"><i
-                                class="icon-youtube"></i></a>
-                        <a href="#" class="social-icon social-pinterest" title="Pinterest"><i
-                                class="icon-pinterest"></i></a>
-                    </div><!-- End .soial-icons -->
-                </div><!-- End .container -->
-            </div><!-- End .footer-bottom -->
-        </footer><!-- End .footer -->
-    </div><!-- End .page-wrapper -->
-    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
-    <!-- Plugins JS File -->
-    <!-- Plugins JS File -->
-    <script src="fontend/js/jquery.min.js"></script>
-    <script src="fontend/js/bootstrap.bundle.min.js"></script>
-    <script src="fontend/js/jquery.hoverIntent.min.js"></script>
-    <script src="fontend/js/jquery.waypoints.min.js"></script>
-    <script src="fontend/js/superfish.min.js"></script>
-    <script src="fontend/js/owl.carousel.min.js"></script>
-    <script src="fontend/js/jquery.plugin.min.js"></script>
-    <script src="fontend/js/jquery.magnific-popup.min.js"></script>
-    <script src="fontend/js/jquery.countdown.min.js"></script>
-    <script src="fontend/js/jquery.elevateZoom.min.js"></script>
-    <!-- Main JS File -->
-    <script src="fontend/js/main.js"></script>
-    <script src="fontend/js/demo-2.js"></script>
+                <div class="social-icons social-icons-color">
+                    <span class="social-label">Social Media</span>
+                    <a href="#" class="social-icon social-facebook" title="Facebook"><i
+                            class="icon-facebook-f"></i></a>
+                    <a href="#" class="social-icon social-twitter" title="Twitter"><i
+                            class="icon-twitter"></i></a>
+                    <a href="#" class="social-icon social-instagram" title="Instagram"><i
+                            class="icon-instagram"></i></a>
+                    <a href="#" class="social-icon social-youtube" title="Youtube"><i
+                            class="icon-youtube"></i></a>
+                    <a href="#" class="social-icon social-pinterest" title="Pinterest"><i
+                            class="icon-pinterest"></i></a>
+                </div><!-- End .soial-icons -->
+            </div><!-- End .container -->
+        </div><!-- End .footer-bottom -->
+    </footer><!-- End .footer -->
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+<!-- Plugins JS File -->
+<!-- Plugins JS File -->
+<script src="{{ asset("fontend/js/jquery.min.js")}}"></script>
+<script src="{{ asset("fontend/js/bootstrap.bundle.min.js")}}"></script>
+<script src="{{ asset("fontend/js/jquery.hoverIntent.min.js")}}"></script>
+<script src="{{ asset("fontend/js/jquery.waypoints.min.js")}}"></script>
+<script src="{{ asset("fontend/js/superfish.min.js")}}"></script>
+<script src="{{ asset("fontend/js/owl.carousel.min.js")}}"></script>
+<script src="{{ asset("fontend/js/jquery.plugin.min.js")}}"></script>
+<script src="{{ asset("fontend/js/jquery.magnific-popup.min.js")}}"></script>
+<script src="{{ asset("fontend/js/jquery.countdown.min.js")}}"></script>
+<script src="{{ asset("fontend/js/jquery.elevateZoom.min.js")}}"></script>
+<!-- Main JS File -->
+<script src="{{ asset("fontend/js/main.js")}}"></script>
+<script src="{{ asset("fontend/js/demo-2.js")}}"></script>
 </body>
 
 </html>
