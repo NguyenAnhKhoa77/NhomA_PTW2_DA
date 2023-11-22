@@ -98,7 +98,7 @@ if ($request->filled('password')) {
     /**
      * Update the specified resource in storage.
      */
-   
+
 
     /**
      * Remove the specified resource from storage.
@@ -122,8 +122,5 @@ if ($request->filled('password')) {
             return redirect()->back()->with('success', 'Delete account succeed!');
         }
         return redirect()->back();
-    }
-    public function changepass()
-    {
     }
 }
