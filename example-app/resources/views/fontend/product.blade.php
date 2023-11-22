@@ -6,7 +6,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{$product['name']}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $product['name'] }}</li>
                 </ol>
 
                 <nav class="product-pager ml-auto" aria-label="Product">
@@ -32,7 +32,8 @@
                                 <div class="row">
                                     <figure class="product-main-image">
                                         <img id="product-zoom" src="{{ url('images/products/' . $product->image, []) }}"
-                                            data-zoom-image="{{ url('images/products/' . $product->image, []) }}" alt="product image">
+                                            data-zoom-image="{{ url('images/products/' . $product->image, []) }}"
+                                            alt="product image">
                                         <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                             <i class="icon-arrows"></i>
                                         </a>
@@ -42,13 +43,15 @@
                                         <a class="product-gallery-item active" href="#"
                                             data-image="{{ url('images/products/' . $product->image, []) }}"
                                             data-zoom-image="{{ url('images/products/' . $product->image, []) }}">
-                                            <img src="{{ url('images/products/' . $product->image, []) }}" alt="product side">
+                                            <img src="{{ url('images/products/' . $product->image, []) }}"
+                                                alt="product side">
                                         </a>
 
                                         <a class="product-gallery-item" href="#"
                                             data-image="{{ url('images/products/' . $product->image, []) }}"
                                             data-zoom-image="{{ url('images/products/' . $product->image, []) }}">
-                                            <img src="{{ url('images/products/' . $product->image, []) }}" alt="product cross">
+                                            <img src="{{ url('images/products/' . $product->image, []) }}"
+                                                alt="product cross">
                                         </a>
                                     </div><!-- End .product-image-gallery -->
                                 </div><!-- End .row -->
@@ -57,7 +60,7 @@
 
                         <div class="col-md-6">
                             <div class="product-details">
-                                <h1 class="product-title">{{$product['name']}}</h1>
+                                <h1 class="product-title">{{ $product['name'] }}</h1>
                                 <!-- End .product-title -->
 
                                 <div class="ratings-container">
@@ -68,11 +71,11 @@
                                 </div><!-- End .rating-container -->
 
                                 <div class="product-price">
-                                {{$product['price']}}
+                                    {{ $product['price'] }}
                                 </div><!-- End .product-price -->
 
                                 <div class="product-content">
-                                    <p>{{$product['description']}}</p>
+                                    <p>{{ $product['description'] }}</p>
                                 </div><!-- End .product-content -->
 
                                 <div class="">
@@ -121,6 +124,7 @@
                     </div><!-- End .row -->
                 </div><!-- End .product-details-top -->
 
+
                 <div class="product-details-tab">
                     <ul class="nav nav-pills justify-content-center" role="tablist">
                         <li class="nav-item">
@@ -137,10 +141,10 @@
                             aria-labelledby="product-desc-link">
                             <div class="product-desc-content">
                                 <h3>Product Information</h3>
-                                <p>{{$product['description']}}</p>
+                                <p>{{ $product['description'] }}</p>
                             </div><!-- End .product-desc-content -->
                         </div><!-- .End .tab-pane -->
-                        <div class="tab-pane fade" id="product-review-tab" role="tabpanel"
+                        <div class="tab-pane fade" id="product-review-tab" role="tabpane2"
                             aria-labelledby="product-review-link">
                             <div class="reviews">
                                 <h3>Reviews (2)</h3>
@@ -205,44 +209,47 @@
                             </div><!-- End .reviews -->
                         </div><!-- .End .tab-pane -->
                     </div><!-- End .tab-content -->
+
                 </div><!-- End .product-details-tab -->
 
                 <h2 class="title text-center mb-4">Sản phẩm liên quan</h2>
                 <div class="row">
-                @foreach ($allData as $value)
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <div class="product product-5 text-center">
-                            <figure class="product-media">
-                                <a href="{{$value['id']}}">
-                                    <img src="{{ url('images/products/' . $value->image, []) }}" alt="Product image"
-                                        class="product-image">
-                                </a>
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to
-                                            wishlist</span></a>
-                                    <a href="#" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick
-                                            view</span></a>
-                                    <a href="#" class="btn-product-icon btn-compare"
-                                        title="Compare"><span>Compare</span></a>
-                                </div><!-- End .product-action-vertical -->
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </figure><!-- End .product-media -->
-                            <div class="product-body">
-                                <h3 class="product-title">
-                                    <a href="product">
-                                        {{ $value->name }}
+                    @foreach ($allData as $value)
+                        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                            <div class="product product-5 text-center">
+                                <figure class="product-media">
+                                    <a href="{{ $value['id'] }}">
+                                        <img src="{{ url('images/products/' . $value->image, []) }}" alt="Product image"
+                                            class="product-image">
                                     </a>
-                                </h3>
-                                <!-- End .product-title -->
-                                <div class="product-price">
-                                    {{ $value->price }} VND
-                                </div><!-- End .product-price -->
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-                    </div><!-- End .col-sm-6 col-md-4 col-lg-3 col-xl-2 -->
-                @endforeach
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add
+                                                to
+                                                wishlist</span></a>
+                                        <a href="#" class="btn-product-icon btn-quickview"
+                                            title="Quick view"><span>Quick
+                                                view</span></a>
+                                        <a href="#" class="btn-product-icon btn-compare"
+                                            title="Compare"><span>Compare</span></a>
+                                    </div><!-- End .product-action-vertical -->
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+                                <div class="product-body">
+                                    <h3 class="product-title">
+                                        <a href="product">
+                                            {{ $value->name }}
+                                        </a>
+                                    </h3>
+                                    <!-- End .product-title -->
+                                    <div class="product-price">
+                                        {{ $value->price }} VND
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 col-xl-2 -->
+                    @endforeach
                 </div>
             </div><!-- End .container -->
         </div><!-- End .page-content -->

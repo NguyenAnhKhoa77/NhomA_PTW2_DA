@@ -50,9 +50,10 @@ Route::prefix('login')->group(function () {
     Route::get('search', [ControllerView::class, 'getSearch'])->name('search');
 });
 
+Route::middleware(['auth', 'manage'])->group(function () {
+});
 
-
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware("auth", "admin")->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
     Route::prefix('product')->group(function () {
@@ -95,13 +96,13 @@ Route::prefix('admin')->group(function () {
         Route::get('changepass', [ControllerUsersManager::class, 'changepass'])->name('user.changepass');
     });
 
-    Route::prefix('bill')->group(function () {
-        Route::get('/', [ControllerBillsManager::class, 'index'])->name('bill.table');
-        Route::get('create', [ControllerBillsManager::class, 'create'])->name('bill.create');
-        Route::post('store', [ControllerBillsManager::class, 'store'])->name('bill.store');
-        Route::get('edit/{id}', [ControllerBillsManager::class, 'edit'])->name('bill.edit');
-        Route::post('update/{id}', [ControllerBillsManager::class, 'update'])->name('bill.update');
-        Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
-        Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
-    });
+    // Route::prefix('bill')->group(function () {
+    //     Route::get('/', [ControllerBillsManager::class, 'index'])->name('bill.table');
+    //     Route::get('create', [ControllerBillsManager::class, 'create'])->name('bill.create');
+    //     Route::post('store', [ControllerBillsManager::class, 'store'])->name('bill.store');
+    //     Route::get('edit/{id}', [ControllerBillsManager::class, 'edit'])->name('bill.edit');
+    //     Route::post('update/{id}', [ControllerBillsManager::class, 'update'])->name('bill.update');
+    //     Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
+    //     Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
+    // });
 });

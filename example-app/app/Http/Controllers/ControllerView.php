@@ -11,7 +11,7 @@ class ControllerView extends Controller
     public function Home()
     {
 
-        $products = Product::with('sex')->take(6)->get();
+        $products = Product::take(6)->get();
         return view('fontend.index', compact('products'));
     }
 
@@ -21,9 +21,12 @@ class ControllerView extends Controller
     }
     public function product($id)
     {
-        $data = Product::find($id);
-        $allData = Product::where('categories_id', 'like', '%' . $data->categories_id . '%')->take(6)->get();
-        return view('fontend.product', ['product' => $data], compact('allData'));
+        if ($data = Product::find($id)) {
+            $allData = Product::where('categories_id', 'like', '%' . $data->categories_id . '%')->take(6)->get();
+            return view('fontend.product', ['product' => $data], compact('allData'));
+        } else {
+            return view('fontend.404');
+        }
     }
     public function account()
     {
