@@ -48,6 +48,12 @@ Route::prefix('/')->group(function () {
     Route::get('/search', [ProductController::class, 'search'])->name('search');
 
 
+    //Thêm sản phẩm vào giỏ hàng
+    Route::post('/add-to-cart/{productId}', [ControllerView::class, 'addToCart'])->name('cart.add');
+    //Xóa sản phẩm vào giỏ hàng
+    Route::delete('/cart/remove/{productId}', [ControllerView::class, 'removeFromCart'])->name('cart.remove');
+    //Cập nhật giỏ hàng
+    Route::post('cart/update', [ControllerView::class, 'updateCart'])->name('cart.update');
 });
 Route::prefix('login')->group(function () {
     Route::get('/', [ControllerUser::class, 'LoginView'])->name('login.view');

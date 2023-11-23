@@ -25,6 +25,103 @@
 </head>
 
 <body>
+    <div class="alert notification d-flex justify-content-center align-items-center m-0 position-relative">
+        <div class="success w-50" style="position: absolute;top: 0;">
+            @if (Session::has('success'))
+                <div id="success-notification" class="alert alert-success alert-dismissible fade show d-flex"
+                    role="alert" style="z-index: 999999;">
+                    <div class="icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 4.38462C7.79374 4.38462 4.38462 7.79374 4.38462 12C4.38462 16.2063 7.79374 19.6154 12 19.6154C16.2063 19.6154 19.6154 16.2063 19.6154 12C19.6154 7.79374 16.2063 4.38462 12 4.38462ZM3 12C3 7.02903 7.02903 3 12 3C16.971 3 21 7.02903 21 12C21 16.971 16.971 21 12 21C7.02903 21 3 16.971 3 12Z"
+                                fill="#ffff" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M16.1818 9.66432C16.4522 9.93468 16.4522 10.373 16.1818 10.6434L11.5664 15.2588C11.2961 15.5291 10.8577 15.5291 10.5874 15.2588L7.81813 12.4895C7.54777 12.2192 7.54777 11.7808 7.81813 11.5105C8.08849 11.2401 8.52684 11.2401 8.7972 11.5105L11.0769 13.7902L15.2027 9.66432C15.4731 9.39396 15.9115 9.39396 16.1818 9.66432Z"
+                                fill="#ffff" />
+                        </svg>
+                    </div>
+                    <div class="message pl-3">
+                        {{ Session::get('success') }}
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span class="d-flex" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 18L6 6" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M18 6L6 18" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            @endif
+        </div>
+        <div class="danger w-50" style="position: absolute;top: 0;">
+            @if (Session::has('error'))
+                <div id="error-notification" class="alert d-flex alert-danger alert-dismissible fade show m-0"
+                    role="alert" style="z-index: 999999;">
+                    <div class="icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 4.38462C7.79374 4.38462 4.38462 7.79374 4.38462 12C4.38462 16.2063 7.79374 19.6154 12 19.6154C16.2063 19.6154 19.6154 16.2063 19.6154 12C19.6154 7.79374 16.2063 4.38462 12 4.38462ZM12 21C7.02903 21 3 16.971 3 12C3 7.02903 7.02903 3 12 3C16.971 3 21 7.02903 21 12C21 16.971 16.971 21 12 21Z"
+                                fill="#ffff" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 7.15384C12.3824 7.15384 12.6923 7.4638 12.6923 7.84615V12.4615C12.6923 12.8439 12.3824 13.1538 12 13.1538C11.6177 13.1538 11.3077 12.8439 11.3077 12.4615V7.84615C11.3077 7.4638 11.6177 7.15384 12 7.15384Z"
+                                fill="#ffff" />
+                            <circle cx="12" cy="15.6923" r="0.923077" fill="#ffff" />
+                        </svg>
+                    </div>
+                    <div class="message pl-3">
+                        {{ Session::get('error') }}
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span class="d-flex" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 18L6 6" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M18 6L6 18" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            @endif
+        </div>
+        <div class="warning w-50" style="position: absolute;top: 0px;">
+            @if (Session::has('warning'))
+                <div id="error-notification" class="alert d-flex alert-warning alert-dismissible fade show m-0"
+                    role="alert" style="z-index: 999999;">
+                    <div class="icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 4.38462C7.79374 4.38462 4.38462 7.79374 4.38462 12C4.38462 16.2063 7.79374 19.6154 12 19.6154C16.2063 19.6154 19.6154 16.2063 19.6154 12C19.6154 7.79374 16.2063 4.38462 12 4.38462ZM12 21C7.02903 21 3 16.971 3 12C3 7.02903 7.02903 3 12 3C16.971 3 21 7.02903 21 12C21 16.971 16.971 21 12 21Z"
+                                fill="#ffff" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 7.15384C12.3824 7.15384 12.6923 7.4638 12.6923 7.84615V12.4615C12.6923 12.8439 12.3824 13.1538 12 13.1538C11.6177 13.1538 11.3077 12.8439 11.3077 12.4615V7.84615C11.3077 7.4638 11.6177 7.15384 12 7.15384Z"
+                                fill="#ffff" />
+                            <circle cx="12" cy="15.6923" r="0.923077" fill="#ffff" />
+                        </svg>
+                    </div>
+                    <div class="message pl-3">
+                        {{ Session::get('warning') }}
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span class="d-flex" aria-hidden="true"><svg width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 18L6 6" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M18 6L6 18" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            @endif
+        </div>
+    </div>
     <div class="page-wrapper">
         <header class="header header-intro-clearance">
             <div class="header-top">
@@ -74,7 +171,8 @@
                                     <label for="q" class="sr-only">Tìn kiếm</label>
                                     <input type="search" class="form-control" name="key" id="q"
                                         placeholder="Search product ..." required>
-                                    <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                                    <button class="btn btn-primary" type="submit"><i
+                                            class="icon-search"></i></button>
                                 </div><!-- End .header-search-wrapper -->
                             </form>
 
@@ -112,60 +210,74 @@
                                 aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <div class="icon">
                                     <i class="icon-shopping-cart"></i>
-                                    <span class="cart-count">2</span>
+                                    @php
+                                        $cart = session('cart', []);
+                                        $totalQuantity = 0;
+                                    @endphp
+
+                                    @foreach ($cart as $cartItem)
+                                        @php
+                                            $totalQuantity += $cartItem['quantity'];
+                                        @endphp
+                                    @endforeach
+                                    <span class="cart-count">{{ $totalQuantity }}</span>
                                 </div>
                                 <p>Cart</p>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-cart-products">
-                                    <div class="product">
-                                        <div class="product-cart-details">
-                                            <h4 class="product-title">
-                                                <a href="product.html">Beige knitted elastic runner shoes</a>
-                                            </h4>
+                                    @php
+                                        $cart = session('cart', []);
+                                        $totalQuantity = 0;
+                                    @endphp
 
-                                            <span class="cart-product-info">
-                                                <span class="cart-product-qty">1</span>
-                                                x $84.00
-                                            </span>
-                                        </div><!-- End .product-cart-details -->
+                                    @foreach ($cart as $cartItem)
+                                        <div class="product">
+                                            <div class="product-cart-details">
+                                                <h4 class="product-title">
+                                                    <a href="product.html">{{ $cartItem['name'] }}</a>
+                                                </h4>
 
-                                        <figure class="product-image-container">
-                                            <a href="product.html" class="product-image">
-                                                <img src="assets/images/products/cart/product-1.jpg" alt="product">
-                                            </a>
-                                        </figure>
-                                        <a href="#" class="btn-remove" title="Remove Product"><i
-                                                class="icon-close"></i></a>
-                                    </div><!-- End .product -->
+                                                <span class="cart-product-info">
+                                                    <span class="cart-product-qty">{{ $cartItem['quantity'] }}</span>
+                                                    x {{ number_format($cartItem['price']) }}
+                                                </span>
+                                            </div><!-- End .product-cart-details -->
 
-                                    <div class="product">
-                                        <div class="product-cart-details">
-                                            <h4 class="product-title">
-                                                <a href="product.html">Blue utility pinafore denim dress</a>
-                                            </h4>
-
-                                            <span class="cart-product-info">
-                                                <span class="cart-product-qty">1</span>
-                                                x $76.00
-                                            </span>
-                                        </div><!-- End .product-cart-details -->
-
-                                        <figure class="product-image-container">
-                                            <a href="product.html" class="product-image">
-                                                <img src="assets/images/products/cart/product-2.jpg" alt="product">
-                                            </a>
-                                        </figure>
-                                        <a href="#" class="btn-remove" title="Remove Product"><i
-                                                class="icon-close"></i></a>
-                                    </div><!-- End .product -->
+                                            <figure class="product-image-container">
+                                                <a href="product.html" class="product-image">
+                                                    <img src="{{ asset('images/products/' . $cartItem['image']) }}"
+                                                        alt="product">
+                                                </a>
+                                            </figure>
+                                            <form
+                                                action="{{ route('cart.remove', ['productId' => $cartItem['id']]) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn-remove">
+                                                    <i class="icon-close"></i>
+                                                </button>
+                                            </form>
+                                        </div><!-- End .product -->
+                                    @endforeach
                                 </div><!-- End .cart-product -->
 
                                 <div class="dropdown-cart-total">
                                     <span>Total</span>
+                                    @php
+                                        $cart = session('cart', []);
+                                        $totalPrice = 0;
+                                    @endphp
 
-                                    <span class="cart-total-price">$160.00</span>
+                                    @foreach ($cart as $cartItem)
+                                        @php
+                                            $price = $cartItem['quantity'] * $cartItem['price'];
+                                            $totalPrice += $price;
+                                        @endphp
+                                    @endforeach
+                                    <span class="cart-total-price">{{ number_format($totalPrice) }}</span>
                                 </div><!-- End .dropdown-cart-total -->
 
                                 <div class="dropdown-cart-action">
@@ -184,7 +296,7 @@
                     <div class="container">
                         <nav class="main-nav">
                             <ul class="menu">
-                                <li class="active">
+                                <li class="{{ Route::currentRouteName() == 'home' ? 'active' : '' }}">
                                     <a href="{{ route('home', []) }}">Home</a>
                                 </li>
                                 <li>
@@ -241,7 +353,7 @@
                                 <li class="">
                                     <a href="">Quần áo nhóm</a>
                                 </li>
-                                <li class="">
+                                <li class="{{ Route::currentRouteName() == 'contact' ? 'active' : '' }}">
                                     <a href="{{ route('contact', []) }}">Liên hệ</a>
                                 </li>
                             </ul><!-- End .menu -->
@@ -299,36 +411,13 @@
                 </div><!-- End .container -->
             </div>
             <div class="brands-border">
-                <div class="" style="width: 271.857px;">
-                    <a href="#" class="brand">
-                        <img class="" src="{{ url('images/manufacturers/adidas.png', []) }}">
-                    </a>
-                </div>
-                <div class="" style="width: 271.857px;">
-                    <a href="#" class="brand">
-                        <img class="" src="{{ url('images/manufacturers/hitec.png', []) }}">
-                    </a>
-                </div>
-                <div class="" style="width: 271.857px;">
-                    <a href="#" class="brand">
-                        <img class="" src="{{ url('images/manufacturers/nike.png', []) }}">
-                    </a>
-                </div>
-                <div class="" style="width: 271.857px;">
-                    <a href="#" class="brand">
-                        <img class="" src="{{ url('images/manufacturers/newbalance.png', []) }}">
-                    </a>
-                </div>
-                <div class="" style="width: 271.857px;">
-                    <a href="#" class="brand">
-                        <img class="" src="{{ url('images/manufacturers/puma.png', []) }}">
-                    </a>
-                </div>
-                <div class="" style="width: 271.857px;">
-                    <a href="#" class="brand">
-                        <img class="" src="{{ url('images/manufacturers/underarmour.png', []) }}">
-                    </a>
-                </div>
+                @foreach ($manufacturer as $item)
+                    <div class="" style="width: 271.857px;">
+                        <a href="#" class="brand">
+                            <img class="" src="{{ asset('images/manufacturers/' . $item->image) }}">
+                        </a>
+                    </div>
+                @endforeach
             </div>
             <div class="footer-middle">
                 <div class="container">

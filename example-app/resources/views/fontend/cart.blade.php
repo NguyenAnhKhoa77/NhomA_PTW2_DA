@@ -33,94 +33,90 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td class="product-col">
-                                            <div class="product">
-                                                <figure class="product-media">
-                                                    <a href="#">
-                                                        <img src="assets/images/products/table/product-1.jpg"
-                                                            alt="Product image">
-                                                    </a>
-                                                </figure>
+                                    @foreach ($products as $product)
+                                        <tr>
+                                            <td class="product-col">
+                                                <div class="product">
+                                                    <figure class="product-media">
+                                                        <a href="#">
+                                                            <img src="{{ asset('images/products/' . $product->image) }}"
+                                                                alt="Product image">
+                                                        </a>
+                                                    </figure>
 
-                                                <h3 class="product-title">
-                                                    <a href="#">Beige knitted elastic runner shoes</a>
-                                                </h3><!-- End .product-title -->
-                                            </div><!-- End .product -->
-                                        </td>
-                                        <td class="price-col">$84.00</td>
-                                        <td class="quantity-col">
-                                            <div class="cart-product-quantity">
-                                                <input type="number" class="form-control" value="1" min="1"
-                                                    max="10" step="1" data-decimals="0" required>
-                                            </div><!-- End .cart-product-quantity -->
-                                        </td>
-                                        <td class="total-col">$84.00</td>
-                                        <td class="remove-col"><button class="btn-remove"><i
-                                                    class="icon-close"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-col">
-                                            <div class="product">
-                                                <figure class="product-media">
-                                                    <a href="#">
-                                                        <img src="assets/images/products/table/product-2.jpg"
-                                                            alt="Product image">
-                                                    </a>
-                                                </figure>
-
-                                                <h3 class="product-title">
-                                                    <a href="#">Blue utility pinafore denim dress</a>
-                                                </h3><!-- End .product-title -->
-                                            </div><!-- End .product -->
-                                        </td>
-                                        <td class="price-col">$76.00</td>
-                                        <td class="quantity-col">
-                                            <div class="cart-product-quantity">
-                                                <input type="number" class="form-control" value="1" min="1"
-                                                    max="10" step="1" data-decimals="0" required>
-                                            </div><!-- End .cart-product-quantity -->
-                                        </td>
-                                        <td class="total-col">$76.00</td>
-                                        <td class="remove-col"><button class="btn-remove"><i
-                                                    class="icon-close"></i></button></td>
-                                    </tr>
+                                                    <h3 class="product-title">
+                                                        <a href="#">{{ $product->name }}</a>
+                                                    </h3><!-- End .product-title -->
+                                                </div><!-- End .product -->
+                                            </td>
+                                            <td class="price-col">{{ number_format($product->price) }}</td>
+                                            <td class="quantity-col">
+                                                <div class="cart-product-quantity">
+                                                    <input type="number" class="form-control" name="qty"
+                                                        value="{{ $product->quantityInCart }}" min="1" max="10"
+                                                        data-product-id="{{ $product->id }}" step="1"
+                                                        data-decimals="0" required>
+                                                </div><!-- End .cart-product-quantity -->
+                                            </td>
+                                            <td class="total-col">
+                                                {{ number_format($product->price * $product->quantityInCart) }}</td>
+                                            <td class="remove-col">
+                                                <form action="{{ route('cart.remove', ['productId' => $product->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn-remove">
+                                                        <i class="icon-close"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table><!-- End .table table-wishlist -->
 
                             <div class="cart-bottom">
                                 <div class="cart-discount">
-                                    <form action="#">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" required placeholder="coupon code">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-primary-2" type="submit"><i
-                                                        class="icon-long-arrow-right"></i></button>
-                                            </div><!-- .End .input-group-append -->
-                                        </div><!-- End .input-group -->
-                                    </form>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="coupon code">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary-2" type="submit"><i
+                                                    class="icon-long-arrow-right"></i></button>
+                                        </div><!-- .End .input-group-append -->
+                                    </div><!-- End .input-group -->
                                 </div><!-- End .cart-discount -->
 
-                                <a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i
-                                        class="icon-refresh"></i></a>
+                                <div class="btn btn-outline-dark-2 btn-update-cart"><span>UPDATE CART</span>
+                                    <i class="icon-refresh"></i>
+                                </div>
                             </div><!-- End .cart-bottom -->
                         </div><!-- End .col-lg-9 -->
                         <aside class="col-lg-3">
                             <div class="summary summary-cart">
                                 <h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+                                @php
+                                    $cart = session('cart', []);
+                                    $totalPrice = 0;
+                                @endphp
 
+                                @foreach ($cart as $cartItem)
+                                    @php
+                                        $price = $cartItem['quantity'] * $cartItem['price'];
+                                        $totalPrice += $price;
+                                    @endphp
+                                @endforeach
                                 <table class="table table-summary">
                                     <tbody>
                                         <tr class="summary-subtotal">
                                             <td>Subtotal:</td>
-                                            <td>$160.00</td>
+                                            <td>{{ number_format($totalPrice) }}</td>
                                         </tr><!-- End .summary-subtotal -->
-                                        <tr class="summary-shipping">
+                                        {{-- <tr class="summary-shipping">
                                             <td>Shipping:</td>
                                             <td>&nbsp;</td>
-                                        </tr>
+                                        </tr> --}}
 
-                                        <tr class="summary-shipping-row">
+                                        {{-- <tr class="summary-shipping-row">
                                             <td>
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" id="free-shipping" name="shipping"
@@ -130,9 +126,10 @@
                                                 </div><!-- End .custom-control -->
                                             </td>
                                             <td>$0.00</td>
-                                        </tr><!-- End .summary-shipping-row -->
+                                        </tr> --}}
+                                        <!-- End .summary-shipping-row -->
 
-                                        <tr class="summary-shipping-row">
+                                        {{-- <tr class="summary-shipping-row">
                                             <td>
                                                 <div class="custom-control custom-radio">
                                                     <input type="radio" id="standart-shipping" name="shipping"
@@ -154,17 +151,16 @@
                                                 </div><!-- End .custom-control -->
                                             </td>
                                             <td>$20.00</td>
-                                        </tr><!-- End .summary-shipping-row -->
+                                        </tr><!-- End .summary-shipping-row --> --}}
 
-                                        <tr class="summary-shipping-estimate">
+                                        {{-- <tr class="summary-shipping-estimate">
                                             <td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a>
                                             </td>
                                             <td>&nbsp;</td>
-                                        </tr><!-- End .summary-shipping-estimate -->
-
+                                        </tr><!-- End .summary-shipping-estimate --> --}}
                                         <tr class="summary-total">
                                             <td>Total:</td>
-                                            <td>$160.00</td>
+                                            <td>{{ number_format($totalPrice) }}</td>
                                         </tr><!-- End .summary-total -->
                                     </tbody>
                                 </table><!-- End .table table-summary -->
@@ -181,4 +177,32 @@
             </div><!-- End .cart -->
         </div><!-- End .page-content -->
     </main><!-- End .main -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.btn-update-cart').click(function(event) {
+                event.preventDefault();
+                var quantities = [];
+                $('.cart-product-quantity input').each(function() {
+                    quantities.push({
+                        productId: $(this).data('product-id'),
+                        quantity: $(this).val()
+                    });
+                });
+                console.log(quantities);
+                $.ajax({
+                    url: "{{ route('cart.update') }}",
+                    method: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        quantities: quantities
+                    },
+                    success: function(response) {
+                        location.reload();
+                        alert('Cập nhật giỏ hàng thành công!');
+                    },
+                });
+            });
+        });
+    </script>
 @endsection
