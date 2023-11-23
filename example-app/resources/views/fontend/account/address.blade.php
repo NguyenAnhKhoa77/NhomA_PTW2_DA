@@ -26,7 +26,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="tab-dashboard-link"
                                        href="{{ route('profile') }}" role="tab" aria-controls="tab-dashboard"
-                                       aria-selected="true">Account Details</a>
+                                       aria-selected="false">Account Details</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" id="tab-address-link" href="{{ route('address') }}"
@@ -36,6 +36,12 @@
                                     <a class="nav-link" id="tab-orders-link" href="{{ route('orders') }}"
                                        role="tab" aria-controls="tab-orders" aria-selected="false">Orders</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab-change-password-link"
+                                       href="{{ route('change.password') }}"
+                                       role="tab" aria-controls="tab-change-password" aria-selected="false">Change
+                                        Password</a>
+                                </li>
                             </ul>
                         </aside><!-- End .col-lg-3 -->
 
@@ -43,38 +49,92 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="tab-address" role="tabpanel"
                                      aria-labelledby="tab-address-link">
-                                    <p>The following addresses will be used on the checkout page by default.</p>
+                                        <div class="col-md-12 justify-content-center">
+                                                <div class="card-body mt-0 mx-5">
+                                                    <form class="mb-0">
+                                                        <div class="row mb-4">
+                                                            <div class="col">
+                                                                <div class="form-outline">
+                                                                    <input type="text" id="form9Example1" class="form-control input-custom" />
+                                                                    <label class="form-label" for="form9Example1">First name</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-outline">
+                                                                    <input type="text" id="form9Example2" class="form-control input-custom" />
+                                                                    <label class="form-label" for="form9Example2">Last name</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-4">
+                                                            <div class="col">
+                                                                <div class="form-outline">
+                                                                    <input type="text" id="form9Example3" class="form-control input-custom" />
+                                                                    <label class="form-label" for="form9Example3">City</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-outline">
+                                                                    <input type="text" id="form9Example4" class="form-control input-custom" />
+                                                                    <label class="form-label" for="form9Example4">Zip</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-4">
+                                                            <div class="col">
+                                                                <div class="form-outline">
+                                                                    <input type="text" id="form9Example6" class="form-control input-custom" />
+                                                                    <label class="form-label" for="form9Example6">Address</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-outline">
+                                                                    <input type="email" id="typeEmail" class="form-control input-custom" />
+                                                                    <label class="form-label" for="typeEmail">Email</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="float-end ">
+                                                            <!-- Submit button -->
+                                                            <button type="submit" class="btn btn-primary btn-rounded"
+                                                                    style="background-color: #0062CC ;">Place order</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                        </div>
 
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="card card-dashboard">
-                                                <div class="card-body">
-                                                    <h3 class="card-title">Billing Address</h3><!-- End .card-title -->
+{{--                                    <p>The following addresses will be used on the checkout page by default.</p>--}}
 
-                                                    <p>User Name<br>
-                                                        User Company<br>
-                                                        John str<br>
-                                                        New York, NY 10001<br>
-                                                        1-234-987-6543<br>
-                                                        yourmail@mail.com<br>
-                                                        <a href="#">Edit <i class="icon-edit"></i></a>
-                                                    </p>
-                                                </div><!-- End .card-body -->
-                                            </div><!-- End .card-dashboard -->
-                                        </div><!-- End .col-lg-6 -->
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-lg-6">--}}
+{{--                                            <div class="card card-dashboard">--}}
+{{--                                                <div class="card-body">--}}
+{{--                                                    <h3 class="card-title">Billing Address</h3><!-- End .card-title -->--}}
 
-                                        <div class="col-lg-6">
-                                            <div class="card card-dashboard">
-                                                <div class="card-body">
-                                                    <h3 class="card-title">Shipping Address</h3><!-- End .card-title -->
+{{--                                                    <p>User Name<br>--}}
+{{--                                                        User Company<br>--}}
+{{--                                                        John str<br>--}}
+{{--                                                        New York, NY 10001<br>--}}
+{{--                                                        1-234-987-6543<br>--}}
+{{--                                                        yourmail@mail.com<br>--}}
+{{--                                                        <a href="#">Edit <i class="icon-edit"></i></a>--}}
+{{--                                                    </p>--}}
+{{--                                                </div><!-- End .card-body -->--}}
+{{--                                            </div><!-- End .card-dashboard -->--}}
+{{--                                        </div><!-- End .col-lg-6 -->--}}
 
-                                                    <p>You have not set up this type of address yet.<br>
-                                                        <a href="#">Edit <i class="icon-edit"></i></a>
-                                                    </p>
-                                                </div><!-- End .card-body -->
-                                            </div><!-- End .card-dashboard -->
-                                        </div><!-- End .col-lg-6 -->
-                                    </div><!-- End .row -->
+{{--                                        <div class="col-lg-6">--}}
+{{--                                            <div class="card card-dashboard">--}}
+{{--                                                <div class="card-body">--}}
+{{--                                                    <h3 class="card-title">Shipping Address</h3><!-- End .card-title -->--}}
+
+{{--                                                    <p>You have not set up this type of address yet.<br>--}}
+{{--                                                        <a href="#">Edit <i class="icon-edit"></i></a>--}}
+{{--                                                    </p>--}}
+{{--                                                </div><!-- End .card-body -->--}}
+{{--                                            </div><!-- End .card-dashboard -->--}}
+{{--                                        </div><!-- End .col-lg-6 -->--}}
+{{--                                    </div><!-- End .row -->--}}
                                 </div><!-- .End .tab-pane -->
                             </div>
                         </div><!-- End .col-lg-9 -->

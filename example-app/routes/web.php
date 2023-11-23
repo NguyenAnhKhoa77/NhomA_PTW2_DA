@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\ControllerProductManager;
 use App\Http\Controllers\Admin\ControllerUsersManager;
 use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,16 @@ Route::prefix('/')->group(function () {
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
         Route::get('search/', [ControllerGridPage::class, 'search'])->name('search');
     });
+    Route::post('/product/{id}/review', 'ProductReviewController@store')->name('product.review');
+    Route::get('/search', [ProductController::class, 'search'])->name('search');
+
+
+    //Thêm sản phẩm vào giỏ hàng
+    Route::post('/add-to-cart/{productId}', [ControllerView::class, 'addToCart'])->name('cart.add');
+    //Xóa sản phẩm vào giỏ hàng
+    Route::delete('/cart/remove/{productId}', [ControllerView::class, 'removeFromCart'])->name('cart.remove');
+    //Cập nhật giỏ hàng
+    Route::post('cart/update', [ControllerView::class, 'updateCart'])->name('cart.update');
 });
 Route::prefix('login')->group(function () {
     Route::get('/', [ControllerUser::class, 'LoginView'])->name('login.view');
@@ -56,7 +68,8 @@ Route::prefix('/account')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
     Route::get('/address', [UserProfileController::class, 'address'])->name('address');
     Route::get('/orders', [UserProfileController::class, 'orders'])->name('orders');
-    Route::post('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
+    Route::get('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
+    Route::post('/change-password', [UserProfileController::class, 'changePasswordProcess'])->name('change.password.process');
 });
 
 Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
@@ -69,6 +82,9 @@ Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
         Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
         Route::post('edit/{token_id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
+        Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submit.form');
+        Route::get('/users/{user}/edit', [ControllerUsersManager::class, 'edit'])->name('users.edit');
+        Route::put('/users/{user}', [ControllerUsersManager::class, 'update'])->name('users.update');
     });
     Route::prefix('category')->group(function () {
         Route::get('/', [ControllerCategoryManager::class, 'index'])->name('category.table');

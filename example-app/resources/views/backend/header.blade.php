@@ -217,42 +217,46 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ route('dashboard') }}" class="nav-link">
+                            <a href="{{ route('dashboard') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('product.table') }}" class="nav-link">
+                            <a href="{{ route('product.table') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'product.table' || Route::currentRouteName() == 'product.create' || Route::currentRouteName() == 'product.edit' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Sản phẩm
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('bill.table', []) }}" class="nav-link">
+                            <a href="{{ route('bill.table', []) }}"
+                                class="nav-link {{ Route::currentRouteName() == 'bill.table' || Route::currentRouteName() == 'bill.create' || Route::currentRouteName() == 'bill.edit' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Đơn hàng
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('user.table', []) }}" class="nav-link">
+                            <a href="{{ route('user.table', []) }}"
+                                class="nav-link {{ Route::currentRouteName() == 'user.table' || Route::currentRouteName() == 'user.create' || Route::currentRouteName() == 'user.edit' || Route::currentRouteName() == 'user.show' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Người dùng
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('manufacture.table') }}" class="nav-link">
+                            <a href="{{ route('manufacture.table') }}" class="nav-link {{ Route::currentRouteName() == 'manufacture.table' || Route::currentRouteName() == 'manufacture.create' || Route::currentRouteName() == 'manufacture.edit' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Nhãn hàng
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('category.table') }}" class="nav-link">
+                            <a href="{{ route('category.table') }}" class="nav-link {{ Route::currentRouteName() == 'category.table' || Route::currentRouteName() == 'category.create' || Route::currentRouteName() == 'category.edit' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Loại sản phẩm
                                 </p>

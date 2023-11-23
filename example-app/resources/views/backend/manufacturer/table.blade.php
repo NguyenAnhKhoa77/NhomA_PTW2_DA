@@ -14,6 +14,27 @@
                     </a>
                 </div>
             </div>
+            <form action="{{ route('manufacture.table') }}" method="GET">
+                <div class="w-100 container-fluid my-2">
+                    <h5>Tìm kiếm</h5>
+                    <input type="text" name="keyword" placeholder="Nhập tên loại sản phẩm" class="form-control">
+                    <button type="submit" name="submit" value="1" class="btn btn-primary mt-2">Tìm kiếm</button>
+                </div>
+                <div class="w-25">
+                    <div class="container">
+                        <h5>Bộ lọc</h5>
+
+                        <select name="sort" class="form-control w-100">
+                            <option value="1" {{ request('sort') == 1 ? 'selected' : '' }}>Sắp theo tên từ A - Z
+                            </option>
+                            <option value="2" {{ request('sort') == 2 ? 'selected' : '' }}>Sắp theo tên từ Z - A
+                            </option>
+                        </select>
+                        <button class="btn btn-primary mt-2" name="submit" value="2">Xác nhận</button>
+
+                    </div>
+                </div>
+            </form>
             <div class="card-body p-0">
 
                 <table class="table table-striped projects">

@@ -94,23 +94,28 @@
                                         </select>
                                     </div><!-- End .select-custom -->
                                 </div><!-- End .details-filter-row -->
+                                <form action="{{ route('cart.add', ['productId' => $product->id]) }}" class="w-100"
+                                    method="POST">
+                                    @csrf
+                                    <div class="details-filter-row details-row-size">
+                                        <label for="qty">Số lượng:</label>
+                                        <div class="product-details-quantity">
+                                            <input type="number" id="qty" name="qty" class="form-control" value="1"
+                                                min="1" max="10" step="1" data-decimals="0" required>
+                                        </div><!-- End .product-details-quantity -->
+                                    </div><!-- End .details-filter-row -->
 
-                                <div class="details-filter-row details-row-size">
-                                    <label for="qty">Số lượng:</label>
-                                    <div class="product-details-quantity">
-                                        <input type="number" id="qty" class="form-control" value="1"
-                                            min="1" max="10" step="1" data-decimals="0" required>
-                                    </div><!-- End .product-details-quantity -->
-                                </div><!-- End .details-filter-row -->
+                                    <div class="product-details-action">
 
-                                <div class="product-details-action">
-                                    <a href="#" class="btn-product btn-cart"><span>Thêm vào giỏ hàng</span></a>
-
-                                    <div class="details-action-wrapper">
-                                        <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Thêm vào
-                                                Wishlist</span></a>
-                                    </div><!-- End .details-action-wrapper -->
-                                </div><!-- End .product-details-action -->
+                                        <button type="submit" class="btn-product btn-cart p-0 py-3 border-0">Thêm vào giỏ
+                                            hàng</button>
+                                        <div class="details-action-wrapper">
+                                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Thêm
+                                                    vào
+                                                    Wishlist</span></a>
+                                        </div><!-- End .details-action-wrapper -->
+                                    </div><!-- End .product-details-action -->
+                                </form>
 
                                 <div class="product-details-footer">
                                     <div class="product-cat">

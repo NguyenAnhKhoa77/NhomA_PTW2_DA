@@ -9,9 +9,11 @@
                 <h3 class="card-title">User table</h3>
 
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool">
-                        <i class="fas fa-plus"></i>
-                    </button>
+                    <a href="{{ route('user.create') }}">
+                        <button type="button" class="btn btn-tool">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </a>
                 </div>
             </div>
 
