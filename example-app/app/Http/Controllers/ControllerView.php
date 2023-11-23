@@ -18,6 +18,7 @@ class ControllerView extends Controller
     {
         return view('fontend.grid');
     }
+
     public function product($id)
     {
         if ($data = Product::find($id)) {
@@ -31,14 +32,17 @@ class ControllerView extends Controller
     {
         return view('fontend.checkout');
     }
+
     public function cart()
     {
         return view('fontend.cart');
     }
+
     public function contact()
     {
         return view('fontend.contact');
     }
+
     public function contactForm()
     {
         return view('errors.404');
