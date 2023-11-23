@@ -56,7 +56,8 @@ Route::prefix('/account')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
     Route::get('/address', [UserProfileController::class, 'address'])->name('address');
     Route::get('/orders', [UserProfileController::class, 'orders'])->name('orders');
-    Route::post('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
+    Route::get('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
+    Route::post('/change-password', [UserProfileController::class, 'changePasswordProcess'])->name('change.password.process');
 });
 
 Route::prefix('admin')->middleware('auth', 'admin')->group(function () {

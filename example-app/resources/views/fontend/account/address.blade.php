@@ -26,7 +26,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="tab-dashboard-link"
                                        href="{{ route('profile') }}" role="tab" aria-controls="tab-dashboard"
-                                       aria-selected="true">Account Details</a>
+                                       aria-selected="false">Account Details</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" id="tab-address-link" href="{{ route('address') }}"
@@ -35,6 +35,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="tab-orders-link" href="{{ route('orders') }}"
                                        role="tab" aria-controls="tab-orders" aria-selected="false">Orders</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab-change-password-link" href="{{ route('change.password') }}"
+                                       role="tab" aria-controls="tab-change-password" aria-selected="false">Change Password</a>
                                 </li>
                             </ul>
                         </aside><!-- End .col-lg-3 -->
