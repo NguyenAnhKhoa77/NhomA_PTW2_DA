@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Manufacturers;
 use App\Models\Product;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class ControllerManufacturersManager extends Controller
 {
@@ -34,22 +34,42 @@ class ControllerManufacturersManager extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        // Tiến hành xác thực dữ liệu
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Có lỗi xảy ra khi xác thực dữ liệu.');
+        }
+
+        // Kiểm tra xem bản ghi đã tồn tại hay chưa
+        $existingManufacturer = Manufacturers::where('name', $request->input('name'))->first();
+
+        if ($existingManufacturer) {
+            return back()->with('error', 'Nhãn hiệu đã tồn tại trong cơ sở dữ liệu.')->withInput();
+        }
+
+        // Tiếp tục xử lý và lưu bản ghi
         $image = $request->file('image');
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('images/manufacturers/'), $imageName);
 
         $manu = new Manufacturers([
-            'name' => $request['name'],
+            'name' => $request->input('name'),
             'image' => $imageName,
         ]);
+
         if ($manu->save()) {
-            return redirect()->route('manufacture.table')->with('success', 'Thêm hãng thành công');
+            session()->flash('success', 'Thêm hãng thành công');
+            return redirect()->route('manufacture.table');
         }
-        return back();
+
+        return back()->with('error', 'Có lỗi xảy ra khi thêm hãng. Vui lòng thử lại.')->withInput();
     }
 
     /**
@@ -103,7 +123,6 @@ class ControllerManufacturersManager extends Controller
             return redirect()->route('manufacture.table')->with('success', 'Cập nhật thành công');
         }
         return back();
-        
     }
 
     /**

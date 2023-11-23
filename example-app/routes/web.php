@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\ControllerProductManager;
 use App\Http\Controllers\Admin\ControllerUsersManager;
 use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,10 @@ Route::prefix('/')->group(function () {
     Route::prefix('grid')->group(function () {
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
     });
+    Route::post('/product/{id}/review', 'ProductReviewController@store')->name('product.review');
+    Route::get('/search', [ProductController::class, 'search'])->name('search');
+
+
 });
 Route::prefix('login')->group(function () {
     Route::get('/', [ControllerUser::class, 'LoginView'])->name('login.view');
@@ -69,6 +75,9 @@ Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
         Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
         Route::post('edit/{token_id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
+        Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submit.form');
+        Route::get('/users/{user}/edit', [ControllerUsersManager::class, 'edit'])->name('users.edit');
+        Route::put('/users/{user}', [ControllerUsersManager::class, 'update'])->name('users.update');
     });
     Route::prefix('category')->group(function () {
         Route::get('/', [ControllerCategoryManager::class, 'index'])->name('category.table');
