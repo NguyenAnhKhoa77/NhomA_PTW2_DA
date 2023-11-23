@@ -87,7 +87,7 @@
 
                             {{-- register form --}}
                             <div class="tab-pane fade " id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
-                                <form action="{{ route('register') }}" method="POST">
+                                <form action="{{ route('register') }}" method="POST" id="myForm">
                                     @csrf
                                     <div class="form-group">
                                         <label for="register-email-2">Địa chỉ email
@@ -130,21 +130,28 @@
                                     </div> --}}
                                     <!-- End .form-group -->
                                     <div class="form-footer">
-                                        <button type="submit" class="btn btn-outline-primary-2">
+                                        <button type="submit" class="btn btn-outline-primary-2" id="submitBtn">
                                             <span>Đăng ký</span>
                                             <i class="icon-long-arrow-right"></i>
                                         </button>
+                                   
 
-                                        {{-- <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="register-policy-2"
-                                                required>
-                                            <label class="custom-control-label" for="register-policy-2">Tôi đồng ý với <a
-                                                    href="">chính sách bảo mật</a> <span
-                                                    style="color: red">*</span></label>
-                                        </div><!-- End .custom-checkbox --> --}}
+                                        
 
                                     </div><!-- End .form-footer -->
                                 </form>
+                                <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('myForm');
+            const submitBtn = document.getElementById('submitBtn');
+
+            form.addEventListener('submit', function () {
+                // Vô hiệu hóa nút submit và thay đổi văn bản thành "Đang xử lí..."
+                submitBtn.disabled = true;
+                submitBtn.value = 'Đang xử lí...';
+            });
+        });
+    </script>
                             </div><!-- .End .tab-pane -->
                         </div><!-- End .tab-content -->
                     </div><!-- End .form-tab -->

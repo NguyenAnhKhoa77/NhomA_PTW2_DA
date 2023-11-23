@@ -53,7 +53,7 @@
                                         <i class="fas fa-trash"> </i>
                                         Delete
                                     </a>
-                                    <a class="btn btn-warning btn-sm" href="">
+                                    <a class="btn btn-warning btn-sm" href="{{ route('users.changePassword', $user) }}">
                                         <i class="fa fa-lock" aria-hidden="true"></i>
                                         Change password</a>
 

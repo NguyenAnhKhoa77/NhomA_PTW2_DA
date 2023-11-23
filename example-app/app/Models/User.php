@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function account()
     {
-        return $this->belongsTo(Account::class, 'id_account');
+        return $this->hasOne(Account::class, 'id');
     }
 }

@@ -23,7 +23,8 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::prefix('/')->group(function () {
+Route::group(['middleware' => 'throttle:7,1,2'], function(){
+ Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
     Route::get('product', [ControllerView::class, 'product'])->name('product');
     Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
@@ -55,6 +56,11 @@ Route::prefix('admin')->group(function () {
         Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submit.form');
         Route::get('/users/{user}/edit', [ControllerUsersManager::class, 'edit'])->name('users.edit');
         Route::put('/users/{user}', [ControllerUsersManager::class, 'update'])->name('users.update');
+        Route::get('/users/{user}/change-password', [ControllerUsersManager::class, 'showChangePasswordForm'])
+            ->name('users.changePasswordForm');
+
+        Route::put('/users/{id}/change-password', [ControllerUsersManager::class, 'changePassword'])
+            ->name('users.changePassword');
     });
     Route::prefix('category')->group(function () {
         Route::get('/', [ControllerCategoryManager::class, 'index'])->name('category.table');
@@ -96,4 +102,6 @@ Route::prefix('admin')->group(function () {
         Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
         Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
     });
+});
+   
 });

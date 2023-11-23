@@ -33,3 +33,4 @@ return new class extends Migration
         Schema::dropIfExists('users');
     }
 };
+// nó báo đang lưu vào table account kìa :v , trong khi mình đang cần lưu vào table users mà
