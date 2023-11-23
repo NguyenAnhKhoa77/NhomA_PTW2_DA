@@ -20,28 +20,29 @@ class ControllerView extends Controller
     {
         return view('fontend.grid');
     }
+
     public function product($id)
     {
         $data = Product::find($id);
         $allData = Product::where('categories_id', 'like', '%' . $data->categories_id . '%')->take(6)->get();
         return view('fontend.product', ['product' => $data], compact('allData'));
     }
-    public function account()
-    {
-        return view('fontend.account');
-    }
+
     public function checkout()
     {
         return view('fontend.checkout');
     }
+
     public function cart()
     {
         return view('fontend.cart');
     }
+
     public function contact()
     {
         return view('fontend.contact');
     }
+
     public function contactForm()
     {
         return view('errors.404');
@@ -66,6 +67,7 @@ class ControllerView extends Controller
 
         return view('fontend.search', compact('products'));
     }
+
     public function notFound()
     {
         return view('errors.404');
