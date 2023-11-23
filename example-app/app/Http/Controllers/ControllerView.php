@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Contact;
+use App\Models\Comment;
 use App\Models\Manufacturers;
 use Illuminate\Support\Facades\DB;
 
@@ -22,13 +23,22 @@ class ControllerView extends Controller
         $productsAccessory = Product::where('categories_id','like',6)->take(6)->get();
         return view('fontend.index', compact('products', 'productsNew','productsMale','productsFemale','productsAccessory'));
     }
+    
+    public function comment(){
+        $comment = new Comment();
+        $comment->product_id = request('product_id');
+        $comment->comment = request('comment');
+        $comment->save();
+        return redirect()->back();
+    }
 
 
     public function product($id)
     {
         if ($data = Product::find($id)) {
             $allData = Product::where('categories_id', 'like', '%' . $data->categories_id . '%')->take(6)->get();
-            return view('fontend.product', ['product' => $data], compact('allData'));
+            $allComment = Comment::where('product_id','like',$id)->get();
+            return view('fontend.product', ['product' => $data], compact('allData','allComment'));
         } else {
             return view('fontend.404');
         }
@@ -74,7 +84,6 @@ class ControllerView extends Controller
 
     public function contactForm()
     {
-        return view('errors.404');
         $contact = new Contact();
         $contact->name = request('name');
         $contact->email = request('email');

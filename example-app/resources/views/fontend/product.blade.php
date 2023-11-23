@@ -216,8 +216,33 @@
                     </div><!-- End .tab-content -->
 
                 </div><!-- End .product-details-tab -->
-
-                <h2 class="title text-center mb-4">Sản phẩm liên quan</h2>
+                <form class="d-flex flex-column" action="/comment" method="post">
+                    @csrf
+                    <input name="product_id" type="hidden" value="{{$product->id}}" type="text">
+                    <label for="comment">
+                        Bình luận của bạn về sản phẩm.
+                    </label>
+                    <textarea class="mb-4" name="comment" id="comment" rows="4"></textarea>
+                    <button class="btn btn-primary" type="submit">
+                        Gửi bình luận
+                    </button>
+                </form>
+                <div class="comment-section">
+                    @foreach ($allComment as $comment)
+                        <div class="commentCard border border-primary mt-2 p-2">
+                            <div class="comment_id">
+                                <b>
+                                Bình luận số: {{$comment->id}}
+                                </b>
+                            </div>
+                            <div class="comment_content border-top border-primary">
+                                Nội dung:
+                                {{$comment->comment}}
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <h2 class="title text-center mt-4 mb-4">Sản phẩm liên quan</h2>
                 <div class="row">
                     @foreach ($allData as $value)
                         <div class="col-6 col-md-4 col-lg-3 col-xl-2">
