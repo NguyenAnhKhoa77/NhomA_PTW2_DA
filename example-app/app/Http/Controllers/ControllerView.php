@@ -14,10 +14,7 @@ class ControllerView extends Controller
         return view('fontend.index', compact('products'));
     }
 
-    public function grid()
-    {
-        return view('fontend.grid');
-    }
+
     public function product($id)
     {
         if ($data = Product::find($id)) {
@@ -48,19 +45,5 @@ class ControllerView extends Controller
         $contact->msg = request('msg');
         $contact->save();
         return redirect()->back();
-    }
-
-    public function getSearch(Request $req)
-    {
-        $key = $req->key;
-
-        if (!$key) {
-            // Xử lý khi khóa tìm kiếm trống
-            // Ví dụ: chuyển hướng đến trang mặc định hoặc hiển thị thông báo lỗi
-            return redirect()->route('fontend.black');
-        }
-        $products = Product::where('name', 'like', '%' . $key . '%')->take(6)->get();
-
-        return view('fontend.search', compact('products'));
     }
 }
