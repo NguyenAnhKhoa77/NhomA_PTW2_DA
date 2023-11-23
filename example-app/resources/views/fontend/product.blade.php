@@ -218,7 +218,10 @@
                 </div><!-- End .product-details-tab -->
                 <form class="d-flex flex-column" action="/comment" method="post">
                     @csrf
-                    <input name="product_id" type="hidden" value="{{$product->id}}" type="text">
+                    @php
+                     $newId = encrypt($product->id);
+                    @endphp
+                    <input name="product_id" type="hidden" value="{{$newId}}" type="text">
                     <label for="comment">
                         Bình luận của bạn về sản phẩm.
                     </label>

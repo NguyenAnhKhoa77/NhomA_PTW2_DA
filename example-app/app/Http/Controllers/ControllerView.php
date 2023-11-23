@@ -26,7 +26,9 @@ class ControllerView extends Controller
     
     public function comment(){
         $comment = new Comment();
-        $comment->product_id = request('product_id');
+        $oldId = request('product_id');
+        $newId = decrypt($oldId);   
+        $comment->product_id = $newId;
         $comment->comment = request('comment');
         $comment->save();
         return redirect()->back();
@@ -35,9 +37,10 @@ class ControllerView extends Controller
 
     public function product($id)
     {
-        if ($data = Product::find($id)) {
+        $newId = decrypt($id);
+        if ($data = Product::find($newId)) {
             $allData = Product::where('categories_id', 'like', '%' . $data->categories_id . '%')->take(6)->get();
-            $allComment = Comment::where('product_id','like',$id)->get();
+            $allComment = Comment::where('product_id','like',$newId)->get();
             return view('fontend.product', ['product' => $data], compact('allData','allComment'));
         } else {
             return view('fontend.404');
