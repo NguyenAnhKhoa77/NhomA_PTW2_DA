@@ -76,7 +76,7 @@
                     <div class="header-right">
                         @auth
                             <div class="account">
-                                <a href="{{ route('account') }}" title="My account">
+                                <a href="{{ route('profile') }}" title="My account">
                                     <div class="icon">
                                         <i class="icon-user"></i>
                                     </div>

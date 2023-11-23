@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerView;
@@ -50,10 +51,14 @@ Route::prefix('login')->group(function () {
     Route::get('search', [ControllerView::class, 'getSearch'])->name('search');
 });
 
-Route::middleware(['auth', 'manage'])->group(function () {
+Route::prefix('/account')->group(function () {
+    Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
+    Route::get('/address', [UserProfileController::class, 'address'])->name('address');
+    Route::get('/orders', [UserProfileController::class, 'orders'])->name('orders');
+    Route::post('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
 });
 
-Route::prefix('admin')->middleware("auth", "admin")->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
     Route::prefix('product')->group(function () {
