@@ -137,7 +137,7 @@ class ControllerProductManager extends Controller
         if (Session::has('_token') && Session::get('_token') === $token) {
             $id = $request['id'];
             if (!$product = Product::find($id)) {
-                return redirect()->back()->with('errors', 'Product does not exist!');
+                return redirect()->back()->with('errors', 'Sản phẩm không tồn tại!');
             }
             $oders = Orders::where('product_id', $id)->get();
             if ($oders->count() == 0) {
@@ -147,9 +147,9 @@ class ControllerProductManager extends Controller
                     File::delete($path);
                 }
                 $product->delete();
-            return redirect()->route('product.table')->with('success', 'Xóa thành công');
+                return redirect()->route('product.table')->with('success', 'Xóa thành công');
             } else {
-                return redirect()->back()->with('errors', 'Cannot delete product!');
+                return redirect()->back()->with('errors', 'Xóa thất bại!');
             }
         } else {
             return redirect()->route('product.table')->with('error', 'Không tìm thấy sản phẩm!');
