@@ -27,6 +27,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+
+                            <td>nonono</td>
+
+                            <td class="project-actions text-right">
+
+                                <form method="get" action="{{ route('product.delete', 99999999999999) }}">
+                                    @csrf
+                                    <button type="submit">
+                                        <a class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                        </a>
+                                    </button>
+                                </form>
+
+                            </td>
+                        </tr>
                         @foreach ($products as $product)
                             <tr>
                                 <td> <img style="width: 50px" src="{{ url('images/products/' . $product->image, []) }}"
@@ -47,12 +67,18 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="{{ route('product.delete', [$product]) }}"
-                                        onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </a>
+                                    <form method="get" action="{{ route('product.delete', [$product]) }}">
+                                        @csrf
+                                        <button type="submit">
+                                            <a class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                Delete
+                                            </a>
+                                        </button>
+                                    </form>
+
                                 </td>
                             </tr>
                         @endforeach

@@ -59,9 +59,9 @@ Route::prefix('admin')->middleware("auth", "admin")->group(function () {
     Route::prefix('product')->group(function () {
         Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
         Route::get('create', [ControllerProductManager::class, 'create'])->name('product.create');
-        Route::post('create_handle', [ControllerProductManager::class, 'create_handler'])->name('product.create.handle');
+        Route::post('create', [ControllerProductManager::class, 'create_handler'])->name('product.create.handle');
         Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
-        Route::post('edit_handle/{id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
+        Route::post('edit/{id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
     });
     Route::prefix('category')->group(function () {
@@ -96,13 +96,13 @@ Route::prefix('admin')->middleware("auth", "admin")->group(function () {
         Route::get('changepass', [ControllerUsersManager::class, 'changepass'])->name('user.changepass');
     });
 
-    // Route::prefix('bill')->group(function () {
-    //     Route::get('/', [ControllerBillsManager::class, 'index'])->name('bill.table');
-    //     Route::get('create', [ControllerBillsManager::class, 'create'])->name('bill.create');
-    //     Route::post('store', [ControllerBillsManager::class, 'store'])->name('bill.store');
-    //     Route::get('edit/{id}', [ControllerBillsManager::class, 'edit'])->name('bill.edit');
-    //     Route::post('update/{id}', [ControllerBillsManager::class, 'update'])->name('bill.update');
-    //     Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
-    //     Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
-    // });
+    Route::prefix('bill')->group(function () {
+        Route::get('/', [ControllerBillsManager::class, 'index'])->name('bill.table');
+        Route::get('create', [ControllerBillsManager::class, 'create'])->name('bill.create');
+        Route::post('store', [ControllerBillsManager::class, 'store'])->name('bill.store');
+        Route::get('edit/{id}', [ControllerBillsManager::class, 'edit'])->name('bill.edit');
+        Route::post('update/{id}', [ControllerBillsManager::class, 'update'])->name('bill.update');
+        Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
+        Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
+    });
 });
