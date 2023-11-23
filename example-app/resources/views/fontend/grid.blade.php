@@ -50,18 +50,11 @@
                                             </figure><!-- End .product-media -->
 
                                             <div class="product-body">
-                                                <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil
-                                                        skirt</a></h3><!-- End .product-title -->
+                                                <h3 class="product-title"><a href="product.html">{{ $product->name }}</a>
+                                                </h3><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    $60.00
+                                                    {{ number_format($product->price) }} VND
                                                 </div><!-- End .product-price -->
-                                                <div class="ratings-container">
-                                                    <div class="ratings">
-                                                        <div class="ratings-val" style="width: 20%;"></div>
-                                                        <!-- End .ratings-val -->
-                                                    </div><!-- End .ratings -->
-                                                    <span class="ratings-text">( 2 Reviews )</span>
-                                                </div><!-- End .rating-container -->
                                             </div><!-- End .product-body -->
                                         </div><!-- End .product -->
                                     </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->

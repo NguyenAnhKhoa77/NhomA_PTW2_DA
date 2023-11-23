@@ -36,11 +36,12 @@ Route::prefix('/')->group(function () {
         Route::delete('/remove/{product}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
     });
     Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
-    Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
     Route::get('contact', [ControllerView::class, 'contact'])->name('contact');
     Route::post('contact', [ControllerView::class, 'contactForm'])->name('contact');
+
     Route::prefix('grid')->group(function () {
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
+        Route::get('search/', [ControllerGridPage::class, 'search'])->name('search');
     });
 });
 Route::prefix('login')->group(function () {
@@ -50,7 +51,6 @@ Route::prefix('login')->group(function () {
     Route::post('login', [ControllerUser::class, 'Login'])->name('login');
     Route::post('logout', [ControllerUser::class, 'Logout'])->name('logout');
 });
-Route::get('search', [ControllerView::class, 'getSearch'])->name('search');
 
 Route::prefix('/account')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');

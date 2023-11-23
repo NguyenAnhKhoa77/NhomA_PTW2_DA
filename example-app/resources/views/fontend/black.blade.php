@@ -72,8 +72,8 @@
                             <form action="{{ route('search') }}" method="get">
                                 <div class="header-search-wrapper search-wrapper-wide">
                                     <label for="q" class="sr-only">Tìn kiếm</label>
-                                    <input type="search" class="form-control" name="key" id="q"
-                                        placeholder="Search product ..." required>
+                                    <input type="search" class="form-control" name="name" id="q"
+                                        placeholder="Search product ...">
                                     <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                                 </div><!-- End .header-search-wrapper -->
                             </form>
