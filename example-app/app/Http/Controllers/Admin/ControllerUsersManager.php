@@ -48,17 +48,35 @@ class ControllerUsersManager extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $user = Account::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, $id)
+{
+    $user = Account::findOrFail($id);
+        $request->validate([
+            'name' => 'required|string|min:2|regex:/^[^\s]+(\s[^\s]+)*$/',
+    'phone' => 'required|regex:/^0[0-9]{9}$/',
+    'address' => 'required|string|min:2',
+    'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $user->update([
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatarPath = $avatar->storeAs('avatars', $user->id . '.' . $avatar->getClientOriginalExtension(), 'public');
+            $user->update(['avatar' => $avatarPath]);
+        }
+
+        return redirect()->route('users.edit', $user)->with('success', 'User information updated successfully.');
     }
 
     /**

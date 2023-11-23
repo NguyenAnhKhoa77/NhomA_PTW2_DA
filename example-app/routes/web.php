@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\ControllerManufacturersManager;
 use App\Http\Controllers\Admin\ControllerProductManager;
 use App\Http\Controllers\Admin\ControllerUsersManager;
 use App\Http\Controllers\ControllerUser;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,8 @@ Route::prefix('/')->group(function () {
     Route::get('account', [ControllerView::class, 'account'])->name('account');
     Route::get('wishlist', [ControllerView::class, 'wishlist'])->name('wishlist');
     Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
-    Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
+    Route::post('/product/{id}/review', 'ProductReviewController@store')->name('product.review');
+    Route::get('/search', [ProductController::class, 'search'])->name('search');
 
 
 });
@@ -49,6 +52,9 @@ Route::prefix('admin')->group(function () {
         Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
         Route::post('edit_handle/{id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
+        Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submit.form');
+        Route::get('/users/{user}/edit', [ControllerUsersManager::class, 'edit'])->name('users.edit');
+        Route::put('/users/{user}', [ControllerUsersManager::class, 'update'])->name('users.update');
     });
     Route::prefix('category')->group(function () {
         Route::get('/', [ControllerCategoryManager::class, 'index'])->name('category.table');
