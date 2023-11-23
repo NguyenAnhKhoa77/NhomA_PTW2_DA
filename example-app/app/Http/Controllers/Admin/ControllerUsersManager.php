@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
+
 class ControllerUsersManager extends Controller
 {
     /**
@@ -38,7 +39,7 @@ class ControllerUsersManager extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|unique:users,email',
-                'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
+                'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
             ]);
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -90,37 +91,38 @@ class ControllerUsersManager extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $user = Account::findOrFail($id);
+    {
+        $user = Account::findOrFail($id);
         $request->validate([
             'name' => 'required|string|min:2|regex:/^[^\s]+(\s[^\s]+)*$/',
-    'phone' => 'required|regex:/^0[0-9]{9}$/',
-    'address' => 'required|string|min:2',
-    'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'phone' => 'required|regex:/^0[0-9]{9}$/',
+            'address' => 'required|string|min:2',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-    {
-        // Validate dữ liệu
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => [
-                'required',
-                'email',
-                Rule::unique('users')->ignore($id), // Unique, ngoại trừ user hiện tại
-            ],
-            'password' => 'nullable|string|min:8', // Có thể thay đổi các quy tắc validate cho password
-            // Thêm các quy tắc validate cho các trường khác nếu cần
-        ]);
+        {
+            // Validate dữ liệu
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => [
+                    'required',
+                    'email',
+                    Rule::unique('users')->ignore($id), // Unique, ngoại trừ user hiện tại
+                ],
+                'password' => 'nullable|string|min:8', // Có thể thay đổi các quy tắc validate cho password
+                // Thêm các quy tắc validate cho các trường khác nếu cần
+            ]);
 
             $user->update([
-            'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
-            'address' => $request->input('address'),
-        ]);
+                'name' => $request->input('name'),
+                'phone' => $request->input('phone'),
+                'address' => $request->input('address'),
+            ]);
 
-        if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            $avatarPath = $avatar->storeAs('avatars', $user->id . '.' . $avatar->getClientOriginalExtension(), 'public');
-            $user->update(['avatar' => $avatarPath]);
+            if ($request->hasFile('avatar')) {
+                $avatar = $request->file('avatar');
+                $avatarPath = $avatar->storeAs('avatars', $user->id . '.' . $avatar->getClientOriginalExtension(), 'public');
+                $user->update(['avatar' => $avatarPath]);
+            }
         }
 
         return redirect()->route('users.edit', $user)->with('success', 'User information updated successfully.');

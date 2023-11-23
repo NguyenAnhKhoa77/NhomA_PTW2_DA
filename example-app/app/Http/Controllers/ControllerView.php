@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Contact;
 use App\Models\Manufacturers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ControllerView extends Controller
@@ -114,7 +116,13 @@ class ControllerView extends Controller
                 'price' => $product->price,
             ];
         }
-
+        // Lấy người dùng hiện tại
+        $user = Auth::user();
+        if ($user->wishlists()->where('product_id', $product->id)->exists()) {
+            Wishlist::where('user_id', Auth::id())
+                ->where('product_id', $product->id)
+                ->delete();
+        }
         $request->session()->put('cart', $cart);
 
         return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');

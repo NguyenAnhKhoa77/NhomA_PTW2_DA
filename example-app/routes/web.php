@@ -66,6 +66,7 @@ Route::prefix('login')->group(function () {
 
 Route::prefix('/account')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
+    Route::post('/update-profile/{account}', [UserProfileController::class, 'updateProfile'])->name('update.profile');
     Route::get('/address', [UserProfileController::class, 'address'])->name('address');
     Route::get('/orders', [UserProfileController::class, 'orders'])->name('orders');
     Route::get('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
