@@ -28,9 +28,7 @@ Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
     Route::get('product/{id}', [ControllerView::class, 'product'])->name('product');
     Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
-    Route::prefix('grid')->group(function () {
-        Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
-    });
+
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
     Route::prefix('wishlist')->group(function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
@@ -41,6 +39,9 @@ Route::prefix('/')->group(function () {
     Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
     Route::get('contact', [ControllerView::class, 'contact'])->name('contact');
     Route::post('contact', [ControllerView::class, 'contactForm'])->name('contact');
+    Route::prefix('grid')->group(function () {
+        Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
+    });
 });
 Route::prefix('login')->group(function () {
     Route::get('/', [ControllerUser::class, 'LoginView'])->name('login.view');

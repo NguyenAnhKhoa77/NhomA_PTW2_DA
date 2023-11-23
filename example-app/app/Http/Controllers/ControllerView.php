@@ -14,10 +14,6 @@ class ControllerView extends Controller
         return view('fontend.index', compact('products'));
     }
 
-    public function grid()
-    {
-        return view('fontend.grid');
-    }
 
     public function product($id)
     {
