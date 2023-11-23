@@ -14,10 +14,24 @@ class ControllerManufacturersManager extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $manufacturer = Manufacturers::orderBy('created_at', 'desc')->paginate(10);
+        //bắt đầu câu truy vấn với query
+        $query = Manufacturers::query();
+
+        if ($request->submit == 2) {
+            // Sắp xếp
+            $sortOrder = $request->sort == 2 ? 'desc' : 'asc';
+            $query->orderBy('name', $sortOrder);
+        }
+        if ($request->submit == 1) {
+            // Tìm kiếm
+            $keyword = $request->keyword;
+            $query->when($keyword, function ($q) use ($keyword) {
+                return $q->where('name', 'like', "%$keyword%");
+            });
+        }
+        $manufacturer = $query->paginate(10);
         return view('backend.manufacturer.table', compact('manufacturer'));
     }
 
@@ -103,7 +117,6 @@ class ControllerManufacturersManager extends Controller
             return redirect()->route('manufacture.table')->with('success', 'Cập nhật thành công');
         }
         return back();
-        
     }
 
     /**

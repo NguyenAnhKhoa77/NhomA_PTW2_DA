@@ -13,12 +13,28 @@ class ControllerCategoryManager extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = Categories::query();
 
-        $categories = Categories::latest()->paginate(10);
+        if ($request->submit == 2) {
+            // Sắp xếp
+            $sortOrder = $request->sort == 2 ? 'desc' : 'asc';
+            $query->orderBy('name', $sortOrder);
+        }
+        if ($request->submit == 1) {
+            // Tìm kiếm
+            $keyword = $request->keyword;
+            $query->when($keyword, function ($q) use ($keyword) {
+                return $q->where('name', 'like', "%$keyword%");
+            });
+        }
+
+        $categories = $query->paginate(10);
+
         return view('backend.category.table', compact('categories'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -96,17 +112,17 @@ class ControllerCategoryManager extends Controller
      */
     public function destroy(string $id)
     {
-            $cate = Categories::find($id);
-            if (!$cate) {
-                return redirect()->route('category.table')->with('error', 'Category does not exist!');
-            }
-            $product = Product::where('categories_id', $id)->get();
-            if ($product->count() == 0) {
-                $cate->delete();
-                //Quay lại trang trước đó
-                return redirect()->route('category.table')->withSuccess('Category was deleted!');
-            } else {
-                return redirect()->route('category.table')->with('error', 'Cannot delete this category!');
-            }
+        $cate = Categories::find($id);
+        if (!$cate) {
+            return redirect()->route('category.table')->with('error', 'Category does not exist!');
+        }
+        $product = Product::where('categories_id', $id)->get();
+        if ($product->count() == 0) {
+            $cate->delete();
+            //Quay lại trang trước đó
+            return redirect()->route('category.table')->withSuccess('Category was deleted!');
+        } else {
+            return redirect()->route('category.table')->with('error', 'Cannot delete this category!');
+        }
     }
 }

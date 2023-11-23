@@ -3,51 +3,48 @@
     <div class="mt-3"></div>
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col">
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">General</h3>
-
+        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">General</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="inputName">Name</label>
+                                <input type="text" name="name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName">Email</label>
+                                <input type="text" name="email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDescription">Phone</label>
+                                <input type="text" name="phone" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDescription">Address</label>
+                                <input type="text" name="address" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDescription">Image</label>
+                                <input type="file" name="image" accept="image/png, image/jpg, image/jpeg"
+                                    class=" form-control-file">
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputName">Project Name</label>
-                            <input type="text" id="inputName" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDescription">Project Description</label>
-                            <textarea id="inputDescription" class="form-control" rows="4"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputStatus">Status</label>
-                            <select id="inputStatus" class="form-control custom-select">
-                                <option selected disabled>Select one</option>
-                                <option>On Hold</option>
-                                <option>Canceled</option>
-                                <option>Success</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputClientCompany">Client Company</label>
-                            <input type="text" id="inputClientCompany" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputProjectLeader">Project Leader</label>
-                            <input type="text" id="inputProjectLeader" class="form-control">
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
+                    <!-- /.card -->
                 </div>
-                <!-- /.card -->
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <a href="#" class="btn btn-secondary">Cancel</a>
-                <input type="submit" value="Create new Project" class="btn btn-success float-right">
+            <div class="row">
+                <div class="col-12">
+                    <input type="submit" value="Create new user" class="btn btn-success float-right">
+                </div>
             </div>
-        </div>
+        </form>
     </section>
     <!-- /.content -->
 @endsection
