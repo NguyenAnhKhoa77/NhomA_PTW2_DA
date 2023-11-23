@@ -32,7 +32,6 @@ Route::prefix('/')->group(function () {
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
     });
     Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
-    Route::get('account', [ControllerView::class, 'account'])->name('account');
     Route::prefix('wishlist')->group(function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
         Route::get('/add/{product}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
@@ -44,12 +43,13 @@ Route::prefix('/')->group(function () {
     Route::post('contact', [ControllerView::class, 'contactForm'])->name('contact');
 });
 Route::prefix('login')->group(function () {
-    Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');
+    Route::get('/', [ControllerUser::class, 'LoginView'])->name('login.view');
+    Route::get('register', [ControllerUser::class, 'RegisterView'])->name('register.view');
     Route::post('register', [ControllerUser::class, 'Register'])->name('register');
-    Route::any('logout', [ControllerUser::class, 'Logout'])->name('logout');
-    Route::any('login', [ControllerUser::class, 'Login'])->name('login');
-    Route::get('search', [ControllerView::class, 'getSearch'])->name('search');
+    Route::post('login', [ControllerUser::class, 'Login'])->name('login');
+    Route::post('logout', [ControllerUser::class, 'Logout'])->name('logout');
 });
+Route::get('search', [ControllerView::class, 'getSearch'])->name('search');
 
 Route::prefix('/account')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
@@ -58,7 +58,7 @@ Route::prefix('/account')->group(function () {
     Route::post('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
 });
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
     Route::prefix('product')->group(function () {
@@ -66,7 +66,7 @@ Route::prefix('admin')->group(function () {
         Route::get('create', [ControllerProductManager::class, 'create'])->name('product.create');
         Route::post('create', [ControllerProductManager::class, 'create_handler'])->name('product.create.handle');
         Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
-        Route::post('edit/{id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
+        Route::post('edit/{token_id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
     });
     Route::prefix('category')->group(function () {

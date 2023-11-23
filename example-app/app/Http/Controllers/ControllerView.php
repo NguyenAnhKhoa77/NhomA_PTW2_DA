@@ -27,10 +27,6 @@ class ControllerView extends Controller
             return view('fontend.404');
         }
     }
-    public function account()
-    {
-        return view('fontend.account');
-    }
     public function checkout()
     {
         return view('fontend.checkout');

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserProfileController extends Controller
 {
@@ -12,10 +14,12 @@ class UserProfileController extends Controller
         return view('fontend.account.profile');
     }
 
-    public function address() {
+    public function address()
+    {
         return view('fontend.account.address');
     }
-    public function orders() {
+    public function orders()
+    {
         return view('fontend.account.orders');
     }
 
@@ -31,9 +35,8 @@ class UserProfileController extends Controller
         if (!Hash::check($request->current_password, $user->password)) {
             return redirect()->back()->withErrors(['current_password' => 'Mật khẩu hiện tại không đúng']);
         }
-
         $user->password = Hash::make($request->new_password);
-        $user->save();
+        // $user->save();
 
         return redirect()->back()->with('success', 'Mật khẩu đã được thay đổi thành công!');
     }

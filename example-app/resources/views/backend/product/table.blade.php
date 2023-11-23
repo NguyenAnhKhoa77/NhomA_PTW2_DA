@@ -27,26 +27,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-
-                            <td>nonono</td>
-
-                            <td class="project-actions text-right">
-
-                                <form method="get" action="{{ route('product.delete', 99999999999999) }}">
-                                    @csrf
-                                    <button type="submit">
-                                        <a class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Delete
-                                        </a>
-                                    </button>
-                                </form>
-
-                            </td>
-                        </tr>
                         @foreach ($products as $product)
                             <tr>
                                 <td> <img style="width: 50px" src="{{ url('images/products/' . $product->image, []) }}"
@@ -67,25 +47,36 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <form method="get" action="{{ route('product.delete', [$product]) }}">
+                                    <form id="delete-form{{ $product->id }}"
+                                        action="{{ route('product.delete', [$product]) }}" method="get"
+                                        style="display: none;">
                                         @csrf
-                                        <button type="submit">
-                                            <a class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </a>
-                                        </button>
+                                        <button type="submit" onclick="">Delete</button>
                                     </form>
 
+                                    <a class="btn btn-danger btn-sm"
+                                        onclick="confirmDelete{{ $product->id }}(event)">Delete</a>
                                 </td>
+                                <script>
+                                    function confirmDelete{{ $product->id }}(event) {
+                                        event.preventDefault();
+
+                                        if (confirm('Bạn có chắc chắn muốn xóa không?')) {
+                                            document.getElementById('delete-form{{ $product->id }}')
+                                                .submit();
+                                        } else {
+                                            // Hủy xóa nếu người dùng chọn Cancel trong hộp thoại xác nhận
+                                            return false;
+                                        }
+                                    }
+                                </script>
                             </tr>
                         @endforeach
 
                     </tbody>
                 </table> {{ $products->links('pagination::bootstrap-5') }}
                 </table>
+
             </div>
             <!-- /.card-body -->
         </div>

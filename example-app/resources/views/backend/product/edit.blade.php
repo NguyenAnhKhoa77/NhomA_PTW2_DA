@@ -8,7 +8,7 @@
                 <h3 class="card-title">Edit product</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('product.edit.handle', $product->id) }}" id="editForm" method="POST"
+                <form action="{{ route('product.edit.handle', [$product->unique_token]) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
@@ -41,7 +41,6 @@
                                     <option value="{{ $cate->id }}">{{ $cate->name }}</option>
                                 @endif
                             @endforeach
-                            <option value="9999999999999">no</option>
                         </select>
                         @error('cate')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -57,7 +56,6 @@
                                     <option value="{{ $manu->id }}">{{ $manu->name }}</option>
                                 @endif
                             @endforeach
-                            <option value="9999999999999">no</option>
                         </select>
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>

@@ -16,6 +16,7 @@ class Product extends Model
         'manufacturer_id',
         'categories_id',
         'sex',
+        'unique_token',
         'inventory',
 
     ];

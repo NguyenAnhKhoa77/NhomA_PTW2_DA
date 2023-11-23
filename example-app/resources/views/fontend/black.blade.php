@@ -38,10 +38,17 @@
                                             <li><a href="{{ route('dashboard') }}">ADMIN</a></li>
                                         @endif
                                         <li>
-                                            <a href="{{ route('logout') }}">Logout</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                style="display: none;">
+                                                @csrf
+                                                <button type="submit">Logout</button>
+                                            </form>
+
+                                            <a href="#"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                         </li>
                                     @else
-                                        <li><a href="{{ route('loginview') }}">Đăng nhập / Đăng ký</a></li>
+                                        <li><a href="{{ route('login.view') }}">Đăng nhập / Đăng ký</a></li>
                                     @endif
 
                                 </ul>
