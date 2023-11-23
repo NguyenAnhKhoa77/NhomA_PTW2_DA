@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
+use App\Models\Manufacturers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,9 +12,10 @@ class ControllerGridPage extends Controller
 
     public function index()
     {
+        $categories = Categories::all();
         $productsAllCount = Product::count();
         $products  = Product::orderBy('created_at', 'desc')->paginate(9);
-        return view('fontend.grid', compact('products', 'productsAllCount'));
+        return view('fontend.grid', compact('products', 'categories', 'manufacturers'));
     }
     public function search(Request $request)
     {
@@ -36,9 +39,10 @@ class ControllerGridPage extends Controller
         if ($request->has('price_min')) {
             $products->where('price', '<=', $request->price_min);
         }
-        $productsAllCount = $products->count();
-        $products = $products->paginate(9);
 
-        return view('fontend.grid', compact('products', 'productsAllCount'));
+        $products = $products->paginate(9);
+        $categories = Categories::all();
+        $manufacturers = Manufacturers::all();
+        return view('fontend.grid', compact('products', 'categories', 'manufacturers'));
     }
 }
