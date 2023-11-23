@@ -17,7 +17,10 @@ class ControllerView extends Controller
             ->limit(6)
             ->get();
         $products = Product::with('sex')->take(6)->get();
-        return view('fontend.index', compact('products', 'productsNew'));
+        $productsMale = Product::where('sex','like','1')->take(6)->get();
+        $productsFemale = Product::where('sex','like','2')->take(6)->get();
+        $productsAccessory = Product::where('categories_id','like',6)->take(6)->get();
+        return view('fontend.index', compact('products', 'productsNew','productsMale','productsFemale','productsAccessory'));
     }
 
 
