@@ -60,12 +60,13 @@
                     </div><!-- End .col-lg-9 -->
                     <aside class="col-lg-3 order-lg-first">
                         <div class="sidebar sidebar-shop">
-                            <form action="">
+                            <form action="{{ route('search') }}" method="get">
                                 <div class="widget widget-clean">
                                     <label>Filters:</label>
-                                    <a href="#" class="sidebar-filter-clear">Clean All</a>
-                                </div><!-- End .widget widget-clean -->
 
+                                </div><!-- End .widget widget-clean -->
+                                <input type="search" class="form-control" name="name" id="q"
+                                    placeholder="Search product ...">
                                 <div class="widget widget-collapsible">
                                     <h3 class="widget-title">
                                         <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true"
@@ -79,76 +80,15 @@
                                             <div class="filter-items filter-items-count">
                                                 @foreach ($categories as $category)
                                                     <div class="filter-item">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                id="cat-1">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                name="category" id="cat-{{ $category->id }}"
+                                                                value="{{ $category->id }}">
                                                             <label class="custom-control-label"
-                                                                for="cat-1">Dresses</label>
-                                                        </div><!-- End .custom-checkbox -->
-                                                        <span class="item-count">3</span>
-                                                    </div><!-- End .filter-item -->
+                                                                for="cat-{{ $category->id }}">{{ $category->name }}</label>
+                                                        </div><!-- End .custom-radio -->
+                                                    </div>
                                                 @endforeach
-                                            </div><!-- End .filter-items -->
-                                        </div><!-- End .widget-body -->
-                                    </div><!-- End .collapse -->
-                                </div><!-- End .widget -->
-
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">
-                                        <a data-toggle="collapse" href="#widget-2" role="button" aria-expanded="true"
-                                            aria-controls="widget-2">
-                                            Size
-                                        </a>
-                                    </h3><!-- End .widget-title -->
-
-                                    <div class="collapse show" id="widget-2">
-                                        <div class="widget-body">
-                                            <div class="filter-items">
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="size-1">
-                                                        <label class="custom-control-label" for="size-1">XS</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="size-2">
-                                                        <label class="custom-control-label" for="size-2">S</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" checked
-                                                            id="size-3">
-                                                        <label class="custom-control-label" for="size-3">M</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" checked
-                                                            id="size-4">
-                                                        <label class="custom-control-label" for="size-4">L</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="size-5">
-                                                        <label class="custom-control-label" for="size-5">XL</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="size-6">
-                                                        <label class="custom-control-label" for="size-6">XXL</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
                                             </div><!-- End .filter-items -->
                                         </div><!-- End .widget-body -->
                                     </div><!-- End .collapse -->
@@ -166,14 +106,25 @@
                                             <div class="filter-price">
                                                 <div class="filter-price-text">
                                                     Price Range:
-                                                    <span id="filter-price-range"></span>
                                                 </div><!-- End .filter-price-text -->
+                                                @foreach ($priceranges as $pricerange)
+                                                    <div class="filter-item">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                name="pricerange" id="pri-{{ $pricerange->id }}"
+                                                                value="{{ $pricerange->id }}">
+                                                            <label class="custom-control-label"
+                                                                for="pri-{{ $pricerange->id }}">{{ $pricerange->price_min }}
+                                                                - {{ $pricerange->price_max }}</label>
+                                                        </div><!-- End .custom-radio -->
+                                                    </div>
+                                                @endforeach
 
-                                                <div id="price-slider"></div><!-- End #price-slider -->
                                             </div><!-- End .filter-price -->
                                         </div><!-- End .widget-body -->
                                     </div><!-- End .collapse -->
                                 </div><!-- End .widget -->
+                                <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                             </form>
                         </div><!-- End .sidebar sidebar-shop -->
                     </aside><!-- End .col-lg-3 -->

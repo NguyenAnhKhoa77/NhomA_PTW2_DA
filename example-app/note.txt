@@ -21,7 +21,7 @@ php artisan make:auth: Tạo các chức năng đăng nhập, đăng ký và qu�
 php artisan make:migration create_flights_table : Tạo migrate mới
 
 php artisan db:seed : chạy seed
-
+php artisan make:seeder UserSeeder : tạo 1 seeder
 php artisan migrate:fresh --seed
 Link tài liệu:
 https://docs.google.com/spreadsheets/d/1rn7PdS-HmvtroBQM_6D9SkE94jIGRKv07psYBa-fdrU/
