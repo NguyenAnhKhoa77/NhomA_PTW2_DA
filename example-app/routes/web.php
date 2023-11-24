@@ -40,6 +40,7 @@ Route::prefix('/')->group(function () {
     Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
     Route::get('contact', [ControllerView::class, 'contact'])->name('contact');
     Route::post('contact', [ControllerView::class, 'contactForm'])->name('contact');
+    Route::post('comment', [ControllerView::class, 'comment'])->name('comment');
 
     Route::prefix('grid')->group(function () {
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');

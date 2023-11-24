@@ -127,10 +127,7 @@ class ControllerUsersManager extends Controller
 
         return redirect()->route('users.edit', $user)->with('success', 'User information updated successfully.');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+}
     public function destroy(string $id)
     {
         if (!$user = User::find($id)) {

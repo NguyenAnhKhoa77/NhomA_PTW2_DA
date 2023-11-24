@@ -6,6 +6,7 @@ use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Contact;
+use App\Models\Comment;
 use App\Models\Manufacturers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,15 +20,30 @@ class ControllerView extends Controller
             ->limit(6)
             ->get();
         $products = Product::with('sex')->take(6)->get();
-        return view('fontend.index', compact('products', 'productsNew'));
+        $productsMale = Product::where('sex','like','1')->take(6)->get();
+        $productsFemale = Product::where('sex','like','2')->take(6)->get();
+        $productsAccessory = Product::where('categories_id','like',6)->take(6)->get();
+        return view('fontend.index', compact('products', 'productsNew','productsMale','productsFemale','productsAccessory'));
+    }
+    
+    public function comment(){
+        $comment = new Comment();
+        $oldId = request('product_id');
+        $newId = decrypt($oldId);   
+        $comment->product_id = $newId;
+        $comment->comment = request('comment');
+        $comment->save();
+        return redirect()->back();
     }
 
 
     public function product($id)
     {
-        if ($data = Product::find($id)) {
+        $newId = decrypt($id);
+        if ($data = Product::find($newId)) {
             $allData = Product::where('categories_id', 'like', '%' . $data->categories_id . '%')->take(6)->get();
-            return view('fontend.product', ['product' => $data], compact('allData'));
+            $allComment = Comment::where('product_id','like',$newId)->get();
+            return view('fontend.product', ['product' => $data], compact('allData','allComment'));
         } else {
             return view('fontend.404');
         }
@@ -73,7 +89,6 @@ class ControllerView extends Controller
 
     public function contactForm()
     {
-        return view('errors.404');
         $contact = new Contact();
         $contact->name = request('name');
         $contact->email = request('email');
