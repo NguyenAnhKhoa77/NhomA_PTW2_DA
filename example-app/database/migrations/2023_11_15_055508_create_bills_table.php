@@ -20,7 +20,8 @@ return new class extends Migration
                 $table->bigInteger('shipping');
                 $table->bigInteger('total');
                 $table->string('phone');
-                $table->boolean('status')->default(false);
+                $table->string('status')->default('pending');
+                $table->tinyInteger('payment_type')->default('0');
                 $table->timestamps();
             });
         }

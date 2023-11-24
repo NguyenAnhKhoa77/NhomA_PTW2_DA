@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ControllerCheckOut;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,13 @@ use App\Http\Controllers\ProductController;
 Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
     Route::get('detail/{id}', [ControllerDetail::class, 'index'])->name('detail');
-    Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
+
+    //Checkout
+    Route::prefix('/check-out')->middleware('auth')->group(function () {
+        Route::get('/', [ControllerCheckOut::class, 'index'])->name('check-out');
+        Route::post('/process-check-out', [ControllerCheckOut::class, 'processCheckout'])->name('process.check-out');
+    });
+
 
     Route::prefix('wishlist')->middleware('auth')->group(function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');

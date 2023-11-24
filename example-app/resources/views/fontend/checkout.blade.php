@@ -4,7 +4,7 @@
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
                     <li class="breadcrumb-item"><a href="#">Shop</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Checkout</li>
                 </ol>
@@ -14,71 +14,84 @@
         <div class="page-content">
             <div class="checkout">
                 <div class="container">
-                    <form action="#">
+                    <form action="{{ route('process.check-out') }}" method="post">
+                        @csrf
                         <div class="row">
-                            <div class="col-lg-9">
-                                <h2 class="checkout-title">Thông tin thanh toán</h2><!-- End .checkout-title -->
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Họ và tên *</label>
-                                        <input type="text" class="form-control" required>
-                                    </div><!-- End .col-sm-6 -->
-                                </div><!-- End .row -->
-
-                                <label>Địa chỉ *</label>
-                                <input type="text" class="form-control" required>
-                                <label>Số điện thoại *</label>
-                                <input type="text" class="form-control" required>
-
-                                <label>Địa chỉ email</label>
-                                <input type="email" class="form-control" required>
-                                <label>Ghi chú</label>
-                                <textarea class="form-control" cols="30" rows="4"
-                                    placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
-                            </div><!-- End .col-lg-9 -->
-                            <aside class="col-lg-3">
+                            <div class="col-lg-6">
+                                <h2 class="checkout-title">Payment Information</h2><!-- End .checkout-title -->
+                                <div class="form-group">
+                                    <label>Họ và tên *</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone *</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" required>
+                                    @if ($errors->has('phone'))
+                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address *</label>
+                                    <input type="text" class="form-control" id="address" name="address" required>
+                                    @if ($errors->has('address'))
+                                        <span class="text-danger">{{ $errors->first('address') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="payment_type" id="payment-type-1" value="0" checked>
+                                    <label class="form-check-label" for="payment-type-1">Cash On Delivery</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="payment_type" id="payment-type-2" value="1">
+                                    <label class="form-check-label" for="payment-type-2">Online Payment</label>
+                                </div>
+                                <input type="hidden" name="user_id" value="{{ session('user_id') }}">
+                                <input type="hidden" name="shipping" value="{{ $totalShippingFees }}">
+                                <input type="hidden" name="total" value="{{ $totalPrices }}">
+                            </div><!-- End .col-lg-6 -->
+                            <aside class="col-lg-6">
                                 <div class="summary">
                                     <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
 
                                     <table class="table table-summary">
                                         <thead>
                                             <tr>
-                                                <th>Sản phẩm</th>
-                                                <th>Giá</th>
+                                                <th>Products</th>
+                                                <th>Prices</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
+                                        @foreach($checkOutProducts as $checkOutProduct)
                                             <tr>
-                                                <td><a href="#">BÁO BA LỖ CHẠY BỘ LEEVY PHẢN QUANG MS87</a></td>
-                                                <td>279.000₫</td>
+                                                <td><a href="#">{{ $checkOutProduct->name }}</a></td>
+                                                <td>{{ number_format($checkOutProduct->price) }} VNĐ</td>
                                             </tr>
-
-                                            <tr>
-                                                <td><a href="#">QUẦN CHẠY BỘ NAM ARSUXEO MS04</a></td>
-                                                <td>299.000₫</td>
-                                            </tr>
+                                        @endforeach
                                             <tr class="summary-subtotal">
-                                                <td>Thành tiền:</td>
-                                                <td>578.000₫</td>
+                                                <td>Sub Total:</td>
+                                                <td>{{ number_format($subTotalPrices) }} VNĐ</td>
                                             </tr><!-- End .summary-subtotal -->
                                             <tr>
-                                                <td>Phí vận chuyển:</td>
-                                                <td>Miễn phí</td>
+                                                <td>Shipping Fee:</td>
+                                                    <td>{{ number_format($totalShippingFees) }} VNĐ</td>
                                             </tr>
                                             <tr class="summary-total">
                                                 <td>Total:</td>
-                                                <td>578.000₫</td>
+                                                <td>{{ number_format($totalPrices) }} VNĐ</td>
                                             </tr><!-- End .summary-total -->
                                         </tbody>
                                     </table><!-- End .table table-summary -->
 
                                     <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
-                                        <span class="btn-text">Đặt hàng</span>
-                                        <span class="btn-hover-text">Tiến hành kiểm tra đơn</span>
+                                        <span class="btn-text">Checkout</span>
+                                        <span class="btn-hover-text">Complete</span>
                                     </button>
                                 </div><!-- End .summary -->
-                            </aside><!-- End .col-lg-3 -->
+                            </aside><!-- End .col-lg-6 -->
                         </div><!-- End .row -->
                     </form>
                 </div><!-- End .container -->
