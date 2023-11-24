@@ -49,7 +49,7 @@ class User extends Authenticatable
         return $this->belongsTo(Account::class, 'id_account');
     }
 
-    public function wishlist()
+    public function wishlists()
     {
         return $this->hasMany(Wishlist::class);
     }

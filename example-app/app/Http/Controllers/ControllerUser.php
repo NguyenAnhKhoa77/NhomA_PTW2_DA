@@ -25,10 +25,14 @@ class ControllerUser extends Controller
         if (Auth::attempt($credentials, $remember)) {
             $userId = Auth::user()->id;
             session()->put('user_id', $userId);
-            return redirect()->route('account');
+            return redirect()->route('home');
         } else {
             return back()->with('error', 'Email hoặc mật khẩu không đúng.');
         }
+    }
+    public function RegisterView()
+    {
+        return view('fontend.register');
     }
     public function Register(Request $request)
     {
@@ -51,9 +55,14 @@ class ControllerUser extends Controller
         $account->delete();
         return back();
     }
-    public function Logout()
+    public function Logout(Request $request)
     {
-        Auth::logout();
-        return redirect()->route('login');
+        Auth::logout(); // Đăng xuất người dùng
+
+        $request->session()->invalidate(); // Invalidates the session
+
+        $request->session()->regenerateToken(); // Regenerates the CSRF token
+
+        return redirect()->route('login.view');
     }
 }

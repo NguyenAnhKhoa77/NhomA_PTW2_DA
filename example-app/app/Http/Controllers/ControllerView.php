@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Contact;
 use App\Models\Manufacturers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ControllerView extends Controller
@@ -20,19 +22,15 @@ class ControllerView extends Controller
         return view('fontend.index', compact('products', 'productsNew'));
     }
 
-    public function grid()
-    {
-        return view('fontend.grid');
-    }
+
     public function product($id)
     {
-        $data = Product::find($id);
-        $allData = Product::where('categories_id', 'like', '%' . $data->categories_id . '%')->take(6)->get();
-        return view('fontend.product', ['product' => $data], compact('allData'));
-    }
-    public function account()
-    {
-        return view('fontend.account');
+        if ($data = Product::find($id)) {
+            $allData = Product::where('categories_id', 'like', '%' . $data->categories_id . '%')->take(6)->get();
+            return view('fontend.product', ['product' => $data], compact('allData'));
+        } else {
+            return view('fontend.404');
+        }
     }
     public function checkout()
     {
@@ -67,12 +65,15 @@ class ControllerView extends Controller
 
         return redirect()->back()->with('success', 'Sản phẩm đã được xóa khỏi giỏ hàng.');
     }
+
     public function contact()
     {
         return view('fontend.contact');
     }
+
     public function contactForm()
     {
+        return view('errors.404');
         $contact = new Contact();
         $contact->name = request('name');
         $contact->email = request('email');
@@ -115,7 +116,13 @@ class ControllerView extends Controller
                 'price' => $product->price,
             ];
         }
-
+        // Lấy người dùng hiện tại
+        $user = Auth::user();
+        if ($user->wishlists()->where('product_id', $product->id)->exists()) {
+            Wishlist::where('user_id', Auth::id())
+                ->where('product_id', $product->id)
+                ->delete();
+        }
         $request->session()->put('cart', $cart);
 
         return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');

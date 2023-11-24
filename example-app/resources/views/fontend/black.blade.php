@@ -1,11 +1,14 @@
-@php use App\Models\User; @endphp
+@php
+    use App\Models\User;
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop - @yield('title')</title>
     <link rel="icon" href="{{ url('images/team/logo.png', []) }}">
     <!-- Plugins CSS File -->
@@ -13,7 +16,8 @@
     <link rel="stylesheet" href="{{ asset('fontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fontend/css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('fontend/css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('ontend/css/jquery.countdown.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontend/css/jquery.countdown.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ asset('fontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('fontend/css/skin-demo-2.css') }}">
@@ -132,10 +136,17 @@
                                             <li><a href="{{ route('dashboard') }}">ADMIN</a></li>
                                         @endif
                                         <li>
-                                            <a href="{{ route('logout') }}">Logout</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                style="display: none;">
+                                                @csrf
+                                                <button type="submit">Logout</button>
+                                            </form>
+
+                                            <a href="#"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                         </li>
                                     @else
-                                        <li><a href="{{ route('loginview') }}">Đăng nhập / Đăng ký</a></li>
+                                        <li><a href="{{ route('login.view') }}">Đăng nhập / Đăng ký</a></li>
                                     @endif
 
                                 </ul>
@@ -171,7 +182,7 @@
                     <div class="header-right">
                         @auth
                             <div class="account">
-                                <a href="{{ route('account') }}" title="My account">
+                                <a href="{{ route('profile') }}" title="My account">
                                     <div class="icon">
                                         <i class="icon-user"></i>
                                     </div>
@@ -472,19 +483,19 @@
     <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
     <!-- Plugins JS File -->
     <!-- Plugins JS File -->
-    <script src="fontend/js/jquery.min.js"></script>
-    <script src="fontend/js/bootstrap.bundle.min.js"></script>
-    <script src="fontend/js/jquery.hoverIntent.min.js"></script>
-    <script src="fontend/js/jquery.waypoints.min.js"></script>
-    <script src="fontend/js/superfish.min.js"></script>
-    <script src="fontend/js/owl.carousel.min.js"></script>
-    <script src="fontend/js/jquery.plugin.min.js"></script>
-    <script src="fontend/js/jquery.magnific-popup.min.js"></script>
-    <script src="fontend/js/jquery.countdown.min.js"></script>
-    <script src="fontend/js/jquery.elevateZoom.min.js"></script>
+    <script src="{{ asset('fontend/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('fontend/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('fontend/js/jquery.hoverIntent.min.js') }}"></script>
+    <script src="{{ asset('fontend/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('fontend/js/superfish.min.js') }}"></script>
+    <script src="{{ asset('fontend/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('fontend/js/jquery.plugin.min.js') }}"></script>
+    <script src="{{ asset('fontend/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('fontend/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('fontend/js/jquery.elevateZoom.min.js') }}"></script>
     <!-- Main JS File -->
-    <script src="fontend/js/main.js"></script>
-    <script src="fontend/js/demo-2.js"></script>
+    <script src="{{ asset('fontend/js/main.js') }}"></script>
+    <script src="{{ asset('fontend/js/demo-2.js') }}"></script>
 </body>
 
 </html>

@@ -129,6 +129,7 @@
                     </div><!-- End .row -->
                 </div><!-- End .product-details-top -->
 
+
                 <div class="product-details-tab">
                     <ul class="nav nav-pills justify-content-center" role="tablist">
                         <li class="nav-item">
@@ -148,7 +149,7 @@
                                 <p>{{ $product['description'] }}</p>
                             </div><!-- End .product-desc-content -->
                         </div><!-- .End .tab-pane -->
-                        <div class="tab-pane fade" id="product-review-tab" role="tabpanel"
+                        <div class="tab-pane fade" id="product-review-tab" role="tabpane2"
                             aria-labelledby="product-review-link">
                             <div class="reviews">
                                 <h3>Reviews (2)</h3>
@@ -213,6 +214,7 @@
                             </div><!-- End .reviews -->
                         </div><!-- .End .tab-pane -->
                     </div><!-- End .tab-content -->
+
                 </div><!-- End .product-details-tab -->
 
                 <h2 class="title text-center mb-4">Sản phẩm liên quan</h2>
