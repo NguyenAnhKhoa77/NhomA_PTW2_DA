@@ -46,8 +46,6 @@ Route::prefix('/')->group(function () {
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
         Route::get('search/', [ControllerGridPage::class, 'search'])->name('search');
     });
-    Route::post('/product/{id}/review', 'ProductReviewController@store')->name('product.review');
-    Route::get('/search', [ProductController::class, 'search'])->name('search');
 
 
     //Thêm sản phẩm vào giỏ hàng

@@ -170,7 +170,7 @@
                             <form action="{{ route('search') }}" method="get">
                                 <div class="header-search-wrapper search-wrapper-wide">
                                     <label for="q" class="sr-only">Tìn kiếm</label>
-                                    <input type="search" class="form-control" name="key" id="q"
+                                    <input type="search" class="form-control" name="name" id="q"
                                         placeholder="Search product ..." required>
                                     <button class="btn btn-primary" type="submit"><i
                                             class="icon-search"></i></button>
