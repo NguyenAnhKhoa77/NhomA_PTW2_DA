@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
-use App\Models\Comment;
+use App\Models\Comments;
 
 
 class ControllerComment extends Controller
@@ -38,14 +38,14 @@ class ControllerComment extends Controller
             'comment' => 'required',
         ]);
 
-        Comment::create($request->all());
+        Comments::create($request->all());
 
         return redirect()->route('backend.comment.index')->with('success', 'Comment created successfully.');
     }
 
     public function edit($id)
     {
-        $comment = Comment::findOrFail($id);
+        $comment = Comments::findOrFail($id);
         return view('backend.comment.edit', compact('comment'));
     }
 
@@ -56,7 +56,7 @@ class ControllerComment extends Controller
     'comment' => 'required|max:255',
         ]);
 
-        $comment = Comment::findOrFail($id);
+        $comment = Comments::findOrFail($id);
         $comment->update($request->all());
 
         return redirect()->route('comments.index')->with('success', 'Comment updated successfully.');
@@ -64,7 +64,7 @@ class ControllerComment extends Controller
 
     public function destroy($id)
     {
-        $comment = Comment::findOrFail($id);
+        $comment = Comments::findOrFail($id);
         $comment->delete();
 
         return redirect()->route('backend.comment.index')->with('success', 'Comment deleted successfully.');
@@ -72,7 +72,7 @@ class ControllerComment extends Controller
 
     public function show($id)
     {
-        $comment = Comment::findOrFail($id);
+        $comment = Comments::findOrFail($id);
         return view('backend.comment.show', compact('comment'));
     }
 }

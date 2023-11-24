@@ -152,9 +152,5 @@ Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
             Route::get('show/{id}', [ControllerComment::class, 'show'])->name('comments.show');
             Route::get('/products/{product_name}', [ProductController::class, 'show'])->name('product.show');
         });
-
-
     });
-});
-
 });

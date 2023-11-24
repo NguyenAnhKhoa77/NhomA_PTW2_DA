@@ -249,21 +249,24 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('manufacture.table') }}" class="nav-link {{ Route::currentRouteName() == 'manufacture.table' || Route::currentRouteName() == 'manufacture.create' || Route::currentRouteName() == 'manufacture.edit' ? 'active' : '' }}">
+                            <a href="{{ route('manufacture.table') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'manufacture.table' || Route::currentRouteName() == 'manufacture.create' || Route::currentRouteName() == 'manufacture.edit' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Nhãn hàng
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('category.table') }}" class="nav-link {{ Route::currentRouteName() == 'category.table' || Route::currentRouteName() == 'category.create' || Route::currentRouteName() == 'category.edit' ? 'active' : '' }}">
+                            <a href="{{ route('category.table') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'category.table' || Route::currentRouteName() == 'category.create' || Route::currentRouteName() == 'category.edit' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Loại sản phẩm
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('comments.index') }}" class="nav-link {{ Route::currentRouteName() == 'category.table' || Route::currentRouteName() == 'category.create' || Route::currentRouteName() == 'category.edit' ? 'active' : '' }}">
+                            <a href="{{ route('comments.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'comments.table' || Route::currentRouteName() == 'comments.create' || Route::currentRouteName() == 'comments.edit' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Bình luận
                                 </p>
