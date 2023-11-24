@@ -22,12 +22,12 @@ class WishlistController extends Controller
 
     public function addToWishlist(Request $request, Product $product)
     {
-        Wishlist::firstOrCreate([
+        $wishlist = Wishlist::firstOrCreate([
             'user_id' => Auth::id(),
             'product_id' => $product->id,
         ]);
 
-        return back()->with('success', 'This product was added to wishlist!');
+        return back()->with('success', 'Sản phẩm đã được thêm vào Wishlist!');
     }
 
     public function removeFromWishlist(Request $request, Product $product)
@@ -36,6 +36,6 @@ class WishlistController extends Controller
             ->where('product_id', $product->id)
             ->delete();
 
-        return back()->with('success', 'This product was removed from wishlist!!');
+        return back()->with('success', 'Sản phẩm đã được xóa khỏi Wishlist!');
     }
 }

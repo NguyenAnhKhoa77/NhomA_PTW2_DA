@@ -23,7 +23,7 @@ class SexsSeeder extends Seeder
         ]);
 
         DB::table('sexes')->insert([
-            'text' => 'Phụ kiện',
+            'text' => 'Tất cả',
         ]);
     }
 }

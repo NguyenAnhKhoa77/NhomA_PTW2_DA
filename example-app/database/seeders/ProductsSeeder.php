@@ -20,7 +20,6 @@ class ProductsSeeder extends Seeder
             'price' => 30000,
             'manufacturer_id' => 1,
             'categories_id' => 5,
-            'unique_token' => '1',
             'sex' => 1,
             'inventory' => 10,
         ]);
@@ -32,7 +31,6 @@ class ProductsSeeder extends Seeder
             'price' => 200000,
             'manufacturer_id' => 2,
             'categories_id' => 2,
-            'unique_token' => '2',
             'sex' => 1,
             'inventory' => 10,
         ]);
@@ -44,7 +42,6 @@ class ProductsSeeder extends Seeder
             'price' => 100000,
             'manufacturer_id' => 3,
             'categories_id' => 5,
-            'unique_token' => '3',
             'sex' => 2,
             'inventory' => 10,
         ]);
@@ -56,7 +53,6 @@ class ProductsSeeder extends Seeder
             'price' => 500000,
             'manufacturer_id' => 3,
             'categories_id' => 6,
-            'unique_token' => '4',
             'sex' => 1,
             'inventory' => 10,
         ]);
@@ -68,7 +64,6 @@ class ProductsSeeder extends Seeder
             'price' => 300000,
             'manufacturer_id' => 1,
             'categories_id' => 5,
-            'unique_token' => '5',
             'sex' => 1,
             'inventory' => 10,
         ]);
@@ -80,7 +75,6 @@ class ProductsSeeder extends Seeder
             'price' => 30000,
             'manufacturer_id' => 4,
             'categories_id' => 6,
-            'unique_token' => '6',
             'sex' => 1,
             'inventory' => 10,
         ]);
@@ -92,7 +86,6 @@ class ProductsSeeder extends Seeder
             'price' => 30000,
             'manufacturer_id' => 3,
             'categories_id' => 6,
-            'unique_token' => '7',
             'sex' => 3,
             'inventory' => 10,
         ]);
@@ -104,7 +97,6 @@ class ProductsSeeder extends Seeder
             'price' => 30000,
             'manufacturer_id' => 5,
             'categories_id' => 6,
-            'unique_token' => '8',
             'sex' => 3,
             'inventory' => 10,
         ]);
@@ -118,7 +110,6 @@ class ProductsSeeder extends Seeder
             'price' => 220000,
             'manufacturer_id' => 5,
             'categories_id' => 6,
-            'unique_token' => '9',
             'sex' => 2,
             'inventory' => 10,
         ]);
@@ -129,7 +120,6 @@ class ProductsSeeder extends Seeder
             'price' => 30000,
             'manufacturer_id' => 5,
             'categories_id' => 5,
-            'unique_token' => '10',
             'sex' => 3,
             'inventory' => 10,
         ]);
@@ -140,7 +130,6 @@ class ProductsSeeder extends Seeder
             'price' => 298000,
             'manufacturer_id' => 3,
             'categories_id' => 5,
-            'unique_token' => '14',
             'sex' => 2,
             'inventory' => 10,
         ]);
@@ -151,7 +140,6 @@ class ProductsSeeder extends Seeder
             'price' => 30000,
             'manufacturer_id' => 5,
             'categories_id' => 6,
-            'unique_token' => '11',
             'sex' => 1,
             'inventory' => 10,
         ]);
@@ -162,7 +150,6 @@ class ProductsSeeder extends Seeder
             'price' => 30000,
             'manufacturer_id' => 5,
             'categories_id' => 4,
-            'unique_token' => '12',
             'sex' => 3,
             'inventory' => 10,
         ]);

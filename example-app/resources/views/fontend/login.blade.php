@@ -56,22 +56,16 @@
                                         <label for="singin-email-2">Tài khoản
                                             <span style="color: red">*</span>
                                         </label>
-                                        <input type="text" class="form-control  @error('email') is-invalid @enderror"
-                                            id="singin-email-2" name="email" required>
-                                        @error('email')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="text" class="form-control" id="singin-email-2" name="email"
+                                            required>
                                     </div><!-- End .form-group -->
 
                                     <div class="form-group">
                                         <label for="singin-password-2">Mật khẩu
                                             <span style="color: red">*</span>
                                         </label>
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                            id="singin-password-2" name="password" required>
-                                        @error('password')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <input type="password" class="form-control" id="singin-password-2" name="password"
+                                            required>
                                     </div><!-- End .form-group -->
 
                                     <div class="form-footer">
@@ -81,10 +75,12 @@
                                         </button>
 
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="signin-remember-2">
+                                            <input type="checkbox" name="remember" class="custom-control-input"
+                                                id="signin-remember-2">
                                             <label class="custom-control-label" for="signin-remember-2">Ghi nhớ đăng
                                                 nhập</label>
                                         </div><!-- End .custom-checkbox -->
+
                                         <a href="#" class="forgot-link">Quên mật khẩu?</a>
                                     </div><!-- End .form-footer -->
                                 </form>
@@ -92,7 +88,7 @@
 
                             {{-- register form --}}
                             <div class="tab-pane fade " id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
-                                <form action="{{ route('register') }}" method="POST" id="myForm">
+                                <form action="{{ route('register') }}" method="POST">
                                     @csrf
                                     <div class="form-group">
                                         <label for="register-email-2">Địa chỉ email
@@ -116,47 +112,15 @@
                                         </label>
                                         <input type="password" class="form-control" id="register-password-confirmation"
                                             name="password_confirmation" required>
-                                    </div><!-- End .form-group -->
-
-                                    {{-- <div class="form-group">
-                                        <label for="register-password-2">Tên người dùng
-                                            <span style="color: red">*</span>
-                                        </label>
-                                        <input type="text" class="form-control" id="register-name" name="name"
-                                            required>
-                                    </div> --}}
-                                    <!-- End .form-group -->
-                                    {{-- <div class="form-group">
-                                        <label for="register-password-2">Số điện thoại
-                                            <span style="color: red">*</span>
-                                        </label>
-                                        <input type="text" class="form-control" id="register-phone" name="phone"
-                                            required>
-                                    </div> --}}
-                                    <!-- End .form-group -->
+                                    </div>
                                     <div class="form-footer">
-                                        <button type="submit" class="btn btn-outline-primary-2" id="submitBtn">
+                                        <button type="submit" class="btn btn-outline-primary-2">
                                             <span>Đăng ký</span>
                                             <i class="icon-long-arrow-right"></i>
                                         </button>
-
-
-
-
                                     </div><!-- End .form-footer -->
-                                </form>
-                                <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('myForm');
-            const submitBtn = document.getElementById('submitBtn');
 
-            form.addEventListener('submit', function () {
-                // Vô hiệu hóa nút submit và thay đổi văn bản thành "Đang xử lí..."
-                submitBtn.disabled = true;
-                submitBtn.value = 'Đang xử lí...';
-            });
-        });
-    </script>
+                                </form>
                             </div><!-- .End .tab-pane -->
                         </div><!-- End .tab-content -->
                     </div><!-- End .form-tab -->

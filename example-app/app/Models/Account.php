@@ -9,11 +9,15 @@ class Account extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'phone', 'address', 'avatar'];
+    protected $fillable = [
+        'name',
+        'phone',
+        'address',
+        'avatar',
+    ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->hasOne(User::class);
     }
-    
 }

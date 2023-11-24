@@ -46,10 +46,10 @@ class User extends Authenticatable
 
     public function account()
     {
-        return $this->hasOne(Account::class, 'id');
+        return $this->belongsTo(Account::class, 'id_account');
     }
 
-    public function wishlists()
+    public function wishlist()
     {
         return $this->hasMany(Wishlist::class);
     }

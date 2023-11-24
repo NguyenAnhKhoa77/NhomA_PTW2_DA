@@ -8,8 +8,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class ControllerUsersManager extends Controller
@@ -41,7 +39,7 @@ class ControllerUsersManager extends Controller
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|unique:users,email',
-                'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+                'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
             ]);
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
@@ -79,72 +77,64 @@ class ControllerUsersManager extends Controller
      */
     public function show(string $id)
     {
-        $user = Account::findOrFail($id);
+        $user = User::find($id);
         return view('backend.user.profile', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
-        $user = Account::findOrFail($id);
-        return view('admin.users.edit', compact('user'));
+        $user = User::find($id);
+        return view('backend.user.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
     {
-        // Lấy thông tin người dùng và tài khoản
-        $userAccount = Account::findOrFail($id);
-
         // Validate dữ liệu
         $request->validate([
-            'name' => 'required|string|min:2|regex:/^[^\s]+(\s[^\s]+)*$/|max:255',
-            'phone' => 'required|regex:/^0[0-9]{9}$/',
-            'address' => 'required|string|min:2|max:255',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'email' => 'required|email|unique:users,email,|max:255' . $userAccount->user->id,
+            'name' => 'required|string|max:255',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($id), // Unique, ngoại trừ user hiện tại
+            ],
+            'password' => 'nullable|string|min:8', // Có thể thay đổi các quy tắc validate cho password
+            // Thêm các quy tắc validate cho các trường khác nếu cần
         ]);
-    {
-            // Validate dữ liệu
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => [
-                    'required',
-                    'email',
-                    Rule::unique('users')->ignore($id), // Unique, ngoại trừ user hiện tại
-                ],
-                'password' => 'nullable|string|min:8', // Có thể thay đổi các quy tắc validate cho password
-                // Thêm các quy tắc validate cho các trường khác nếu cần
-            ]);
 
-            // Dữ liệu cần cập nhật trong bảng 'accounts'
-        $userData = [
-            'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
-            'address' => $request->input('address'),
-        ];
+        // Lấy người dùng từ ID
+        $user = User::find($id);
 
-        // Cập nhật avatar nếu có
-        if ($request->hasFile('avatar')) {
-            $uploadedAvatar = $request->file('avatar');
-                $avatarName = time() . '.' . $uploadedAvatar->getClientOriginalExtension();
-            $uploadedAvatar->move(public_path('images/avatars'), $avatarName);
-                $userData['avatar'] = 'images/avatars/' . $avatarName;
-            }
+        // Kiểm tra xem người dùng có tồn tại không
+        if (!$user) {
+            return redirect()->back()->with('error', 'Người dùng không tồn tại');
         }
+        // Kiểm tra xem có mật khẩu được cung cấp hay không
+        if ($request->filled('password')) {
+            $userData['password'] = bcrypt($request->input('password'));
+        }
+        // Cập nhật thông tin trong bảng người dùng
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')), // Đảm bảo mã hóa mật khẩu
+        ]);
 
-        // Sử dụng transaction để đảm bảo tính nhất quán
-        DB::transaction(function () use ($userAccount, $request, $userData) {
-            // Cập nhật thông tin người dùng trong bảng 'accounts'
-            $userAccount->update($userData);
+        // Cập nhật thông tin trong bảng tài khoản
+        $user->account->update([
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'), // Thêm các trường khác nếu cần
+        ]);
 
-            // Cập nhật email trong bảng 'users'
-            $userAccount->user->update(['email' => $request->input('email')]);
-        });
-
-        return redirect()->route('users.edit', $userAccount)->with('success', 'User information updated successfully.');
+        return redirect()->route('user.table', ['id' => $user->id])->with('success', 'Cập nhật thông tin thành công');
     }
+
+    /**
+     * Update the specified resource in storage.
+     */
+
 
     /**
      * Remove the specified resource from storage.
@@ -169,26 +159,7 @@ class ControllerUsersManager extends Controller
         }
         return redirect()->back();
     }
-    public function changePassword(Request $request, $id)
+    public function changepass()
     {
-        $user = User::findOrFail($id);
-
-        $request->validate([
-            'new_password' => 'required|min:6|string|confirmed|max:255',
-            'new_password_confirmation' => 'required|string|same:new_password|max:255',
-        ]);
-
-        // Cập nhật mật khẩu mới và mã hóa nó trước khi lưu vào database
-        $user->password = Hash::make($request->input('new_password'));
-       if( $user->save()  ){
-        return redirect()->route('user.table')->with('success', 'Password updated successfully.');
-       }
-       return redirect()->route('user.table')->with('Error', 'Password updated error.');
-
-    }
-public function showChangePasswordForm($user)
-    {
-        $user = User::findOrFail($user);
-        return view('admin.users.change-password', compact('user'));
     }
 }

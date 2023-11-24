@@ -9,9 +9,6 @@ use App\Models\Orders;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
-
 
 class ControllerProductManager extends Controller
 {
@@ -28,131 +25,97 @@ class ControllerProductManager extends Controller
     }
     public function create_handler(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:250',
+            'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048',
+            'description' => 'required',
+            'price' => 'required|numeric|gt:0',
+            'inventory' => 'required|numeric|gt:0',
+        ]);
 
-        $token = $request->input('_token');
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
 
-        if (Session::has('_token') && Session::get('_token') === $token) {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'image' =>  'required|image|mimes:png,jpg,jpeg|max:2048 ',
-                'description' => 'required',
-                'price' => 'required|numeric|gt:0',
-                'inventory' => 'required|numeric|gt:0',
-                'manu' => 'required',
-                'cate' => 'required',
-            ]);
-            if (!!!Categories::find($request['cate'])) {
-                return back()->withErrors(['cate' => 'Category does not exist.']);
-            }
-            if (!!!Manufacturers::find($request['manu'])) {
-                return back()->withErrors(['manu' => 'Manufacturer does not exist.']);
-            }
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-            $product = new Product([
-                'name' => $request['name'],
-                'image' => $imageName,
-                'categories_id' => $request['cate'],
-                'manufacturer_id' => $request['manu'],
-                'description' => $request['description'],
-                'price' => $request['price'],
-                'inventory' => $request['inventory'],
-                'unique_token' => Str::uuid()->toString(),
-            ]);
-            if ($product->save()) {
-                $image->move(public_path('images/products'), $imageName);
-                return redirect()->route('product.table')->with('success', 'Thêm sản phẩm thành công');
-            }
-            Session::put('token', $token);
-
-            return back();
-        } else {
+        $product = new Product([
+            'name' => $request['name'],
+            'image' => $imageName,
+            'categories_id' => $request['cate'],
+            'manufacturer_id' => $request['manu'],
+            'description' => $request['description'],
+            'price' => $request['price'],
+            'inventory' => $request['inventory'],
+        ]);
+        if ($product->save()) {
+            $image->move(public_path('images/products'), $imageName);
+            return redirect()->route('product.table')->with('success', 'Thêm sản phẩm thành công');
         }
+        return back();
     }
     public function edit($id)
     {
-        $product = Product::find($id);
-
-        if (!$product) {
-            return redirect()->route('product.table')->with('errors', 'Danh mục không tồn tại');
+        if (!$product = Product::find($id)) {
+            return redirect()->back()->with('errors', 'Danh mục không tồn tại');
         }
-
+        $product = Product::find($id);
         $manus = Manufacturers::all();
         $cates = Categories::all();
         $page = 'Product edit';
-
         return view('backend.product.edit', compact('product', 'page', 'cates', 'manus'));
     }
-
     public function edit_handle($id, Request $request)
     {
-        $product = Product::find($id);
-
-        if (!$product) {
-            return redirect()->route('product.table')->with('errors', 'Danh mục không tồn tại');
+        if (!$product = Product::find($id)) {
+            return redirect('admin/product/table')->with('errors', 'Danh mục không tồn tại');
         }
-
+        $product = Product::find($id);
         $request->validate([
             'name' => 'required|string|max:255',
             'image' =>  'nullable|image|mimes:png,jpg,jpeg|max:2048',
-            'description' => 'required|max:2048',
+            'description' => 'required',
             'price' => 'required|numeric|gt:0',
-            'cate' => 'required', // Thêm validation cho 'cate'
-            'manu' => 'required', // Thêm validation cho 'manu'
+            'inventory' => 'required|numeric|gt:0',
         ]);
-
         $product->name = $request->input('name');
         $product->categories_id = $request->input('cate');
         $product->manufacturer_id = $request->input('manu');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
-
+        $product->inventory = $request->input('inventory');
         if ($request->hasFile('image')) {
-            // Kiểm tra và xóa hình ảnh cũ
-            $oldImagePath = public_path('images/products/' . $product->image);
-            if (File::exists($oldImagePath)) {
-                File::delete($oldImagePath);
-            }
-
-            // Tiếp tục xử lý hình ảnh mới
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $path = "images/products/" . $product->image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
             $image->move(public_path('images/products'), $imageName);
             $product->image = $imageName;
         }
 
         if ($product->save()) {
+
             return redirect()->route('product.table')->with('success', 'Cập nhật thành công');
         }
-
-        return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại.');
+        return back();
     }
 
-
     //xóa  sản phẩm:
-    public function delete(Request $request)
+    public function delete($id)
     {
-        $token = $request->input('_token');
-        if (Session::has('_token') && Session::get('_token') === $token) {
-            $id = $request['id'];
-            if (!$product = Product::find($id)) {
-                return redirect()->back()->with('errors', 'Sản phẩm không tồn tại!');
+        if (!$product = Product::find($id)) {
+            return redirect()->back()->with('errors', 'Product does not exist!');
+        }
+        $oders = Orders::where('product_id', $id)->get();
+        if ($oders->count() == 0) {
+            $product = Product::find($id);
+            $path = "images/" . $product->image;
+            if (File::exists($path)) {
+                File::delete($path);
             }
-            $oders = Orders::where('product_id', $id)->get();
-            if ($oders->count() == 0) {
-                $product = Product::find($id);
-                $path = "images/" . $product->image;
-                if (File::exists($path)) {
-                    File::delete($path);
-                }
-                $product->delete();
-                return redirect()->route('product.table')->with('success', 'Xóa thành công');
-            } else {
-                return redirect()->back()->with('errors', 'Xóa thất bại!');
-            }
+            $product->delete();
+            return redirect()->back()->with('success', 'Delete product succeed!');
         } else {
-            return redirect()->route('product.table')->with('error', 'Không tìm thấy sản phẩm!');
+            return redirect()->back()->with('errors', 'Cannot delete product!');
         }
     }
 }

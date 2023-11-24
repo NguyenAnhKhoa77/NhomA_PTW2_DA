@@ -36,8 +36,8 @@
                                         alt="">
                                 <td>{{ $user->account->name }} </td>
                                 <td>{{ $user->email }} </td>
-                                <td>{{ $user->account->phone }} </td>
-                                <td>{{ $user->account->address }} </td>
+                                <td>{{ $user->phone }} </td>
+                                <td>{{ $user->address }} </td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->id) }}">
                                         <i class="fas fa-folder">
@@ -55,7 +55,7 @@
                                         <i class="fas fa-trash"> </i>
                                         Delete
                                     </a>
-                                    <a class="btn btn-warning btn-sm" href="{{ route('users.changePassword', $user) }}">
+                                    <a class="btn btn-warning btn-sm" href="">
                                         <i class="fa fa-lock" aria-hidden="true"></i>
                                         Change password</a>
 

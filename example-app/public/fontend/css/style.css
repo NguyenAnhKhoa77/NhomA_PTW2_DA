@@ -8693,7 +8693,6 @@ small.form-text {
     z-index: 2;
     background-color: var(--primal);
 }
-
 .form-control-tooltip {
     position: relative;
     padding-right: 4rem;

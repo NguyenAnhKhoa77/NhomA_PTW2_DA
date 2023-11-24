@@ -47,36 +47,19 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <form id="delete-form{{ $product->id }}"
-                                        action="{{ route('product.delete', [$product]) }}" method="get"
-                                        style="display: none;">
-                                        @csrf
-                                        <button type="submit" onclick="">Delete</button>
-                                    </form>
-
-                                    <a class="btn btn-danger btn-sm"
-                                        onclick="confirmDelete{{ $product->id }}(event)">Delete</a>
+                                    <a class="btn btn-danger btn-sm" href="{{ route('product.delete', [$product]) }}"
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Delete
+                                    </a>
                                 </td>
-                                <script>
-                                    function confirmDelete{{ $product->id }}(event) {
-                                        event.preventDefault();
-
-                                        if (confirm('Bạn có chắc chắn muốn xóa không?')) {
-                                            document.getElementById('delete-form{{ $product->id }}')
-                                                .submit();
-                                        } else {
-                                            // Hủy xóa nếu người dùng chọn Cancel trong hộp thoại xác nhận
-                                            return false;
-                                        }
-                                    }
-                                </script>
                             </tr>
                         @endforeach
 
                     </tbody>
                 </table> {{ $products->links('pagination::bootstrap-5') }}
                 </table>
-
             </div>
             <!-- /.card-body -->
         </div>

@@ -48,20 +48,18 @@
                                     </div><!-- End .product -->
                                 </td>
                                 <td class="price-col">{{ $wishlistProduct->price }} VNĐ</td>
-                                <td class="stock-col">@if($wishlistProduct->inventory > 0)
+                                <td class="stock-col">@if($wishlistProduct->stock > 0)
                                         <span class="in-stock">In Stock</span>
                                     @else
                                         <span class="out-of-stock">Out of Stock</span>
                                     @endif
                                 </td>
                                 <td class="action-col">
-                                    @if($wishlistProduct->inventory > 0)
-                                        <form action="{{ route('cart.add', $wishlistProduct->id) }}" method="POST">
-                                            @csrf
-                                            <button class="btn btn-block btn-outline-primary-2"><i
-                                                    class="icon-cart-plus"></i>Add to Cart
-                                            </button>
-                                        </form>
+                                    @if($wishlistProduct->stock > 0)
+                                        <button class="btn btn-block btn-outline-primary-2"><i
+                                                class="icon-cart-plus"></i>Add to
+                                            Cart
+                                        </button>
                                     @else
                                         <button class="btn btn-block btn-outline-primary-2 disabled">Out of Stock
                                         </button>
