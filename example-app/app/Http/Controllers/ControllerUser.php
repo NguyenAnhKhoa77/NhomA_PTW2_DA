@@ -25,7 +25,7 @@ class ControllerUser extends Controller
         if (Auth::attempt($credentials, $remember)) {
             $userId = Auth::user()->id;
             session()->put('user_id', $userId);
-            return redirect()->route('account');
+            return redirect()->route('profile');
         } else {
             return back()->with('error', 'Email hoặc mật khẩu không đúng.');
         }

@@ -85,7 +85,7 @@
         <div class="container">
             <h2 class="title text-center mb-3">Đồ thể thao nam</h2><!-- End .title -->
             <div class="row">
-                @foreach ($products as $product)
+                @foreach ($productsMale as $product)
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                         <div class="product product-5 text-center">
                             <figure class="product-media">
