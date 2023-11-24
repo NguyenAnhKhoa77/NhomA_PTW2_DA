@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ControllerCategoryManager;
 use App\Http\Controllers\Admin\ControllerManufacturersManager;
 use App\Http\Controllers\Admin\ControllerProductManager;
 use App\Http\Controllers\Admin\ControllerUsersManager;
+use App\Http\Controllers\Admin\ControllerComment;
 use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
 use App\Http\Controllers\FormController;
@@ -26,7 +27,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::group(['middleware' => 'throttle:7,1,2'], function(){
+Route::group(['middleware' => 'throttle:10,1,2'], function(){
  Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
     Route::get('product/{id}', [ControllerView::class, 'product'])->name('product');
@@ -47,7 +48,6 @@ Route::group(['middleware' => 'throttle:7,1,2'], function(){
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
         Route::get('search/', [ControllerGridPage::class, 'search'])->name('search');
     });
-    Route::post('/product/{id}/review', 'ProductReviewController@store')->name('product.review');
     Route::get('/search', [ProductController::class, 'search'])->name('search');
 
 
@@ -134,6 +134,20 @@ Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
         Route::post('update/{id}', [ControllerBillsManager::class, 'update'])->name('bill.update');
         Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
         Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
+    });
+    Route::prefix('comment')->group(function () {
+        Route::prefix('comments')->group(function () {
+            Route::get('/', [ControllerComment::class, 'index'])->name('comments.index');
+            Route::get('create', [ControllerComment::class, 'create'])->name('comments.create');
+            Route::post('store', [CommentController::class, 'store'])->name('comment.store');
+            Route::get('edit/{id}', [ControllerComment::class, 'edit'])->name('comments.edit');
+            Route::put('update/{id}', [ControllerComment::class, 'update'])->name('comments.update');
+            Route::delete('destroy/{id}', [ControllerComment::class, 'destroy'])->name('comments.destroy');
+            Route::get('show/{id}', [ControllerComment::class, 'show'])->name('comments.show');
+            Route::get('/products/{product_name}', [ProductController::class, 'show'])->name('product.show');
+        });
+        
+        
     });
 });
    
