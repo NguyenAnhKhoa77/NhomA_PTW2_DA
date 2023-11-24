@@ -1,3 +1,13 @@
+@php
+    use App\Models\Categories;
+    use App\Models\Manufacturers;
+    use App\Models\PriceRange;
+    use App\Models\sex;
+    $sexs = sex::all();
+    $categories = Categories::all();
+    $priceranges = PriceRange::all();
+    $manufacturers = Manufacturers::all();
+@endphp
 @extends('fontend.black')
 @section('content')
     <main class="main">
@@ -26,7 +36,7 @@
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-4">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
-                                                <a href="product/{{$product->id}}">
+                                                <a href="product/{{ $product->id }}">
                                                     <img src="{{ url('images/products/' . $product->image, []) }}"
                                                         alt="Product image" class="product-image">
                                                 </a>
@@ -60,7 +70,7 @@
                     </div><!-- End .col-lg-9 -->
                     <aside class="col-lg-3 order-lg-first">
                         <div class="sidebar sidebar-shop">
-                            <form action="{{ route('search') }}" method="get">
+                            <form action="{{ route('grid') }}" method="get">
 
                                 <div class="widget widget-clean">
                                     <label>Filters:</label>

@@ -45,7 +45,6 @@ class UserProfileController extends Controller
             $file_old = $destinationPath . $userInfo['avatar'];
             //code for remove old file
             if ($file_old != '' && $file_old != null) {
-
             } else {
                 unlink($file_old);
             }
@@ -79,9 +78,9 @@ class UserProfileController extends Controller
     public function changePasswordProcess(Request $request)
     {
         $request->validate([
-            'current_password' => 'required|min:6|max:255',
-            'new_password' => 'required|min:6|max:255|confirmed',
-            'new_password_confirmation' => 'required|min:6|max:255',
+            'current_password' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+            'new_password_confirmation' => 'required',
         ]);
 
         $user = Auth::user();
@@ -89,8 +88,9 @@ class UserProfileController extends Controller
         if (!Hash::check($request->current_password, $user->password)) {
             return redirect()->back()->with("error", "Old password doesn't match!");
         }
-        $user->password = Hash::make($request->new_password);
-        $user->update();
+        $user->$user->update([
+            'password' => Hash::make($request->new_password),
+        ]);
 
         return redirect()->back()->with('status', 'Password was changed successfully!');
     }

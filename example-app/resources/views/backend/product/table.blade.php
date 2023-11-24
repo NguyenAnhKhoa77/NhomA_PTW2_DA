@@ -53,7 +53,6 @@
                                         @csrf
                                         <button type="submit" onclick="">Delete</button>
                                     </form>
-
                                     <a class="btn btn-danger btn-sm"
                                         onclick="confirmDelete{{ $product->id }}(event)">Delete</a>
                                 </td>
