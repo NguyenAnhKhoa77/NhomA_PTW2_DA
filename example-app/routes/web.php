@@ -40,13 +40,12 @@ Route::prefix('/')->group(function () {
     Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
     Route::get('contact', [ControllerView::class, 'contact'])->name('contact');
     Route::post('contact', [ControllerView::class, 'contactForm'])->name('contact');
+    Route::post('comment', [ControllerView::class, 'comment'])->name('comment');
 
     Route::prefix('grid')->group(function () {
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
         Route::get('search/', [ControllerGridPage::class, 'search'])->name('search');
     });
-    Route::post('/product/{id}/review', 'ProductReviewController@store')->name('product.review');
-    Route::get('/search', [ProductController::class, 'search'])->name('search');
 
 
     //Thêm sản phẩm vào giỏ hàng
@@ -66,6 +65,7 @@ Route::prefix('login')->group(function () {
 
 Route::prefix('/account')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
+    Route::post('/update-profile/{account}', [UserProfileController::class, 'updateProfile'])->name('update.profile');
     Route::get('/address', [UserProfileController::class, 'address'])->name('address');
     Route::get('/orders', [UserProfileController::class, 'orders'])->name('orders');
     Route::get('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');

@@ -26,7 +26,7 @@
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-4">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
-                                                <a href="product.html">
+                                                <a href="product/{{$product->id}}">
                                                     <img src="{{ url('images/products/' . $product->image, []) }}"
                                                         alt="Product image" class="product-image">
                                                 </a>

@@ -8,6 +8,7 @@
     <form action="/contact" method="post">
         <div class="container py-5 w">
           <form class="p-md-5 border rounded-3 bg-body-tertiary">
+            @csrf
 
             <!-- Name input -->
 
