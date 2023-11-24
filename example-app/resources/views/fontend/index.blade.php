@@ -89,6 +89,16 @@
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                         <div class="product product-5 text-center">
                             <figure class="product-media">
+                                @php
+                                // Lấy ngày bắt đầu của tuần hiện tại
+                                $startOfWeek = \Carbon\Carbon::now()->startOfWeek();
+                                // Kiểm tra nếu sản phẩm được tạo trong tuần
+                                $isNewProduct = $product->created_at >= $startOfWeek;
+                            @endphp
+
+                            @if ($isNewProduct)
+                                <span class="product-label label-new">New</span>
+                            @endif
                                 <?php $newId = encrypt($product->id); ?>
                                 <a href="{{ route('detail', $newId) }}">
                                     <img src="{{ url('images/products/' . $product->image, []) }}" alt="Product image"
@@ -136,6 +146,16 @@
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                         <div class="product product-5 text-center">
                             <figure class="product-media">
+                                @php
+                                // Lấy ngày bắt đầu của tuần hiện tại
+                                $startOfWeek = \Carbon\Carbon::now()->startOfWeek();
+                                // Kiểm tra nếu sản phẩm được tạo trong tuần
+                                $isNewProduct = $product->created_at >= $startOfWeek;
+                            @endphp
+
+                            @if ($isNewProduct)
+                                <span class="product-label label-new">New</span>
+                            @endif
                                 <?php $newId = encrypt($product->id); ?>
                                 <a href="{{ route('detail', $newId) }}">
                                     <img src="{{ url('images/products/' . $product->image, []) }}" alt="Product image"
@@ -183,6 +203,16 @@
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                         <div class="product product-5 text-center">
                             <figure class="product-media">
+                                @php
+                                // Lấy ngày bắt đầu của tuần hiện tại
+                                $startOfWeek = \Carbon\Carbon::now()->startOfWeek();
+                                // Kiểm tra nếu sản phẩm được tạo trong tuần
+                                $isNewProduct = $product->created_at >= $startOfWeek;
+                            @endphp
+
+                            @if ($isNewProduct)
+                                <span class="product-label label-new">New</span>
+                            @endif
                                 <?php $newId = encrypt($product->id); ?>
                                 <a href="{{ route('detail', $newId) }}">
                                     <img src="{{ url('images/products/' . $product->image, []) }}" alt="Product image"

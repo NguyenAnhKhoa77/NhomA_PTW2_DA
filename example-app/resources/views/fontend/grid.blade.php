@@ -36,6 +36,16 @@
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-4">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
+                                                @php
+                                                // Lấy ngày bắt đầu của tuần hiện tại
+                                                $startOfWeek = \Carbon\Carbon::now()->startOfWeek();
+                                                // Kiểm tra nếu sản phẩm được tạo trong tuần
+                                                $isNewProduct = $product->created_at >= $startOfWeek;
+                                            @endphp
+
+                                            @if ($isNewProduct)
+                                                <span class="product-label label-new">New</span>
+                                            @endif
                                                 <a href="product/{{ $product->id }}">
                                                     <img src="{{ url('images/products/' . $product->image, []) }}"
                                                         alt="Product image" class="product-image">
