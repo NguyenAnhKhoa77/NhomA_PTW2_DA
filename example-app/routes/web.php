@@ -26,7 +26,8 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::prefix('/')->group(function () {
+Route::group(['middleware' => 'throttle:7,1,2'], function(){
+ Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
     Route::get('product/{id}', [ControllerView::class, 'product'])->name('product');
     Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
@@ -40,6 +41,7 @@ Route::prefix('/')->group(function () {
     Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
     Route::get('contact', [ControllerView::class, 'contact'])->name('contact');
     Route::post('contact', [ControllerView::class, 'contactForm'])->name('contact');
+    Route::post('comment', [ControllerView::class, 'comment'])->name('comment');
 
     Route::prefix('grid')->group(function () {
         Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
@@ -86,6 +88,11 @@ Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
         Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submit.form');
         Route::get('/users/{user}/edit', [ControllerUsersManager::class, 'edit'])->name('users.edit');
         Route::put('/users/{user}', [ControllerUsersManager::class, 'update'])->name('users.update');
+        Route::get('/users/{user}/change-password', [ControllerUsersManager::class, 'showChangePasswordForm'])
+            ->name('users.changePasswordForm');
+
+        Route::put('/users/{id}/change-password', [ControllerUsersManager::class, 'changePassword'])
+            ->name('users.changePassword');
     });
     Route::prefix('category')->group(function () {
         Route::get('/', [ControllerCategoryManager::class, 'index'])->name('category.table');
@@ -128,4 +135,6 @@ Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
         Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
         Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
     });
+});
+   
 });
