@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="{{ asset('fontend/css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('fontend/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('fontend/css/jquery.countdown.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ asset('fontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('fontend/css/skin-demo-2.css') }}">
@@ -148,7 +150,6 @@
                                     @else
                                         <li><a href="{{ route('login.view') }}">Đăng nhập / Đăng ký</a></li>
                                     @endif
-
                                 </ul>
 
                             </li>
@@ -167,11 +168,11 @@
                         <div
                             class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
                             <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                            <form action="{{ route('search') }}" method="get">
+                            <form action="{{ route('grid') }}" method="get">
                                 <div class="header-search-wrapper search-wrapper-wide">
                                     <label for="q" class="sr-only">Tìn kiếm</label>
-                                    <input type="search" class="form-control" name="key" id="q"
-                                        placeholder="Search product ..." required>
+                                    <input type="search" class="form-control" name="name"
+                                        value="{{ session('search_keyword') }}" placeholder="Search product ...">
                                     <button class="btn btn-primary" type="submit"><i
                                             class="icon-search"></i></button>
                                 </div><!-- End .header-search-wrapper -->
@@ -207,8 +208,7 @@
                         @endauth
 
                         <div class="dropdown cart-dropdown">
-                            <a href="" class="dropdown-toggle" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false" data-display="static">
+                            <a href="{{ route('cart', []) }}" class="dropdown-toggle">
                                 <div class="icon">
                                     <i class="icon-shopping-cart"></i>
                                     @php
@@ -237,7 +237,8 @@
                                         <div class="product">
                                             <div class="product-cart-details">
                                                 <h4 class="product-title">
-                                                    <a href="product.html">{{ $cartItem['name'] }}</a>
+                                                    <a
+                                                        href="{{ route('detail', encrypt($cartItem['id'])) }}">{{ $cartItem['name'] }}</a>
                                                 </h4>
 
                                                 <span class="cart-product-info">
@@ -247,7 +248,8 @@
                                             </div><!-- End .product-cart-details -->
 
                                             <figure class="product-image-container">
-                                                <a href="product.html" class="product-image">
+                                                <a href="{{ route('detail', encrypt($cartItem['id'])) }}"
+                                                    class="product-image">
                                                     <img src="{{ asset('images/products/' . $cartItem['image']) }}"
                                                         alt="product">
                                                 </a>
@@ -299,60 +301,8 @@
                             <ul class="menu">
                                 <li class="{{ Route::currentRouteName() == 'home' ? 'active' : '' }}">
                                     <a href="{{ route('home', []) }}">Home</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('grid', []) }}">Đồ thể thao nam</a>
-                                    <div class="megamenu megamenu-md">
-                                        <div class="menu-col">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <!-- End .menu-title -->
-                                                    <ul>
-                                                        <li><a href="">Áo thể thao nam</a></li>
-                                                        <li><a href="">Quần thể thao nam</a></li>
-                                                        <li><a href="">Bộ thể thao nam</a></li>
-                                                        <li><a href="">Phụ kiện thể thao nam</a></li>
-                                                    </ul>
-                                                </div><!-- End .col-md-6 -->
-                                            </div><!-- End .row -->
-                                        </div><!-- End .menu-col -->
-                                    </div><!-- End .megamenu megamenu-md -->
-                                </li>
-                                <li>
-                                    <a href="{{ route('grid', ['id' => 1]) }}">Đồ thể thao nữ</a>
-                                    <div class="megamenu megamenu-md">
-                                        <div class="menu-col">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <!-- End .menu-title -->
-                                                    <ul>
-                                                        <li><a href="">Áo thể thao nữ</a></li>
-                                                        <li><a href="">Quần thể thao nữ</a></li>
-                                                        <li><a href="">Bộ thể thao nữ</a></li>
-                                                        <li><a href="">Phụ kiện thể thao nữ</a></li>
-                                                    </ul>
-                                                </div><!-- End .col-md-6 -->
-                                            </div><!-- End .row -->
-                                        </div><!-- End .menu-col -->
-                                    </div><!-- End .megamenu megamenu-md -->
-                                </li>
-                                <li>
-                                    <a href="{{ route('grid', []) }}">Phụ kiện thể thao</a>
-                                    <div class="megamenu megamenu-md">
-                                        <div class="menu-col">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <!-- End .menu-title -->
-                                                    <ul>
-                                                        <li><a href="">ABC</a></li>
-                                                    </ul>
-                                                </div><!-- End .col-md-6 -->
-                                            </div><!-- End .row -->
-                                        </div><!-- End .menu-col -->
-                                    </div><!-- End .megamenu megamenu-md -->
-                                </li>
                                 <li class="">
-                                    <a href="">Quần áo nhóm</a>
+                                    <a href="{{ route('grid', []) }}">Grid</a>
                                 </li>
                                 <li class="{{ Route::currentRouteName() == 'contact' ? 'active' : '' }}">
                                     <a href="{{ route('contact', []) }}">Liên hệ</a>

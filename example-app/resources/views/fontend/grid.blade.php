@@ -1,3 +1,13 @@
+@php
+    use App\Models\Categories;
+    use App\Models\Manufacturers;
+    use App\Models\PriceRange;
+    use App\Models\sex;
+    $sexs = sex::all();
+    $categories = Categories::all();
+    $priceranges = PriceRange::all();
+    $manufacturers = Manufacturers::all();
+@endphp
 @extends('fontend.black')
 @section('content')
     <main class="main">
@@ -26,7 +36,7 @@
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-4">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
-                                                <a href="product/{{$product->id}}">
+                                                <a href="product/{{ $product->id }}">
                                                     <img src="{{ url('images/products/' . $product->image, []) }}"
                                                         alt="Product image" class="product-image">
                                                 </a>
@@ -60,13 +70,41 @@
                     </div><!-- End .col-lg-9 -->
                     <aside class="col-lg-3 order-lg-first">
                         <div class="sidebar sidebar-shop">
-                            <form action="{{ route('search') }}" method="get">
+                            <form action="{{ route('grid') }}" method="get">
+
                                 <div class="widget widget-clean">
                                     <label>Filters:</label>
 
                                 </div><!-- End .widget widget-clean -->
-                                <input type="search" class="form-control" name="name" id="q"
-                                    placeholder="Search product ...">
+                                <input type="search" class="form-control" value="{{ old('name') }}"
+                                    name="name"placeholder="Search product ...">
+
+                                <div class="widget widget-collapsible">
+                                    <h3 class="widget-title">
+                                        <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true"
+                                            aria-controls="widget-1">
+                                            Giới tính
+                                        </a>
+                                    </h3><!-- End .widget-title -->
+
+                                    <div class="collapse show" id="widget-1">
+                                        <div class="widget-body">
+                                            <div class="filter-items filter-items-count">
+                                                @foreach ($sexs as $sex)
+                                                    <div class="filter-item">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                name="sex" id="sex-{{ $sex->id }}"
+                                                                value="{{ $sex->id }}">
+                                                            <label class="custom-control-label"
+                                                                for="sex-{{ $sex->id }}">{{ $sex->text }}</label>
+                                                        </div><!-- End .custom-radio -->
+                                                    </div>
+                                                @endforeach
+                                            </div><!-- End .filter-items -->
+                                        </div><!-- End .widget-body -->
+                                    </div><!-- End .collapse -->
+                                </div><!-- End .widget -->
                                 <div class="widget widget-collapsible">
                                     <h3 class="widget-title">
                                         <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true"
