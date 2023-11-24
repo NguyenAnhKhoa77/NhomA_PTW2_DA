@@ -10,10 +10,11 @@ use App\Http\Controllers\Admin\ControllerCategoryManager;
 use App\Http\Controllers\Admin\ControllerManufacturersManager;
 use App\Http\Controllers\Admin\ControllerProductManager;
 use App\Http\Controllers\Admin\ControllerUsersManager;
+use App\Http\Controllers\ControllerCart;
+use App\Http\Controllers\ControllerDetail;
 use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
 use App\Http\Controllers\FormController;
-use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,42 +29,48 @@ use App\Http\Controllers\ProductController;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
-    Route::get('product/{id}', [ControllerView::class, 'product'])->name('product');
+    Route::get('detail/{id}', [ControllerDetail::class, 'index'])->name('detail');
     Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
 
-    Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
-    Route::prefix('wishlist')->group(function () {
+    Route::prefix('wishlist')->middleware('auth')->group(function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
         Route::get('/add/{product}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
         Route::delete('/remove/{product}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
     });
-    Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
-    Route::get('contact', [ControllerView::class, 'contact'])->name('contact');
-    Route::post('contact', [ControllerView::class, 'contactForm'])->name('contact');
+    Route::prefix('contact')->group(function () {
+        Route::get('/', [ControllerView::class, 'contact'])->name('contact');
+        Route::post('/', [ControllerView::class, 'contactForm'])->name('contact');
+    });
     Route::post('comment', [ControllerView::class, 'comment'])->name('comment');
 
     Route::prefix('grid')->group(function () {
-        Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
-        Route::get('search/', [ControllerGridPage::class, 'search'])->name('search');
+        Route::get('/', [ControllerGridPage::class, 'search'])->name('grid');
     });
 
-
-    //Thêm sản phẩm vào giỏ hàng
-    Route::post('/add-to-cart/{productId}', [ControllerView::class, 'addToCart'])->name('cart.add');
-    //Xóa sản phẩm vào giỏ hàng
-    Route::delete('/cart/remove/{productId}', [ControllerView::class, 'removeFromCart'])->name('cart.remove');
-    //Cập nhật giỏ hàng
-    Route::post('cart/update', [ControllerView::class, 'updateCart'])->name('cart.update');
+    Route::prefix('cart')->group(function () {
+        Route::get('', [ControllerCart::class, 'cart'])->name('cart');
+        //Thêm sản phẩm vào giỏ hàng
+        Route::post('add-to-cart/{productId}', [ControllerCart::class, 'addToCart'])->name('cart.add');
+        //Xóa sản phẩm vào giỏ hàng
+        Route::delete('remove/{productId}', [ControllerCart::class, 'removeFromCart'])->name('cart.remove');
+        //Cập nhật giỏ hàng
+        Route::post('update', [ControllerCart::class, 'updateCart'])->name('cart.update');
+    });
+});
+Route::middleware(['auth'])->group(function () {
+    Route::post('logout', [ControllerUser::class, 'Logout'])->name('logout');
+    Route::get('logout', function () {
+        return redirect()->route('home');
+    });
 });
 Route::prefix('login')->group(function () {
     Route::get('/', [ControllerUser::class, 'LoginView'])->name('login.view');
+    Route::post('/', [ControllerUser::class, 'Login'])->name('login');
     Route::get('register', [ControllerUser::class, 'RegisterView'])->name('register.view');
     Route::post('register', [ControllerUser::class, 'Register'])->name('register');
-    Route::post('login', [ControllerUser::class, 'Login'])->name('login');
-    Route::post('logout', [ControllerUser::class, 'Logout'])->name('logout');
 });
 
-Route::prefix('/account')->group(function () {
+Route::prefix('/account')->middleware('auth')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
     Route::post('/update-profile/{account}', [UserProfileController::class, 'updateProfile'])->name('update.profile');
     Route::get('/address', [UserProfileController::class, 'address'])->name('address');

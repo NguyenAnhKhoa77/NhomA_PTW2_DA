@@ -144,7 +144,7 @@ class ControllerProductManager extends Controller
             $oders = Orders::where('product_id', $id)->get();
             if ($oders->count() == 0) {
                 $product = Product::find($id);
-                $path = "images/" . $product->image;
+                $path = "images/products/" . $product->image;
                 if (File::exists($path)) {
                     File::delete($path);
                 }

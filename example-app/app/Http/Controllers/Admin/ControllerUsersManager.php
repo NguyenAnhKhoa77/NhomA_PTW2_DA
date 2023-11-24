@@ -98,8 +98,7 @@ class ControllerUsersManager extends Controller
             'phone' => 'required|regex:/^0[0-9]{9}$/',
             'address' => 'required|string|min:2',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        {
+        ]); {
             // Validate dữ liệu
             $request->validate([
                 'name' => 'required|string|max:255',
@@ -127,7 +126,7 @@ class ControllerUsersManager extends Controller
 
         return redirect()->route('users.edit', $user)->with('success', 'User information updated successfully.');
     }
-}
+
     public function destroy(string $id)
     {
         if (!$user = User::find($id)) {

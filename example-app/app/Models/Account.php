@@ -12,8 +12,9 @@ class Account extends Model
     protected $fillable = [
         'name',
         'phone',
-        'address',
+
         'avatar',
+        'address',
     ];
 
     public function user()
