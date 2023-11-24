@@ -17,11 +17,12 @@ class ControllerUser extends Controller
     }
     public function Login(Request $request)
     {
-        $credentials  =  $request->validate([
+        $credentials =  $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
         $remember = $request->has('remember');
+
         if (Auth::attempt($credentials, $remember)) {
             $userId = Auth::user()->id;
             session()->put('user_id', $userId);
@@ -34,26 +35,35 @@ class ControllerUser extends Controller
     {
         return view('fontend.register');
     }
-    public function Register(Request $request)
+    public function register(Request $request)
     {
         $request->validate([
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed|min:8',
+
+            'email' => 'required|string|email|unique:users,email|max:255',
+            'password' => 'required|string|confirmed|min:8|max:16',
             'password_confirmation' => 'required|string',
         ]);
 
         $account = new Account();
         $account->save();
+
         $user = new User([
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
+
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
             'id_account' => $account->id,
         ]);
+
         if ($user->save()) {
-            return redirect()->route('login')->withSuccess('Register success. Please login!');
+            return redirect("login")->withSuccess('Register success. Please login!');
         }
-        $account->delete();
-        return back();
+
+        return back()->withErrors('Registration failed. Please try again.');
+    }
+    public function show(string $id)
+    {
+        $user = User::with('account')->find($id);
+        return view('backend.user.profile', compact('user'));
     }
     public function Logout(Request $request)
     {
