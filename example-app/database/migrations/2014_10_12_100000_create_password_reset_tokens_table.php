@@ -13,7 +13,7 @@ return new class extends Migration
     {
         if (!Schema::hasTable('password_reset_tokens')) {
             Schema::create('password_reset_tokens', function (Blueprint $table) {
-                $table->string('email')->primary();
+                $table->string('email');
                 $table->string('token');
                 $table->timestamp('created_at')->nullable();
             });

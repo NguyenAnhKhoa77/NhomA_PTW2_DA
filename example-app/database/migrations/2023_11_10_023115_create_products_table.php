@@ -22,7 +22,9 @@ return new class extends Migration
                 $table->unsignedBigInteger('manufacturer_id');
                 $table->foreign('manufacturer_id')->references('id')->on('manufacturers')->onDelete('cascade')->onUpdate('cascade');
                 $table->text('description');
+                $table->string('unique_token', 250)->unique();
                 $table->bigInteger('price');
+                $table->bigInteger('inventory');
                 $table->timestamps();
             });
         }

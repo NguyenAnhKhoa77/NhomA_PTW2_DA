@@ -23,6 +23,7 @@
                             <th style="width: 10%">Nhãn hiệu</th>
                             <th style="width: 20%">Mô tả</th>
                             <th style="width: 10%">Giá</th>
+                            <th style="width: 10%">Tồn kho</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +39,7 @@
                                     {{ Str::limit($product->description, 100) }}</td>
 
                                 <td>{{ $product->price }} </td>
+                                <td>{{ $product->inventory }} </td>
 
                                 <td class="project-actions text-right">
                                     <a class="btn btn-info btn-sm" href="{{ route('product.edit', [$product]) }}">
@@ -45,19 +47,36 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="{{ route('product.delete', [$product]) }}"
-                                        onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </a>
+                                    <form id="delete-form{{ $product->id }}"
+                                        action="{{ route('product.delete', [$product]) }}" method="get"
+                                        style="display: none;">
+                                        @csrf
+                                        <button type="submit" onclick="">Delete</button>
+                                    </form>
+
+                                    <a class="btn btn-danger btn-sm"
+                                        onclick="confirmDelete{{ $product->id }}(event)">Delete</a>
                                 </td>
+                                <script>
+                                    function confirmDelete{{ $product->id }}(event) {
+                                        event.preventDefault();
+
+                                        if (confirm('Bạn có chắc chắn muốn xóa không?')) {
+                                            document.getElementById('delete-form{{ $product->id }}')
+                                                .submit();
+                                        } else {
+                                            // Hủy xóa nếu người dùng chọn Cancel trong hộp thoại xác nhận
+                                            return false;
+                                        }
+                                    }
+                                </script>
                             </tr>
                         @endforeach
 
                     </tbody>
                 </table> {{ $products->links('pagination::bootstrap-5') }}
                 </table>
+
             </div>
             <!-- /.card-body -->
         </div>

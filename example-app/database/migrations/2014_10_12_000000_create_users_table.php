@@ -14,7 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('users')) {
             Schema::create('users', function (Blueprint $table) {
                 $table->id();
-                $table->string('email')->unique();
+                $table->string('email', 250)->unique();
                 $table->string('password')->nullable();
                 $table->string('id_account')->nullable();
                 $table->boolean('is_admin')->default(false);
@@ -33,4 +33,3 @@ return new class extends Migration
         Schema::dropIfExists('users');
     }
 };
-// nó báo đang lưu vào table account kìa :v , trong khi mình đang cần lưu vào table users mà

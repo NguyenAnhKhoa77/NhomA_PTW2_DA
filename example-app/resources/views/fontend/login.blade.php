@@ -56,16 +56,22 @@
                                         <label for="singin-email-2">Tài khoản
                                             <span style="color: red">*</span>
                                         </label>
-                                        <input type="text" class="form-control" id="singin-email-2" name="email"
-                                            required>
+                                        <input type="text" class="form-control  @error('email') is-invalid @enderror"
+                                            id="singin-email-2" name="email" required>
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div><!-- End .form-group -->
 
                                     <div class="form-group">
                                         <label for="singin-password-2">Mật khẩu
                                             <span style="color: red">*</span>
                                         </label>
-                                        <input type="password" class="form-control" id="singin-password-2" name="password"
-                                            required>
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                            id="singin-password-2" name="password" required>
+                                        @error('password')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div><!-- End .form-group -->
 
                                     <div class="form-footer">
@@ -79,7 +85,6 @@
                                             <label class="custom-control-label" for="signin-remember-2">Ghi nhớ đăng
                                                 nhập</label>
                                         </div><!-- End .custom-checkbox -->
-
                                         <a href="#" class="forgot-link">Quên mật khẩu?</a>
                                     </div><!-- End .form-footer -->
                                 </form>
@@ -134,9 +139,9 @@
                                             <span>Đăng ký</span>
                                             <i class="icon-long-arrow-right"></i>
                                         </button>
-                                   
 
-                                        
+
+
 
                                     </div><!-- End .form-footer -->
                                 </form>

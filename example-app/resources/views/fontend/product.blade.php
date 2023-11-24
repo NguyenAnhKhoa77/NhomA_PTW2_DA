@@ -6,7 +6,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Áo thun thể thao Achilles xám</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $product['name'] }}</li>
                 </ol>
 
                 <nav class="product-pager ml-auto" aria-label="Product">
@@ -31,8 +31,9 @@
                             <div class="product-gallery product-gallery-vertical">
                                 <div class="row">
                                     <figure class="product-main-image">
-                                        <img id="product-zoom" src="images/products/Ao-achilles-xam-1.jpg"
-                                            data-zoom-image="images/products/Ao-achilles-xam-1.jpg" alt="product image">
+                                        <img id="product-zoom" src="{{ url('images/products/' . $product->image, []) }}"
+                                            data-zoom-image="{{ url('images/products/' . $product->image, []) }}"
+                                            alt="product image">
                                         <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                             <i class="icon-arrows"></i>
                                         </a>
@@ -40,15 +41,17 @@
 
                                     <div id="product-zoom-gallery" class="product-image-gallery">
                                         <a class="product-gallery-item active" href="#"
-                                            data-image="images/products/Ao-achilles-xam-1.jpg"
-                                            data-zoom-image="images/products/Ao-achilles-xam-1.jpg">
-                                            <img src="images/products/Ao-achilles-xam-1.jpg" alt="product side">
+                                            data-image="{{ url('images/products/' . $product->image, []) }}"
+                                            data-zoom-image="{{ url('images/products/' . $product->image, []) }}">
+                                            <img src="{{ url('images/products/' . $product->image, []) }}"
+                                                alt="product side">
                                         </a>
 
                                         <a class="product-gallery-item" href="#"
-                                            data-image="images/products//Ao-achilles-xam-2.jpg"
-                                            data-zoom-image="images/products/Ao-achilles-xam-2.jpg">
-                                            <img src="images/products/Ao-achilles-xam-2.jpg" alt="product cross">
+                                            data-image="{{ url('images/products/' . $product->image, []) }}"
+                                            data-zoom-image="{{ url('images/products/' . $product->image, []) }}">
+                                            <img src="{{ url('images/products/' . $product->image, []) }}"
+                                                alt="product cross">
                                         </a>
                                     </div><!-- End .product-image-gallery -->
                                 </div><!-- End .row -->
@@ -57,7 +60,7 @@
 
                         <div class="col-md-6">
                             <div class="product-details">
-                                <h1 class="product-title">Áo thun thể thao Achilles xám</h1>
+                                <h1 class="product-title">{{ $product['name'] }}</h1>
                                 <!-- End .product-title -->
 
                                 <div class="ratings-container">
@@ -68,14 +71,11 @@
                                 </div><!-- End .rating-container -->
 
                                 <div class="product-price">
-                                    149,000₫
+                                    {{ $product['price'] }}
                                 </div><!-- End .product-price -->
 
                                 <div class="product-content">
-                                    <p>Áo thun thể thao Achilles xám là một trong những mẫu áo thể thao “Thần Thoại Hy Lạp”
-                                        của 2020 năm nay. Áo được thiết kế với phong cách thời trang, năng động, cùng với
-                                        chất liệu co giản 4 chiều. Đây sẽ là một trong những mẫu trang phục không thể thiếu
-                                        khi đồng hành cùng bạn đến phòng tập hay bất cứ môn thể thao nào.</p>
+                                    <p>{{ $product['description'] }}</p>
                                 </div><!-- End .product-content -->
 
                                 <div class="">
@@ -94,23 +94,28 @@
                                         </select>
                                     </div><!-- End .select-custom -->
                                 </div><!-- End .details-filter-row -->
+                                <form action="{{ route('cart.add', ['productId' => $product->id]) }}" class="w-100"
+                                    method="POST">
+                                    @csrf
+                                    <div class="details-filter-row details-row-size">
+                                        <label for="qty">Số lượng:</label>
+                                        <div class="product-details-quantity">
+                                            <input type="number" id="qty" name="qty" class="form-control" value="1"
+                                                min="1" max="10" step="1" data-decimals="0" required>
+                                        </div><!-- End .product-details-quantity -->
+                                    </div><!-- End .details-filter-row -->
 
-                                <div class="details-filter-row details-row-size">
-                                    <label for="qty">Số lượng:</label>
-                                    <div class="product-details-quantity">
-                                        <input type="number" id="qty" class="form-control" value="1"
-                                            min="1" max="10" step="1" data-decimals="0" required>
-                                    </div><!-- End .product-details-quantity -->
-                                </div><!-- End .details-filter-row -->
+                                    <div class="product-details-action">
 
-                                <div class="product-details-action">
-                                    <a href="#" class="btn-product btn-cart"><span>Thêm vào giỏ hàng</span></a>
-
-                                    <div class="details-action-wrapper">
-                                        <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Thêm vào
-                                                Wishlist</span></a>
-                                    </div><!-- End .details-action-wrapper -->
-                                </div><!-- End .product-details-action -->
+                                        <button type="submit" class="btn-product btn-cart p-0 py-3 border-0">Thêm vào giỏ
+                                            hàng</button>
+                                        <div class="details-action-wrapper">
+                                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Thêm
+                                                    vào
+                                                    Wishlist</span></a>
+                                        </div><!-- End .details-action-wrapper -->
+                                    </div><!-- End .product-details-action -->
+                                </form>
 
                                 <div class="product-details-footer">
                                     <div class="product-cat">
@@ -123,6 +128,7 @@
                         </div><!-- End .col-md-6 -->
                     </div><!-- End .row -->
                 </div><!-- End .product-details-top -->
+
 
                 <div class="product-details-tab">
                     <ul class="nav nav-pills justify-content-center" role="tablist">
@@ -140,27 +146,10 @@
                             aria-labelledby="product-desc-link">
                             <div class="product-desc-content">
                                 <h3>Product Information</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat
-                                    mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper
-                                    suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam
-                                    porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices
-                                    nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique
-                                    cursus. </p>
-                                <ul>
-                                    <li>Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit. </li>
-                                    <li>Vivamus finibus vel mauris ut vehicula.</li>
-                                    <li>Nullam a magna porttitor, dictum risus nec, faucibus sapien.</li>
-                                </ul>
-
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat
-                                    mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper
-                                    suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam
-                                    porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices
-                                    nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique
-                                    cursus. </p>
+                                <p>{{ $product['description'] }}</p>
                             </div><!-- End .product-desc-content -->
                         </div><!-- .End .tab-pane -->
-                        <div class="tab-pane fade" id="product-review-tab" role="tabpanel"
+                        <div class="tab-pane fade" id="product-review-tab" role="tabpane2"
                             aria-labelledby="product-review-link">
                             <div class="reviews">
                                 <h3>Reviews (2)</h3>
@@ -225,9 +214,76 @@
                             </div><!-- End .reviews -->
                         </div><!-- .End .tab-pane -->
                     </div><!-- End .tab-content -->
-                </div><!-- End .product-details-tab -->
 
-                <h2 class="title text-center mb-4">Sản phẩm liên quan</h2><!-- End .title text-center -->
+                </div><!-- End .product-details-tab -->
+                <form class="d-flex flex-column" action="/comment" method="post">
+                    @csrf
+                    @php
+                     $newId = encrypt($product->id);
+                    @endphp
+                    <input name="product_id" type="hidden" value="{{$newId}}" type="text">
+                    <label for="comment">
+                        Bình luận của bạn về sản phẩm.
+                    </label>
+                    <textarea class="mb-4" name="comment" id="comment" rows="4"></textarea>
+                    <button class="btn btn-primary" type="submit">
+                        Gửi bình luận
+                    </button>
+                </form>
+                <div class="comment-section">
+                    @foreach ($allComment as $comment)
+                        <div class="commentCard border border-primary mt-2 p-2">
+                            <div class="comment_id">
+                                <b>
+                                Bình luận số: {{$comment->id}}
+                                </b>
+                            </div>
+                            <div class="comment_content border-top border-primary">
+                                Nội dung:
+                                {{$comment->comment}}
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <h2 class="title text-center mt-4 mb-4">Sản phẩm liên quan</h2>
+                <div class="row">
+                    @foreach ($allData as $value)
+                        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                            <div class="product product-5 text-center">
+                                <figure class="product-media">
+                                    <a href="{{ $value['id'] }}">
+                                        <img src="{{ url('images/products/' . $value->image, []) }}" alt="Product image"
+                                            class="product-image">
+                                    </a>
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add
+                                                to
+                                                wishlist</span></a>
+                                        <a href="#" class="btn-product-icon btn-quickview"
+                                            title="Quick view"><span>Quick
+                                                view</span></a>
+                                        <a href="#" class="btn-product-icon btn-compare"
+                                            title="Compare"><span>Compare</span></a>
+                                    </div><!-- End .product-action-vertical -->
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+                                <div class="product-body">
+                                    <h3 class="product-title">
+                                        <a href="product">
+                                            {{ $value->name }}
+                                        </a>
+                                    </h3>
+                                    <!-- End .product-title -->
+                                    <div class="product-price">
+                                        {{ $value->price }} VND
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 col-xl-2 -->
+                    @endforeach
+                </div>
             </div><!-- End .container -->
         </div><!-- End .page-content -->
     </main><!-- End .main -->

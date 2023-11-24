@@ -9,9 +9,11 @@
                 <h3 class="card-title">User table</h3>
 
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool">
-                        <i class="fas fa-plus"></i>
-                    </button>
+                    <a href="{{ route('user.create') }}">
+                        <button type="button" class="btn btn-tool">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </a>
                 </div>
             </div>
 
@@ -34,8 +36,8 @@
                                         alt="">
                                 <td>{{ $user->account->name }} </td>
                                 <td>{{ $user->email }} </td>
-                                <td>{{ $user->phone }} </td>
-                                <td>{{ $user->address }} </td>
+                                <td>{{ $user->account->phone }} </td>
+                                <td>{{ $user->account->address }} </td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->id) }}">
                                         <i class="fas fa-folder">

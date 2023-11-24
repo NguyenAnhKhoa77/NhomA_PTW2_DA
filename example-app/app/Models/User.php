@@ -48,4 +48,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Account::class, 'id');
     }
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
+    public function wishlistProducts()
+    {
+        return $this->hasManyThrough(Product::class, Wishlist::class, 'user_id', 'id', 'id', 'product_id');
+    }
 }
