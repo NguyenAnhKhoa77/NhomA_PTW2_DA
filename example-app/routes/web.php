@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerView;
@@ -9,8 +10,13 @@ use App\Http\Controllers\Admin\ControllerCategoryManager;
 use App\Http\Controllers\Admin\ControllerManufacturersManager;
 use App\Http\Controllers\Admin\ControllerProductManager;
 use App\Http\Controllers\Admin\ControllerUsersManager;
+use App\Http\Controllers\ControllerCart;
+use App\Http\Controllers\ControllerDetail;
+use App\Http\Controllers\Admin\ControllerComment;
 use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,49 +31,74 @@ use App\Http\Controllers\ControllerUser;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
-    Route::get('product/{id}', [ControllerView::class, 'product'])->name('product');
+    Route::get('detail/{id}', [ControllerDetail::class, 'index'])->name('detail');
     Route::get('checkout', [ControllerView::class, 'checkout'])->name('checkout');
-    Route::prefix('grid')->group(function () {
-        Route::get('/', [ControllerGridPage::class, 'index'])->name('grid');
-    });
-    Route::get('cart', [ControllerView::class, 'cart'])->name('cart');
-    Route::get('account', [ControllerView::class, 'account'])->name('account');
-    Route::prefix('wishlist')->group(function () {
+
+    Route::prefix('wishlist')->middleware('auth')->group(function () {
         Route::get('/', [WishlistController::class, 'index'])->name('wishlist');
         Route::get('/add/{product}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
         Route::delete('/remove/{product}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
     });
-    Route::get('not-found', [ControllerView::class, 'notFound'])->name('not-found');
-    Route::get('/search', [ControllerView::class, 'getSearch'])->name('search');
-    Route::get('contact', [ControllerView::class, 'contact'])->name('contact');
-    Route::post('contact', [ControllerView::class, 'contactForm'])->name('contact');
-    //Thêm sản phẩm vào giỏ hàng
-    Route::post('/add-to-cart/{productId}', [ControllerView::class, 'addToCart'])->name('cart.add');
-    //Xóa sản phẩm vào giỏ hàng
-    Route::delete('/cart/remove/{productId}', [ControllerView::class, 'removeFromCart'])->name('cart.remove');
-    //Cập nhật giỏ hàng
-    Route::post('cart/update', [ControllerView::class, 'updateCart'])->name('cart.update');
+    Route::prefix('contact')->group(function () {
+        Route::get('/', [ControllerView::class, 'contact'])->name('contact');
+        Route::post('/', [ControllerView::class, 'contactForm'])->name('contact');
+    });
+    Route::post('comment', [ControllerView::class, 'comment'])->name('comment');
+
+    Route::prefix('grid')->group(function () {
+        Route::get('/', [ControllerGridPage::class, 'search'])->name('grid');
+    });
+
+    Route::prefix('cart')->group(function () {
+        Route::get('', [ControllerCart::class, 'cart'])->name('cart');
+        //Thêm sản phẩm vào giỏ hàng
+        Route::post('add-to-cart/{productId}', [ControllerCart::class, 'addToCart'])->name('cart.add');
+        //Xóa sản phẩm vào giỏ hàng
+        Route::delete('remove/{productId}', [ControllerCart::class, 'removeFromCart'])->name('cart.remove');
+        //Cập nhật giỏ hàng
+        Route::post('update', [ControllerCart::class, 'updateCart'])->name('cart.update');
+    });
+});
+Route::middleware(['auth'])->group(function () {
+    Route::post('logout', [ControllerUser::class, 'Logout'])->name('logout');
+    Route::get('logout', function () {
+        return redirect()->route('home');
+    });
 });
 Route::prefix('login')->group(function () {
-    Route::get('/', [ControllerUser::class, 'LoginView'])->name('loginview');
+    Route::get('/', [ControllerUser::class, 'LoginView'])->name('login.view');
+    Route::post('/', [ControllerUser::class, 'Login'])->name('login');
+    Route::get('register', [ControllerUser::class, 'RegisterView'])->name('register.view');
     Route::post('register', [ControllerUser::class, 'Register'])->name('register');
-    Route::any('logout', [ControllerUser::class, 'Logout'])->name('logout');
-    Route::any('login', [ControllerUser::class, 'Login'])->name('login');
-    Route::get('search', [ControllerView::class, 'getSearch'])->name('search');
 });
 
+Route::prefix('/account')->middleware('auth')->group(function () {
+    Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
+    Route::post('/update-profile/{account}', [UserProfileController::class, 'updateProfile'])->name('update.profile');
+    Route::get('/address', [UserProfileController::class, 'address'])->name('address');
+    Route::get('/orders', [UserProfileController::class, 'orders'])->name('orders');
+    Route::get('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
+    Route::post('/change-password', [UserProfileController::class, 'changePasswordProcess'])->name('change.password.process');
+});
 
-
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
     Route::prefix('product')->group(function () {
         Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
         Route::get('create', [ControllerProductManager::class, 'create'])->name('product.create');
-        Route::post('create_handle', [ControllerProductManager::class, 'create_handler'])->name('product.create.handle');
+        Route::post('create', [ControllerProductManager::class, 'create_handler'])->name('product.create.handle');
         Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
-        Route::post('edit_handle/{id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
+        Route::post('edit/{token_id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
+        Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submit.form');
+        Route::get('/users/{user}/edit', [ControllerUsersManager::class, 'edit'])->name('users.edit');
+        Route::put('/users/{user}', [ControllerUsersManager::class, 'update'])->name('users.update');
+        Route::get('/users/{user}/change-password', [ControllerUsersManager::class, 'showChangePasswordForm'])
+            ->name('users.changePasswordForm');
+
+        Route::put('/users/{id}/change-password', [ControllerUsersManager::class, 'changePassword'])
+            ->name('users.changePassword');
     });
     Route::prefix('category')->group(function () {
         Route::get('/', [ControllerCategoryManager::class, 'index'])->name('category.table');
@@ -109,5 +140,17 @@ Route::prefix('admin')->group(function () {
         Route::post('update/{id}', [ControllerBillsManager::class, 'update'])->name('bill.update');
         Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
         Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
+    });
+    Route::prefix('comment')->group(function () {
+        Route::prefix('comments')->group(function () {
+            Route::get('/', [ControllerComment::class, 'index'])->name('comments.index');
+            Route::get('create', [ControllerComment::class, 'create'])->name('comments.create');
+            Route::post('store', [CommentController::class, 'store'])->name('comment.store');
+            Route::get('edit/{id}', [ControllerComment::class, 'edit'])->name('comments.edit');
+            Route::put('update/{id}', [ControllerComment::class, 'update'])->name('comments.update');
+            Route::delete('destroy/{id}', [ControllerComment::class, 'destroy'])->name('comments.destroy');
+            Route::get('show/{id}', [ControllerComment::class, 'show'])->name('comments.show');
+            Route::get('/products/{product_name}', [ProductController::class, 'show'])->name('product.show');
+        });
     });
 });
