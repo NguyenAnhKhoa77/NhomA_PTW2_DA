@@ -1,6 +1,12 @@
 @extends('fontend.black')
 @section('title', 'Contact')
 @section('content')
+@if (session('message'))
+    
+  <script type ="text/JavaScript">;  
+  alert("{{session('message')}}");  
+  </script>;
+@endif
 <div class="container text-center">
     <h1>
         Liên hệ với chúng tôi
@@ -16,7 +22,7 @@
 
             <label class="form-label" for="name">Name</label>
 
-              <input type="text" name="name" class="form-control" />
+              <input type="text" name="name" class="form-control" required/>
 
             </div>
 
@@ -26,7 +32,7 @@
 
             <div class="form-floating mb-3">
               <label class="form-label" for="email">Email address</label>
-              <input type="email" name="email" class="form-control" />
+              <input type="email" name="email" class="form-control" required />
 
 
             </div>
