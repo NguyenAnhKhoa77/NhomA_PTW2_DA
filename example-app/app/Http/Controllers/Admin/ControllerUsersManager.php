@@ -103,20 +103,9 @@ class ControllerUsersManager extends Controller
             'phone' => 'required|regex:/^0[0-9]{9}$/',
             'address' => 'required|string|min:2|max:255',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'email' => 'required|email|unique:users,email,|max:255' . $userAccount->user->id,
+            // 'email' => 'required|email|unique:users,email,|max:255' . $userAccount->user->id,
         ]);
-    {
-            // Validate dữ liệu
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => [
-                    'required',
-                    'email',
-                    Rule::unique('users')->ignore($id), // Unique, ngoại trừ user hiện tại
-                ],
-                'password' => 'nullable|string|min:8', // Có thể thay đổi các quy tắc validate cho password
-                // Thêm các quy tắc validate cho các trường khác nếu cần
-            ]);
+    
 
             // Dữ liệu cần cập nhật trong bảng 'accounts'
         $userData = [
@@ -132,16 +121,16 @@ class ControllerUsersManager extends Controller
             $uploadedAvatar->move(public_path('images/avatars'), $avatarName);
                 $userData['avatar'] = 'images/avatars/' . $avatarName;
             }
-        }
+        
 
         // Sử dụng transaction để đảm bảo tính nhất quán
-        DB::transaction(function () use ($userAccount, $request, $userData) {
-            // Cập nhật thông tin người dùng trong bảng 'accounts'
-            $userAccount->update($userData);
+        // DB::transaction(function () use ($userAccount, $request, $userData) {
+        //     // Cập nhật thông tin người dùng trong bảng 'accounts'
+        //     $userAccount->update($userData);
 
-            // Cập nhật email trong bảng 'users'
-            $userAccount->user->update(['email' => $request->input('email')]);
-        });
+        //     // Cập nhật email trong bảng 'users'
+        //     $userAccount->user->update(['email' => $request->input('email')]);
+        // });
 
         return redirect()->route('users.edit', $userAccount)->with('success', 'User information updated successfully.');
     }

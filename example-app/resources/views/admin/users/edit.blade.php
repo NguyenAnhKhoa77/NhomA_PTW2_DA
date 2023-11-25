@@ -16,8 +16,8 @@
             <label for="name">Name:</label>
             <input type="text" name="name" value="{{ $user->name }}" required>
 
-            <label for="email">Email:</label>
-            <input type="email" name="email" value="{{ $user->user->email }}" required>
+            <!-- <label for="email">Email:</label>
+            <input type="email" name="email" value="{{ $user->user->email }}" required> -->
 
             <label for="phone">Phone:</label>
             <input type="text" name="phone" value="{{ $user->phone }}" required>
