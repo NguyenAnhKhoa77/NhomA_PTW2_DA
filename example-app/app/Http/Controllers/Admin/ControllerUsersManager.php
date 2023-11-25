@@ -93,45 +93,43 @@ class ControllerUsersManager extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        // Lấy thông tin người dùng và tài khoản
-        $userAccount = Account::findOrFail($id);
+{
+    // Lấy thông tin người dùng và tài khoản
+    $userAccount = Account::findOrFail($id);
 
-        // Validate dữ liệu
-        $request->validate([
-            'name' => 'required|string|min:2|regex:/^[^\s]+(\s[^\s]+)*$/|max:255',
-            'phone' => 'required|regex:/^0[0-9]{9}$/',
-            'address' => 'required|string|min:2|max:255',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // 'email' => 'required|email|unique:users,email,|max:255' . $userAccount->user->id,
-        ]);
-    
+    // Validate dữ liệu
+    $request->validate([
+        'name' => 'required|string|min:2|regex:/^[^\s]+(\s[^\s]+)*$/|max:255',
+        'phone' => 'required|regex:/^0[0-9]{9}$/',
+        'address' => 'required|string|min:2|max:255',
+        'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_width=1,min_height=1',
+        // 'email' => 'required|email|unique:users,email,|max:255' . $userAccount->user->id,
+    ]);
 
-            // Dữ liệu cần cập nhật trong bảng 'accounts'
-        $userData = [
-            'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
-            'address' => $request->input('address'),
-        ];
+    // Dữ liệu cần cập nhật trong bảng 'accounts'
+    $userData = [
+        'name' => $request->input('name'),
+        'phone' => $request->input('phone'),
+        'address' => $request->input('address'),
+    ];
 
-        // Cập nhật avatar nếu có
-        if ($request->hasFile('avatar')) {
-            $uploadedAvatar = $request->file('avatar');
-                $avatarName = time() . '.' . $uploadedAvatar->getClientOriginalExtension();
-            $uploadedAvatar->move(public_path('images/avatars'), $avatarName);
-                $userData['avatar'] = 'images/avatars/' . $avatarName;
-            }
-        
+    // Cập nhật avatar nếu có
+    if ($request->hasFile('avatar')) {
+        $uploadedAvatar = $request->file('avatar');
+        if (!$uploadedAvatar->isValid()) {
+            return redirect()->back()->withErrors('Tệp tải lên không hợp lệ. Vui lòng chỉ tải lên tệp hình ảnh.');
+        }
 
-        // Sử dụng transaction để đảm bảo tính nhất quán
-        // DB::transaction(function () use ($userAccount, $request, $userData) {
-        //     // Cập nhật thông tin người dùng trong bảng 'accounts'
-        //     $userAccount->update($userData);
+        $avatarName = time() . '.' . $uploadedAvatar->getClientOriginalExtension();
+        $uploadedAvatar->move(public_path('images/avatars'), $avatarName);
+        $userData['avatar'] = 'images/avatars/' . $avatarName;
+    }
 
-        //     // Cập nhật email trong bảng 'users'
-        //     $userAccount->user->update(['email' => $request->input('email')]);
-        // });
+    // Thực hiện cập nhật thông tin người dùng
+    $userAccount->update($userData);
 
+    // Chuyển hướng và thông báo thành công
+   
         return redirect()->route('users.edit', $userAccount)->with('success', 'User information updated successfully.');
     }
 

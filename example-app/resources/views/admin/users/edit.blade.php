@@ -26,7 +26,7 @@
             <input type="text" name="address" value="{{ $user->address }}" required>
 
             <label for="avatar">Avatar:</label>
-            <input type="file" name="avatar">
+<input type="file" name="avatar" accept="image/jpeg, image/png, image/jpg, image/gif, image/svg+xml">
 
             <button type="submit">Update User</button>
         </form>
