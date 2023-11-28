@@ -19,68 +19,71 @@
 
         <div class="page-content">
             <div class="container">
-                @if(count($wishlistProducts) > 0)
+                @if (count($wishlistProducts) > 0)
                     <table class="table table-wishlist table-mobile">
                         <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Stock Status</th>
-                            <th>Action</th>
-                        </tr>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Stock Status</th>
+                                <th>Action</th>
+                            </tr>
                         </thead>
 
                         <tbody>
-                        @foreach($wishlistProducts as $wishlistProduct)
-                            <tr>
-                                <td class="product-col">
-                                    <div class="product">
-                                        <figure class="product-media">
-                                            <a href="{{ route('product', $wishlistProduct->id) }}">
-                                                <img src="{{ asset("images/products/$wishlistProduct->image") }}"
-                                                     alt="Product image">
-                                            </a>
-                                        </figure>
+                            @foreach ($wishlistProducts as $wishlistProduct)
+                                <tr>
+                                    <td class="product-col">
+                                        <div class="product">
+                                            <figure class="product-media">
+                                                <a href="{{ route('detail', $wishlistProduct->id) }}">
+                                                    <img src="{{ asset("images/products/$wishlistProduct->image") }}"
+                                                        alt="Product image">
+                                                </a>
+                                            </figure>
 
-                                        <h3 class="product-title">
-                                            <a href="{{ route('product', $wishlistProduct->id) }}">{{ $wishlistProduct->name }}</a>
-                                        </h3><!-- End .product-title -->
-                                    </div><!-- End .product -->
-                                </td>
-                                <td class="price-col">{{ $wishlistProduct->price }} VNĐ</td>
-                                <td class="stock-col">@if($wishlistProduct->inventory > 0)
-                                        <span class="in-stock">In Stock</span>
-                                    @else
-                                        <span class="out-of-stock">Out of Stock</span>
-                                    @endif
-                                </td>
-                                <td class="action-col">
-                                    @if($wishlistProduct->inventory > 0)
-                                        <form action="{{ route('cart.add', $wishlistProduct->id) }}" method="POST">
-                                            @csrf
-                                            <button class="btn btn-block btn-outline-primary-2"><i
-                                                    class="icon-cart-plus"></i>Add to Cart
+                                            <h3 class="product-title">
+                                                <a
+                                                    href="{{ route('detail', $wishlistProduct->id) }}">{{ $wishlistProduct->name }}</a>
+                                            </h3><!-- End .product-title -->
+                                        </div><!-- End .product -->
+                                    </td>
+                                    <td class="price-col">{{ $wishlistProduct->price }} VNĐ</td>
+                                    <td class="stock-col">
+                                        @if ($wishlistProduct->inventory > 0)
+                                            <span class="in-stock">In Stock</span>
+                                        @else
+                                            <span class="out-of-stock">Out of Stock</span>
+                                        @endif
+                                    </td>
+                                    <td class="action-col">
+                                        @if ($wishlistProduct->inventory > 0)
+                                            <form action="{{ route('cart.add', $wishlistProduct->id) }}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-block btn-outline-primary-2"><i
+                                                        class="icon-cart-plus"></i>Add to Cart
+                                                </button>
+                                            </form>
+                                        @else
+                                            <button class="btn btn-block btn-outline-primary-2 disabled">Out of Stock
                                             </button>
+                                        @endif
+                                    </td>
+                                    <td class="remove-col">
+                                        <form action="{{ route('wishlist.remove', $wishlistProduct->id) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn-remove"><i class="icon-close"></i></button>
                                         </form>
-                                    @else
-                                        <button class="btn btn-block btn-outline-primary-2 disabled">Out of Stock
-                                        </button>
-                                    @endif
-                                </td>
-                                <td class="remove-col">
-                                    <form action="{{ route('wishlist.remove', $wishlistProduct->id) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn-remove"><i class="icon-close"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 @else
                     <p class="text-center">You don't have any product in wishlist!</p>
-                @endif<!-- End .table table-wishlist -->
+                @endif
+                <!-- End .table table-wishlist -->
             </div><!-- End .container -->
         </div><!-- End .page-content -->
     </main><!-- End .main -->
