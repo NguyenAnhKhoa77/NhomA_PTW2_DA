@@ -12,12 +12,12 @@ class Account extends Model
     protected $fillable = [
         'name',
         'phone',
-        'address',
         'avatar',
+        'address',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->hasOne(User::class);
     }
 }
