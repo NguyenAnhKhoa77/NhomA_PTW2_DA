@@ -53,7 +53,7 @@
 
                 <div class="col-md-6 col-lg-4">
                     <div class="banner banner-cat">
-                        <a href="#">
+                        <a href="{{ url('grid?sex=1', []) }}">
                             <img src="{{ url('images/banner/nam.jpg', []) }}" alt="Banner">
                         </a>
 

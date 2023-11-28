@@ -10,20 +10,17 @@
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg"
-                                    alt="User profile picture">
+                                <img src="{{ asset('' . $user->avatar) }}" alt="Avatar" style="max-width:200px">
                             </div>
 
-                            <h3 class="profile-username text-center">User</h3>
-
-                            <p class="text-muted text-center">Basic user</p>
+                            <h3 class="profile-username text-center">{{ $user->name }}</h3>
 
                             <ul class="list-group list-group-unbordered mb-3">
 
                             </ul>
 
-                            <a href="" class="btn btn-primary btn-block"><b>Change profile</b></a>
-                            <a href="" class="btn btn-primary btn-block"><b>Change password</b></a>
+                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-block"><b>Change profile</b></a>
+                            <a href="{{ route('users.changePassword', $user) }}" class="btn btn-primary btn-block"><b>Change password</b></a>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -39,17 +36,19 @@
 
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
-                            <p class="text-muted">Malibu, California</p>
+                            <p class="text-muted">{{ $user->address }} </p>
 
                             <hr>
 
                             <strong><i class="fas fa-pencil-alt mr-1"></i> Email</strong>
-
-                            <p class="text-muted"> user@gmail.com</p>
+                            <p>{{ optional($user->user)->email ?? 'N/A' }}</p>
                             <hr>
 
                             <strong><i class="far fa-file-alt mr-1"></i> Number phone</strong>
-                            <p>+123 1234 567 89</p>
+                            <p>{{ $user->phone }} </p>
+                            <hr>
+                            <strong><i class="fas fa-calendar-alt mr-1"></i> Update gần nhất</strong>
+                            <p>{{ $user->updated_at }} </p>
                             <hr>
                         </div>
                         <!-- /.card-body -->
