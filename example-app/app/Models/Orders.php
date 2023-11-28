@@ -8,19 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Orders extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'bills_id',
-        'product_id',
-        'quantity',
-        'price',
-        'updated_at',
-    ];
-    public function bills()
+    protected $fillable = ['bill_id', 'product_id', 'quantity'];
+
+    public function bill()
     {
-        return $this->belongsTo(Bills::class, 'bills_id');
+        return $this->belongsTo(Bills::class);
     }
+
     public function product()
     {
-        return $this->belongsTo(Products::class, 'product_id');
+        return $this->belongsTo(Product::class);
     }
 }

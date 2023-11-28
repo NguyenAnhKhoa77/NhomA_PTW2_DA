@@ -8,22 +8,29 @@
         </div>
     @endif
 
-    <form action="{{ route('users.update', $user) }}" method="post" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+    @if ($user)
+        <form action="{{ route('users.update', $user) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
 
-        <label for="name">Name:</label>
-        <input type="text" name="name" value="{{ $user->name }}" required>
+            <label for="name">Name:</label>
+            <input type="text" name="name" value="{{ $user->name }}" required>
 
-        <label for="phone">Phone:</label>
-        <input type="text" name="phone" value="{{ $user->phone }}" required>
+            <label for="email">Email:</label>
+            <input type="email" name="email" value="{{ $user->user->email }}" required>
 
-        <label for="address">Address:</label>
-        <input type="text" name="address" value="{{ $user->address }}" required>
+            <label for="phone">Phone:</label>
+            <input type="text" name="phone" value="{{ $user->phone }}" required>
 
-        <label for="avatar">Avatar:</label>
-        <input type="file" name="avatar">
+            <label for="address">Address:</label>
+            <input type="text" name="address" value="{{ $user->address }}" required>
 
-        <button type="submit">Update User</button>
-    </form>
+            <label for="avatar">Avatar:</label>
+            <input type="file" name="avatar">
+
+            <button type="submit">Update User</button>
+        </form>
+    @else
+        <p>User not found.</p>
+    @endif
 @endsection
