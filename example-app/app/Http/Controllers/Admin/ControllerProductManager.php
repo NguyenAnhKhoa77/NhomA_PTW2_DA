@@ -209,14 +209,14 @@ class ControllerProductManager extends Controller
     public function image_store(Request $request, $id)
     {
         $token = $request->input('_token');
-        if (Session::has('_token') && Session::get('_token') === $token) {
-            if ($product = Product::where('unique_token', $id)->first()) {
+        if (Session::has('_token') && Session::get('_token') == $token) {
+            if ($product = Product::find($id)) {
                 $request->validate([
                     'images.*' => 'required|image|mimes:png,jpg,jpeg|max:2048'
                 ]);
                 if ($request->hasFile('images')) {
                     foreach ($request->file('images') as $file) {
-                        $name = uniqid() . '.' . $file->getClientOriginalExtension(); // Tạo tên mới cho file
+                        $name = uniqid() . '.' . $file->getClientOriginalExtension();
                         $file->move(public_path('images/products'), $name);
                         $productImage = new ProductImage([
                             'url' => $name,
