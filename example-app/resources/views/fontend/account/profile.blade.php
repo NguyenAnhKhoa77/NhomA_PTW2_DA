@@ -42,6 +42,12 @@
                                        role="tab" aria-controls="tab-change-password" aria-selected="false">Change
                                         Password</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab-mail-box-link"
+                                       href="{{ route('mailbox') }}"
+                                       role="tab" aria-controls="tab-change-password" aria-selected="false">Change
+                                        Password</a>
+                                </li>
                             </ul>
                         </aside><!-- End .col-lg-3 -->
 

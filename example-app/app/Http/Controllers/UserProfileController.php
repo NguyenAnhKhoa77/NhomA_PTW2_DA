@@ -70,6 +70,11 @@ class UserProfileController extends Controller
         return view('fontend.account.orders');
     }
 
+    public function mailbox()
+    {
+        return view('fontend.account.mailbox');
+    }
+
     public function changePassword()
     {
         return view('fontend.account.change-password');
