@@ -37,7 +37,10 @@ Route::prefix('/')->group(function () {
     //Checkout
     Route::prefix('/check-out')->middleware('auth')->group(function () {
         Route::get('/', [ControllerCheckOut::class, 'index'])->name('check-out');
+        Route::get('/check-out-momo', [ControllerCheckOut::class, 'checkoutMomo'])->name('check-out-momo');
         Route::post('/process-check-out', [ControllerCheckOut::class, 'processCheckout'])->name('process.check-out');
+        Route::post('/process-check-out-momo', [ControllerCheckOut::class, 'processCheckoutMomo'])->name('process.check-out-momo');
+        Route::get('/thank-you', [ControllerCheckOut::class, 'thanksPage'])->name('thank-you');
     });
 
 
