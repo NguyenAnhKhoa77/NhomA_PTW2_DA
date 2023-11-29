@@ -86,6 +86,8 @@ Route::prefix('/account')->middleware('auth')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
     Route::post('/update-profile/{account}', [UserProfileController::class, 'updateProfile'])->name('update.profile');
     Route::get('/address', [UserProfileController::class, 'address'])->name('address');
+    Route::get('/address-add', [UserProfileController::class, 'addressAddNew'])->name('address.add');
+    Route::get('/address-change', [UserProfileController::class, 'addressChange'])->name('address.change');
     Route::get('/orders', [UserProfileController::class, 'orders'])->name('orders');
     Route::get('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
     Route::post('/change-password', [UserProfileController::class, 'changePasswordProcess'])->name('change.password.process');

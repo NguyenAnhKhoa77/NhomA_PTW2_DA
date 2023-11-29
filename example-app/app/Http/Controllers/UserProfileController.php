@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,32 @@ class UserProfileController extends Controller
 
     public function address()
     {
-        return view('fontend.account.address');
+        $addresses = Address::all();
+        return view('fontend.account.address', compact('addresses'));
+    }
+
+    public function addressAddNew()
+    {
+        return view('fontend.account.address-addnew');
+    }
+    public function addressAddNewProcess(Request $request)
+    {
+        $request->validate([
+            'fullname' => 'required',
+            'phone' => 'required|min:6|confirmed',
+            'checkbox' =>'accepted',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->with("error", "Old password doesn't match!");
+        }
+        $user->$user->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return redirect()->back()->with('status', 'Password was changed successfully!');
     }
 
     public function orders()
