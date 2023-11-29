@@ -49,92 +49,68 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="tab-address" role="tabpanel"
                                      aria-labelledby="tab-address-link">
-                                        <div class="col-md-12 justify-content-center">
-                                                <div class="card-body mt-0 mx-5">
-                                                    <form class="mb-0">
-                                                        <div class="row mb-4">
-                                                            <div class="col">
-                                                                <div class="form-outline">
-                                                                    <input type="text" id="form9Example1" class="form-control input-custom" />
-                                                                    <label class="form-label" for="form9Example1">First name</label>
-                                                                </div>
+                                    <div class="col-md-12 justify-content-center">
+                                        <h3>My Addresses</h3>
+                                        <div class="card border">
+                                            @if (count($addresses) == 0)
+                                                <a href="{{ route('add.address') }}" class="btn btn-primary">Add new</a>
+                                            @else
+                                                @foreach($addresses as $address)
+                                                    <div class="card-body border">
+                                                        <div class="row">
+                                                            <div class="col-md-8">
+                                                                <h5>{{ $address->fullname }}</h5>
+                                                                <p class="card-text">{{ $address->phone }}</p>
+                                                                <p class="card-text">{{ $address->street_address }}</p>
+                                                                @if ($address->is_default == 1)
+                                                                    <span class="card-text border bg-warning p-2">Address default</span>
+                                                                @endif
                                                             </div>
-                                                            <div class="col">
-                                                                <div class="form-outline">
-                                                                    <input type="text" id="form9Example2" class="form-control input-custom" />
-                                                                    <label class="form-label" for="form9Example2">Last name</label>
+                                                            <div class="col-md-4 pt-5 pb-5 text-center">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 text-center">
+                                                                        <a href="{{ route('change.address', $address->id) }}"
+                                                                           class="card-link font-weight-bold">Change</a>
+                                                                        <form
+                                                                            action="{{ route('delete.address.process', $address->id) }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            @method('delete')
+                                                                            <button type="submit"
+                                                                                    class="text-danger border-0 bg-transparent">
+                                                                                Delete
+                                                                            </button>
+                                                                        </form>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        @if ($address->is_default == 1)
+                                                                            <a href="" class="btn btn-primary disabled">Set
+                                                                                as
+                                                                                default</a>
+                                                                        @else
+                                                                            <form
+                                                                                action="{{ route('change.address-default.process', $address->id) }}"
+                                                                                method="post">
+                                                                                @csrf
+                                                                                <button
+                                                                                    class="btn btn-primary">Set as
+                                                                                    default
+                                                                                </button>
+                                                                            </form>
+                                                                        @endif
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row mb-4">
-                                                            <div class="col">
-                                                                <div class="form-outline">
-                                                                    <input type="text" id="form9Example3" class="form-control input-custom" />
-                                                                    <label class="form-label" for="form9Example3">City</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col">
-                                                                <div class="form-outline">
-                                                                    <input type="text" id="form9Example4" class="form-control input-custom" />
-                                                                    <label class="form-label" for="form9Example4">Zip</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-4">
-                                                            <div class="col">
-                                                                <div class="form-outline">
-                                                                    <input type="text" id="form9Example6" class="form-control input-custom" />
-                                                                    <label class="form-label" for="form9Example6">Address</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col">
-                                                                <div class="form-outline">
-                                                                    <input type="email" id="typeEmail" class="form-control input-custom" />
-                                                                    <label class="form-label" for="typeEmail">Email</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="float-end ">
-                                                            <!-- Submit button -->
-                                                            <button type="submit" class="btn btn-primary btn-rounded"
-                                                                    style="background-color: #0062CC ;">Place order</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                                    </div>
+                                                @endforeach
+                                                <a href="{{ route('add.address') }}" class="btn btn-primary">Add new</a>
+                                            @endif
                                         </div>
-
-{{--                                    <p>The following addresses will be used on the checkout page by default.</p>--}}
-
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-lg-6">--}}
-{{--                                            <div class="card card-dashboard">--}}
-{{--                                                <div class="card-body">--}}
-{{--                                                    <h3 class="card-title">Billing Address</h3><!-- End .card-title -->--}}
-
-{{--                                                    <p>User Name<br>--}}
-{{--                                                        User Company<br>--}}
-{{--                                                        John str<br>--}}
-{{--                                                        New York, NY 10001<br>--}}
-{{--                                                        1-234-987-6543<br>--}}
-{{--                                                        yourmail@mail.com<br>--}}
-{{--                                                        <a href="#">Edit <i class="icon-edit"></i></a>--}}
-{{--                                                    </p>--}}
-{{--                                                </div><!-- End .card-body -->--}}
-{{--                                            </div><!-- End .card-dashboard -->--}}
-{{--                                        </div><!-- End .col-lg-6 -->--}}
-
-{{--                                        <div class="col-lg-6">--}}
-{{--                                            <div class="card card-dashboard">--}}
-{{--                                                <div class="card-body">--}}
-{{--                                                    <h3 class="card-title">Shipping Address</h3><!-- End .card-title -->--}}
-
-{{--                                                    <p>You have not set up this type of address yet.<br>--}}
-{{--                                                        <a href="#">Edit <i class="icon-edit"></i></a>--}}
-{{--                                                    </p>--}}
-{{--                                                </div><!-- End .card-body -->--}}
-{{--                                            </div><!-- End .card-dashboard -->--}}
-{{--                                        </div><!-- End .col-lg-6 -->--}}
-{{--                                    </div><!-- End .row -->--}}
+                                    </div>
                                 </div><!-- .End .tab-pane -->
                             </div>
                         </div><!-- End .col-lg-9 -->
