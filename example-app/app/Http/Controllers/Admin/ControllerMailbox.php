@@ -19,7 +19,8 @@ class ControllerMailbox extends Controller
     public function readmail($id)
     {
         $mails = Contact::find($id);
-        return view('backend.mailbox.read-mail',compact('mails'));
+        $user = User::find($mails->user_id);
+        return view('backend.mailbox.read-mail',compact('mails','user'));
     }
     
 }
