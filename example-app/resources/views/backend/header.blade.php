@@ -10,24 +10,26 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ url('backend/plugins/fontawesome-free/css/all.min.css', []) }}">
+    <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css', []) }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
-        href="{{ url('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css', []) }}">
+        href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css', []) }}">
     <!-- iCheck -->
-    <link rel="stylesheet" href="{{ url('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css', []) }}">
+    <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css', []) }}">
     <!-- JQVMap -->
-    <link rel="stylesheet" href="{{ url('backend/plugins/jqvmap/jqvmap.min.css', []) }}">
+    <link rel="stylesheet" href="{{ asset('backend/plugins/jqvmap/jqvmap.min.css', []) }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('backend/css/adminlte.min.css', []) }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/adminlte.min.css', []) }}">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="{{ url('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css', []) }}">
+    <link rel="stylesheet" href="{{ asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css', []) }}">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{ url('backend/plugins/daterangepicker/daterangepicker.css', []) }}">
+    <link rel="stylesheet" href="{{ asset('backend/plugins/daterangepicker/daterangepicker.css', []) }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ url('backend/plugins/summernote/summernote-bs4.min.css', []) }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -226,7 +228,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('product.table') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'product.table' || Route::currentRouteName() == 'product.create' || Route::currentRouteName() == 'product.edit' ? 'active' : '' }}">
+                                class="nav-link  {{ Request::is('admin/product/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Sản phẩm
                                 </p>
@@ -261,14 +263,6 @@
                                 class="nav-link {{ Route::currentRouteName() == 'category.table' || Route::currentRouteName() == 'category.create' || Route::currentRouteName() == 'category.edit' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Loại sản phẩm
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('size.table') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'size.table' || Route::currentRouteName() == 'size.create' || Route::currentRouteName() == 'size.edit' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>Size
                                 </p>
                             </a>
                         </li>
@@ -324,40 +318,43 @@
         </footer>
 
     </div>
+
     <!-- jQuery -->
-    <script src="{{ url('backend/plugins/jquery/jquery.min.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/jquery/jquery.min.js', []) }}"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="{{ url('backend/plugins/jquery-ui/jquery-ui.min.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/jquery-ui/jquery-ui.min.js', []) }}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
-    <script src="{{ url('backend/plugins/bootstrap/js/bootstrap.bundle.min.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js', []) }}"></script>
     <!-- ChartJS -->
-    <script src="{{ url('backend/plugins/chart.js/Chart.min.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/chart.js/Chart.min.js', []) }}"></script>
     <!-- Sparkline -->
-    <script src="{{ url('backend/plugins/sparklines/sparkline.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/sparklines/sparkline.js', []) }}"></script>
     <!-- JQVMap -->
-    <script src="{{ url('backend/plugins/jqvmap/jquery.vmap.min.js', []) }}"></script>
-    <script src="{{ url('backend/plugins/jqvmap/maps/jquery.vmap.usa.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/jqvmap/jquery.vmap.min.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/jqvmap/maps/jquery.vmap.usa.js', []) }}"></script>
     <!-- jQuery Knob Chart -->
-    <script src="{{ url('backend/plugins/jquery-knob/jquery.knob.min.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/jquery-knob/jquery.knob.min.js', []) }}"></script>
     <!-- daterangepicker -->
-    <script src="{{ url('backend/plugins/moment/moment.min.js', []) }}"></script>
-    <script src="{{ url('backend/plugins/daterangepicker/daterangepicker.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/moment/moment.min.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/daterangepicker/daterangepicker.js', []) }}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{ url('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js', []) }}">
+    </script>
     <!-- Summernote -->
-    <script src="{{ url('backend/plugins/summernote/summernote-bs4.min.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/summernote/summernote-bs4.min.js', []) }}"></script>
     <!-- overlayScrollbars -->
-    <script src="{{ url('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js', []) }}"></script>
+    <script src="{{ asset('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js', []) }}"></script>
     <!-- AdminLTE App -->
-    <script src="{{ url('backend/js/adminlte.js', []) }}"></script>
+    <script src="{{ asset('backend/js/adminlte.js', []) }}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ url('backend/js/demo.js', []) }}"></script>
+    <script src="{{ asset('backend/js/demo.js', []) }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ url('backend/js/pages/dashboard.js', []) }}"></script>
+    <script src="{{ asset('backend/js/pages/dashboard.js', []) }}"></script>
+
 </body>
 
 </html>

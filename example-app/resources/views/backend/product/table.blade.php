@@ -9,22 +9,22 @@
                 <div class="mt-3"></div>
                 <h3 class="card-title">Danh sách sản phẩm</h3>
                 <div class="card-tools">
-                    <a type="button" href="{{ route('product.create') }}" class="btn btn-tool" title="Collapse">
-                        <i class="fas fa-plus"></i>
-                    </a>
+                    <a type="button" href="{{ route('size.table', []) }}" class="btn btn-primary">Size product table
+                        product</a>
+                    <a type="button" href="{{ route('product.create', []) }}" class="btn btn-primary">Create new product</a>
+
                 </div>
             </div>
             <div class="card-body p-0">
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
-                            <th style="width: 15%">Tên</th>
+                            <th style="width: 10%">Tên</th>
                             <th style="width: 10%">Loại sản phẩm</th>
                             <th style="width: 10%">Nhãn hiệu</th>
-                            <th style="width: 20%">Size</th>
-                            <th style="width: 20%">Mô tả</th>
                             <th style="width: 10%">Giá</th>
                             <th style="width: 10%">Tồn kho</th>
+                            <th style="width: 10%">#</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,35 +36,29 @@
                                 </td>
                                 <td>{{ $product->categories->name }} </td>
                                 <td>{{ $product->manufacturer->name }} </td>
-
-                                @php
-                                    $sizes = $product->sizes;
-                                @endphp
-                                <td>
-                                    @foreach ($sizes as $size)
-                                        {{ $size->name }}
-                                    @endforeach
-                                </td>
-                                <td style=" word-break: break-all;">
-                                    {{ Str::limit($product->description, 100) }}</td>
-
                                 <td>{{ $product->price }} </td>
                                 <td>{{ $product->inventory }} </td>
 
                                 <td class="project-actions text-right">
+                                    <a class="btn btn-info btn-sm" href="{{ route('product.view', [$product]) }}">
+                                        <i class="fas fa-folder">
+                                        </i> View
+                                    </a>
                                     <a class="btn btn-info btn-sm" href="{{ route('product.edit', [$product]) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </a>
+                                    {{-- form delete --}}
                                     <form id="delete-form{{ $product->id }}"
                                         action="{{ route('product.delete', [$product]) }}" method="get"
                                         style="display: none;">
                                         @csrf
-                                        <button type="submit" onclick="">Delete</button>
+                                        <button type="submit">Delete</button>
                                     </form>
                                     <a class="btn btn-danger btn-sm"
                                         onclick="confirmDelete{{ $product->id }}(event)">Delete</a>
+                                    {{-- end form delete --}}
                                 </td>
                                 <script>
                                     function confirmDelete{{ $product->id }}(event) {

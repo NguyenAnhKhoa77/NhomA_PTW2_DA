@@ -109,15 +109,29 @@ Route::prefix('/account')->middleware('auth')->group(function () {
 Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
-
+    //
+    Route::get('/getOrderData', [AdminPage::class, 'getOrderData'])->name('getOrderData');
+    Route::get('/getCategoryData', [AdminPage::class, 'getCategoryData'])->name('getCategoryData');
+    Route::get('/getManuData', [AdminPage::class, 'getManuData'])->name('getManuData');
+    Route::get('/getCategoryChart', [AdminPage::class, 'getCategoryChart'])->name('getCategoryChart');
+    //
     Route::prefix('product')->group(function () {
         Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
         Route::get('create', [ControllerProductManager::class, 'create'])->name('product.create');
         Route::post('create', [ControllerProductManager::class, 'create_handler'])->name('product.create.handle');
         Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
         Route::post('edit/{token_id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
+        Route::get('detai/{id}', [ControllerProductManager::class, 'view'])->name('product.view');
+
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
-        Route::get('addsize/{id}', [ControllerProductManager::class, ''])->name('product.addsize');
+        Route::get('addsize/{id}', [ControllerProductManager::class, 'size_create'])->name('product.addsize');
+        Route::post('storesize/{token_id}', [ControllerProductManager::class, 'size_store'])->name('product.storesize');
+
+        Route::prefix('image')->group(function () {
+            Route::get('create/{id}', [ControllerProductManager::class, 'image_create'])->name('product.image.create');
+            Route::post('store/{id}', [ControllerProductManager::class, 'image_store'])->name('product.image.store');
+            Route::delete('destroy/{id}', [ControllerProductManager::class, 'image_destroy'])->name('product.image.destroy');
+        });
 
         //
         Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submit.form');

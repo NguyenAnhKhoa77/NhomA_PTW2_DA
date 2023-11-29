@@ -40,6 +40,11 @@ class Product extends Model
     }
     public function sizes()
     {
+
         return $this->belongsToMany(Size::class);
+    }
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
     }
 }
