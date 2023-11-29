@@ -109,8 +109,8 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
         Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
         Route::post('edit/{token_id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
-        Route::get('addsize/{id}', [ControllerProductManager::class, ''])->name('product.addsize');
-
+        Route::get('addsize/{id}', [ControllerProductManager::class, 'size_create'])->name('product.addsize');
+        Route::Post('storesize/{token_id}', [ControllerProductManager::class, 'size_store'])->name('product.storesize');
         //
         Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submit.form');
         Route::get('/users/{user}/edit', [ControllerUsersManager::class, 'edit'])->name('users.edit');
