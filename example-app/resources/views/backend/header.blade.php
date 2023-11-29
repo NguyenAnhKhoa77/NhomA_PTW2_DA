@@ -274,6 +274,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('mailbox.mailbox') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'comments.table' || Route::currentRouteName() == 'comments.create' || Route::currentRouteName() == 'comments.edit' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>Mailbox
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
