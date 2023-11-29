@@ -31,7 +31,7 @@
                                 <div class="form-group">
                                     <label for="name">Họ và tên *</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                           value="@if($userInfo->name){{ $userInfo->name }}@endif" required>
+                                           value="@if($deliveriesInfo->name){{ $deliveriesInfo->name }}@endif" required>
                                     @if ($errors->has('name'))
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                     @endif
@@ -39,7 +39,7 @@
                                 <div class="form-group">
                                     <label for="phone">Phone *</label>
                                     <input type="text" class="form-control" id="phone" name="phone"
-                                           value="@if($userInfo->phone){{ $userInfo->phone }}@endif" required>
+                                           value="@if($deliveriesInfo->phone){{ $deliveriesInfo->phone }}@endif" required>
                                     @if ($errors->has('phone'))
                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                                     @endif
@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label for="address">Address *</label>
                                     <input type="text" class="form-control" id="address" name="address"
-                                           value="@if($userInfo->address){{ $userInfo->address }}@endif" required>
+                                           value="@if($deliveriesInfo->address){{ $deliveriesInfo->address }}@endif" required>
                                     @if ($errors->has('address'))
                                         <span class="text-danger">{{ $errors->first('address') }}</span>
                                     @endif

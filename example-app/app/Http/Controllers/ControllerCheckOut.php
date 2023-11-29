@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Address;
 use App\Models\Bills;
 use App\Models\Momo;
 use App\Models\Orders;
@@ -21,6 +22,15 @@ class ControllerCheckOut extends Controller
             }
             $cart = $request->session()->get('cart', []);
 
+            $deliveriesInfo = Address::all();
+
+            $deliveryInfoCurrent = "";
+            if ($request->address_id) {
+                $deliveryInfoCurrent = Address::findOrFail($request->address_id);
+            } else {
+                $deliveryInfoCurrent = Address::where('user_id', Auth::id())->where('is_default', 1)
+                    ->first();
+            }
             $checkOutProducts = [];
             $subTotalPrices = 0;
             $totalShippingFees = 0;
@@ -41,7 +51,7 @@ class ControllerCheckOut extends Controller
             }
 
             $totalPrices = $subTotalPrices + $totalShippingFees;
-            return view('fontend.checkout.checkout', compact('checkOutProducts', 'subTotalPrices', 'totalShippingFees', 'totalPrices', 'userInfo'));
+            return view('fontend.checkout.checkout', compact('checkOutProducts', 'subTotalPrices', 'totalShippingFees', 'totalPrices', 'deliveriesInfo' ,'deliveryInfoCurrent'));
         } else {
             return redirect()->route('login')->with('error', 'You need to login first!');
         }
@@ -62,7 +72,7 @@ class ControllerCheckOut extends Controller
             $momo->signature = $request->signature;
             if ($momo->save()) {
                 $bill = Bills::findOrFail($momo->orderId);
-                $bill->status = 'paid';
+                $bill->status = 'delivering';
                 $bill->update();
             }
         } else {
