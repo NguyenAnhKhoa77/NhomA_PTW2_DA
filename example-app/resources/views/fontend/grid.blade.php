@@ -37,9 +37,9 @@
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
                                                 @php
-                                                $newId = encrypt($product->id);
+                                                    $newId = encrypt($product->id);
                                                 @endphp
-                                                <a href="detail/{{$newId}}">
+                                                <a href="detail/{{ $newId }}">
                                                     <img src="{{ url('images/products/' . $product->image, []) }}"
                                                         alt="Product image" class="product-image">
                                                 </a>
@@ -51,8 +51,22 @@
                                                 </div><!-- End .product-action-vertical -->
 
                                                 <div class="product-action">
-                                                    <a href="#" class="btn-product btn-cart"><span>add to
-                                                            cart</span></a>
+                                                    <form id="add-form{{ $product->id }}"
+                                                        action="{{ route('cart.add', [$product]) }}" method="post"
+                                                        style="display: none;">
+                                                        @csrf
+                                                        <button type="submit" onclick=""></button>
+                                                    </form>
+                                                    <a class="btn-product btn-cart"
+                                                        onclick="confirmAddCart{{ $product->id }}(event)">add to
+                                                        cart</a>
+                                                    <script>
+                                                        function confirmAddCart{{ $product->id }}(event) {
+                                                            event.preventDefault();
+                                                            document.getElementById('add-form{{ $product->id }}')
+                                                                .submit();
+                                                        }
+                                                    </script>
                                                 </div><!-- End .product-action -->
                                             </figure><!-- End .product-media -->
 

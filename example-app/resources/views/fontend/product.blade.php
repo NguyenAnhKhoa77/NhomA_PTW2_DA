@@ -100,13 +100,13 @@
                                     <div class="details-filter-row details-row-size">
                                         <label for="qty">Số lượng:</label>
                                         <div class="product-details-quantity">
-                                            <input type="number" id="qty" name="qty" class="form-control" value="1"
-                                                min="1" max="10" step="1" data-decimals="0" required>
+                                            <input type="number" id="qty" name="qty" class="form-control"
+                                                value="1" min="1" max="10" step="1"
+                                                data-decimals="0" required>
                                         </div><!-- End .product-details-quantity -->
                                     </div><!-- End .details-filter-row -->
 
                                     <div class="product-details-action">
-
                                         <button type="submit" class="btn-product btn-cart p-0 py-3 border-0">Thêm vào giỏ
                                             hàng</button>
                                         <div class="details-action-wrapper">
@@ -219,9 +219,9 @@
                 <form class="d-flex flex-column" action="/comment" method="post">
                     @csrf
                     @php
-                     $newId = encrypt($product->id);
+                        $newId = encrypt($product->id);
                     @endphp
-                    <input name="product_id" type="hidden" value="{{$newId}}" type="text">
+                    <input name="product_id" type="hidden" value="{{ $newId }}" type="text">
                     <label for="comment">
                         Bình luận của bạn về sản phẩm.
                     </label>
@@ -235,12 +235,12 @@
                         <div class="commentCard border border-primary mt-2 p-2">
                             <div class="comment_id">
                                 <b>
-                                Bình luận số: {{$comment->id}}
+                                    Bình luận số: {{ $comment->id }}
                                 </b>
                             </div>
                             <div class="comment_content border-top border-primary">
                                 Nội dung:
-                                {{$comment->comment}}
+                                {{ $comment->comment }}
                             </div>
                         </div>
                     @endforeach

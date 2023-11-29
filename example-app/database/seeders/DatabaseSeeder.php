@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             ManufacturersSeeder::class,
             ProductsSeeder::class,
             PriceRangeSeeder::class,
+            SizeSeeder::class,
         ]);
     }
 }

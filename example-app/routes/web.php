@@ -101,6 +101,9 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
         Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
         Route::post('edit/{token_id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
+        Route::get('addsize/{id}', [ControllerProductManager::class, ''])->name('product.addsize');
+
+        //
         Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submit.form');
         Route::get('/users/{user}/edit', [ControllerUsersManager::class, 'edit'])->name('users.edit');
         Route::put('/users/{user}', [ControllerUsersManager::class, 'update'])->name('users.update');
@@ -108,6 +111,15 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
             ->name('users.changePasswordForm');
         Route::put('/users/{id}/change-password', [ControllerUsersManager::class, 'changePassword'])
             ->name('users.changePassword');
+    });
+    Route::prefix('product/size/')->group(function () {
+        Route::get('/', [ControllerSize::class, 'index'])->name('size.table');
+        Route::get('create', [ControllerSize::class, 'create'])->name('size.create');
+        Route::post('store', [ControllerSize::class, 'store'])->name('size.store');
+        Route::get('edit/{id}', [ControllerSize::class, 'edit'])->name('size.edit');
+        Route::post('update/{id}', [ControllerSize::class, 'update'])->name('size.update');
+        Route::get('destroy/{id}', [ControllerSize::class, 'destroy'])->name('size.destroy');
+        Route::get('show', [ControllerSize::class, 'show'])->name('size.show');
     });
     Route::prefix('category')->group(function () {
         Route::get('/', [ControllerCategoryManager::class, 'index'])->name('category.table');
