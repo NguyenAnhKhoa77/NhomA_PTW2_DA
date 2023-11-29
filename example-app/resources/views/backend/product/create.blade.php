@@ -31,7 +31,6 @@
                                     @foreach ($cates as $cate)
                                         <option value="{{ $cate->id }}">{{ $cate->name }}</option>
                                     @endforeach
-                                    <option value="9999999999999">no</option>
                                 </select>
                                 @error('cate')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -45,7 +44,19 @@
                                     @foreach ($manus as $manu)
                                         <option value="{{ $manu->id }}">{{ $manu->name }}</option>
                                     @endforeach
-                                    <option value="9999999999999">no</option>
+                                </select>
+                                @error('manu')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="inputStatus">Giới tính</label>
+                                <select id="inputStatus" name="sex"
+                                    class="form-control custom-select @error('sex') is-invalid @enderror">
+                                    <option selected disabled>Select one</option>
+                                    @foreach ($sexs as $sex)
+                                        <option value="{{ $sex->id }}">{{ $sex->text }}</option>
+                                    @endforeach
                                 </select>
                                 @error('manu')
                                     <div class="invalid-feedback">{{ $message }}</div>

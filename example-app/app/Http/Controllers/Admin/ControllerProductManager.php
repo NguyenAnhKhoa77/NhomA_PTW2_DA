@@ -9,6 +9,7 @@ use App\Models\Orders;
 use App\Models\Product;
 use App\Models\Product_Size;
 use App\Models\ProductImage;
+use App\Models\sex;
 use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -26,9 +27,10 @@ class ControllerProductManager extends Controller
     }
     public function create()
     {
+        $sexs = sex::all();
         $manus = Manufacturers::all();
         $cates = Categories::all();
-        return view('backend.product.create', compact('manus', 'cates'));
+        return view('backend.product.create', compact('manus', 'cates', 'sexs'));
     }
     public function create_handler(Request $request)
     {
@@ -44,7 +46,11 @@ class ControllerProductManager extends Controller
                 'inventory' => 'required|numeric|gt:0',
                 'manu' => 'required',
                 'cate' => 'required',
+                'sex' => 'required',
             ]);
+            if (!!!sex::find($request['sex'])) {
+                return back()->withErrors(['sex' => 'Sex does not exist.']);
+            }
             if (!!!Categories::find($request['cate'])) {
                 return back()->withErrors(['cate' => 'Category does not exist.']);
             }
@@ -60,6 +66,7 @@ class ControllerProductManager extends Controller
                 'categories_id' => $request['cate'],
                 'manufacturer_id' => $request['manu'],
                 'description' => $request['description'],
+                'sex' => $request['sex'],
                 'price' => $request['price'],
                 'inventory' => $request['inventory'],
                 'unique_token' => Str::uuid()->toString(),
@@ -79,11 +86,11 @@ class ControllerProductManager extends Controller
         if (!!!$product = Product::find($id)) {
             return redirect()->route('product.table')->with('errors', 'Danh mục không tồn tại');
         }
+        $sexs = sex::all();
         $product = Product::find($id);
         $manus = Manufacturers::all();
         $cates = Categories::all();
-        $page = 'Product edit';
-        return view('backend.product.edit', compact('product', 'page', 'cates', 'manus'));
+        return view('backend.product.edit', compact('product',  'cates', 'manus', 'sexs'));
     }
     public function edit_handle($token_id, Request $request)
     {
@@ -102,6 +109,7 @@ class ControllerProductManager extends Controller
                 'inventory' => 'required|numeric|gt:0',
                 'manu' => 'required',
                 'cate' => 'required',
+                'sex' => 'required',
             ]);
             if (!!!Categories::find($request['cate'])) {
                 return back()->withErrors(['cate' => 'Category does not exist.']);
@@ -109,11 +117,15 @@ class ControllerProductManager extends Controller
             if (!!!Manufacturers::find($request['manu'])) {
                 return back()->withErrors(['manu' => 'Manufacturer does not exist.']);
             }
+            if (!!!sex::find($request['sex'])) {
+                return back()->withErrors(['sex' => 'Manufacturer does not exist.']);
+            }
             $product->name = $request->input('name');
             $product->categories_id = $request->input('cate');
             $product->manufacturer_id = $request->input('manu');
             $product->description = $request->input('description');
             $product->price = $request->input('price');
+            $product->sex = $request->input('sex');
             $product->inventory = $request->input('inventory');
             $product->unique_token = Str::uuid()->toString();
             if ($request->hasFile('image')) {
