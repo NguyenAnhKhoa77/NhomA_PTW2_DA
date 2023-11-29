@@ -39,6 +39,20 @@
                                 <td>{{ $user->account->phone }} </td>
                                 <td>{{ $user->account->address }} </td>
                                 <td class="project-actions text-right">
+                                    @if ($user->is_locked == false)
+                                        <a class="btn btn-primary btn-sm" href="{{ route('user.lockUser', $user->id) }}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            lock
+                                        </a>
+                                    @elseif ($user->is_locked == true)
+                                        <a class="btn btn-primary btn-sm" href="{{ route('user.unlockUser', $user->id) }}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            Unlock
+                                        </a>
+                                    @endif
+
                                     <a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->id) }}">
                                         <i class="fas fa-folder">
                                         </i>

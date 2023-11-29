@@ -20,20 +20,20 @@ class UserController extends Controller
      * Show the form for creating a new resource.
      */
     public function lockUser($id)
-{
-    $user = User::findOrFail($id);
-    $user->is_locked = true;
-    $user->save();
+    {
+        $user = User::findOrFail($id);
+        $user->is_locked = true;
+        $user->save();
 
-    return redirect()->back()->with('success', 'User locked successfully.');
-}
+        return redirect()->back()->with('success', 'User locked successfully.');
+    }
 
-public function unlockUser($id)
-{
-    $user = User::findOrFail($id);
-    $user->is_locked = false;
-    $user->save();
+    public function unlockUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->is_locked = false;
+        $user->save();
 
-    return redirect()->back()->with('success', 'User unlocked successfully.');
-}
+        return redirect()->back()->with('success', 'User unlocked successfully.');
+    }
 }
