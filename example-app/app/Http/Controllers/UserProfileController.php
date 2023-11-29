@@ -7,8 +7,10 @@ use App\Models\Address;
 use App\Models\Bills;
 use App\Models\Orders;
 use App\Models\Product;
+use App\Models\Coupons;
 use App\Models\User;
 use App\Models\Mails;
+use App\Models\UsersCoupons;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -344,5 +346,12 @@ class UserProfileController extends Controller
         ]);
 
         return redirect()->back()->with('status', 'Password was changed successfully!');
+    }
+
+    public function coupon()
+    {
+        $coupons = Coupons::all();
+        $userncoupon = UsersCoupons::all();
+        return view('fontend.account.coupon',compact('coupons','userncoupon'));
     }
 }

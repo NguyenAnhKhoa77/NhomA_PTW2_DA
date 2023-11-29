@@ -47,6 +47,11 @@
                                        href="{{ route('mailbox') }}"
                                        role="tab" aria-controls="tab-change-password" aria-selected="false">Mailbox</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab-user-coupon-link"
+                                       href="{{ route('coupon') }}"
+                                       role="tab" aria-controls="tab-change-password" aria-selected="false">Coupon</a>
+                                </li>
                             </ul>
                         </aside><!-- End .col-lg-3 -->
 
