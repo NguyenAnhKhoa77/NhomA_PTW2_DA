@@ -21,7 +21,6 @@ return new class extends Migration
                 $table->bigInteger('total');
                 $table->string('phone');
                 $table->string('status')->default('pending');
-                $table->string('status')->default('pending');
                 $table->tinyInteger('payment_type')->default('0');
                 $table->timestamps();
             });
@@ -36,4 +35,3 @@ return new class extends Migration
         Schema::dropIfExists('bills');
     }
 };
-

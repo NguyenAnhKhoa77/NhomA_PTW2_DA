@@ -91,7 +91,7 @@ Route::prefix('/account')->middleware('auth')->group(function () {
     Route::post('/change-password', [UserProfileController::class, 'changePasswordProcess'])->name('change.password.process');
 });
 
-Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
+Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
     Route::prefix('product')->group(function () {
@@ -106,7 +106,6 @@ Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
         Route::put('/users/{user}', [ControllerUsersManager::class, 'update'])->name('users.update');
         Route::get('/users/{user}/change-password', [ControllerUsersManager::class, 'showChangePasswordForm'])
             ->name('users.changePasswordForm');
-
         Route::put('/users/{id}/change-password', [ControllerUsersManager::class, 'changePassword'])
             ->name('users.changePassword');
     });
@@ -130,7 +129,7 @@ Route::prefix('admin')->middleware('auth', 'admin')->group(function () {
         Route::get('show', [ControllerManufacturersManager::class, 'show'])->name('manufacture.show');
     });
 
-    Route::prefix('user')->group(function () {
+    Route::prefix('user')->middleware('auth', 'admin')->group(function () {
         Route::get('/', [ControllerUsersManager::class, 'index'])->name('user.table');
         Route::get('create', [ControllerUsersManager::class, 'create'])->name('user.create');
         Route::post('store', [ControllerUsersManager::class, 'store'])->name('user.store');

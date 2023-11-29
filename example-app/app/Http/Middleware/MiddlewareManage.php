@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MiddlewareIsAdmin
+class MiddlewareManage
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,11 @@ class MiddlewareIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user() && auth()->user()->is_admin == 2) { // Kiểm tra xem người dùng có thuộc nhóm admin không
+
+        if (auth()->user() && auth()->user()->is_admin == 1 || auth()->user()->is_admin == 2) { // Kiểm tra xem người dùng có thuộc nhóm admin không
             return $next($request);
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 }
