@@ -107,6 +107,7 @@ class ControllerCheckOut extends Controller
             return redirect()->route('login')->with('error', 'You need to login first!');
         }
     }
+    
 
     public function processCheckout(Request $request)
     {

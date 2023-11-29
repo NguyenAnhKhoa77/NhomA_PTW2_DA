@@ -18,6 +18,7 @@ use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ use App\Http\Controllers\ProductController;
 Route::prefix('/')->group(function () {
     Route::get('/', [ControllerView::class, 'home'])->name('home');
     Route::get('detail/{id}', [ControllerDetail::class, 'index'])->name('detail');
-
+    Route::get('/success', [PaymentController::class, 'success'])->name('success');
     //Checkout
     Route::prefix('/check-out')->middleware('auth')->group(function () {
         Route::get('/', [ControllerCheckOut::class, 'index'])->name('check-out');
@@ -41,6 +42,10 @@ Route::prefix('/')->group(function () {
         Route::post('/process-check-out', [ControllerCheckOut::class, 'processCheckout'])->name('process.check-out');
         Route::post('/process-check-out-momo', [ControllerCheckOut::class, 'processCheckoutMomo'])->name('process.check-out-momo');
         Route::get('/thank-you', [ControllerCheckOut::class, 'thanksPage'])->name('thank-you');
+        Route::get('/check-out-paypal', [PaymentController::class, 'checkoutPaypal'])->name('check-out-paypal');
+        Route::get('/success', [PaymentController::class, 'success'])->name('success');
+        Route::get('/error', [PaymentController::class, 'error'])->name('error');
+        Route::post('pay', [PaymentController::class, 'pay'])->name('payment');
     });
 
 
@@ -102,7 +107,9 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
         Route::post('edit/{token_id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
         Route::get('addsize/{id}', [ControllerProductManager::class, ''])->name('product.addsize');
-
+        Route::put('/user/{id}/lock', [UserController::class, 'lockUser'])->name('user.lock');
+        Route::put('/user/{id}/unlock', [UserController::class, 'unlockUser'])->name('user.unlock');
+        
         //
         Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submit.form');
         Route::get('/users/{user}/edit', [ControllerUsersManager::class, 'edit'])->name('users.edit');

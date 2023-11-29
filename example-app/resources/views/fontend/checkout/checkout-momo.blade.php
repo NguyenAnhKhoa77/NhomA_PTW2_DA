@@ -22,6 +22,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('check-out-momo') }}">Online Payment via Momo</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('check-out-paypal') }}">Paypal</a>
+                        </li>
                     </ul>
                     <form action="{{ route('process.check-out-momo') }}" method="post">
                         @csrf
