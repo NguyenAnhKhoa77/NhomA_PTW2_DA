@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PriceRange;
 use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class ControllerGridPage extends Controller
@@ -25,6 +26,12 @@ class ControllerGridPage extends Controller
             $price = PriceRange::find($request->pricerange);
             $products->where('price', '<=', $price->price_max);
             $products->where('price', '>=', $price->price_min);
+        }
+        if ($request->has('size')) {
+            $sizeId = $request->size;
+            $products->whereHas('sizes', function ($query) use ($sizeId) {
+                $query->where('sizes.id', $sizeId);
+            });
         }
 
         $products = $products->orderBy('created_at', 'desc')->paginate(9);

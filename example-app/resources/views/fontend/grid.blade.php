@@ -3,6 +3,8 @@
     use App\Models\Manufacturers;
     use App\Models\PriceRange;
     use App\Models\sex;
+    use App\Models\Size;
+    $sizes = Size::all();
     $sexs = sex::all();
     $categories = Categories::all();
     $priceranges = PriceRange::all();
@@ -171,6 +173,36 @@
                                                             <label class="custom-control-label"
                                                                 for="pri-{{ $pricerange->id }}">{{ $pricerange->price_min }}
                                                                 - {{ $pricerange->price_max }}</label>
+                                                        </div><!-- End .custom-radio -->
+                                                    </div>
+                                                @endforeach
+
+                                            </div><!-- End .filter-price -->
+                                        </div><!-- End .widget-body -->
+                                    </div><!-- End .collapse -->
+                                </div><!-- End .widget -->
+                                <div class="widget widget-collapsible">
+                                    <h3 class="widget-title">
+                                        <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true"
+                                            aria-controls="widget-5">
+                                            Size
+                                        </a>
+                                    </h3><!-- End .widget-title -->
+
+                                    <div class="collapse show" id="widget-5">
+                                        <div class="widget-body">
+                                            <div class="filter-price">
+                                                <div class="filter-price-text">
+                                                    Price Range:
+                                                </div><!-- End .filter-price-text -->
+                                                @foreach ($sizes as $size)
+                                                    <div class="filter-item">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                name="size" id="size-{{ $size->id }}"
+                                                                value="{{ $size->id }}">
+                                                            <label class="custom-control-label"
+                                                                for="size-{{ $size->id }}">{{ $size->name }}</label>
                                                         </div><!-- End .custom-radio -->
                                                     </div>
                                                 @endforeach
