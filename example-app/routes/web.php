@@ -18,6 +18,7 @@ use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\ControllerMailbox;
 
 /*
 |--------------------------------------------------------------------------
@@ -174,5 +175,8 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
             Route::get('show/{id}', [ControllerComment::class, 'show'])->name('comments.show');
             Route::get('/products/{product_name}', [ProductController::class, 'show'])->name('product.show');
         });
+    });
+    Route::prefix('mailbox')->group(function () {
+        Route::get('/', [ControllerMailbox::class, 'mailbox'])->name('mailbox.mailbox');
     });
 });
