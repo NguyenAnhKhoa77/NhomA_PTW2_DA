@@ -10,30 +10,24 @@
                         <h3 class="card-title">General</h3>
 
                     </div>
-                    <form id="quickForm" novalidate="novalidate">
+                    <form action="{{ route('coupons.store') }}" method="POST">
+                        @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Enter email">
+                                <label for="exampleInputPassword1">Code</label>
+                                <input type="text" name="code" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Code">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="Password">
-                            </div>
-                            <div class="form-group mb-0">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                                    <label class="custom-control-label" for="exampleCheck1">I agree to the <a
-                                            href="#">terms of service</a>.</label>
-                                </div>
+                                <label for="exampleInputPassword1">Discount percent</label>
+                                <input type="number" name="discount_percent" class="form-control"
+                                    id="exampleInputPassword1" placeholder="%">
                             </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <a href="#" class="btn btn-secondary">Cancel</a>
-                            <input type="submit" value="Create new Project" class="btn btn-success float-right">
+                            <input type="submit" value="Save" class="btn btn-success float-right">
                         </div>
                     </form>
                 </div>

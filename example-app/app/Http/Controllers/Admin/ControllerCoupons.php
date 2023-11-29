@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Coupons;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ControllerCoupons extends Controller
 {
@@ -22,7 +23,8 @@ class ControllerCoupons extends Controller
      */
     public function create()
     {
-        //
+
+        return view('backend.coupons.create');
     }
 
     /**
@@ -30,7 +32,12 @@ class ControllerCoupons extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $token = $request->input('_token');
+        if (Session::has('_token') && Session::get('_token') === $token) {
+            $request->validate([
+                'code' => 'string|'
+            ]);
+        }
     }
 
     /**

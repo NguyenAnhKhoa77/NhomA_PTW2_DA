@@ -9,9 +9,9 @@
                 <h3 class="card-title">Projects</h3>
 
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool">
+                    <a type="button" class="btn btn-tool" href=" {{ route('coupons.create', []) }}">
                         <i class="fas fa-plus"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="card-body p-0">
