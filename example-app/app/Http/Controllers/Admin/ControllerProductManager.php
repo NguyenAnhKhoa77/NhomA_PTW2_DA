@@ -135,7 +135,15 @@ class ControllerProductManager extends Controller
             return redirect()->route('product.table')->with('errors', 'Danh mục không tồn tại');
         }
     }
+//sản phẩm bán chạy
+public function bestSellingProducts()
+{
+    // Lấy danh sách sản phẩm bán chạy
+    $bestSellingProducts = Product::orderBy('sold_count', 'desc')->take(6)->get();
+    dd($bestSellingProducts); // Kiểm tra dữ liệu ở đây
 
+    return view('fontend.index', compact('bestSellingProducts'));
+}
     //xóa  sản phẩm:
     public function delete(Request $request)
     {

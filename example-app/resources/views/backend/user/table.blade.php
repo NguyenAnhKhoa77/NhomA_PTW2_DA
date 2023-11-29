@@ -1,6 +1,7 @@
 @extends('backend.header')
 @section('content')
-    <div class="mt-3"></div>
+    <div class="mt-3">
+    </div>
     <!-- Main content -->
     <section class="content">
         <!-- Default box -->
@@ -39,6 +40,20 @@
                                 <td>{{ $user->account->phone }} </td>
                                 <td>{{ $user->account->address }} </td>
                                 <td class="project-actions text-right">
+                                    @if ($user->is_locked == false)
+                                        <a class="btn btn-primary btn-sm" href="{{ route('user.lockUser', $user->id) }}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            lock
+                                        </a>
+                                    @elseif ($user->is_locked == true)
+                                        <a class="btn btn-primary btn-sm" href="{{ route('user.unlockUser', $user->id) }}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            Unlock
+                                        </a>
+                                    @endif
+
                                     <a class="btn btn-primary btn-sm" href="{{ route('user.show', $user->id) }}">
                                         <i class="fas fa-folder">
                                         </i>
@@ -58,7 +73,6 @@
                                     <a class="btn btn-warning btn-sm" href="{{ route('users.changePassword', $user) }}">
                                         <i class="fa fa-lock" aria-hidden="true"></i>
                                         Change password</a>
-
                                 </td>
                             </tr>
                         @endforeach
