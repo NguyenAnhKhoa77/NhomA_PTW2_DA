@@ -67,10 +67,10 @@ class ControllerProductManager extends Controller
                 return redirect()->route('product.table')->with('success', 'Thêm sản phẩm thành công');
             }
             Session::put('token', $token);
-
             return back();
-        } else {
         }
+
+        return back();
     }
     public function edit($id)
     {

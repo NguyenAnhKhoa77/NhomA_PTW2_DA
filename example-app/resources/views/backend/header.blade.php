@@ -265,6 +265,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('size.table') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'size.table' || Route::currentRouteName() == 'size.create' || Route::currentRouteName() == 'size.edit' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>Size
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('comments.index') }}"
                                 class="nav-link {{ Route::currentRouteName() == 'comments.table' || Route::currentRouteName() == 'comments.create' || Route::currentRouteName() == 'comments.edit' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
