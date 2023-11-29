@@ -101,7 +101,12 @@ Route::prefix('/account')->middleware('auth')->group(function () {
 Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
-
+    //
+    Route::get('/getOrderData', [AdminPage::class, 'getOrderData'])->name('getOrderData');
+    Route::get('/getCategoryData', [AdminPage::class, 'getCategoryData'])->name('getCategoryData');
+    Route::get('/getManuData', [AdminPage::class, 'getManuData'])->name('getManuData');
+    Route::get('/getCategoryChart', [AdminPage::class, 'getCategoryChart'])->name('getCategoryChart');
+    //
     Route::prefix('product')->group(function () {
         Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
         Route::get('create', [ControllerProductManager::class, 'create'])->name('product.create');
