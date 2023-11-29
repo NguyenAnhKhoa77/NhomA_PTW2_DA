@@ -87,8 +87,12 @@ Route::prefix('/account')->middleware('auth')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
     Route::post('/update-profile/{account}', [UserProfileController::class, 'updateProfile'])->name('update.profile');
     Route::get('/address', [UserProfileController::class, 'address'])->name('address');
-    Route::get('/address-add', [UserProfileController::class, 'addressAddNew'])->name('address.add');
-    Route::get('/address-change', [UserProfileController::class, 'addressChange'])->name('address.change');
+    Route::get('/address-add', [UserProfileController::class, 'addressAddNew'])->name('add.address');
+    Route::post('/address-add', [UserProfileController::class, 'addressAddNewProcess'])->name('add.address.process');
+    Route::get('/address-change/{address}', [UserProfileController::class, 'addressChange'])->name('change.address');
+    Route::post('/address-change/{address}', [UserProfileController::class, 'addressChangeProcess'])->name('change.address.process');
+    Route::delete('/address-delete/{address}', [UserProfileController::class, 'addressDeleteProcess'])->name('delete.address.process');
+    Route::post('/address-default-change/{address}', [UserProfileController::class, 'setAddressDefaultProcess'])->name('change.address-default.process');
     Route::get('/orders', [UserProfileController::class, 'orders'])->name('orders');
     Route::get('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
     Route::post('/change-password', [UserProfileController::class, 'changePasswordProcess'])->name('change.password.process');

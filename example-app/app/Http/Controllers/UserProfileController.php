@@ -71,24 +71,131 @@ class UserProfileController extends Controller
     {
         return view('fontend.account.address-addnew');
     }
+
     public function addressAddNewProcess(Request $request)
     {
         $request->validate([
-            'fullname' => 'required',
-            'phone' => 'required|min:6|confirmed',
-            'checkbox' =>'accepted',
+            'fullname' => 'required|max:255',
+            'phone' => 'required|regex:/^0[0-9]{9}$/',
+            'street_address' => 'required|max:255',
+            'is_default' => 'required|in:0,1',
         ]);
+        $userAddresses = Address::all();
 
-        $user = Auth::user();
-
-        if (!Hash::check($request->current_password, $user->password)) {
-            return redirect()->back()->with("error", "Old password doesn't match!");
+        if (count($userAddresses) == 0) {
+            $address = new Address();
+            $address->user_id = Auth::id();
+            $address->fullname = $request->fullname;
+            $address->phone = $request->phone;
+            $address->street_address = $request->street_address;
+            $address->is_default = 1;
+        } else {
+            if ($request->is_default == 1) {
+                $addressOld = new Address();
+                foreach ($userAddresses as $userAddress) {
+                    $addressOld = Address::find($userAddress->id);
+                    if ($addressOld->is_default == 1) {
+                        $addressOld->is_default = 0;
+                        $addressOld->update();
+                    }
+                }
+            }
+            $address = new Address();
+            $address->user_id = Auth::id();
+            $address->fullname = $request->fullname;
+            $address->phone = $request->phone;
+            $address->street_address = $request->street_address;
+            $address->is_default = $request->is_default;
         }
-        $user->$user->update([
-            'password' => Hash::make($request->new_password),
-        ]);
+        if ($address->save()) {
+            return redirect()->route('address')->with('status', 'Add new address succeed!');
+        } else {
+            return redirect()->back()->with('status', 'Add failed!');
+        }
+    }
 
-        return redirect()->back()->with('status', 'Password was changed successfully!');
+    public function addressChange(Request $request, Address $address)
+    {
+        return view('fontend.account.address-change', compact('address'));
+    }
+
+    public function addressChangeProcess(Request $request, Address $address)
+    {
+        $request->validate([
+            'fullname' => 'required|max:255',
+            'phone' => 'required|regex:/^0[0-9]{9}$/',
+            'street_address' => 'required|max:255',
+            'is_default_old' => 'required|in:0,1',
+            'is_default' => 'in:0,1',
+        ]);
+        $userAddresses = Address::all();
+        if ($request->is_default == "1") {
+            $addressOld = new Address();
+            foreach ($userAddresses as $userAddress) {
+                $addressOld = Address::find($userAddress->id);
+                if ($addressOld->is_default == 1) {
+                    $addressOld->is_default = 0;
+                    $addressOld->update();
+                }
+            }
+            $address = Address::findOrFail($address->id);
+            $address->fullname = $request->fullname;
+            $address->phone = $request->phone;
+            $address->street_address = $request->street_address;
+            $address->is_default = $request->is_default;
+
+            if ($address->update()) {
+                return redirect()->route('address')->with('status', 'Update address succeed!');
+            } else {
+                return redirect()->back()->with('status', 'Update failed!');
+            }
+        } else {
+            $address = Address::findOrFail($address->id);
+            $address->fullname = $request->fullname;
+            $address->phone = $request->phone;
+            $address->street_address = $request->street_address;
+            $address->is_default = $request->is_default_old;
+
+            if ($address->update()) {
+                return redirect()->route('address')->with('status', 'Update address succeed!');
+            } else {
+                return redirect()->back()->with('status', 'Update failed!');
+            }
+        }
+    }
+
+    public function addressDeleteProcess(Request $request, Address $address)
+    {
+        $userAddress = Address::findOrFail($address->id);
+        if ($userAddress->is_default == 1) {
+            return redirect()->back()->with('error', 'Cannot delete default address!');
+        }
+        if ($userAddress->delete()) {
+            return redirect()->back()->with('success', 'Delete address succeed!');
+        }
+        return redirect()->back()->with('error', 'Cannot delete!');
+    }
+
+    public function setAddressDefaultProcess(Request $request, Address $address)
+    {
+        $userAddresses = Address::all();
+
+        $addressOld = new Address();
+        foreach ($userAddresses as $userAddress) {
+            $addressOld = Address::find($userAddress->id);
+            if ($addressOld->is_default == 1) {
+                $addressOld->is_default = 0;
+                $addressOld->update();
+            }
+        }
+        $address = Address::findOrFail($address->id);
+        $address->is_default = 1;
+
+        if ($address->update()) {
+            return redirect()->route('address')->with('status', 'Update default address succeed!');
+        } else {
+            return redirect()->back()->with('status', 'Update failed!');
+        }
     }
 
     public function orders()

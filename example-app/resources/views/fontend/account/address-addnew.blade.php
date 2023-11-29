@@ -51,7 +51,8 @@
                                      aria-labelledby="tab-address-link">
                                     <div class="col-md-12 justify-content-center">
                                         <div class="card-body mt-0 mx-5">
-                                            <form action="{{ route('address.add') }}" class="mb-0">
+                                            <form action="{{ route('add.address.process') }}" method="post">
+                                                @csrf
                                                 <div class="row mb-4">
                                                     <div class="col">
                                                         <div class="form-outline">
@@ -89,7 +90,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input type="checkbox" value="1" id="is_default" name="is_default">
+                                                    <input type="hidden" name="is_default" value="0">
+                                                    <input type="checkbox" id="is_default" name="is_default" value="1">
                                                     <label for="is_default">Set this address as default</label>
                                                     <p class="text-danger">(If this is first your address It could be set as default automatically!)</p>
                                                     @error('street_address')

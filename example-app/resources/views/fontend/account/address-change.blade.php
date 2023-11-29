@@ -51,14 +51,15 @@
                                      aria-labelledby="tab-address-link">
                                     <div class="col-md-12 justify-content-center">
                                         <div class="card-body mt-0 mx-5">
-                                            <form action="{{ route('address.change') }}" class="mb-0">
+                                            <form action="{{ route('change.address.process', $address->id) }}" method="post">
+                                                @csrf
                                                 <div class="row mb-4">
                                                     <div class="col">
                                                         <div class="form-outline">
                                                             <label class="form-label"
                                                                    for="fullname">Fullname</label>
                                                             <input type="text" id="fullname" name="fullname"
-                                                                   class="form-control input-custom" required/>
+                                                                   class="form-control input-custom" value="{{ $address->fullname }}" required/>
                                                             @error('fullname')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
@@ -68,7 +69,7 @@
                                                         <div class="form-outline">
                                                             <label class="form-label" for="phone">Phone</label>
                                                             <input type="text" id="phone" name="phone"
-                                                                   class="form-control input-custom" required/>
+                                                                   class="form-control input-custom" value="{{ $address->phone }}" required/>
                                                             @error('phone')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
@@ -81,7 +82,7 @@
                                                             <label class="form-label" for="street_address">Street
                                                                 Address</label>
                                                             <input type="text" id="street_address" name="street_address"
-                                                                   class="form-control input-custom" required/>
+                                                                   class="form-control input-custom" value="{{ $address->street_address }}" required/>
                                                             @error('street_address')
                                                             <span class="text-danger">{{ $message }}</span>
                                                             @enderror
@@ -89,10 +90,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input type="checkbox" value="1" id="is_default" name="is_default">
+                                                    <input type="hidden" name="is_default_old" value="{{ $address->is_default }}">
+                                                    <input type="checkbox" id="is_default" name="is_default" value="1">
                                                     <label for="is_default">Set this address as default</label>
-                                                    <p class="text-danger">(If this is first your address It could be
-                                                        set as default automatically!)</p>
                                                     @error('street_address')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror

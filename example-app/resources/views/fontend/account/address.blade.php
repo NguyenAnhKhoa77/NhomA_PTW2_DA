@@ -51,71 +51,66 @@
                                      aria-labelledby="tab-address-link">
                                     <div class="col-md-12 justify-content-center">
                                         <h3>My Addresses</h3>
-                                        <div class="card">
+                                        <div class="card border">
                                             @if (count($addresses) == 0)
-                                                <a href="{{ route('address.add') }}" class="btn btn-primary">Add new</a>
+                                                <a href="{{ route('add.address') }}" class="btn btn-primary">Add new</a>
                                             @else
-                                            @foreach($addresses as $address)
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-md-8">
-                                                            <h5>Nguyễn Viết Hoan</h5>
-                                                            <p class="card-text">0974443844</p>
-                                                            <p class="card-text">A2-17-10 Chung Cư Centum Wealth, 2A Phan Chu Trinh
-                                                                Phường Hiệp Phú, Thành Phố Thủ Đức, TP. Hồ Chí Minh</p>
-                                                        </div>
-                                                        <div class="col-md-4 pt-5 pb-5 text-center">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <a href="{{ route('address.change') }}" class="card-link">Change</a>
-                                                                    <a href="#" class="card-link">Delete</a>
-                                                                </div>
+                                                @foreach($addresses as $address)
+                                                    <div class="card-body border">
+                                                        <div class="row">
+                                                            <div class="col-md-8">
+                                                                <h5>{{ $address->fullname }}</h5>
+                                                                <p class="card-text">{{ $address->phone }}</p>
+                                                                <p class="card-text">{{ $address->street_address }}</p>
+                                                                @if ($address->is_default == 1)
+                                                                    <span class="card-text border bg-warning p-2">Address default</span>
+                                                                @endif
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <a href="#" class="btn btn-primary">Set as default</a>
+                                                            <div class="col-md-4 pt-5 pb-5 text-center">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 text-center">
+                                                                        <a href="{{ route('change.address', $address->id) }}"
+                                                                           class="card-link font-weight-bold">Change</a>
+                                                                        <form
+                                                                            action="{{ route('delete.address.process', $address->id) }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            @method('delete')
+                                                                            <button type="submit"
+                                                                                    class="text-danger border-0 bg-transparent">
+                                                                                Delete
+                                                                            </button>
+                                                                        </form>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        @if ($address->is_default == 1)
+                                                                            <a href="" class="btn btn-primary disabled">Set
+                                                                                as
+                                                                                default</a>
+                                                                        @else
+                                                                            <form
+                                                                                action="{{ route('change.address-default.process', $address->id) }}"
+                                                                                method="post">
+                                                                                @csrf
+                                                                                <button
+                                                                                    class="btn btn-primary">Set as
+                                                                                    default
+                                                                                </button>
+                                                                            </form>
+                                                                        @endif
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
+                                                @endforeach
+                                                <a href="{{ route('add.address') }}" class="btn btn-primary">Add new</a>
                                             @endif
                                         </div>
                                     </div>
-
-                                    {{--                                    <p>The following addresses will be used on the checkout page by default.</p>--}}
-
-                                    {{--                                    <div class="row">--}}
-                                    {{--                                        <div class="col-lg-6">--}}
-                                    {{--                                            <div class="card card-dashboard">--}}
-                                    {{--                                                <div class="card-body">--}}
-                                    {{--                                                    <h3 class="card-title">Billing Address</h3><!-- End .card-title -->--}}
-
-                                    {{--                                                    <p>User Name<br>--}}
-                                    {{--                                                        User Company<br>--}}
-                                    {{--                                                        John str<br>--}}
-                                    {{--                                                        New York, NY 10001<br>--}}
-                                    {{--                                                        1-234-987-6543<br>--}}
-                                    {{--                                                        yourmail@mail.com<br>--}}
-                                    {{--                                                        <a href="#">Edit <i class="icon-edit"></i></a>--}}
-                                    {{--                                                    </p>--}}
-                                    {{--                                                </div><!-- End .card-body -->--}}
-                                    {{--                                            </div><!-- End .card-dashboard -->--}}
-                                    {{--                                        </div><!-- End .col-lg-6 -->--}}
-
-                                    {{--                                        <div class="col-lg-6">--}}
-                                    {{--                                            <div class="card card-dashboard">--}}
-                                    {{--                                                <div class="card-body">--}}
-                                    {{--                                                    <h3 class="card-title">Shipping Address</h3><!-- End .card-title -->--}}
-
-                                    {{--                                                    <p>You have not set up this type of address yet.<br>--}}
-                                    {{--                                                        <a href="#">Edit <i class="icon-edit"></i></a>--}}
-                                    {{--                                                    </p>--}}
-                                    {{--                                                </div><!-- End .card-body -->--}}
-                                    {{--                                            </div><!-- End .card-dashboard -->--}}
-                                    {{--                                        </div><!-- End .col-lg-6 -->--}}
-                                    {{--                                    </div><!-- End .row -->--}}
                                 </div><!-- .End .tab-pane -->
                             </div>
                         </div><!-- End .col-lg-9 -->
