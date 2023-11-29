@@ -15,10 +15,10 @@ class MiddlewareIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user() && auth()->user()->is_admin) { // Kiểm tra xem người dùng có thuộc nhóm admin không
+        if (auth()->user() && auth()->user()->is_admin == 2) { // Kiểm tra xem người dùng có thuộc nhóm admin không
             return $next($request);
         }
 
-        return redirect('/');
+        return redirect()->route('dashboard');
     }
 }
