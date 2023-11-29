@@ -17,16 +17,16 @@ return new class extends Migration
                 $table->string('name');
                 $table->string('image');
                 $table->unsignedBigInteger('sex')->default(0);
-                $table->foreign('sex')->references('id')->on('sexs')->onDelete('cascade')->onUpdate('cascade');
                 $table->unsignedBigInteger('categories_id');
-                $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
                 $table->unsignedBigInteger('manufacturer_id');
-                $table->foreign('manufacturer_id')->references('id')->on('manufacturers')->onDelete('cascade')->onUpdate('cascade');
                 $table->text('description');
                 $table->string('unique_token', 250)->unique();
                 $table->bigInteger('price');
                 $table->bigInteger('inventory');
                 $table->timestamps();
+                $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+                $table->foreign('sex')->references('id')->on('sexes')->onDelete('cascade')->onUpdate('cascade');
+                $table->foreign('manufacturer_id')->references('id')->on('manufacturers')->onDelete('cascade')->onUpdate('cascade');
             });
         }
     }
