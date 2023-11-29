@@ -18,6 +18,7 @@ use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\ControllerSize;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +97,7 @@ Route::prefix('/account')->middleware('auth')->group(function () {
 Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
+
     Route::prefix('product')->group(function () {
         Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
         Route::get('create', [ControllerProductManager::class, 'create'])->name('product.create');
@@ -119,8 +121,8 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
         Route::get('create', [ControllerSize::class, 'create'])->name('size.create');
         Route::post('store', [ControllerSize::class, 'store'])->name('size.store');
         Route::get('edit/{id}', [ControllerSize::class, 'edit'])->name('size.edit');
-        Route::post('update/{id}', [ControllerSize::class, 'update'])->name('size.update');
-        Route::get('destroy/{id}', [ControllerSize::class, 'destroy'])->name('size.destroy');
+        Route::post('update', [ControllerSize::class, 'update'])->name('size.update');
+        Route::delete('destroy/{id}', [ControllerSize::class, 'destroy'])->name('size.destroy');
         Route::get('show', [ControllerSize::class, 'show'])->name('size.show');
     });
     Route::prefix('category')->group(function () {
