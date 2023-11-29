@@ -23,6 +23,11 @@
                                 <input type="number" name="discount_percent" class="form-control"
                                     id="exampleInputPassword1" placeholder="%">
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Discount percent</label>
+                                <input type="date" name="expiration_date" class="form-control"
+                                    id="exampleInputPassword1">
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">

@@ -35,17 +35,21 @@ class ControllerCoupons extends Controller
         $token = $request->input('_token');
         if (Session::has('_token') && Session::get('_token') === $token) {
             $request->validate([
-                'code' => 'string|'
+                'code' => 'required|string|min:5|max:250|unique:coupons,code',
+                'discount_percent' => 'required|integer|between:0,100',
+                'expiration_date' => 'required|date|after_or_equal:today',
             ]);
+            $coupon = new Coupons([
+                'code' => $request['code'],
+                'discount_percent' => $request['discount_percent'],
+                'expiration_date' => $request['expiration_date'],
+            ]);
+            if ($coupon->save()) {
+                return redirect()->route('coupons.table')->with('success', 'Lưu phiếu giảm giá thành công!');
+            } else {
+                return redirect()->route('coupons.table')->with('errors', 'Không thể lưu!');
+            }
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

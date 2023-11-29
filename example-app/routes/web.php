@@ -212,6 +212,5 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
         Route::get('edit/{id}', [ControllerCoupons::class, 'edit'])->name('coupons.edit');
         Route::post('update/{id}', [ControllerCoupons::class, 'update'])->name('coupons.update');
         Route::delete('destroy/{id}', [ControllerCoupons::class, 'destroy'])->name('coupons.destroy');
-        Route::get('show', [ControllerCoupons::class, 'show'])->name('coupons.show');
     });
 });
