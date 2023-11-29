@@ -15,4 +15,11 @@ class ControllerMailbox extends Controller
         $users = User::all();
         return view('backend.mailbox.mailbox',compact('mails','users'));
     }
+    
+    public function readmail($id)
+    {
+        $mails = Contact::find($id);
+        return view('backend.mailbox.read-mail',compact('mails'));
+    }
+    
 }

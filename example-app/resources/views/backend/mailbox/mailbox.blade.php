@@ -62,7 +62,7 @@
                         <label for="check1"></label>
                       </div>
                     </td>
-                    <td class="mailbox-name"><a href="#">
+                    <td class="mailbox-name"><a href="mailbox/read-mail/{{$mail->id}}">
                       @foreach($users as $user)
                       @if($mail->user_id === $user->id)
                         {{$user->email}}
