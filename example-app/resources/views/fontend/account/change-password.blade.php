@@ -33,7 +33,7 @@
                                        role="tab" aria-controls="tab-address" aria-selected="false">Adresses</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="tab-orders-link" href="{{ route('orders') }}"
+                                    <a class="nav-link" id="tab-orders-link" href="{{ route('orders.pending') }}"
                                        role="tab" aria-controls="tab-orders" aria-selected="false">Orders</a>
                                 </li>
                                 <li class="nav-item">

@@ -25,6 +25,26 @@
                             <a class="nav-link" href="{{ route('check-out-momo') }}">Online Payment via Momo</a>
                         </li>
                     </ul>
+                    <form class="mt-3">
+                        <label>Select your address delivery</label>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <select class="form-select p-2 w-100" id="basic-select" name="address_id">
+                                    @foreach($deliveriesInfo as $deliveryInfo)
+                                        <option
+                                            value="{{ $deliveryInfo->id }}"
+                                            @if($deliveryInfoCurrent->id == $deliveryInfo->id) selected @endif
+                                        >{{ $deliveryInfo->fullname . ", " . $deliveryInfo->phone . ", " . $deliveryInfo->street_address}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" id="submit" class="btn btn-primary btn-sm">
+                                    Choose
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <form action="{{ route('process.check-out') }}" method="post">
                         @csrf
                         <div class="row pt-2">
@@ -32,7 +52,9 @@
                                 <h2 class="checkout-title">Payment Information</h2><!-- End .checkout-title -->
                                 <div class="form-group">
                                     <label for="name">Họ và tên *</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="@if($userInfo->name){{ $userInfo->name }}@endif" required>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           value="@if($deliveryInfoCurrent->fullname){{ $deliveryInfoCurrent->fullname }}@endif"
+                                           required>
                                     @if ($errors->has('name'))
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                     @endif
@@ -40,7 +62,8 @@
                                 <div class="form-group">
                                     <label for="phone">Phone *</label>
                                     <input type="text" class="form-control" id="phone" name="phone"
-                                           value="@if($userInfo->phone){{ $userInfo->phone }}@endif" required>
+                                           value="@if($deliveryInfoCurrent->phone){{ $deliveryInfoCurrent->phone }}@endif"
+                                           required>
                                     @if ($errors->has('phone'))
                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                                     @endif
@@ -48,7 +71,8 @@
                                 <div class="form-group">
                                     <label for="address">Address *</label>
                                     <input type="text" class="form-control" id="address" name="address"
-                                           value="@if($userInfo->address){{ $userInfo->address }}@endif" required>
+                                           value="@if($deliveryInfoCurrent->street_address){{ $deliveryInfoCurrent->street_address }}@endif"
+                                           required>
                                     @if ($errors->has('address'))
                                         <span class="text-danger">{{ $errors->first('address') }}</span>
                                     @endif
