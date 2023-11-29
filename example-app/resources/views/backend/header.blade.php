@@ -274,6 +274,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('coupons.table') }}"
+                                class="nav-link {{ Request::is('admin/coupons/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>Phiếu giảm giá
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
