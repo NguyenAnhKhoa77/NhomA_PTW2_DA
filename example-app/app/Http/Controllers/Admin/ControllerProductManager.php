@@ -7,6 +7,7 @@ use App\Models\Categories;
 use App\Models\Manufacturers;
 use App\Models\Orders;
 use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +19,8 @@ class ControllerProductManager extends Controller
     public function table()
     {
         $products = Product::with('categories', 'manufacturer')->orderBy('created_at', 'desc')->paginate(10);
-        return view('backend.product.table', compact('products'));
+        $sizess = Size::all();
+        return view('backend.product.table', compact('products', 'sizess'));
     }
     public function create()
     {

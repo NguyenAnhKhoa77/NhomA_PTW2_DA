@@ -38,4 +38,8 @@ class Product extends Model
     {
         return $this->belongsTo(sex::class, 'sex');
     }
+    public function sizes()
+    {
+        return $this->belongsToMany(Size::class);
+    }
 }

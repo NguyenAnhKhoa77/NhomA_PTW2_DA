@@ -21,6 +21,7 @@
                             <th style="width: 15%">Tên</th>
                             <th style="width: 10%">Loại sản phẩm</th>
                             <th style="width: 10%">Nhãn hiệu</th>
+                            <th style="width: 20%">Size</th>
                             <th style="width: 20%">Mô tả</th>
                             <th style="width: 10%">Giá</th>
                             <th style="width: 10%">Tồn kho</th>
@@ -35,6 +36,15 @@
                                 </td>
                                 <td>{{ $product->categories->name }} </td>
                                 <td>{{ $product->manufacturer->name }} </td>
+
+                                @php
+                                    $sizes = $product->sizes;
+                                @endphp
+                                <td>
+                                    @foreach ($sizes as $size)
+                                        {{ $size->name }}
+                                    @endforeach
+                                </td>
                                 <td style=" word-break: break-all;">
                                     {{ Str::limit($product->description, 100) }}</td>
 
