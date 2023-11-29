@@ -18,6 +18,7 @@ use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\ControllerSize;
 
 /*
 |--------------------------------------------------------------------------

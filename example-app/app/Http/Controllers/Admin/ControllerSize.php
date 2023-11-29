@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Size;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ControllerSize extends Controller
 {
@@ -12,7 +14,8 @@ class ControllerSize extends Controller
      */
     public function index()
     {
-        //
+        $sizes = Size::all();
+        return view('backend.size.table', compact('sizes'));
     }
 
     /**
@@ -20,7 +23,8 @@ class ControllerSize extends Controller
      */
     public function create()
     {
-        //
+
+        return view('backend.size.create');
     }
 
     /**
@@ -28,7 +32,22 @@ class ControllerSize extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $token = $request->input('_token');
+
+        if (Session::has('_token') && Session::get('_token') === $token) {
+            $request->validate([
+                'name' => 'required|string|max:250|unique:sizes,name',
+            ]);
+        }
+        $size = new Size([
+            'name' => $request['name'],
+        ]);
+        if ($size->save()) {
+            return redirect()->route('size.table')->with('success', 'Thêm thành công!');
+        }
+        Session::put('_token', $token);
+        return back();
     }
 
     /**

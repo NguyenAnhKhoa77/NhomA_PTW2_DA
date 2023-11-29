@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
             'phone' => '1234567890',
             'address' => 'abc',
             'avatar' => 'user.png',
-
         ]);
         DB::table('accounts')->insert([
             'name' => 'user2',
@@ -137,7 +136,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'email' => 'admin@gmail.com',
             'password' => '$2y$12$ezynSqiX.PNvGiiXRTXHC.VfcAb/wvzPw6tS3MlE6GChIKAsWP3tG',
-            'is_admin' => 1,
+            'is_admin' => 2,
             'id_account' => 1,
         ]);
         DB::table('users')->insert([
