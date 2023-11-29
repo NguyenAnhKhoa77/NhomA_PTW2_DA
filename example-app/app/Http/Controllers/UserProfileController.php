@@ -8,7 +8,6 @@ use App\Models\Bills;
 use App\Models\Orders;
 use App\Models\Product;
 use App\Models\User;
-use App\Models\Mails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -308,17 +307,6 @@ class UserProfileController extends Controller
             return redirect()->back()->with('success', 'Products in order were added to cart.');
         }
         return redirect()->back()->with('error', 'Pre-pay order failed!');
-    }
-
-    public function mailbox()
-    {
-        $mails = Mails::all();
-        return view('fontend.account.mailbox',compact('mails'));
-    }
-
-    public function maildetail($id){
-        $mail = Mails::find($id);
-        return view('fontend.account.mail-detail',compact('mail'));
     }
 
     public function changePassword()

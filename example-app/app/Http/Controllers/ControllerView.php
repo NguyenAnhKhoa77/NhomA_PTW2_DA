@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Contact;
 use App\Models\Comments;
-use Illuminate\Http\Request;
 use Exception;
 
 class ControllerView extends Controller
@@ -42,25 +41,17 @@ class ControllerView extends Controller
         return view('fontend.contact');
     }
 
-    public function contactForm(Request $request)
+    public function contactForm()
     {
-        //Validate
-        $request->validate([
-            'uid' => 'required|int',
-            'contact_title' => 'required|string',
-            'contact_content' => 'required|string',
-        ]);
-        //Add contact
-        $contact = new Contact([
-            'user_id' => $request->input('uid'),
-            'title' => $request->input('contact_title'),
-            'content' => $request->input('contact_content')
-        ]);
-        //Add thanh cong
-        if ($contact->save()) {
-            return redirect("contact")->withSuccess('Gui thu thanh cong');
+        $contact = new Contact();
+        try {
+            $contact->name = request('name');
+            $contact->email = request('email');
+            $contact->msg = request('msg');
+            $contact->save();
+            return redirect()->back();
+        } catch (Exception $e) {
+            return redirect()->back()->with('message','No!');
         }
-        //Add that bai
-        return back()->withErrors('Gui thu that bai!');
     }
 }

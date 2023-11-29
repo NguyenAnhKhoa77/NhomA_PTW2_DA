@@ -305,7 +305,7 @@
                                     <a href="{{ route('grid', []) }}">Grid</a>
                                 </li>
                                 <li class="{{ Route::currentRouteName() == 'contact' ? 'active' : '' }}">
-                                    <a href="{{ route('contact', []) }}">Gửi thư cho chúng tôi.</a>
+                                    <a href="{{ route('contact', []) }}">Liên hệ</a>
                                 </li>
                             </ul><!-- End .menu -->
                         </nav><!-- End .main-nav -->
