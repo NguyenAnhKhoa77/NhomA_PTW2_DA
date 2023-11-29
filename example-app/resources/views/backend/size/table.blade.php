@@ -21,10 +21,13 @@
                             <th style="width: 10%">
                                 #
                             </th>
-                            <th style="width: 50%">
-                                Kích thucố
+                            <th style="width: 30%">
+                                Kích thước
                             </th>
-                            <th style="width: 10%">
+                            <th style="width: 30%">
+                                Số sản phẩm thuộc
+                            </th>
+                            <th style="width: 20%">
                                 #
                             </th>
                         </tr>
@@ -38,23 +41,44 @@
                                 <td>
                                     {{ $size->name }}
                                 </td>
+                                <td>
+                                    {{ $size->products->count() }}
+                                </td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="#">
                                         <i class="fas fa-folder">
                                         </i>
                                         View
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="#">
+                                    <a class="btn btn-info btn-sm" href="{{ route('size.edit', [$size]) }}">
                                         <i class="fas fa-pencil-alt">
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="#">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        Delete
-                                    </a>
+
+                                    <form id="delete-form{{ $size->id }}" action="{{ route('size.destroy', [$size]) }}"
+                                        method="post" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" onclick="">Delete</button>
+                                    </form>
+                                    <a class="btn btn-danger btn-sm"
+                                        onclick="confirmDelete{{ $size->id }}(event)">Delete</a>
                                 </td>
+
+                                <script>
+                                    function confirmDelete{{ $size->id }}(event) {
+                                        event.preventDefault();
+
+                                        if (confirm('Bạn có chắc chắn muốn xóa không?')) {
+                                            document.getElementById('delete-form{{ $size->id }}')
+                                                .submit();
+                                        } else {
+                                            // Hủy xóa nếu người dùng chọn Cancel trong hộp thoại xác nhận
+                                            return false;
+                                        }
+                                    }
+                                </script>
                             </tr>
                         @endforeach
 
