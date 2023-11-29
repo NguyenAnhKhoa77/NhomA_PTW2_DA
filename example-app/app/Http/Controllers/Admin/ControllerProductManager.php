@@ -8,6 +8,7 @@ use App\Models\Manufacturers;
 use App\Models\Orders;
 use App\Models\Product;
 use App\Models\Product_Size;
+use App\Models\ProductImage;
 use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -89,7 +90,7 @@ class ControllerProductManager extends Controller
 
         $token = $request->input('_token');
         if (Session::has('_token') && Session::get('_token') === $token) {
-            if (!!!$product = Product::where('unique_token', $token_id)->firstOrFail()) {
+            if (!$product = Product::where('unique_token', $token_id)->firstOrFail()) {
                 return redirect()->route('product.table')->with('errors', 'Mã sản phẩm sai');
             }
             $product = Product::where('unique_token', $token_id)->firstOrFail();
@@ -182,13 +183,83 @@ class ControllerProductManager extends Controller
                 }
                 $product->sizes()->sync($selectedSizes);
 
-                return redirect()->route('product.table')->with('success', 'Cập nhật size thành công');
+                return redirect()->route('product.view', $product->id)->with('success', 'Cập nhật size thành công');
             } else {
                 return redirect()->route('product.table')->with('errors', 'Mã sản phẩm sai');
             }
         }
     }
-    public function size_remove()
+    public function view($id)
     {
+        if ($product = Product::find($id)) {
+            $images = ProductImage::where('product_id', $product->id)->get();
+            return view('backend.product.detail', compact('product', 'images'));
+        } else {
+            return redirect()->route('product.table')->with('errors', 'Không tìm thấy danh mục');
+        }
+    }
+    public function image_create(Request $request, $id)
+    {
+        if ($product = Product::find($id)) {
+            return view('backend.product.image.create', compact('product'));
+        } else {
+            return redirect()->route('product.table')->with('errors', 'Không tìm thấy sản phẩm');
+        }
+    }
+    public function image_store(Request $request, $id)
+    {
+        $token = $request->input('_token');
+        if (Session::has('_token') && Session::get('_token') === $token) {
+            if ($product = Product::where('unique_token', $id)->first()) {
+                $request->validate([
+                    'images.*' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+                ]);
+                if ($request->hasFile('images')) {
+                    foreach ($request->file('images') as $file) {
+                        $name = uniqid() . '.' . $file->getClientOriginalExtension(); // Tạo tên mới cho file
+                        $file->move(public_path('images/products'), $name);
+                        $productImage = new ProductImage([
+                            'url' => $name,
+                            'product_id' => $product->id,
+                        ]);
+                        $productImage->save();
+                    }
+                    return redirect()->route('product.view', $product->id)->with('success', 'Thêm ảnh thành công thành công');
+                } else {
+                    return redirect()->route('product.view', $product->id)->with('errors', 'Không thành công');
+                }
+            } else {
+                return redirect()->route('product.table')->with('errors', 'Không tìm thấy sản phẩm');
+            }
+        }
+    }
+    public function image_destroy(Request $request, $id)
+    {
+        $token = $request->input('_token');
+        if (Session::has('_token') && Session::get('_token') === $token) {
+            if ($product = Product::find($request['id_pro'])) {
+
+                if ($image = ProductImage::find($id)) {
+                    $imageExists = $product->images()->where('id', $id)->exists();
+                    if ($imageExists) {
+                        $path = "images/products/" . $image->url;
+                        if (File::exists($path)) {
+                            File::delete($path);
+                        }
+                        if ($image->delete()) {
+                            return redirect()->route('product.view', $product->id)->with('success', 'Xóa ảnh thành công!');
+                        } else {
+                            return back()->with('errors', 'Không thể xóa ảnh!');
+                        }
+                    } else {
+                        return back()->with('errors', 'Ảnh không thuộc sản phẩm!');
+                    }
+                } else {
+                    return back()->with('errors', 'Không tìm được image!');
+                }
+            } else {
+                return redirect()->route('product.table')->with('errors', 'Không tìm thấy product!');
+            }
+        }
     }
 }
