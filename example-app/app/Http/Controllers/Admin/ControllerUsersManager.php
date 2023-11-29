@@ -104,8 +104,7 @@ class ControllerUsersManager extends Controller
             'address' => 'required|string|min:2|max:255',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'email' => 'required|email|unique:users,email,|max:255' . $userAccount->user->id,
-        ]);
-    {
+        ]); {
             // Validate dữ liệu
             $request->validate([
                 'name' => 'required|string|max:255',
@@ -119,17 +118,17 @@ class ControllerUsersManager extends Controller
             ]);
 
             // Dữ liệu cần cập nhật trong bảng 'accounts'
-        $userData = [
-            'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
-            'address' => $request->input('address'),
-        ];
+            $userData = [
+                'name' => $request->input('name'),
+                'phone' => $request->input('phone'),
+                'address' => $request->input('address'),
+            ];
 
-        // Cập nhật avatar nếu có
-        if ($request->hasFile('avatar')) {
-            $uploadedAvatar = $request->file('avatar');
+            // Cập nhật avatar nếu có
+            if ($request->hasFile('avatar')) {
+                $uploadedAvatar = $request->file('avatar');
                 $avatarName = time() . '.' . $uploadedAvatar->getClientOriginalExtension();
-            $uploadedAvatar->move(public_path('images/avatars'), $avatarName);
+                $uploadedAvatar->move(public_path('images/avatars'), $avatarName);
                 $userData['avatar'] = 'images/avatars/' . $avatarName;
             }
         }
@@ -180,32 +179,14 @@ class ControllerUsersManager extends Controller
 
         // Cập nhật mật khẩu mới và mã hóa nó trước khi lưu vào database
         $user->password = Hash::make($request->input('new_password'));
-       if( $user->save()  ){
-        return redirect()->route('user.table')->with('success', 'Password updated successfully.');
-       }
-       return redirect()->route('user.table')->with('Error', 'Password updated error.');
-
+        if ($user->save()) {
+            return redirect()->route('user.table')->with('success', 'Password updated successfully.');
+        }
+        return redirect()->route('user.table')->with('Error', 'Password updated error.');
     }
-public function showChangePasswordForm($user)
+    public function showChangePasswordForm($user)
     {
         $user = User::findOrFail($user);
         return view('admin.users.change-password', compact('user'));
     }
-    public function lockUser($id)
-{
-    $user = User::findOrFail($id);
-    $user->is_locked = true;
-    $user->save();
-
-    return redirect()->back()->with('success', 'User locked successfully.');
-}
-
-public function unlockUser($id)
-{
-    $user = User::findOrFail($id);
-    $user->is_locked = false;
-    $user->save();
-
-    return redirect()->back()->with('success', 'User unlocked successfully.');
-}
 }
