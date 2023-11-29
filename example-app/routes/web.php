@@ -115,6 +115,9 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
         Route::post('storesize/{token_id}', [ControllerProductManager::class, 'size_store'])->name('product.storesize');
 
         Route::prefix('image')->group(function () {
+            Route::get('create/{id}', [ControllerProductManager::class, 'image_create'])->name('product.image.create');
+            Route::post('store/{id}', [ControllerProductManager::class, 'image_store'])->name('product.image.store');
+            Route::delete('destroy/{id}', [ControllerProductManager::class, 'image_destroy'])->name('product.image.destroy');
         });
 
         //

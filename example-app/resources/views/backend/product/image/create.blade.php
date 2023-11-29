@@ -7,47 +7,60 @@
             <div class="col">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">General</h3>
+                        <h3 class="card-title">Add image</h3>
 
                     </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputName">Project Name</label>
-                            <input type="text" id="inputName" class="form-control">
+                    <form action="{{ route('product.image.store', [$product->id]) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-body" id="cardBody">
+                            <div class="form-group">
+                                <label>File image</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="images[]" accept="image/png, image/jpg, image/jpeg"
+                                            multiple>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="form-group">
-                            <label for="inputDescription">Project Description</label>
-                            <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+
+                            <a href="#" class="btn btn-secondary">Cancel</a>
+                            <input type="submit" value="Create new Project" class="btn btn-success float-right">
                         </div>
-                        <div class="form-group">
-                            <label for="inputStatus">Status</label>
-                            <select id="inputStatus" class="form-control custom-select">
-                                <option selected disabled>Select one</option>
-                                <option>On Hold</option>
-                                <option>Canceled</option>
-                                <option>Success</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputClientCompany">Client Company</label>
-                            <input type="text" id="inputClientCompany" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputProjectLeader">Project Leader</label>
-                            <input type="text" id="inputProjectLeader" class="form-control">
+                    </form>
+                    <div class="row">
+                        <div class="col-2">
+                            <button id="addFileInput" class="btn btn-primary">Thêm File Input</button>
                         </div>
                     </div>
+
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <a href="#" class="btn btn-secondary">Cancel</a>
-                <input type="submit" value="Create new Project" class="btn btn-success float-right">
-            </div>
-        </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#addFileInput').click(function() {
+                var newFormGroup = `
+
+                <div class="form-group">
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="images[]" multiple>
+                                    </div>
+                                </div>
+                            </div>
+            `;
+                $('#cardBody').append(newFormGroup);
+            });
+        });
+    </script>
     <!-- /.content -->
 @endsection

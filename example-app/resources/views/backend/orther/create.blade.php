@@ -10,42 +10,34 @@
                         <h3 class="card-title">General</h3>
 
                     </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputName">Project Name</label>
-                            <input type="text" id="inputName" class="form-control">
+                    <form id="quickForm" novalidate="novalidate">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                                    placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Password">
+                            </div>
+                            <div class="form-group mb-0">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                                    <label class="custom-control-label" for="exampleCheck1">I agree to the <a
+                                            href="#">terms of service</a>.</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputDescription">Project Description</label>
-                            <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-secondary">Cancel</a>
+                            <input type="submit" value="Create new Project" class="btn btn-success float-right">
                         </div>
-                        <div class="form-group">
-                            <label for="inputStatus">Status</label>
-                            <select id="inputStatus" class="form-control custom-select">
-                                <option selected disabled>Select one</option>
-                                <option>On Hold</option>
-                                <option>Canceled</option>
-                                <option>Success</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputClientCompany">Client Company</label>
-                            <input type="text" id="inputClientCompany" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputProjectLeader">Project Leader</label>
-                            <input type="text" id="inputProjectLeader" class="form-control">
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
+                    </form>
                 </div>
                 <!-- /.card -->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <a href="#" class="btn btn-secondary">Cancel</a>
-                <input type="submit" value="Create new Project" class="btn btn-success float-right">
             </div>
         </div>
     </section>

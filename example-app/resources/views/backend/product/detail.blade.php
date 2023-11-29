@@ -32,8 +32,10 @@
                         <div class="col-12 product-image-thumbs">
                             <div class="product-image-thumb active"><img
                                     src="{{ url('images/products/' . $product->image, []) }}" alt="Product Image"></div>
-                            <div class="product-image-thumb"><img src="../../dist/img/prod-2.jpg" alt="Product Image">
-                            </div>
+                            @foreach ($images as $image)
+                                <div class="product-image-thumb active"><img
+                                        src="{{ url('images/products/' . $image->url, []) }}" alt="Product Image"></div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="col-12 col-sm-6">
@@ -41,7 +43,6 @@
                         <p>{{ $product->description }} </p>
 
                         <hr>
-                        <h4 class="mt-3">Size <small>Please select one</small></h4>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             @foreach ($product->sizes as $size)
                                 <label class="btn btn-default text-center">
@@ -66,11 +67,82 @@
                                 <i class="fas fa-pencil-alt"></i>
                                 Add size</a>
 
-                            <a type="button" class="btn btn-primary" href="">
+                            <a type="button" class="btn btn-primary"
+                                href="{{ route('product.image.create', [$product]) }}">
                                 <i class="fas fa-pencil-alt"></i>
                                 Add image</a>
                         </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Projects</h3>
 
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-striped projects">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10%">
+                                                Image name
+                                            </th>
+                                            <th style="width: 30%">
+                                                Image
+                                            </th>
+                                            <th style="width: 10%">
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($images as $image)
+                                            <tr>
+                                                <td>{{ $image->url }}</td>
+                                                <td>
+                                                    <img style="max-height: 100px"
+                                                        src="{{ url('images/products/' . $image->url, []) }}"
+                                                        alt="">
+                                                </td>
+                                                <td class="project-actions text-right">
+                                                    {{-- form delete --}}
+                                                    <form id="delete-form{{ $image->id }}"
+                                                        action="{{ route('product.image.destroy', [$image]) }}"
+                                                        method="post" style="display: none;">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <input type="hidden" name="id_pro" value="{{ $product->id }}">
+                                                        <button type="submit">Delete</button>
+                                                    </form>
+                                                    <a class="btn btn-danger btn-sm"
+                                                        onclick="confirmDelete{{ $image->id }}(event)">Delete</a>
+                                                    {{-- end form delete --}}
+                                                </td>
+                                            </tr>
+                                            <script>
+                                                function confirmDelete{{ $image->id }}(event) {
+                                                    event.preventDefault();
+
+                                                    if (confirm('Bạn có chắc chắn muốn xóa không?')) {
+                                                        document.getElementById('delete-form{{ $image->id }}')
+                                                            .submit();
+                                                    } else {
+                                                        // Hủy xóa nếu người dùng chọn Cancel trong hộp thoại xác nhận
+                                                        return false;
+                                                    }
+                                                }
+                                            </script>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
                     </div>
                 </div>
             </div>

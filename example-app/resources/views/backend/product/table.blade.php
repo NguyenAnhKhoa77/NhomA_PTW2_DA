@@ -54,7 +54,7 @@
                                         action="{{ route('product.delete', [$product]) }}" method="get"
                                         style="display: none;">
                                         @csrf
-                                        <button type="submit" onclick="">Delete</button>
+                                        <button type="submit">Delete</button>
                                     </form>
                                     <a class="btn btn-danger btn-sm"
                                         onclick="confirmDelete{{ $product->id }}(event)">Delete</a>
