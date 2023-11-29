@@ -144,6 +144,7 @@ class ControllerCheckOut extends Controller
                     return redirect()->back()->with('error', 'Could not check out!');
                 }
             }
+            session()->forget('cart');
             return view('fontend.checkout.thankyou');
         }
         return redirect()->route('cart')->with('error', 'Could not check out!');
