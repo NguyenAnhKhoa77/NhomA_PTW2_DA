@@ -191,4 +191,21 @@ public function showChangePasswordForm($user)
         $user = User::findOrFail($user);
         return view('admin.users.change-password', compact('user'));
     }
+    public function lockUser($id)
+{
+    $user = User::findOrFail($id);
+    $user->is_locked = true;
+    $user->save();
+
+    return redirect()->back()->with('success', 'User locked successfully.');
+}
+
+public function unlockUser($id)
+{
+    $user = User::findOrFail($id);
+    $user->is_locked = false;
+    $user->save();
+
+    return redirect()->back()->with('success', 'User unlocked successfully.');
+}
 }

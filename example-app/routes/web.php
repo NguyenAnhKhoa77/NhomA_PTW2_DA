@@ -126,7 +126,7 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
         Route::get('addsize/{id}', [ControllerProductManager::class, 'size_create'])->name('product.addsize');
         Route::post('storesize/{token_id}', [ControllerProductManager::class, 'size_store'])->name('product.storesize');
-
+        Route::get('/best-selling-products', [ControllerProductManager::class, 'bestSellingProducts'])->name('bestSellingProducts');
         Route::prefix('image')->group(function () {
             Route::get('create/{id}', [ControllerProductManager::class, 'image_create'])->name('product.image.create');
             Route::post('store/{id}', [ControllerProductManager::class, 'image_store'])->name('product.image.store');
@@ -181,6 +181,8 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
         Route::get('destroy/{id}', [ControllerUsersManager::class, 'destroy'])->name('user.destroy');
         Route::get('show/{id}', [ControllerUsersManager::class, 'show'])->name('user.show');
         Route::get('changepass', [ControllerUsersManager::class, 'changepass'])->name('user.changepass');
+        Route::put('/lock/{id}', [ControllerUsersManager::class, 'lockUser'])->name('user.lock');
+        Route::put('/unlock/{id}', [ControllerUsersManager::class, 'unlockUser'])->name('user.unlock');
     });
 
     Route::prefix('bill')->group(function () {
