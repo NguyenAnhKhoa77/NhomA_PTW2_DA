@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ControllerUsersManager;
 use App\Http\Controllers\ControllerCart;
 use App\Http\Controllers\ControllerDetail;
 use App\Http\Controllers\Admin\ControllerComment;
+use App\Http\Controllers\Admin\ControllerCoupons;
 use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
 use App\Http\Controllers\FormController;
@@ -185,11 +186,11 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
 
     Route::prefix('bill')->group(function () {
         Route::get('/', [ControllerBillsManager::class, 'index'])->name('bill.table');
-        Route::get('create', [ControllerBillsManager::class, 'create'])->name('bill.create');
-        Route::post('store', [ControllerBillsManager::class, 'store'])->name('bill.store');
         Route::get('edit/{id}', [ControllerBillsManager::class, 'edit'])->name('bill.edit');
         Route::post('update/{id}', [ControllerBillsManager::class, 'update'])->name('bill.update');
-        Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
+        Route::middleware(['auth', 'admin'])->group(function () {
+            Route::delete('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
+        });
         Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
     });
     Route::prefix('comment')->group(function () {
@@ -203,5 +204,13 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
             Route::get('show/{id}', [ControllerComment::class, 'show'])->name('comments.show');
             Route::get('/products/{product_name}', [ProductController::class, 'show'])->name('product.show');
         });
+    });
+    Route::prefix('coupons')->group(function () {
+        Route::get('/', [ControllerCoupons::class, 'index'])->name('coupons.table');
+        Route::get('create', [ControllerCoupons::class, 'create'])->name('coupons.create');
+        Route::post('store', [ControllerCoupons::class, 'store'])->name('coupons.store');
+        Route::get('edit/{id}', [ControllerCoupons::class, 'edit'])->name('coupons.edit');
+        Route::post('update/{id}', [ControllerCoupons::class, 'update'])->name('coupons.update');
+        Route::delete('destroy/{id}', [ControllerCoupons::class, 'destroy'])->name('coupons.destroy');
     });
 });

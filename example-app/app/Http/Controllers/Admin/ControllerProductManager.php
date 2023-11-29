@@ -152,10 +152,17 @@ class ControllerProductManager extends Controller
                 if (File::exists($path)) {
                     File::delete($path);
                 }
+                $images = $product->images;
+                foreach ($images as $image) {
+                    $path = "images/products/" . $image->url;
+                    if (File::exists($path)) {
+                        File::delete($path);
+                    }
+                }
                 $product->delete();
                 return redirect()->route('product.table')->with('success', 'Xóa thành công');
             } else {
-                return redirect()->back()->with('errors', 'Xóa thất bại!');
+                return redirect()->back()->with('errors', 'Xóa thất bại! Thuộc Bill tồn tại');
             }
         } else {
             return redirect()->route('product.table')->with('errors', 'Không tìm thấy sản phẩm!');

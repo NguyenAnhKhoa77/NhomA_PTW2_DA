@@ -228,7 +228,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('product.table') }}"
-                                class="nav-link  {{ Request::is('admin/product/*') ? 'active' : '' }}">
+                                class="nav-link  {{ Request::is('admin/product') || Request::is('admin/product/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Sản phẩm
                                 </p>
@@ -236,7 +236,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('bill.table', []) }}"
-                                class="nav-link {{ Route::currentRouteName() == 'bill.table' || Route::currentRouteName() == 'bill.create' || Route::currentRouteName() == 'bill.edit' ? 'active' : '' }}">
+                                class="nav-link {{ Request::is('admin/bill') || Request::is('admin/bill/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Đơn hàng
                                 </p>
@@ -244,7 +244,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('user.table', []) }}"
-                                class="nav-link {{ Route::currentRouteName() == 'user.table' || Route::currentRouteName() == 'user.create' || Route::currentRouteName() == 'user.edit' || Route::currentRouteName() == 'user.show' ? 'active' : '' }}">
+                                class="nav-link {{ Request::is('admin/user') || Request::is('admin/user/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Người dùng
                                 </p>
@@ -252,7 +252,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('manufacture.table') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'manufacture.table' || Route::currentRouteName() == 'manufacture.create' || Route::currentRouteName() == 'manufacture.edit' ? 'active' : '' }}">
+                                class="nav-link {{ Request::is('admin/manufacture') || Request::is('admin/manufacture/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Nhãn hàng
                                 </p>
@@ -260,7 +260,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('category.table') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'category.table' || Route::currentRouteName() == 'category.create' || Route::currentRouteName() == 'category.edit' ? 'active' : '' }}">
+                                class="nav-link {{ Request::is('admin/category') || Request::is('admin/category/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Loại sản phẩm
                                 </p>
@@ -268,9 +268,17 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('comments.index') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'comments.table' || Route::currentRouteName() == 'comments.create' || Route::currentRouteName() == 'comments.edit' ? 'active' : '' }}">
+                                class="nav-link {{ Request::is('admin/comment') || Request::is('admin/comment/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Bình luận
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('coupons.table') }}"
+                                class="nav-link {{ Request::is('admin/coupons') || Request::is('admin/coupons/*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>Phiếu giảm giá
                                 </p>
                             </a>
                         </li>
