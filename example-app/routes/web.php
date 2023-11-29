@@ -19,7 +19,7 @@ use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\Admin\ControllerSize
+use App\Http\Controllers\Admin\ControllerSize;
 use App\Http\Controllers\Admin\ControllerMailbox;
 use App\Http\Controllers\UserController;
 
@@ -35,7 +35,6 @@ use App\Http\Controllers\UserController;
 */
 
 Route::group(['middleware' => 'checkAccountStatus'], function () {
-    // Các route cần kiểm tra trạng thái tài khoản
     Route::prefix('/')->group(function () {
         Route::get('/', [ControllerView::class, 'home'])->name('home');
         Route::get('detail/{id}', [ControllerDetail::class, 'index'])->name('detail');
@@ -109,6 +108,8 @@ Route::group(['middleware' => 'checkAccountStatus'], function () {
         Route::post('/orders-pre-pay-status/{bill}', [UserProfileController::class, 'prePayOrderStatus'])->name('orders.pre-pay.status');
         Route::get('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
         Route::post('/change-password', [UserProfileController::class, 'changePasswordProcess'])->name('change.password.process');
+        Route::get('/mailbox', [UserProfileController::class, 'mailbox'])->name('mailbox');
+        Route::get('/maildetail/{id}', [UserProfileController::class, 'maildetail'])->name('maildetail');
     });
 
     Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
@@ -194,11 +195,11 @@ Route::group(['middleware' => 'checkAccountStatus'], function () {
 
         Route::prefix('bill')->group(function () {
             Route::get('/', [ControllerBillsManager::class, 'index'])->name('bill.table');
-            Route::get('create', [ControllerBillsManager::class, 'create'])->name('bill.create');
-            Route::post('store', [ControllerBillsManager::class, 'store'])->name('bill.store');
             Route::get('edit/{id}', [ControllerBillsManager::class, 'edit'])->name('bill.edit');
             Route::post('update/{id}', [ControllerBillsManager::class, 'update'])->name('bill.update');
-            Route::get('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
+            Route::middleware(['auth', 'admin'])->group(function () {
+                Route::delete('destroy/{id}', [ControllerBillsManager::class, 'destroy'])->name('bill.destroy');
+            });
             Route::get('show/{id}', [ControllerBillsManager::class, 'show'])->name('bill.show');
         });
         Route::prefix('comment')->group(function () {
@@ -213,11 +214,19 @@ Route::group(['middleware' => 'checkAccountStatus'], function () {
                 Route::get('/products/{product_name}', [ProductController::class, 'show'])->name('product.show');
             });
         });
-    });
-    Route::prefix('mailbox')->group(function () {
-        Route::get('/', [ControllerMailbox::class, 'mailbox'])->name('mailbox.mailbox');
-        Route::get('/read-mail/{id}', [ControllerMailbox::class, 'readmail'])->name('read.mail');
-        Route::get('/reply/{id}', [ControllerMailbox::class, 'reply'])->name('mailbox.reply');
-        Route::post('/reply/{id}', [ControllerMailbox::class, 'replyForm'])->name('mailbox.reply');
+        Route::prefix('coupons')->group(function () {
+            Route::get('/', [ControllerCoupons::class, 'index'])->name('coupons.table');
+            Route::get('create', [ControllerCoupons::class, 'create'])->name('coupons.create');
+            Route::post('store', [ControllerCoupons::class, 'store'])->name('coupons.store');
+            Route::get('edit/{id}', [ControllerCoupons::class, 'edit'])->name('coupons.edit');
+            Route::post('update/{id}', [ControllerCoupons::class, 'update'])->name('coupons.update');
+            Route::delete('destroy/{id}', [ControllerCoupons::class, 'destroy'])->name('coupons.destroy');
+        });
+        Route::prefix('mailbox')->group(function () {
+            Route::get('/', [ControllerMailbox::class, 'mailbox'])->name('mailbox.mailbox');
+            Route::get('/read-mail/{id}', [ControllerMailbox::class, 'readmail'])->name('read.mail');
+            Route::get('/reply/{id}', [ControllerMailbox::class, 'reply'])->name('mailbox.reply');
+            Route::post('/reply/{id}', [ControllerMailbox::class, 'replyForm'])->name('mailbox.reply');
+        });
     });
 });
