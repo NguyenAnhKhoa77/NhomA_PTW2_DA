@@ -52,7 +52,7 @@ class ControllerCheckOut extends Controller
         if ($request->message === "Successful.") {
             $momo = new Momo();
             $momo->partnerCode = $request->partnerCode;
-            $momo->orderId = $request->orderId / 1000;
+            $momo->orderId = $request->orderId / 10000;
             $momo->requestId = $request->requestId;
             $momo->amount = $request->amount;
             $momo->orderInfo = $request->orderInfo;
@@ -210,7 +210,7 @@ class ControllerCheckOut extends Controller
                 $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
                 $orderInfo = "Thanh toán qua MoMo";
                 $amount = $bill->total;
-                $orderId = $bill->id * 1000;
+                $orderId = $bill->id * 10000;
                 $redirectUrl = "http://127.0.0.1:8000/check-out/thank-you";
                 $ipnUrl = "http://127.0.0.1:8000/check-out/thank-you";
                 $extraData = "";
