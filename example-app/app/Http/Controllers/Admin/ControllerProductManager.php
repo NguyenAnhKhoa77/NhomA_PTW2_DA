@@ -159,4 +159,14 @@ class ControllerProductManager extends Controller
             return redirect()->route('product.table')->with('error', 'Không tìm thấy sản phẩm!');
         }
     }
+
+    public function Size_create()
+    {
+    }
+    public function Size_store()
+    {
+    }
+    public function Size_remove()
+    {
+    }
 }
