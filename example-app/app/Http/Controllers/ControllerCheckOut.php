@@ -154,6 +154,13 @@ class ControllerCheckOut extends Controller
                     return redirect()->back()->with('error', 'Could not check out!');
                 }
             }
+            foreach ($cart as $cartItem) {
+                $product = Product::find($cartItem['id']);
+                if ($product) {
+                    // Cập nhật số lượng sản phẩm đã bán
+                    $product->increment('sold_count', $cartItem['quantity']);
+                }
+            }
             session()->forget('cart');
             return view('fontend.checkout.thankyou');
         }
