@@ -62,6 +62,21 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label>Giới tính</label>
+                        <select name="sex" class="form-control custom-select @error('manu') is-invalid @enderror">
+                            @foreach ($sexs as $sex)
+                                @if ($sex->id == $product->sex)
+                                    <option selected value="{{ $sex->id }}">{{ $sex->text }}</option>
+                                @else
+                                    <option value="{{ $sex->id }}">{{ $sex->text }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label>Nội dung</label>
                         <textarea class="form-control  @error('description') is-invalid @enderror" name="description" rows="3">{{ old('description', $product->description) }}</textarea>
                         @error('description')
