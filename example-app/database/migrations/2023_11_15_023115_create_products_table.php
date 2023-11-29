@@ -17,6 +17,7 @@ return new class extends Migration
                 $table->string('name');
                 $table->string('image');
                 $table->unsignedBigInteger('sex')->default(0);
+                $table->foreign('sex')->references('id')->on('sexs')->onDelete('cascade')->onUpdate('cascade');
                 $table->unsignedBigInteger('categories_id');
                 $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
                 $table->unsignedBigInteger('manufacturer_id');
