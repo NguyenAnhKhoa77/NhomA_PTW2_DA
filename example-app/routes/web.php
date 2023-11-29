@@ -20,6 +20,7 @@ use App\Http\Controllers\ControllerUser;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\ControllerSize;
+use App\Http\Controllers\Admin\ControllerMailbox;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +106,8 @@ Route::prefix('/account')->middleware('auth')->group(function () {
     Route::post('/orders-pre-pay-status/{bill}', [UserProfileController::class, 'prePayOrderStatus'])->name('orders.pre-pay.status');
     Route::get('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
     Route::post('/change-password', [UserProfileController::class, 'changePasswordProcess'])->name('change.password.process');
+    Route::get('/mailbox', [UserProfileController::class, 'mailbox'])->name('mailbox');
+    Route::get('/maildetail/{id}', [UserProfileController::class, 'maildetail'])->name('maildetail');
 });
 
 Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
@@ -212,5 +215,11 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
         Route::get('edit/{id}', [ControllerCoupons::class, 'edit'])->name('coupons.edit');
         Route::post('update/{id}', [ControllerCoupons::class, 'update'])->name('coupons.update');
         Route::delete('destroy/{id}', [ControllerCoupons::class, 'destroy'])->name('coupons.destroy');
+    });
+    Route::prefix('mailbox')->group(function () {
+        Route::get('/', [ControllerMailbox::class, 'mailbox'])->name('mailbox.mailbox');
+        Route::get('/read-mail/{id}', [ControllerMailbox::class, 'readmail'])->name('read.mail');
+        Route::get('/reply/{id}', [ControllerMailbox::class, 'reply'])->name('mailbox.reply');
+        Route::post('/reply/{id}', [ControllerMailbox::class, 'replyForm'])->name('mailbox.reply');
     });
 });
