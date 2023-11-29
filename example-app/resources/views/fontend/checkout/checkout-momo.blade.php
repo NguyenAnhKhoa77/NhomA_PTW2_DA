@@ -1,4 +1,5 @@
 @extends('fontend.black')
+@section('title', 'Checkout via Momo')
 @section('content')
     <main class="main">
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
@@ -14,43 +15,47 @@
         <div class="page-content">
             <div class="checkout">
                 <div class="container">
-                    <form action="{{ route('process.check-out') }}" method="post">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{ route('check-out') }}">Cash On Delivery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('check-out-momo') }}">Online Payment via Momo</a>
+                        </li>
+                    </ul>
+                    <form action="{{ route('process.check-out-momo') }}" method="post">
                         @csrf
-                        <div class="row">
+                        <div class="row pt-2">
                             <div class="col-lg-6">
                                 <h2 class="checkout-title">Payment Information</h2><!-- End .checkout-title -->
                                 <div class="form-group">
-                                    <label>Họ và tên *</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <label for="name">Họ và tên *</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           value="@if($userInfo->name){{ $userInfo->name }}@endif" required>
                                     @if ($errors->has('name'))
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label>Phone *</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" required>
+                                    <label for="phone">Phone *</label>
+                                    <input type="text" class="form-control" id="phone" name="phone"
+                                           value="@if($userInfo->phone){{ $userInfo->phone }}@endif" required>
                                     @if ($errors->has('phone'))
                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Address *</label>
-                                    <input type="text" class="form-control" id="address" name="address" required>
+                                    <input type="text" class="form-control" id="address" name="address"
+                                           value="@if($userInfo->address){{ $userInfo->address }}@endif" required>
                                     @if ($errors->has('address'))
                                         <span class="text-danger">{{ $errors->first('address') }}</span>
                                     @endif
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="payment_type" id="payment-type-1" value="0" checked>
-                                    <label class="form-check-label" for="payment-type-1">Cash On Delivery</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="payment_type" id="payment-type-2" value="1">
-                                    <label class="form-check-label" for="payment-type-2">Online Payment</label>
-                                </div>
                                 <input type="hidden" name="user_id" value="{{ session('user_id') }}">
                                 <input type="hidden" name="shipping" value="{{ $totalShippingFees }}">
                                 <input type="hidden" name="total" value="{{ $totalPrices }}">
+                                <input type="hidden" name="payment_type" value="1">
                             </div><!-- End .col-lg-6 -->
                             <aside class="col-lg-6">
                                 <div class="summary">
@@ -58,10 +63,10 @@
 
                                     <table class="table table-summary">
                                         <thead>
-                                            <tr>
-                                                <th>Products</th>
-                                                <th>Prices</th>
-                                            </tr>
+                                        <tr>
+                                            <th>Products</th>
+                                            <th>Prices</th>
+                                        </tr>
                                         </thead>
 
                                         <tbody>
@@ -71,24 +76,22 @@
                                                 <td>{{ number_format($checkOutProduct->price) }} VNĐ</td>
                                             </tr>
                                         @endforeach
-                                            <tr class="summary-subtotal">
-                                                <td>Sub Total:</td>
-                                                <td>{{ number_format($subTotalPrices) }} VNĐ</td>
-                                            </tr><!-- End .summary-subtotal -->
-                                            <tr>
-                                                <td>Shipping Fee:</td>
-                                                    <td>{{ number_format($totalShippingFees) }} VNĐ</td>
-                                            </tr>
-                                            <tr class="summary-total">
-                                                <td>Total:</td>
-                                                <td>{{ number_format($totalPrices) }} VNĐ</td>
-                                            </tr><!-- End .summary-total -->
+                                        <tr class="summary-subtotal">
+                                            <td>Sub Total:</td>
+                                            <td>{{ number_format($subTotalPrices) }} VNĐ</td>
+                                        </tr><!-- End .summary-subtotal -->
+                                        <tr>
+                                            <td>Shipping Fee:</td>
+                                            <td>{{ number_format($totalShippingFees) }} VNĐ</td>
+                                        </tr>
+                                        <tr class="summary-total">
+                                            <td>Total:</td>
+                                            <td>{{ number_format($totalPrices) }} VNĐ</td>
+                                        </tr><!-- End .summary-total -->
                                         </tbody>
                                     </table><!-- End .table table-summary -->
-
-                                    <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
-                                        <span class="btn-text">Checkout</span>
-                                        <span class="btn-hover-text">Complete</span>
+                                    <button type="submit" name="payUrl"
+                                            class="btn btn-success btn-outline-primary-2 btn-order btn-block">Checkout
                                     </button>
                                 </div><!-- End .summary -->
                             </aside><!-- End .col-lg-6 -->
