@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bills;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ControllerBillsManager extends Controller
@@ -17,28 +18,19 @@ class ControllerBillsManager extends Controller
         return view('backend.bills.table', compact('bill'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        if ($bill = Bills::find($id)) {
+            $user = User::find($bill->use_id);
+            return view('backend.bills.detail', compact('bill', 'user'));
+        } else {
+            return redirect()->route('bill.table');
+        }
     }
 
     /**
