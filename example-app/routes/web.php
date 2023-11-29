@@ -110,6 +110,7 @@ Route::group(['middleware' => 'checkAccountStatus'], function () {
         Route::post('/change-password', [UserProfileController::class, 'changePasswordProcess'])->name('change.password.process');
         Route::get('/mailbox', [UserProfileController::class, 'mailbox'])->name('mailbox');
         Route::get('/maildetail/{id}', [UserProfileController::class, 'maildetail'])->name('maildetail');
+        Route::get('/coupon', [UserProfileController::class, 'coupon'])->name('coupon');
     });
 
     Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
