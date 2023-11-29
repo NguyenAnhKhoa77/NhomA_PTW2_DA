@@ -1,8 +1,7 @@
 @extends('fontend.black')
 @section('title', 'Orders')
 @section('content')
-<main class="main">
-        <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
             <div class="container">
                 <h1 class="page-title">My Account<span>Shop</span></h1>
             </div><!-- End .container -->
@@ -52,28 +51,9 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="tab-mail-box" role="tabpanel"
                                      aria-labelledby="tab-mail-box-link">
-                                     <!-- Tạo hộp thư -->
-                                     <div class="mailbox_title">
-                                        <h2>
-                                            Hộp thư của bạn.
-                                        </h2>
-                                     </div>
-                                     @foreach ($mails as $mail)
-                                     @if(session('user_id') === $mail->receive_user_id)
-                                     <a href="{{ route('maildetail',$mail->id) }}">
-                                    <div class="mailbox-card d-flex border mb-2 row">
-                                        <div class="mail-title border-right p-2 col-3">
-                                            <p>{{$mail->title}}</p>
-                                        </div>
-                                        <div class="mail-exceprt p-2 col-9">
-                                            <p>{{$mail->content}}</p>
-                                        </div>
-                                    </div>
-                                     </a>
-                                     @else
-                                     <p>Không có gì cả</p>
-                                     @endif
-                                     @endforeach
+                                     <!-- Chi tiết thư -->
+                                     <h1>{{$mail->title}}</h1>
+                                     <p>{{$mail->content}}</p>
                                 </div><!-- .End .tab-pane -->
                             </div>
                         </div><!-- End .col-lg-9 -->

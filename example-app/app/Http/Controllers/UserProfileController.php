@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use App\Models\User;
-use App\Models\Contact;
+use App\Models\Mails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -73,8 +73,13 @@ class UserProfileController extends Controller
 
     public function mailbox()
     {
-        $mails = Contact::all();
+        $mails = Mails::all();
         return view('fontend.account.mailbox',compact('mails'));
+    }
+
+    public function maildetail($id){
+        $mail = Mails::find($id);
+        return view('fontend.account.mail-detail',compact('mail'));
     }
 
     public function changePassword()
