@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Bills;
+use App\Models\Bill;
 use App\Models\Momo;
 use App\Models\Orders;
 use App\Models\Product;
@@ -55,7 +56,7 @@ class PaymentController extends Controller
 
     public function success(Request $request)
     {
-        
+         
         if ($request->input('paymentId') && $request->input('PayerID')) {
             $transaction = $this->gateway->completePurchase(array(
                 'payer_id' => $request->input('PayerID'),
@@ -68,15 +69,17 @@ class PaymentController extends Controller
 
                 $arr = $response->getData();
 
-                $payment = new Payment();
-                $payment->payment_id = $arr['id'];
-                $payment->payer_id = $arr['payer']['payer_info']['payer_id'];
-                $payment->payer_email = $arr['payer']['payer_info']['email'];
-                $payment->amount = $arr['transactions'][0]['amount']['total'];
-                $payment->currency = env('PAYPAL_CURRENCY');
-                $payment->payment_status = $arr['state'];
+            // Tạo đối tượng Payment và lưu các thuộc tính vào đó
+            $payment = new Payment();
+            $payment->payment_id = $arr['id'];
+            $payment->payer_id = $arr['payer']['payer_info']['payer_id'];
+            $payment->payer_email = $arr['payer']['payer_info']['email'];
+            $payment->amount = $arr['transactions'][0]['amount']['total'];
+            $payment->currency = env('PAYPAL_CURRENCY');
+            $payment->payment_status = $arr['state'];
+            $payment->save();
 
-                $payment->save();
+           
 
                 return view('fontend.checkout.thankyou');
 

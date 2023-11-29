@@ -45,7 +45,7 @@ Route::prefix('/')->group(function () {
         Route::get('/check-out-paypal', [PaymentController::class, 'checkoutPaypal'])->name('check-out-paypal');
         Route::get('/success', [PaymentController::class, 'success'])->name('success');
         Route::get('/error', [PaymentController::class, 'error'])->name('error');
-        Route::post('pay', [PaymentController::class, 'pay'])->name('payment');
+        Route::post('payment', [PaymentController::class, 'pay'])->name('payment');
     });
 
 

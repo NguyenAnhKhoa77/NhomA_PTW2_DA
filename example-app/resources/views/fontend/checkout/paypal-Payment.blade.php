@@ -27,50 +27,53 @@
                         </li>
                     </ul>
                     <form action="{{ route('payment') }}" method="post">
-                        @csrf
-                        <div class="row pt-2">
-                            
-                            </div><!-- End .col-lg-6 -->
-                            <aside class="col-lg-6">
-                                <div class="summary">
-                                    <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
-
-                                    <table class="table table-summary">
-                                        <thead>
-                                        <tr>
-                                            <th>Products</th>
-                                            <th>Prices</th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        @foreach($checkOutProducts as $checkOutProduct)
-                                            <tr>
-                                                <td><a href="#">{{ $checkOutProduct->name }}</a></td>
-                                                <td>{{ number_format($checkOutProduct->price) }} VNĐ</td>
-                                            </tr>
-                                        @endforeach
-                                        <tr class="summary-subtotal">
-                                            <td>Sub Total:</td>
-                                            <td>{{ number_format($subTotalPrices) }} VNĐ</td>
-                                        </tr><!-- End .summary-subtotal -->
-                                        <tr>
-                                            <td>Shipping Fee:</td>
-                                            <td>{{ number_format($totalShippingFees) }} VNĐ</td>
-                                        </tr>
-                                        <tr class="summary-total">
-                                            <td>Total:</td>
-                                            <td>{{ number_format($totalPrices) }} VNĐ</td>
-                                        </tr><!-- End .summary-total -->
-                                        </tbody>
-                                    </table><!-- End .table table-summary -->
-                                    <button type="submit" name="payUrl"
-                                            class="btn btn-success btn-outline-primary-2 btn-order btn-block">Checkout
-                                    </button>
-                                </div><!-- End .summary -->
-                            </aside><!-- End .col-lg-6 -->
-                        </div><!-- End .row -->
-                    </form>
+    @csrf
+    <div class="row pt-2">
+        <div class="col-lg-6">
+            <h2 class="checkout-title">Payment Information</h2>
+            <div class="form-group">
+        
+            <input type="hidden" name="user_id" value="{{ session('user_id') }}">
+            <input type="hidden" name="shipping" value="{{ $totalShippingFees }}">
+            <input type="hidden" name="total" value="{{ $totalPrices }}">
+            <input type="hidden" name="payment_type" value="1">
+        </div>
+        <aside class="col-lg-6">
+            <div class="summary">
+                <h3 class="summary-title">Your Order</h3>
+                <table class="table table-summary">
+                    <thead>
+                    <tr>
+                        <th>Products</th>
+                        <th>Prices</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($checkOutProducts as $checkOutProduct)
+                        <tr>
+                            <td><a href="#">{{ $checkOutProduct->name }}</a></td>
+                            <td>{{ number_format($checkOutProduct->price) }} VNĐ</td>
+                        </tr>
+                    @endforeach
+                    <tr class="summary-subtotal">
+                        <td>Sub Total:</td>
+                        <td>{{ number_format($subTotalPrices) }} VNĐ</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping Fee:</td>
+                        <td>{{ number_format($totalShippingFees) }} VNĐ</td>
+                    </tr>
+                    <tr class="summary-total">
+                        <td>Total:</td>
+                        <td>{{ number_format($totalPrices) }} VNĐ</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button type="submit" name="payUrl" class="btn btn-success btn-outline-primary-2 btn-order btn-block">Checkout</button>
+            </div>
+        </aside>
+    </div>
+</form>
                 </div><!-- End .container -->
             </div><!-- End .checkout -->
         </div><!-- End .page-content -->
