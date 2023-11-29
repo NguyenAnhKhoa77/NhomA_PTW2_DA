@@ -3,7 +3,7 @@
 @section('content')
 <div class="container text-center">
     <h1>
-        Liên hệ với chúng tôi
+        Gửi thư cho chúng tôi
     </h1>
     <form action="/contact" method="post">
         <div class="container py-5 w">
