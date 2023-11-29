@@ -1,6 +1,7 @@
 @extends('backend.header')
 @section('content')
-    <div class="mt-3"></div>
+    <div class="mt-3">
+    </div>
     <!-- Main content -->
     <section class="content">
         <!-- Default box -->
@@ -26,7 +27,6 @@
                             <th style="width: 10%">Email</th>
                             <th style="width: 10%">Phone</th>
                             <th style="width: 10%">Address</th>
-                            <th >Status</th>
                             <th style="width: 30%"></th>
                         </tr>
                     </thead>
@@ -39,11 +39,6 @@
                                 <td>{{ $user->email }} </td>
                                 <td>{{ $user->account->phone }} </td>
                                 <td>{{ $user->account->address }} </td>
-                                <td>  @if ($user->is_locked)
-                    <span class="badge bg-danger">Locked</span>
-                @else
-                    <span class="badge bg-success">Active</span>
-                @endif</td>
                                 <td class="project-actions text-right">
                                     @if ($user->is_locked == false)
                                         <a class="btn btn-primary btn-sm" href="{{ route('user.lockUser', $user->id) }}">
@@ -78,26 +73,6 @@
                                     <a class="btn btn-warning btn-sm" href="{{ route('users.changePassword', $user) }}">
                                         <i class="fa fa-lock" aria-hidden="true"></i>
                                         Change password</a>
-                                        <td>
-                                        @if ($user->is_locked)
-                    <form action="{{ route('user.unlock', $user->id) }}" method="post" style="display: inline;">
-                        @csrf
-                        @method('PUT')
-                        <button type="submit" class="btn btn-success btn-sm">
-                            <i class="fas fa-unlock"></i> Unlock
-                        </button>
-                    </form>
-                @else
-                    <form action="{{ route('user.lock', $user->id) }}" method="post" style="display: inline;">
-                        @csrf
-                        @method('PUT')
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-lock"></i> Lock
-                        </button>
-                    </form>
-                @endif
-</td>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>
