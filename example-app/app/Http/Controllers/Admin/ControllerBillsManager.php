@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bills;
 use Illuminate\Http\Request;
 
 class ControllerBillsManager extends Controller
@@ -12,7 +13,8 @@ class ControllerBillsManager extends Controller
      */
     public function index()
     {
-        //
+        $bill = Bills::paginate(10);
+        return view('backend.bills.table', compact('bill'));
     }
 
     /**

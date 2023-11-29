@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{ url('backend/plugins/daterangepicker/daterangepicker.css', []) }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ url('backend/plugins/summernote/summernote-bs4.min.css', []) }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -226,7 +228,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('product.table') }}"
-                                class="nav-link  {{ Request::is('admin/product/*') ? 'active' : '' }}">
+                                class="nav-link {{ Route::currentRouteName() == 'product.table' || Route::currentRouteName() == 'product.create' || Route::currentRouteName() == 'product.edit' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Sản phẩm
                                 </p>

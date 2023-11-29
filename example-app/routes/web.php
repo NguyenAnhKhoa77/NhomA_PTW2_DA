@@ -18,7 +18,6 @@ use App\Http\Controllers\ControllerGridPage;
 use App\Http\Controllers\ControllerUser;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\Admin\ControllerSize;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,12 +86,6 @@ Route::prefix('/account')->middleware('auth')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
     Route::post('/update-profile/{account}', [UserProfileController::class, 'updateProfile'])->name('update.profile');
     Route::get('/address', [UserProfileController::class, 'address'])->name('address');
-    Route::get('/address-add', [UserProfileController::class, 'addressAddNew'])->name('add.address');
-    Route::post('/address-add', [UserProfileController::class, 'addressAddNewProcess'])->name('add.address.process');
-    Route::get('/address-change/{address}', [UserProfileController::class, 'addressChange'])->name('change.address');
-    Route::post('/address-change/{address}', [UserProfileController::class, 'addressChangeProcess'])->name('change.address.process');
-    Route::delete('/address-delete/{address}', [UserProfileController::class, 'addressDeleteProcess'])->name('delete.address.process');
-    Route::post('/address-default-change/{address}', [UserProfileController::class, 'setAddressDefaultProcess'])->name('change.address-default.process');
     Route::get('/orders', [UserProfileController::class, 'orders'])->name('orders');
     Route::get('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
     Route::post('/change-password', [UserProfileController::class, 'changePasswordProcess'])->name('change.password.process');
@@ -101,7 +94,12 @@ Route::prefix('/account')->middleware('auth')->group(function () {
 Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
     Route::get('/', [AdminPage::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [AdminPage::class, 'dashboard']);
-
+    //
+    Route::get('/getOrderData', [AdminPage::class, 'getOrderData'])->name('getOrderData');
+    Route::get('/getCategoryData', [AdminPage::class, 'getCategoryData'])->name('getCategoryData');
+    Route::get('/getManuData', [AdminPage::class, 'getManuData'])->name('getManuData');
+    Route::get('/getCategoryChart', [AdminPage::class, 'getCategoryChart'])->name('getCategoryChart');
+    //
     Route::prefix('product')->group(function () {
         Route::get('/', [ControllerProductManager::class, 'table'])->name('product.table');
         Route::get('create', [ControllerProductManager::class, 'create'])->name('product.create');
@@ -109,8 +107,8 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
         Route::get('edit/{id}', [ControllerProductManager::class, 'edit'])->name('product.edit');
         Route::post('edit/{token_id}', [ControllerProductManager::class, 'edit_handle'])->name('product.edit.handle');
         Route::get('delete/{id}', [ControllerProductManager::class, 'delete'])->name('product.delete');
-        Route::get('addsize/{id}', [ControllerProductManager::class, 'size_create'])->name('product.addsize');
-        Route::Post('storesize/{token_id}', [ControllerProductManager::class, 'size_store'])->name('product.storesize');
+        Route::get('addsize/{id}', [ControllerProductManager::class, ''])->name('product.addsize');
+
         //
         Route::post('/submit-form', [FormController::class, 'submitForm'])->name('submit.form');
         Route::get('/users/{user}/edit', [ControllerUsersManager::class, 'edit'])->name('users.edit');
@@ -125,8 +123,8 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
         Route::get('create', [ControllerSize::class, 'create'])->name('size.create');
         Route::post('store', [ControllerSize::class, 'store'])->name('size.store');
         Route::get('edit/{id}', [ControllerSize::class, 'edit'])->name('size.edit');
-        Route::post('update', [ControllerSize::class, 'update'])->name('size.update');
-        Route::delete('destroy/{id}', [ControllerSize::class, 'destroy'])->name('size.destroy');
+        Route::post('update/{id}', [ControllerSize::class, 'update'])->name('size.update');
+        Route::get('destroy/{id}', [ControllerSize::class, 'destroy'])->name('size.destroy');
         Route::get('show', [ControllerSize::class, 'show'])->name('size.show');
     });
     Route::prefix('category')->group(function () {
