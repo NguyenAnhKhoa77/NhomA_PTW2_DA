@@ -81,7 +81,11 @@
                                 <div class="">
                                     <label>Màu sắc: Xám – Xanh dương</label>
                                 </div><!-- End .details-filter-row -->
-
+                                @if($product->inventory <= 0)
+                                    <div class="text-danger p-1">
+                                        Hết hàng
+                                    </div>
+                                @else
                                 <div class="details-filter-row details-row-size">
                                     <label for="size">Kích thước:</label>
                                     <div class="select-custom">
@@ -105,10 +109,10 @@
                                                 data-decimals="0" required>
                                         </div><!-- End .product-details-quantity -->
                                     </div><!-- End .details-filter-row -->
-
                                     <div class="product-details-action">
                                         <button type="submit" class="btn-product btn-cart p-0 py-3 border-0">Thêm vào giỏ
                                             hàng</button>
+                                    @endif
                                         <div class="details-action-wrapper">
                                             <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Thêm
                                                     vào
