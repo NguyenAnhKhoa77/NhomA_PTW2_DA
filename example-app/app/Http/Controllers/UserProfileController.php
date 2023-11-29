@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use App\Models\Address;
+use App\Models\Bills;
+use App\Models\Orders;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -198,9 +201,112 @@ class UserProfileController extends Controller
         }
     }
 
-    public function orders()
+    public function ordersPending()
     {
-        return view('fontend.account.orders');
+        $ordersPending = Bills::where('status', 'pending')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('fontend.account.order.order-pending', compact('ordersPending'));
+    }
+
+    public function ordersDelivering()
+    {
+        $ordersDelivering = Bills::where('status', 'delivering')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('fontend.account.order.order-delivering', compact('ordersDelivering'));
+    }
+
+    public function ordersDelivered()
+    {
+        $ordersDelivered = Bills::where('status', 'delivered')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('fontend.account.order.order-delivered', compact('ordersDelivered'));
+    }
+
+    public function ordersCompleted()
+    {
+        $ordersCompleted = Bills::where('status', 'completed')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('fontend.account.order.order-completed', compact('ordersCompleted'));
+    }
+
+    public function ordersCancelled()
+    {
+        $ordersCancelled = Bills::where('status', 'cancelled')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('fontend.account.order.order-cancelled', compact('ordersCancelled'));
+    }
+
+    public function orderDetail(Request $request, Bills $bill)
+    {
+        $billCurrent = Bills::findOrFail($bill->id);
+        if (!$billCurrent) {
+            return redirect()->back()->with('error', "Fail to load order detail!");
+        }
+        return view('fontend.account.order.order-detail', compact('billCurrent'));
+    }
+
+    public function cancelOrderStatus(Request $request, Bills $bill)
+    {
+        $billCurrent = Bills::findOrFail($bill->id);
+        if ($billCurrent) {
+            if ($billCurrent->status == 'pending') {
+                $billCurrent->status = "cancelled";
+                $billCurrent->update();
+                return redirect()->back()->with('success', 'Cancel order succeed!');
+            }
+        }
+        return redirect()->back()->with('error', 'Cancel order failed!');
+    }
+
+    public function acceptOrderStatus(Request $request, Bills $bill)
+    {
+        $billCurrent = Bills::findOrFail($bill->id);
+        if ($billCurrent) {
+            if ($billCurrent->status == 'delivered') {
+                $billCurrent->status = "completed";
+                $billCurrent->update();
+                return redirect()->back()->with('success', 'Accept order succeed!');
+            }
+        }
+        return redirect()->back()->with('error', 'Accept order failed!');
+    }
+
+    public function prePayOrderStatus(Request $request, Bills $bill)
+    {
+        $billCurrent = Bills::findOrFail($bill->id);
+        if ($billCurrent) {
+            $orders = Orders::where('bill_id', $billCurrent->id)->get();
+            foreach ($orders as $order) {
+                $product = Product::where('id', $order->product_id)->get();
+                $cart = $request->session()->get('cart', []);
+
+                $quantity = $order->quantity; // Lấy giá trị số lượng từ form, mặc định là 1 nếu không có
+                $key = array_search($product[0]->id, array_column($cart, 'id'));
+
+                if ($key !== false && isset($cart[$key]['quantity'])) {
+                    // Sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
+                    $cart[$key]['quantity'] += $quantity;
+                } else {
+                    // Sản phẩm chưa tồn tại trong giỏ hàng, thêm mới
+                    $product = Product::findOrFail($product[0]->id);
+                    $cart[] = [
+                        'id' => $product->id,
+                        'quantity' => $quantity,
+                        'name' => $product->name,
+                        'image' => $product->image,
+                        'price' => $product->price,
+                    ];
+                }
+                $request->session()->put('cart', $cart);
+            }
+            return redirect()->back()->with('success', 'Products in order were added to cart.');
+        }
+        return redirect()->back()->with('error', 'Pre-pay order failed!');
     }
 
     public function changePassword()

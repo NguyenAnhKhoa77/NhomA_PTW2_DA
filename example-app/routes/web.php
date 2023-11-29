@@ -93,7 +93,15 @@ Route::prefix('/account')->middleware('auth')->group(function () {
     Route::post('/address-change/{address}', [UserProfileController::class, 'addressChangeProcess'])->name('change.address.process');
     Route::delete('/address-delete/{address}', [UserProfileController::class, 'addressDeleteProcess'])->name('delete.address.process');
     Route::post('/address-default-change/{address}', [UserProfileController::class, 'setAddressDefaultProcess'])->name('change.address-default.process');
-    Route::get('/orders', [UserProfileController::class, 'orders'])->name('orders');
+    Route::get('/orders-pending', [UserProfileController::class, 'ordersPending'])->name('orders.pending');
+    Route::get('/orders-delivering', [UserProfileController::class, 'ordersDelivering'])->name('orders.delivering');
+    Route::get('/orders-delivered', [UserProfileController::class, 'ordersDelivered'])->name('orders.delivered');
+    Route::get('/orders-completed', [UserProfileController::class, 'ordersCompleted'])->name('orders.completed');
+    Route::get('/orders-cancelled', [UserProfileController::class, 'ordersCancelled'])->name('orders.cancelled');
+    Route::get('/order-detail/{bill}', [UserProfileController::class, 'orderDetail'])->name('orders.detail');
+    Route::post('/orders-cancel-status/{bill}', [UserProfileController::class, 'cancelOrderStatus'])->name('orders.cancel.status');
+    Route::post('/orders-accept-status/{bill}', [UserProfileController::class, 'acceptOrderStatus'])->name('orders.accept.status');
+    Route::post('/orders-pre-pay-status/{bill}', [UserProfileController::class, 'prePayOrderStatus'])->name('orders.pre-pay.status');
     Route::get('/change-password', [UserProfileController::class, 'changePassword'])->name('change.password');
     Route::post('/change-password', [UserProfileController::class, 'changePasswordProcess'])->name('change.password.process');
 });
