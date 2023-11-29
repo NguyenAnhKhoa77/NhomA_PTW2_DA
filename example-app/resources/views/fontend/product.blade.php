@@ -71,7 +71,11 @@
                                 </div><!-- End .rating-container -->
 
                                 <div class="product-price">
+                                    @if($product->onSale)
+                                    <s>{{ $product['price'] }}</s><div class="text-danger ml-5">Giảm giá chỉ còn: {{$product['price']/2}}</div> 
+                                    @else
                                     {{ $product['price'] }}
+                                    @endif
                                 </div><!-- End .product-price -->
 
                                 <div class="product-content">
@@ -276,8 +280,13 @@
                                         </a>
                                     </h3>
                                     <!-- End .product-title -->
-                                    <div class="product-price">
-                                        {{ $value->price }} VND
+                                    <div class="product-price flex-column">
+                                    @if($product->onSale)
+                                    <s>{{ $product['price'] }}</s> 
+                                    <div class="text-danger">{{$product['price']/2}}</div> 
+                                    @else
+                                    {{ $product['price'] }}
+                                    @endif
                                     </div><!-- End .product-price -->
                                 </div><!-- End .product-body -->
                             </div><!-- End .product -->
