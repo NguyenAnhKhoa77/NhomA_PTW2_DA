@@ -1,12 +1,6 @@
 @extends('fontend.black')
 @section('title', 'Contact')
 @section('content')
-@if (session('message'))
-    
-  <script type ="text/JavaScript">;  
-  alert("{{session('message')}}");  
-  </script>;
-@endif
 <div class="container text-center">
     <h1>
         Liên hệ với chúng tôi
@@ -15,66 +9,22 @@
         <div class="container py-5 w">
           <form class="p-md-5 border rounded-3 bg-body-tertiary">
             @csrf
-
-            <!-- Name input -->
-
-            <div class="form-floating mb-3">
-
-            <label class="form-label" for="name">Name</label>
-
-              <input type="text" name="name" class="form-control" required/>
-
-            </div>
-
-
-
-            <!-- Email input -->
-
-            <div class="form-floating mb-3">
-              <label class="form-label" for="email">Email address</label>
-              <input type="email" name="email" class="form-control" required />
-
-
-            </div>
-
-
-
-            <!-- Message input -->
-
-            <div class="form-floating mb-3">
-              <label class="form-label" for="msg">Message</label>
-              <textarea class="form-control" name="msg" rows="4"></textarea>
-
-
-            </div>
-
-
-
-            <!-- Checkbox -->
-
-            <div class="form-check d-flex justify-content-left mb-3">
-
-              <input class="form-check-input me-2" type="checkbox" value="" id="form4Example4" checked />
-
-              <label class="form-check-label" for="form4Example4">
-
-                Send me a copy of this message
-
+            <input type="hidden" name="uid" value="{{session('user_id')}}">
+            <div class="mb-3">
+              <label class="form-label" for="contact_title">
+                Tiêu đề
               </label>
-
+              <input type="text" name="contact_title" class="form-control" id="contact_title">
             </div>
-
-
-
-            <!-- Submit button -->
-
+              <div class="mb-3">
+                <label for="contac_content" class="form-label">Nội dung</label>
+                <textarea class="form-control" name="contact_content" id="contac_content" rows="3"></textarea>
+              </div>
             <button class="w-100 btn btn-lg btn-primary">Send</button>
-
           </form>
 
    
 </div>
-Resources
     </form>
 </div>
 @endsection
