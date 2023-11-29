@@ -36,8 +36,8 @@
                                     <a class="nav-link" id="tab-orders-link" href="{{ route('orders') }}"
                                        role="tab" aria-controls="tab-orders" aria-selected="false">Orders</a>
                                 </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" id="tab-change-password-link" href="{{ route('change.password') }}"
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="tab-change-password-link" href="{{ route('change.password') }}"
                                        role="tab" aria-controls="tab-orders" aria-selected="true">Change Password</a>
                                 </li>
                             </ul>
