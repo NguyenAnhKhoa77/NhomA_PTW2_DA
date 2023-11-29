@@ -40,11 +40,14 @@
                                 <td>{{ $product->inventory }} </td>
 
                                 <td class="project-actions text-right">
-                                    <a class="btn btn-info btn-sm" href="{{ route('product.edit', [$product]) }}">
-                                        <i class="fas fa-pencil-alt"> </i> Edit
+                                    <a class="btn btn-info btn-sm" href="{{ route('product.view', [$product]) }}">
+                                        <i class="fas fa-folder">
+                                        </i> View
                                     </a>
-                                    <a class="btn btn-info btn-sm" href="{{ route('product.addsize', [$product]) }}">
-                                        <i class="fas fa-pencil-alt"> </i> Create size
+                                    <a class="btn btn-info btn-sm" href="{{ route('product.edit', [$product]) }}">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
                                     </a>
                                     {{-- form delete --}}
                                     <form id="delete-form{{ $product->id }}"

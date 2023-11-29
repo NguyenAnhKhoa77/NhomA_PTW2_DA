@@ -89,7 +89,7 @@ class ControllerProductManager extends Controller
 
         $token = $request->input('_token');
         if (Session::has('_token') && Session::get('_token') === $token) {
-            if (!!!$product = Product::where('unique_token', $token_id)->firstOrFail()) {
+            if (!$product = Product::where('unique_token', $token_id)->firstOrFail()) {
                 return redirect()->route('product.table')->with('errors', 'Mã sản phẩm sai');
             }
             $product = Product::where('unique_token', $token_id)->firstOrFail();
@@ -182,13 +182,18 @@ class ControllerProductManager extends Controller
                 }
                 $product->sizes()->sync($selectedSizes);
 
-                return redirect()->route('product.table')->with('success', 'Cập nhật size thành công');
+                return redirect()->route('product.view', $product->id)->with('success', 'Cập nhật size thành công');
             } else {
                 return redirect()->route('product.table')->with('errors', 'Mã sản phẩm sai');
             }
         }
     }
-    public function size_remove()
+    public function view($id)
     {
+        if ($product = Product::find($id)) {
+            return view('backend.product.detail', compact('product'));
+        } else {
+            return redirect()->route('product.table')->with('errors', 'Không tìm thấy danh mục');
+        }
     }
 }
