@@ -88,7 +88,7 @@ class ControllerSize extends Controller
                 ]);
                 $size->name = $request['name'];
                 if ($size->save()) {
-                    return redirect()->back()->with('success', 'Cập nhật thành công!');
+                    return redirect()->route('size.table')->with('success', 'Cập nhật thành công!');
                 }
                 return redirect()->back()->with('errors', 'Cập nhật thất bại! Yêu cầu kiểm tra!');
             }

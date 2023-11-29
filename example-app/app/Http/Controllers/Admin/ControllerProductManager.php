@@ -7,6 +7,7 @@ use App\Models\Categories;
 use App\Models\Manufacturers;
 use App\Models\Orders;
 use App\Models\Product;
+use App\Models\Product_Size;
 use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -156,17 +157,38 @@ class ControllerProductManager extends Controller
                 return redirect()->back()->with('errors', 'Xóa thất bại!');
             }
         } else {
-            return redirect()->route('product.table')->with('error', 'Không tìm thấy sản phẩm!');
+            return redirect()->route('product.table')->with('errors', 'Không tìm thấy sản phẩm!');
         }
     }
 
-    public function Size_create()
+    public function size_create($id)
     {
+        if ($product = Product::find($id)) {
+            $sizes = Size::all();
+            return view('backend.product.create_size', compact('product', 'sizes'));
+        }
+        return redirect()->route('product.table')->with('errors', 'Danh mục không tồn tại');
     }
-    public function Size_store()
+    public function size_store(Request $request, $token_id)
     {
+        $token = $request->input('_token');
+        if (Session::has('_token') && Session::get('_token') === $token) {
+            if ($product = Product::where('unique_token', $token_id)->firstOrFail()) {
+                $selectedSizes = $request->input('sizes', []);
+                foreach ($selectedSizes as $size) {
+                    if (!Size::find($size)) {
+                        return back()->with('errors', 'Sai mã Size');
+                    }
+                }
+                $product->sizes()->sync($selectedSizes);
+
+                return redirect()->route('product.table')->with('success', 'Cập nhật size thành công');
+            } else {
+                return redirect()->route('product.table')->with('errors', 'Mã sản phẩm sai');
+            }
+        }
     }
-    public function Size_remove()
+    public function size_remove()
     {
     }
 }

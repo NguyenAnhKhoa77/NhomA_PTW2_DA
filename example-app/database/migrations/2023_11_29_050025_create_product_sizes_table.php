@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id')->default(0);
             $table->unsignedBigInteger('size_id')->default(0);
-            $table->bigInteger('price');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade')->onUpdate('cascade');
             $table->unique(['product_id', 'size_id']);

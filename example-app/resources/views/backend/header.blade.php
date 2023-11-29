@@ -226,7 +226,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('product.table') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'product.table' || Route::currentRouteName() == 'product.create' || Route::currentRouteName() == 'product.edit' ? 'active' : '' }}">
+                                class="nav-link  {{ Request::is('admin/product/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Sản phẩm
                                 </p>
@@ -261,14 +261,6 @@
                                 class="nav-link {{ Route::currentRouteName() == 'category.table' || Route::currentRouteName() == 'category.create' || Route::currentRouteName() == 'category.edit' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Loại sản phẩm
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('size.table') }}"
-                                class="nav-link {{ Route::currentRouteName() == 'size.table' || Route::currentRouteName() == 'size.create' || Route::currentRouteName() == 'size.edit' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>Size
                                 </p>
                             </a>
                         </li>
