@@ -275,10 +275,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
+
                             <a href="{{ route('coupons.table') }}"
                                 class="nav-link {{ Request::is('admin/coupons') || Request::is('admin/coupons/*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>Phiếu giảm giá
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('mailbox.mailbox') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'comments.table' || Route::currentRouteName() == 'comments.create' || Route::currentRouteName() == 'comments.edit' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>Mailbox
+
                                 </p>
                             </a>
                         </li>
