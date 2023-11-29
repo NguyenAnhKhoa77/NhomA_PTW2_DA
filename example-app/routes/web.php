@@ -179,5 +179,7 @@ Route::prefix('admin')->middleware('auth', 'manage')->group(function () {
     Route::prefix('mailbox')->group(function () {
         Route::get('/', [ControllerMailbox::class, 'mailbox'])->name('mailbox.mailbox');
         Route::get('/read-mail/{id}', [ControllerMailbox::class, 'readmail'])->name('read.mail');
+        Route::get('/reply/{id}', [ControllerMailbox::class, 'reply'])->name('mailbox.reply');
+        Route::post('/reply/{id}', [ControllerMailbox::class, 'replyForm'])->name('mailbox.reply');
     });
 });
