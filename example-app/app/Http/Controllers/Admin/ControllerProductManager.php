@@ -9,6 +9,7 @@ use App\Models\Orders;
 use App\Models\Product;
 use App\Models\Product_Size;
 use App\Models\ProductImage;
+use App\Models\sex;
 use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -26,9 +27,10 @@ class ControllerProductManager extends Controller
     }
     public function create()
     {
+        $sexs = sex::all();
         $manus = Manufacturers::all();
         $cates = Categories::all();
-        return view('backend.product.create', compact('manus', 'cates'));
+        return view('backend.product.create', compact('manus', 'cates', 'sexs'));
     }
     public function create_handler(Request $request)
     {
