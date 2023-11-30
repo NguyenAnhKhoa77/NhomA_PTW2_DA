@@ -7,7 +7,7 @@ use App\Models\Categories;
 use App\Models\Manufacturers;
 use App\Models\Orders;
 use App\Models\Product;
-use App\Models\User;
+use App\Models\User;use App\Models\Bills;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +15,7 @@ class AdminPage extends Controller
 {
     public function dashboard()
     {
-        $totalOrders = Orders::count();
+        $totalOrders = Bills::count();
         $totalUsers = User::count();
         $totalProducts = Product::count();
         $totalManu = Product::count();
